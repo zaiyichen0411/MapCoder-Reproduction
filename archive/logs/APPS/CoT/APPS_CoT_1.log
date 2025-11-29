@@ -1,0 +1,27 @@
+#########################
+Running start QwenCoderTurbo-CoT-APPS-Python3-0.0-1, Time: 2025-11-11 19:40:49.179486
+##########################
+
+completed 1/19, Solved: False, number of success = 0/1, acc = 0.0
+completed 2/19, Solved: False, number of success = 0/2, acc = 0.0
+completed 3/19, Solved: False, number of success = 0/3, acc = 0.0
+completed 4/19, Solved: False, number of success = 0/4, acc = 0.0
+completed 5/19, Solved: True, number of success = 1/5, acc = 20.0
+completed 6/19, Solved: True, number of success = 2/6, acc = 33.33
+completed 7/19, Solved: True, number of success = 3/7, acc = 42.86
+completed 8/19, Solved: False, number of success = 3/8, acc = 37.5
+completed 9/19, Solved: False, number of success = 3/9, acc = 33.33
+completed 10/19, Solved: True, number of success = 4/10, acc = 40.0
+completed 11/19, Solved: False, number of success = 4/11, acc = 36.36
+completed 12/19, Solved: False, number of success = 4/12, acc = 33.33
+completed 13/19, Solved: False, number of success = 4/13, acc = 30.77
+completed 14/19, Solved: False, number of success = 4/14, acc = 28.57
+completed 15/19, Solved: False, number of success = 4/15, acc = 26.67
+completed 16/19, Solved: True, number of success = 5/16, acc = 31.25
+completed 17/19, Solved: False, number of success = 5/17, acc = 29.41
+completed 18/19, Solved: False, number of success = 5/18, acc = 27.78
+completed 19/19, Solved: True, number of success = 6/19, acc = 31.58
+#########################
+Running end QwenCoderTurbo-CoT-APPS-Python3-0.0-1, Time: 2025-11-11 19:44:17.778638
+##########################
+

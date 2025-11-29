@@ -1,0 +1,1288 @@
+#########################
+Running start QwenCoder480b-MapCoder-CC-Python3-0.0-10, Time: 2025-11-17 23:13:51.147264
+##########################
+
+--- Starting run_single_pass ---
+Task ID: 1575
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\nAA\nAB\nBB\nBA\nAZ\n', 'output': ['5 2 1 3 4 \n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\nAA\nAB\nBB\nBA\nAZ\n', 'output': ['5 2 1 3 4 \n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\nAA\nAB\nBB\nBA\nAZ\n', 'output': ['5 2 1 3 4 \n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\nAA\nAB\nBB\nBA\nAZ\n', 'output': ['5 2 1 3 4 \n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def main():
+    n, m = map(int, sys.stdin.readline().split())
+    
+    books = []
+    for i in range(n):
+        s = sys.stdin.readline().strip()
+        books.append((s, i + 1))
+    
+    # Custom comparator using key function
+    def sort_key(item):
+        s, idx = item
+        # Create a tuple that represents the sorting key
+        key = []
+        for i in range(m):
+            if (i + 1) % 2 == 1:  # Odd position
+                key.append(ord(s[i]))  # Ascending: smaller char first
+            else:  # Even position
+                key.append(-ord(s[i]))  # Descending: larger char first (negate)
+        return key
+    
+    books.sort(key=sort_key)
+    
+    result = [str(book[1]) for book in books]
+    print(' '.join(result))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 10312
+Total Completion Tokens: 5274
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1579
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 17, column 31
+Response:
+<response>
+  <knowledge_base>
+    - **Problem Type**: String manipulation and decision problem
+    - **Key Insight**: The operations allow us to remove pairs of letters: (A,B) or (B,C). This means we're essentially trying to balance the counts of these letters.
+    - **Invariant Analysis**: 
+      * Operation 1: removes one A and one B ¡ú decreases count(A) and count(B) by 1 each
+      * Operation 2: removes one B and one C ¡ú decreases count(B) and count(C) by 1 each
+    - **Critical Observation**: For the string to be completely erased, we must be able to pair up all letters according to the allowed operations.
+    - **Mathematical Condition**: Let count_a, count_b, count_c be the counts of 'A', 'B', 'C' respectively. For complete erasure:
+      * We need enough B's to match all A's: count_b ¡Ý count_a
+      * We need enough B's to match all C's: count_b ¡Ý count_c
+      * We need exactly enough B's to match both A's and C's: count_b = count_a + count_c
+      * Therefore, the condition is: count_b = count_a + count_c
+    - **Edge Cases**:
+      * Empty string or single character (impossible to erase)
+      * All same characters (impossible unless all counts are zero, which is trivially satisfied)
+      * Strings where count_b < count_a or count_b < count_c
+    - **Time Complexity**: O(n) per test case where n is string length
+    - **Space Complexity**: O(1) additional space
+  </knowledge_base>
+  <exemplars><![CDATA[
+Exemplar 1:
+Input: "ABACAB"
+Counts: A=3, B=2, C=1
+Check: count_b == count_a + count_c ¡ú 2 == 3+1 ¡ú 2 == 4? No
+Output: NO
+
+Exemplar 2:
+Input: "ABBA"
+Counts: A=2, B=2, C=0
+Check: count_b == count_a + count_c ¡ú 2 == 2+0 ¡ú 2 == 2? Yes
+Output: YES
+
+Exemplar 3:
+Input: "CABCBB"
+Counts: A=1, B=3, C=2
+Check: count_b == count_a + count_c ¡ú 3 == 1+2 ¡ú 3 == 3? Yes
+Output: YES
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6\nABACAB\nABBA\nAC\nABC\nCABCBB\nBCBCBCBCBCBCBCBC\n', 'output': ['NO\nYES\nNO\nNO\nYES\nYES\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6\nABACAB\nABBA\nAC\nABC\nCABCBB\nBCBCBCBCBCBCBCBC\n', 'output': ['NO\nYES\nNO\nNO\nYES\nYES\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6\nABACAB\nABBA\nAC\nABC\nCABCBB\nBCBCBCBCBCBCBCBC\n', 'output': ['NO\nYES\nNO\nNO\nYES\nYES\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6\nABACAB\nABBA\nAC\nABC\nCABCBB\nBCBCBCBCBCBCBCBC\n', 'output': ['NO\nYES\nNO\nNO\nYES\nYES\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+t = int(input())
+for _ in range(t):
+    s = input().strip()
+    count_A = s.count('A')
+    count_B = s.count('B')
+    count_C = s.count('C')
+    
+    if count_B == count_A + count_C:
+        print("YES")
+    else:
+        print("NO")
+
+
+
+Total Prompt Tokens: 10137
+Total Completion Tokens: 4250
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1580
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n9 9\n001010001\n101110100\n000010011\n100000001\n101010101\n110001111\n000001111\n111100000\n000110000\n', 'output': ['5\n']}
+failed in test case: {'input': '1\n5 4\n1000\n0000\n0110\n0000\n0001\n', 'output': ['12\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n9 9\n001010001\n101110100\n000010011\n100000001\n101010101\n110001111\n000001111\n111100000\n000110000\n', 'output': ['5\n']}
+failed in test case: {'input': '1\n5 4\n1000\n0000\n0110\n0000\n0001\n', 'output': ['12\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n9 9\n001010001\n101110100\n000010011\n100000001\n101010101\n110001111\n000001111\n111100000\n000110000\n', 'output': ['5\n']}
+failed in test case: {'input': '1\n5 4\n1000\n0000\n0110\n0000\n0001\n', 'output': ['12\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n9 9\n001010001\n101110100\n000010011\n100000001\n101010101\n110001111\n000001111\n111100000\n000110000\n', 'output': ['5\n']}
+failed in test case: {'input': '1\n5 4\n1000\n0000\n0110\n0000\n0001\n', 'output': ['12\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    results = []
+    
+    for _ in range(t):
+        n = int(data[idx])
+        m = int(data[idx+1])
+        idx += 2
+        
+        grid = []
+        for i in range(n):
+            row = data[idx]
+            idx += 1
+            grid.append([int(c) for c in row])
+        
+        # Precompute prefix sums
+        prefix = [[0]*(m+1) for _ in range(n+1)]
+        for i in range(n):
+            for j in range(m):
+                prefix[i+1][j+1] = grid[i][j] + prefix[i][j+1] + prefix[i+1][j] - prefix[i][j]
+        
+        def get_sum(x1, y1, x2, y2):
+            return prefix[x2+1][y2+1] - prefix[x1][y2+1] - prefix[x2+1][y1] + prefix[x1][y1]
+        
+        min_ops = float('inf')
+        
+        # Try all possible portal sizes a x b where a >= 5, b >= 4
+        for a in range(5, n+1):
+            for b in range(4, m+1):
+                # Try all positions for the portal
+                for i in range(n - a + 1):
+                    for j in range(m - b + 1):
+                        # Count operations needed for this portal
+                        ops = 0
+                        
+                        # Left and right borders (excluding corners)
+                        # Rows from i+1 to i+a-2 (0-indexed), columns j and j+b-1
+                        if a >= 3:  # Need at least 3 rows to have middle rows
+                            left_border = get_sum(i+1, j, i+a-2, j)
+                            ops += (a-2) - left_border  # Want 1s, so need to change 0s to 1s
+                        
+                            right_border = get_sum(i+1, j+b-1, i+a-2, j+b-1)
+                            ops += (a-2) - right_border  # Want 1s, so need to change 0s to 1s
+                        
+                        # Top and bottom borders (excluding corners)
+                        # Columns from j+1 to j+b-2 (0-indexed), rows i and i+a-1
+                        if b >= 3:  # Need at least 3 columns to have middle columns
+                            top_border = get_sum(i, j+1, i, j+b-2)
+                            ops += (b-2) - top_border  # Want 1s, so need to change 0s to 1s
+                        
+                            bottom_border = get_sum(i+a-1, j+1, i+a-1, j+b-2)
+                            ops += (b-2) - bottom_border  # Want 1s, so need to change 0s to 1s
+                        
+                        # Inner area should be all 0s
+                        if a >= 3 and b >= 3:
+                            inner_sum = get_sum(i+1, j+1, i+a-2, j+b-2)
+                            ops += inner_sum  # All these should be 0, so count 1s to change to 0s
+                        
+                        min_ops = min(min_ops, ops)
+        
+        results.append(str(min_ops))
+    
+    print('\n'.join(results))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 15799
+Total Completion Tokens: 7943
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1581
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 4, column 113
+Response:
+<response>
+  <knowledge_base>
+    - **Permutation**: An arrangement of distinct integers from 1 to 2n in a specific order.
+    - **Condition for Counting**: A permutation of length 2n is counted if the number of indices `i` where `p_i < p_{i+1}` is at least `n`.
+    - **Combinatorics**: The solution involves calculating combinations due to symmetry in permutations. The total number of permutations of length 2n is (2n)!. Half of the permutations (excluding tie cases) will have more ascending pairs than descending pairs due to symmetry, but we need a precise count based on the threshold `n`.
+    - **Mathematical Insight**: The number of valid permutations is related to the total number of permutations minus those that do not meet the condition. Using combinatorial mathematics, it can be shown that the count is (2n)! / 2 when n=1, but a general formula requires careful derivation considering the threshold.
+    - **Modular Arithmetic**: All calculations must be done modulo 10^9 + 7. This includes precomputing factorials and using modular inverse for division.
+    - **Edge Cases**:
+        - Small values of n (e.g., n=1) where manual verification is possible.
+        - Large values of n (up to 10^5), requiring efficient computation of factorials and modular inverses.
+    - **Algorithm Steps**:
+        1. Precompute factorials up to 2 * max_n modulo 10^9 + 7.
+        2. For each test case, compute (2n)! mod (10^9 + 7).
+        3. The result for each n is ((2n)! / 2) mod (10^9 + 7), which can be computed as (fact[2*n] * modular_inverse(2)) mod (10^9 + 7).
+  </knowledge_base>
+  <exemplars><![CDATA[
+### Exemplar 1: Manual Calculation for n=1
+- Input: n = 1
+- Permutations of [1, 2]: [1, 2] and [2, 1].
+- For [1, 2]: p_1 < p_2 ¡ú count = 1. Since 1 ¡Ý 1, it's counted.
+- For [2, 1]: p_1 > p_2 ¡ú count = 0. Since 0 < 1, it's not counted.
+- Output: 1
+
+### Exemplar 2: Manual Calculation for n=2
+- Input: n = 2
+- Total permutations = 4! = 24.
+- Valid permutations (those with at least 2 ascending adjacent pairs): 12.
+    - [1,2,3,4] (3 ascents)
+    - [1,2,4,3] (2 ascents)
+    - [1,3,2,4] (2 ascents)
+    - [1,3,4,2] (2 ascents)
+    - [1,4,2,3] (2 ascents)
+    - [2,1,3,4] (2 ascents)
+    - [2,3,1,4] (2 ascents)
+    - [2,3,4,1] (2 ascents)
+    - [2,4,1,3] (2 ascents)
+    - [3,1,2,4] (2 ascents)
+    - [3,4,1,2] (2 ascents)
+    - [4,1,2,3] (2 ascents)
+- Output: 12
+
+### Exemplar 3: General Approach for Any n
+- Precompute factorials up to 2*10^5.
+- For a given n, retrieve (2n)! from the precomputed list.
+- Compute modular inverse of 2 under 10^9 + 7, which is 500000004 since 2 * 500000004 ¡Ô 1 (mod 10^9 + 7).
+- Result = (fact[2*n] * 500000004) % (10^9 + 7).
+  ]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1\n2\n9\n91234\n', 'output': ['1\n12\n830455698\n890287984\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1\n2\n9\n91234\n', 'output': ['1\n12\n830455698\n890287984\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1\n2\n9\n91234\n', 'output': ['1\n12\n830455698\n890287984\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1\n2\n9\n91234\n', 'output': ['1\n12\n830455698\n890287984\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+MOD = 1000000007
+
+def main():
+    # Read all input first
+    input_data = sys.stdin.read().strip().split()
+    t = int(input_data[0])
+    
+    # Find maximum n to determine precomputation limit
+    max_n = 0
+    queries = []
+    for i in range(1, t + 1):
+        n = int(input_data[i])
+        queries.append(n)
+        max_n = max(max_n, n)
+    
+    # Precompute factorials up to 2*max_n
+    MAX_FACT = 2 * max_n
+    fact = [1] * (MAX_FACT + 1)
+    for i in range(1, MAX_FACT + 1):
+        fact[i] = (fact[i-1] * i) % MOD
+    
+    # Modular inverse of 2 modulo MOD
+    inv_2 = pow(2, MOD - 2, MOD)  # Using Fermat's little theorem
+    
+    # Process each query
+    results = []
+    for n in queries:
+        factorial_2n = fact[2 * n]
+        ans = (factorial_2n * inv_2) % MOD
+        results.append(str(ans))
+    
+    sys.stdout.write('\n'.join(results) + '\n')
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 17132
+Total Completion Tokens: 5754
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1582
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 1 1\n2 1 3\n5 5 5\n1 1 2\n', 'output': ['0\n1\n0\n1\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 1 1\n2 1 3\n5 5 5\n1 1 2\n', 'output': ['0\n1\n0\n1\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 1 1\n2 1 3\n5 5 5\n1 1 2\n', 'output': ['0\n1\n0\n1\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 1 1\n2 1 3\n5 5 5\n1 1 2\n', 'output': ['0\n1\n0\n1\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+t = int(input())
+for _ in range(t):
+    a, b, c = map(int, input().split())
+    total = a + 2 * b + 3 * c
+    
+    if a > 0:
+        # With 1-minute songs, we can make any sum we want
+        print(total % 2)
+    elif b > 0 and c > 0:
+        # With both 2 and 3-minute songs, we can make almost any sum
+        print(total % 2)
+    elif b > 0:
+        # Only 2-minute songs, all sums are even
+        print(0)
+    else:
+        # Only 3-minute songs
+        print(total % 2)
+
+
+
+Total Prompt Tokens: 11801
+Total Completion Tokens: 5704
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_prime(num):
+    if num < 2:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num**0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
+def is_composite(num):
+    return num > 1 and not is_prime(num)
+
+def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    
+    results = []
+    
+    for _ in range(t):
+        n = int(data[idx])
+        idx += 1
+        arr = list(map(int, data[idx:idx + n]))
+        idx += n
+        
+        total_sum = sum(arr)
+        
+        # Check if full set works
+        if is_composite(total_sum):
+            results.append(str(n))
+            results.append(' '.join(map(str, range(1, n + 1))))
+            continue
+        
+        # Try removing one element
+        found = False
+        for i in range(n):
+            current_sum = total_sum - arr[i]
+            if is_composite(current_sum):
+                indices = [j + 1 for j in range(n) if j != i]
+                results.append(str(n - 1))
+                results.append(' '.join(map(str, indices)))
+                found = True
+                break
+        
+        if found:
+            continue
+            
+        # Try removing two elements
+        for i in range(n):
+            for j in range(i + 1, n):
+                current_sum = total_sum - arr[i] - arr[j]
+                if is_composite(current_sum):
+                    indices = [k + 1 for k in range(n) if k != i and k != j]
+                    results.append(str(n - 2))
+                    results.append(' '.join(map(str, indices)))
+                    found = True
+                    break
+            if found:
+                break
+        
+    print('\n'.join(results))
+
+if __name__ == "__main__":
+    solve()
+
+
+
+Total Prompt Tokens: 19195
+Total Completion Tokens: 7722
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_composite(n):
+    if n < 4:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return True
+    return False
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite(total_sum):
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+    else:
+        # Try removing each element to see if we get a composite sum
+        for i in range(n):
+            if is_composite(total_sum - a[i]):
+                print(n - 1)
+                # Print indices 1 to n excluding i+1
+                result = []
+                for j in range(n):
+                    if j != i:
+                        result.append(j + 1)
+                print(' '.join(map(str, result)))
+                break
+
+
+
+Total Prompt Tokens: 15024
+Total Completion Tokens: 6264
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_composite(n):
+    if n < 4:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return True
+    return False
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite(total_sum):
+        print(n)
+        print(*range(1, n+1))
+    else:
+        # Sum is prime, need to remove one element to make it composite
+        # Try removing each element and check if the remaining sum is composite
+        found = False
+        for i in range(n):
+            remaining_sum = total_sum - a[i]
+            if is_composite(remaining_sum):
+                print(n-1)
+                result = []
+                for j in range(n):
+                    if j != i:
+                        result.append(j+1)
+                print(*result)
+                found = True
+                break
+        
+        # If removing any single element doesn't work, 
+        # we need to remove more elements or there's a special case
+        if not found:
+            # This shouldn't happen according to problem statement,
+            # but let's handle it by removing the element that makes
+            # the remaining sum most likely to be composite
+            # Try removing the smallest element first
+            min_idx = 0
+            for i in range(1, n):
+                if a[i] < a[min_idx]:
+                    min_idx = i
+            
+            print(n-1)
+            result = []
+            for j in range(n):
+                if j != min_idx:
+                    result.append(j+1)
+            print(*result)
+
+
+
+Total Prompt Tokens: 11565
+Total Completion Tokens: 4023
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_composite(n):
+    if n < 4:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return True
+    return False
+
+def solve():
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite(total_sum):
+        print(n)
+        print(*range(1, n+1))
+        return
+    
+    # Try removing each element one by one
+    for i in range(n):
+        current_sum = total_sum - a[i]
+        if is_composite(current_sum):
+            print(n-1)
+            result_indices = []
+            for j in range(n):
+                if j != i:
+                    result_indices.append(j + 1)
+            print(*result_indices)
+            return
+
+t = int(input())
+for _ in range(t):
+    solve()
+
+
+
+Total Prompt Tokens: 11402
+Total Completion Tokens: 4935
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve_of_eratosthenes(limit):
+    is_prime = [True] * (limit + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(limit**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, limit + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+MAX_SUM = 100 * 200
+is_prime = sieve_of_eratosthenes(MAX_SUM)
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if not is_prime[total_sum]:
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+    else:
+        # Try removing each element to find a composite sum
+        found = False
+        for i in range(n):
+            new_sum = total_sum - a[i]
+            if not is_prime[new_sum]:
+                # Found a composite sum by removing element at index i
+                result_indices = []
+                for j in range(n):
+                    if j != i:
+                        result_indices.append(j + 1)  # Convert to 1-indexed
+                print(n - 1)
+                print(' '.join(map(str, result_indices)))
+                found = True
+                break
+        
+        # According to problem statement, such a subset always exists
+        if not found:
+            # This shouldn't happen, but just in case
+            # Remove the first element
+            result_indices = []
+            for j in range(1, n):
+                result_indices.append(j + 1)
+            print(n - 1)
+            print(' '.join(map(str, result_indices)))
+
+
+
+Total Prompt Tokens: 11625
+Total Completion Tokens: 5480
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+MAX_SUM = 200 * 100
+is_prime = sieve(MAX_SUM)
+
+def is_composite(x):
+    return x > 1 and not is_prime[x]
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite(total_sum):
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+    else:
+        # Try removing each element to see if we get a composite sum
+        for i in range(n):
+            if is_composite(total_sum - a[i]):
+                print(n - 1)
+                result = [j + 1 for j in range(n) if j != i]
+                print(' '.join(map(str, result)))
+                break
+
+
+
+Total Prompt Tokens: 11935
+Total Completion Tokens: 4434
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+# Precompute primes up to 20000 (max possible sum is 100*200 = 20000)
+is_prime = sieve(20000)
+
+def solve():
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    # If total sum is composite, take all elements
+    if not is_prime[total_sum]:
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+        return
+    
+    # Try removing one element to make sum composite
+    for i in range(n):
+        if not is_prime[total_sum - a[i]]:
+            print(n - 1)
+            result = []
+            for j in range(n):
+                if j != i:
+                    result.append(j + 1)  # 1-indexed
+            print(' '.join(map(str, result)))
+            return
+    
+    # If still not found, remove two elements (guaranteed to work)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if not is_prime[total_sum - a[i] - a[j]]:
+                print(n - 2)
+                result = []
+                for k in range(n):
+                    if k != i and k != j:
+                        result.append(k + 1)  # 1-indexed
+                print(' '.join(map(str, result)))
+                return
+
+t = int(input())
+for _ in range(t):
+    solve()
+
+
+
+Total Prompt Tokens: 12519
+Total Completion Tokens: 5760
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+MAX_SUM = 200 * 100
+is_prime = sieve(MAX_SUM)
+
+def is_composite(x):
+    return x > 1 and not is_prime[x]
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite(total_sum):
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+    else:
+        # Try removing one element
+        found = False
+        for i in range(n):
+            if is_composite(total_sum - a[i]):
+                print(n - 1)
+                result = [j + 1 for j in range(n) if j != i]
+                print(' '.join(map(str, result)))
+                found = True
+                break
+        
+        if not found:
+            # Try removing two elements
+            for i in range(n):
+                for j in range(i + 1, n):
+                    if is_composite(total_sum - a[i] - a[j]):
+                        print(n - 2)
+                        result = [k + 1 for k in range(n) if k != i and k != j]
+                        print(' '.join(map(str, result)))
+                        found = True
+                        break
+                if found:
+                    break
+
+
+
+Total Prompt Tokens: 15810
+Total Completion Tokens: 7322
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    return is_prime
+
+MAX_SUM = 100 * 200
+is_prime = sieve(MAX_SUM)
+
+def is_composite(n):
+    return n > 1 and not is_prime[n]
+
+import sys
+
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    
+    results = []
+    
+    for _ in range(t):
+        n = int(data[idx])
+        idx += 1
+        a = list(map(int, data[idx:idx + n]))
+        idx += n
+        
+        total_sum = sum(a)
+        
+        # If total sum is composite, take all elements
+        if is_composite(total_sum):
+            results.append(str(n))
+            results.append(' '.join(map(str, range(1, n + 1))))
+            continue
+            
+        # Try removing one element to make sum composite
+        found = False
+        for i in range(n):
+            if is_composite(total_sum - a[i]):
+                results.append(str(n - 1))
+                indices = [str(j + 1) for j in range(n) if j != i]
+                results.append(' '.join(indices))
+                found = True
+                break
+        
+        if found:
+            continue
+            
+        # If removing one element doesn't work, remove two elements
+        for i in range(n):
+            if found:
+                break
+            for j in range(i + 1, n):
+                if is_composite(total_sum - a[i] - a[j]):
+                    results.append(str(n - 2))
+                    indices = [str(k + 1) for k in range(n) if k != i and k != j]
+                    results.append(' '.join(indices))
+                    found = True
+                    break
+        
+    print('\n'.join(results))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 14776
+Total Completion Tokens: 5614
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1586
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n3\n8 1 2\n4\n6 9 4 2\n9\n1 2 3 4 5 6 7 8 9\n3\n200 199 198\n', 'output': ['2\n1 3\n4\n1 2 3 4\n9\n1 2 3 4 5 6 7 8 9\n3\n1 2 3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def sieve(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    # Create composite array: True if composite, False otherwise
+    is_composite = [not is_prime[i] and i > 1 for i in range(n + 1)]
+    return is_composite
+
+is_composite = sieve(20000)
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    
+    total_sum = sum(a)
+    
+    if is_composite[total_sum]:
+        print(n)
+        print(' '.join(map(str, range(1, n + 1))))
+    else:
+        found = False
+        # Try removing one element
+        for i in range(n):
+            if is_composite[total_sum - a[i]]:
+                print(n - 1)
+                result = []
+                for j in range(n):
+                    if j != i:
+                        result.append(j + 1)
+                print(' '.join(map(str, result)))
+                found = True
+                break
+        
+        # If removing one element doesn't work, remove two elements
+        if not found:
+            print(n - 2)
+            result = []
+            for i in range(n - 2):
+                result.append(i + 1)
+            print(' '.join(map(str, result)))
+
+
+
+Total Prompt Tokens: 13059
+Total Completion Tokens: 6313
+________________________
+
+
+#########################
+Running end QwenCoder480b-MapCoder-CC-Python3-0.0-10, Time: 2025-11-18 00:09:23.009827
+##########################
+

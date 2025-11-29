@@ -15,3 +15,8 @@ def write_jsonl(filename, lines):
     with open(filename, "w", encoding="utf-8") as file:
         for line in lines:
             file.write(json.dumps(line) + "\n")
+
+def append_jsonl(filename, line):
+    """Appends a single dictionary to a jsonl file"""
+    with open(filename, "a", encoding="utf-8") as file:
+        file.write(json.dumps(line) + "\n")

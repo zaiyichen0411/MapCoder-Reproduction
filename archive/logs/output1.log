@@ -1,0 +1,376 @@
+#########################
+Running start GPT4-MapCoder-HumanEval-Python3-0.1-2, Time: 2025-11-11 03:13:02.135852
+##########################
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '6de21055-7328-4bac-a969-d4ae4744dd04'}
+--- Starting run_single_pass ---
+Task ID: HumanEval/0
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    """ Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '6de21055-7328-4bac-a969-d4ae4744dd04'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '31a479a4-82dd-466a-9eea-7fc7ec3cec93'}
+completed 1/4, Solved: False, number of success = 0/1, acc = 0.0
+--- Starting run_single_pass ---
+Task ID: HumanEval/0
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    """ Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '31a479a4-82dd-466a-9eea-7fc7ec3cec93'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 1/4, Solved: False, number of success = 0/1, acc = 0.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'd144bbb2-c6bd-410f-b9a3-28cd780f175b'}
+--- Starting run_single_pass ---
+Task ID: HumanEval/1
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups(\'( ) (( )) (( )( ))\')\n    [\'()\', \'(())\', \'(()())\']\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'd144bbb2-c6bd-410f-b9a3-28cd780f175b'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'd13045f1-c557-4443-91b6-831a56ab7f8f'}
+completed 2/4, Solved: False, number of success = 0/2, acc = 0.0
+--- Starting run_single_pass ---
+Task ID: HumanEval/1
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups(\'( ) (( )) (( )( ))\')\n    [\'()\', \'(())\', \'(()())\']\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'd13045f1-c557-4443-91b6-831a56ab7f8f'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 2/4, Solved: False, number of success = 0/2, acc = 0.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '3fb8adb2-8f91-4ce1-ad07-0091808c383f'}
+--- Starting run_single_pass ---
+Task ID: HumanEval/2
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef truncate_number(number: float) -> float:\n    """ Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '3fb8adb2-8f91-4ce1-ad07-0091808c383f'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '82b40f5d-764a-4671-9903-c6243f5893b4'}
+completed 3/4, Solved: False, number of success = 0/3, acc = 0.0
+--- Starting run_single_pass ---
+Task ID: HumanEval/2
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef truncate_number(number: float) -> float:\n    """ Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '82b40f5d-764a-4671-9903-c6243f5893b4'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 3/4, Solved: False, number of success = 0/3, acc = 0.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '64a95434-da8e-4163-a101-9eb13ff883d2'}
+--- Starting run_single_pass ---
+Task ID: HumanEval/3
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    """ You\'re given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': '64a95434-da8e-4163-a101-9eb13ff883d2'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 234, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 208, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'fd1ffe23-e527-43ec-b1e5-3a890790d1ab'}
+completed 4/4, Solved: False, number of success = 0/4, acc = 0.0
+--- Starting run_single_pass ---
+Task ID: HumanEval/3
+--- Generating Knowledge Base and Exemplars ---
+Input for KB and Exemplars: [{'role': 'system', 'content': 'You are an expert code synthesis assistant. Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. Respond strictly as XML with the following structure: \n<response>\n  <knowledge_base>...</knowledge_base>\n  <exemplars><![CDATA[...]]></exemplars>\n</response>\nDo not include any text outside the XML.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    """ You\'re given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    """\n\n\nPlease provide a knowledge base and up to 3 exemplars. Use the exact XML structure specified above.'}]
+--- An unexpected error occurred in run_single_pass: Error code: 401 - {'error': {'message': 'Incorrect API key provided. For details, see: https://help.aliyun.com/zh/model-studio/error-code#apikey-error', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}, 'request_id': 'fd1ffe23-e527-43ec-b1e5-3a890790d1ab'} ---
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 4/4, Solved: False, number of success = 0/4, acc = 0.0
+#########################
+Running end GPT4-MapCoder-HumanEval-Python3-0.1-2, Time: 2025-11-11 03:13:03.218067
+##########################
+

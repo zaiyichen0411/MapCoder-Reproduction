@@ -1,0 +1,1 @@
+This directory stores backups of legacy final-results folders.

@@ -17,4 +17,4 @@ class DirectStrategy(BaseStrategy):
                 "content": f'{self.data.get_prompt(item)}\n\Generate {self.language} code to solve the above mentioned problem:',
             },
         ]
-        return self.gpt_chat(processed_input=processed_input)
+        return self.gpt_chat(prompt=processed_input)

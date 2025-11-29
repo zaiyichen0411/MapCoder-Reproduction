@@ -1,0 +1,15 @@
+#########################
+Running start QwenCoderTurbo-Direct-CC-Python3-0.0-1, Time: 2025-11-13 15:40:15.435720
+##########################
+
+completed 1/42, Solved: False, number of success = 0/1, acc = 0.0
+completed 4/42, Solved: True, number of success = 1/4, acc = 25.0
+completed 10/42, Solved: False, number of success = 1/10, acc = 10.0
+completed 17/42, Solved: True, number of success = 2/17, acc = 11.76
+completed 24/42, Solved: False, number of success = 2/24, acc = 8.33
+completed 34/42, Solved: False, number of success = 2/34, acc = 5.88
+completed 37/42, Solved: False, number of success = 2/37, acc = 5.41
+#########################
+Running end QwenCoderTurbo-Direct-CC-Python3-0.0-1, Time: 2025-11-13 15:41:41.432498
+##########################
+

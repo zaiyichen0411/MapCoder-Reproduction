@@ -1,0 +1,33 @@
+#########################
+Running start QwenCoderTurbo-SelfPlanning-HumanEval-Python3-0.0-1, Time: 2025-11-11 14:11:50.802292
+##########################
+
+completed 1/21, Solved: True, number of success = 1/1, acc = 100.0
+completed 2/21, Solved: True, number of success = 2/2, acc = 100.0
+completed 3/21, Solved: True, number of success = 3/3, acc = 100.0
+completed 4/21, Solved: True, number of success = 4/4, acc = 100.0
+completed 5/21, Solved: True, number of success = 5/5, acc = 100.0
+lm
+ewhjklnop
+kj
+ix
+completed 6/21, Solved: True, number of success = 6/6, acc = 100.0
+completed 7/21, Solved: True, number of success = 7/7, acc = 100.0
+completed 8/21, Solved: False, number of success = 7/8, acc = 87.5
+completed 9/21, Solved: True, number of success = 8/9, acc = 88.89
+completed 10/21, Solved: False, number of success = 8/10, acc = 80.0
+completed 11/21, Solved: True, number of success = 9/11, acc = 81.82
+completed 12/21, Solved: False, number of success = 9/12, acc = 75.0
+completed 13/21, Solved: False, number of success = 9/13, acc = 69.23
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+An error occurred: Connection error.
+#########################
+Running end QwenCoderTurbo-SelfPlanning-HumanEval-Python3-0.0-1, Time: 2025-11-11 14:26:17.117892
+##########################
+

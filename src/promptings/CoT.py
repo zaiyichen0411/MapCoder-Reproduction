@@ -919,6 +919,6 @@ main()
             },
         ]
         return self.gpt_chat(
-            processed_input=input_for_planning
+            prompt=input_for_planning
         )
 

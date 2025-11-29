@@ -1,0 +1,2893 @@
+#########################
+Running start QwenCoderTurbo-Analogical-HumanEval-Python3-0.0-1, Time: 2025-11-11 19:08:04.180054
+##########################
+
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def incr_list(l: list):
+    """Return list with elements incremented by 1.
+    >>> incr_list([1, 2, 3])
+    [2, 3, 4]
+    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [6, 4, 6, 3, 4, 4, 10, 1, 124]
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+The problem involves iterating through a list and incrementing each element by 1. This can be solved using a simple loop or list comprehension.
+
+### Tutorial:
+
+#### Loop Method:
+1. Initialize an empty list to store the result.
+2. Iterate through each element in the input list.
+3. Increment each element by 1 and append the result to the new list.
+4. Return the new list.
+
+```python
+def incr_list_loop(l: list):
+    result = []
+    for item in l:
+        result.append(item + 1)
+    return result
+```
+
+#### List Comprehension:
+1. Use a list comprehension to iterate through each element in the input list.
+2. Increment each element by 1 and create a new list.
+
+```python
+def incr_list_comprehension(l: list):
+    return [item + 1 for item in l]
+```
+
+Both methods achieve the same result, but list comprehension is generally more concise and often faster.
+
+### Example Problems:
+
+#### Problem 1: Increment All Elements By One
+**Problem Description:** Given a list of integers, return a new list with each element incremented by 1.
+
+**Solution:** The solution uses a loop to iterate through the list and increment each element.
+
+```python
+def increment_elements(lst):
+    result = []
+    for num in lst:
+        result.append(num + 1)
+    return result
+
+# Example usage:
+print(increment_elements([1, 2, 3]))  # Output: [2, 3, 4]
+```
+
+#### Problem 2: Increment List Elements Using List Comprehension
+**Problem Description:** Given a list of integers, return a new list with each element incremented by 1 using list comprehension.
+
+**Solution:** The solution uses list comprehension to achieve the same result.
+
+```python
+def increment_elements_comprehension(lst):
+    return [num + 1 for num in lst]
+
+# Example usage:
+print(increment_elements_comprehension([5, 3, 5, 2, 3, 3, 9, 0, 123]))  # Output: [6, 4, 6, 3, 4, 4, 10, 1, 124]
+```
+
+#### Problem 3: Increment Array Elements
+**Problem Description:** Given an array of integers, return a new array with each element incremented by 1.
+
+**Solution:** The solution uses a loop to iterate through the array and increment each element.
+
+```python
+def increment_array(arr):
+    result = []
+    for elem in arr:
+        result.append(elem + 1)
+    return result
+
+# Example usage:
+print(increment_array([1, 2, 3, 4]))  # Output: [2, 3, 4, 5]
+```
+
+### Python3 Code to Solve the Original Problem:
+
+**Explanation of the Solution:** The function `incr_list` takes a list as input and returns a new list where each element has been incremented by 1. This is achieved using a list comprehension, which iterates through each element in the input list, increments it by 1, and collects the results into a new list.
+
+**Python3 Code to Solve the Problem:**
+
+```python
+def incr_list(l: list) -> list:
+    """Return list with elements incremented by 1."""
+    return [item + 1 for item in l]
+
+# Test cases
+print(incr_list([1, 2, 3]))  # Output: [2, 3, 4]
+print(incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123]))  # Output: [6, 4, 6, 3, 4, 4, 10, 1, 124]
+```
+
+This code defines the `incr_list` function, which uses list comprehension to increment each element in the input list by 1 and returns the resulting list. The provided test cases demonstrate the function's correctness.
+[2, 3, 4]
+[6, 4, 6, 3, 4, 4, 10, 1, 124]
+completed 1/21, Solved: True, number of success = 1/1, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def pairs_sum_to_zero(l):
+    """
+    pairs_sum_to_zero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairs_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> pairs_sum_to_zero([1, 3, -2, 1])
+    False
+    >>> pairs_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
+    True
+    >>> pairs_sum_to_zero([1])
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The problem can be solved using either brute force method or a more efficient approach using hashing. Here, we will discuss both methods.
+
+### Brute Force Method:
+In this method, for every element in the array, we check all subsequent elements to see if their sum equals zero. This results in a time complexity of O(n^2), where n is the number of elements in the array.
+
+### Hashing Method:
+In this method, we use a hash set to store elements of the array. As we iterate through the array, we check if the negative of the current element exists in the set. If it does, we return `True`. If not, we add the current element to the set. This results in a time complexity of O(n).
+
+## Tutorial:
+
+The Brute Force method involves checking every pair of numbers in the array to see if they sum to zero. This is done by iterating over each number and comparing it with every other number in the array.
+
+The Hashing method uses a dictionary to keep track of the numbers seen so far. It iterates through the array once, checks if the negative of the current number is in the dictionary, and adds the current number to the dictionary.
+
+## Example Problems:
+
+### Problem 1: Two Sum
+
+**Problem:** Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+**Solution:** This problem is a direct application of the Hashing method discussed earlier.
+
+**Python Code:**
+```python
+def two_sum(nums, target):
+    num_dict = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_dict:
+            return [num_dict[complement], i]
+        num_dict[num] = i
+```
+
+### Problem 2: Find All Duplicates in an Array
+
+**Problem:** Given an array of integers, find all duplicates in it.
+
+**Solution:** This problem can also be solved using the Hashing method, but here we need to modify our approach slightly to return duplicates instead of just checking if any two numbers sum to zero.
+
+**Python Code:**
+```python
+def find_duplicates(nums):
+    seen = set()
+    duplicates = set()
+    for num in nums:
+        if num in seen:
+            duplicates.add(num)
+        else:
+            seen.add(num)
+    return list(duplicates)
+```
+
+### Problem 3: Two Sum II - Input array is sorted
+
+**Problem:** Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+**Solution:** This problem can be solved efficiently using two pointers after ensuring the array is sorted.
+
+**Python Code:**
+```python
+def two_sum_sorted(nums, target):
+    left, right = 0, len(nums) - 1
+    while left < right:
+        total = nums[left] + nums[right]
+        if total == target:
+            return [left, right]
+        elif total < target:
+            left += 1
+        else:
+            right -= 1
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We use a set to store numbers encountered so far. As we iterate through the list, we check if the negative of the current number is in the set. If it is, we return `True` since the current number and its negative sum to zero. If not, we add the current number to the set. If no such pair is found, we return `False`.
+
+### Python3 code to solve the problem:
+```python
+def pairs_sum_to_zero(l):
+    seen = set()
+    for num in l:
+        if -num in seen:
+            return True
+        seen.add(num)
+    return False
+```
+completed 2/21, Solved: True, number of success = 2/2, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def change_base(x: int, base: int):
+    """Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept required to solve this problem is **Conversion from one numerical base to another**. Specifically, we need to convert an integer `x` from its current base to a new base provided as an argument. The approach involves repeatedly dividing the number by the new base and storing the remainders until the quotient becomes zero. These remainders, read in reverse order, give the digits of the number in the new base.
+
+## Tutorial:
+
+### Conversion Algorithm
+
+1. Initialize an empty list to store the remainders.
+2. While the number `x` is not zero:
+   - Compute the remainder when `x` is divided by the new base.
+   - Append the remainder to the list.
+   - Update `x` to be the quotient of `x` divided by the new base.
+3. Reverse the list of remainders.
+4. Convert each digit in the reversed list to a string and concatenate them to form the final result.
+
+### Detailed Steps:
+
+- **Step 1:** Start with an empty list `remainders`.
+- **Step 2:** Enter a loop that continues until `x == 0`.
+  - In each iteration, calculate `remainder = x % base`, append `remainder` to `remainders`, and update `x = x // base`.
+- **Step 3:** Reverse the list `remainders`.
+- **Step 4:** Convert each element in the reversed list to a string and join them together into a single string using `''.join()`.
+
+## Example Problems:
+
+### Problem 1: Convert Binary to Decimal
+
+Given a binary number as a string, convert it to a decimal number.
+
+**Solution:**
+- Use the built-in `int()` function with base 2 to convert the binary string to a decimal number.
+
+```python
+def binary_to_decimal(binary_str: str) -> int:
+    return int(binary_str, 2)
+```
+
+### Problem 2: Convert Decimal to Hexadecimal
+
+Given a decimal number, convert it to its hexadecimal representation.
+
+**Solution:**
+- Use the built-in `hex()` function to convert the decimal number to a hexadecimal string.
+
+```python
+def decimal_to_hex(decimal_num: int) -> str:
+    return hex(decimal_num)[2:].upper()
+```
+
+### Problem 3: Convert Base-5 Number to Base-3 Number
+
+Given a number in base-5, convert it to its equivalent in base-3.
+
+**Solution:**
+- Convert the base-5 number to a decimal number using the `change_base` function.
+- Convert the resulting decimal number to base-3.
+
+```python
+def base_5_to_base_3(base_5_num: int) -> str:
+    decimal_num = change_base(base_5_num, 10)
+    return change_base(int(decimal_num), 3)
+```
+
+## Python3 Code to Solve the Original Problem:
+
+### Explanation of the Solution:
+
+The solution involves repeatedly dividing the given number `x` by the desired base and collecting the remainders. These remainders represent the digits of the number in the new base, which are then joined to form the final string representation.
+
+### Python3 Code:
+
+```python
+def change_base(x: int, base: int) -> str:
+    if x == 0:
+        return "0"
+    
+    remainders = []
+    while x > 0:
+        remainders.append(str(x % base))
+        x //= base
+    
+    # Reverse the list of remainders and join them to form the final string
+    return ''.join(reversed(remainders))
+
+# Test cases
+print(change_base(8, 3))  # Output: '22'
+print(change_base(8, 2))  # Output: '1000'
+print(change_base(7, 2))  # Output: '111'
+```
+
+This code correctly converts an integer from one base to another and returns the result as a string.
+22
+1000
+111
+completed 3/21, Solved: True, number of success = 3/3, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def triangle_area(a, h):
+    """Given length of a side and high return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts:
+
+The problem requires calculating the area of a triangle given its base and height. The formula for the area \( A \) of a triangle is:
+
+\[ A = \frac{1}{2} \times \text{base} \times \text{height} \]
+
+In this case, the base is represented by `a` and the height by `h`.
+
+### Algorithm:
+
+To solve this problem, we can directly apply the formula for the area of a triangle. Here¡¯s how the algorithm works step-by-step:
+
+1. **Input**: Take two inputs, `a` (the base of the triangle) and `h` (the height of the triangle).
+2. **Calculation**: Compute the area using the formula \( A = \frac{1}{2} \times a \times h \).
+3. **Output**: Return the computed area.
+
+### Tutorial:
+
+**Understanding the Formula:**
+
+- The formula \( A = \frac{1}{2} \times \text{base} \times \text{height} \) represents half the product of the base and the height of the triangle.
+- This formula comes from splitting the triangle into two right triangles and calculating the area of one of them.
+
+**Example Calculation:**
+
+Let's calculate the area of a triangle with a base of 5 units and a height of 3 units:
+\[ A = \frac{1}{2} \times 5 \times 3 = \frac{15}{2} = 7.5 \]
+
+### Example Problems:
+
+**Problem 1:** Calculate the area of a triangle with a base of 4 units and a height of 6 units.
+
+**Solution:**
+The area would be calculated as follows:
+\[ A = \frac{1}{2} \times 4 \times 6 = 12 \]
+
+**Problem 2:** Write a function to compute the area of a triangle given the base and height.
+
+```python
+def triangle_area(base, height):
+    return 0.5 * base * height
+```
+
+**Problem 3:** Given a list of triangles where each triangle is represented as a tuple `(base, height)`, calculate the total area of all triangles.
+
+**Solution:**
+```python
+def total_triangle_area(triangles):
+    total_area = 0
+    for base, height in triangles:
+        total_area += 0.5 * base * height
+    return total_area
+
+# Example usage
+triangles = [(5, 3), (4, 6), (7, 2)]
+print(total_triangle_area(triangles))  # Output: 21.5
+```
+
+### Python3 Code to Solve the Original Problem:
+
+**Explanation:**
+
+The function `triangle_area` takes two arguments, `a` (base) and `h` (height). It calculates the area using the formula \( A = \frac{1}{2} \times a \times h \).
+
+**Python3 Code:**
+
+```python
+def triangle_area(a, h):
+    """Given length of a side and high return area for a triangle."""
+    return 0.5 * a * h
+
+# Example usage
+print(triangle_area(5, 3))  # Output: 7.5
+```
+
+This code correctly implements the formula to calculate the area of a triangle based on the given base and height.
+7.5
+completed 4/21, Solved: True, number of success = 4/4, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def fib4(n: int):
+    """The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fib4(0) -> 0
+    fib4(1) -> 0
+    fib4(2) -> 2
+    fib4(3) -> 0
+    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+To efficiently compute the n-th element of the fib4 number sequence without using recursion, we can utilize an iterative approach with dynamic programming. This method involves maintaining an array to store previously computed values of the sequence, which avoids redundant calculations.
+
+## Tutorial:
+
+### Dynamic Programming:
+Dynamic programming (DP) is a method for solving complex problems by breaking them down into simpler subproblems and storing the results of these subproblems to avoid recomputation. The two main types of DP are top-down (memoization) and bottom-up (tabulation).
+
+### Bottom-Up Tabulation:
+In bottom-up tabulation, we start from the base cases and iteratively build up the solution by solving smaller subproblems first and using their solutions to solve larger problems. This approach is particularly useful when dealing with sequences where each term depends on previous terms.
+
+## Example Problems:
+
+### Problem 1: Fibonacci Number Sequence
+**Problem Description**: Compute the n-th Fibonacci number.
+**Solution**: Use an iterative approach with an array to store previously computed Fibonacci numbers.
+```python
+def fibonacci(n: int) -> int:
+    if n <= 1:
+        return n
+    fib = [0] * (n + 1)
+    fib[1] = 1
+    for i in range(2, n + 1):
+        fib[i] = fib[i - 1] + fib[i - 2]
+    return fib[n]
+```
+
+### Problem 2: Tribonacci Number Sequence
+**Problem Description**: Compute the n-th Tribonacci number.
+**Solution**: Similar to the Fibonacci sequence but involves summing the last three elements instead of two.
+```python
+def tribonacci(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    tribo = [0] * (n + 1)
+    tribo[2] = 1
+    for i in range(3, n + 1):
+        tribo[i] = tribo[i - 1] + tribo[i - 2] + tribo[i - 3]
+    return tribo[n]
+```
+
+### Problem 3: Quadbonacci Number Sequence
+**Problem Description**: Compute the n-th Quadbonacci number.
+**Solution**: Extending the concept further, sum the last four elements to get the next term.
+```python
+def quadbonacci(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 2
+    elif n == 3:
+        return 0
+    quad = [0] * (n + 1)
+    quad[2] = 2
+    for i in range(4, n + 1):
+        quad[i] = quad[i - 1] + quad[i - 2] + quad[i - 3] + quad[i - 4]
+    return quad[n]
+```
+
+## Python3 Code to Solve the Original Problem:
+
+### Explanation of the Solution:
+- We initialize an array `fib4` to store the first four terms of the fib4 sequence.
+- For each subsequent term from the 5th term onwards, we calculate it as the sum of the previous four terms and store it in the array.
+- Finally, we return the value at index `n`.
+
+### Python3 Code:
+```python
+def fib4(n: int) -> int:
+    if n < 0:
+        raise ValueError("Input should be a non-negative integer.")
+    fib4_values = [0, 0, 2, 0]
+    if n < len(fib4_values):
+        return fib4_values[n]
+    for i in range(4, n + 1):
+        fib4_values.append(fib4_values[i - 1] + fib4_values[i - 2] + fib4_values[i - 3] + fib4_values[i - 4])
+    return fib4_values[-1]
+
+# Test cases
+print(fib4(5))  # Output: 4
+print(fib4(6))  # Output: 8
+print(fib4(7))  # Output: 14
+```
+
+This solution efficiently computes the n-th element of the fib4 sequence using an iterative approach with dynamic programming, ensuring that each term is calculated only once.
+4
+8
+14
+completed 5/21, Solved: True, number of success = 5/5, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def median(l: list):
+    """Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts
+
+To find the median of a list, you need to follow these steps:
+
+1. **Sort the List**: Sorting the list helps organize the numbers from smallest to largest.
+2. **Determine the Middle Value**:
+   - If the number of elements (`n`) in the list is odd, the median is the middle element.
+   - If `n` is even, the median is the average of the two middle elements.
+
+### Algorithms
+
+#### Step 1: Sorting
+The most common way to sort a list is using the built-in `sort()` method or the `sorted()` function. These functions use an efficient sorting algorithm like Timsort.
+
+#### Step 2: Finding the Median
+Once the list is sorted, finding the median involves checking if the length of the list is odd or even and then calculating the appropriate value.
+
+### Tutorial
+
+**Sorting**:
+- **Timsort**: This is a hybrid sorting algorithm derived from merge sort and insertion sort, designed to perform well on many kinds of real-world data. It works by dividing the array into smaller subarrays called "runs," which are individually sorted and then merged together.
+  
+**Finding the Median**:
+- For an odd-length list, the median is straightforward ¡ª it's the middle element after sorting.
+- For an even-length list, the median is the average of the two middle elements.
+
+### Example Problems
+
+**Problem 1: Find the Median of an Array**
+- **Problem Description**: Given an array of integers, find its median.
+- **Solution**: Sort the array and calculate the median as described above.
+- **Python Code**:
+  ```python
+  def find_median(arr):
+      arr.sort()
+      n = len(arr)
+      mid = n // 2
+      if n % 2 == 0:
+          return (arr[mid - 1] + arr[mid]) / 2
+      else:
+          return arr[mid]
+  ```
+
+**Problem 2: Median of Two Sorted Arrays**
+- **Problem Description**: Given two sorted arrays, find their median.
+- **Solution**: Merge the arrays and then find the median.
+- **Python Code**:
+  ```python
+  def findMedianSortedArrays(nums1, nums2):
+      merged = sorted(nums1 + nums2)
+      n = len(merged)
+      mid = n // 2
+      if n % 2 == 0:
+          return (merged[mid - 1] + merged[mid]) / 2
+      else:
+          return merged[mid]
+  ```
+
+**Problem 3: Sliding Window Median**
+- **Problem Description**: Given an array of integers and a window size, find the median for each contiguous subarray of the given size.
+- **Solution**: Use a sliding window approach combined with sorting or a balanced data structure like a multiset.
+- **Python Code**:
+  ```python
+  from sortedcontainers import SortedList
+
+  def medianSlidingWindow(nums, k):
+      result = []
+      window = SortedList(nums[:k])
+      result.append(window[k // 2] * (1 + k % 2) + window[(k // 2) - 1] * (k % 2))
+      
+      for i in range(k, len(nums)):
+          window.remove(nums[i - k])
+          window.add(nums[i])
+          result.append(window[k // 2] * (1 + k % 2) + window[(k // 2) - 1] * (k % 2))
+      
+      return result
+  ```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation**:
+- The function `median` first sorts the input list.
+- It then calculates the middle index.
+- Depending on whether the length of the list is odd or even, it returns either the middle element or the average of the two middle elements.
+
+**Python Code**:
+```python
+def median(l: list):
+    """Return median of elements in the list l."""
+    l.sort()  # Step 1: Sort the list
+    n = len(l)
+    mid = n // 2  # Step 2: Determine the middle index
+    
+    if n % 2 == 0:  # Even number of elements
+        return (l[mid - 1] + l[mid]) / 2
+    else:  # Odd number of elements
+        return l[mid]
+
+# Test cases
+print(median([3, 1, 2, 4, 5]))  # Output: 3
+print(median([-10, 4, 6, 1000, 10, 20]))  # Output: 15.0
+```
+
+This code correctly computes the median for both odd and even-sized lists.
+3
+8.0
+completed 6/21, Solved: True, number of success = 6/6, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def is_palindrome(text: str):
+    """
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept for solving this problem involves checking whether a given string reads the same backward as forward. This can be achieved using slicing or two-pointer technique.
+
+### Slicing Method:
+This method involves reversing the string using slicing and comparing it with the original string.
+```python
+original_string = 'abc'
+reversed_string = original_string[::-1]
+print(original_string == reversed_string)  # Output: False
+```
+
+### Two-Pointer Technique:
+In this method, we use two pointers starting from the beginning and end of the string and move towards the center, comparing characters at both ends.
+```python
+left = 0
+right = len(original_string) - 1
+while left < right:
+    if original_string[left] != original_string[right]:
+        print(False)
+        return
+    left += 1
+    right -= 1
+print(True)
+```
+
+Both methods are efficient for this problem.
+
+## Tutorial:
+### Slicing Method:
+Slicing is a powerful feature in Python where you can extract parts of a sequence (like strings, lists, etc.) using start, stop, and step parameters. The syntax is `sequence[start:end:step]`. To reverse a string, we set `start=None`, `end=None` (to take the entire length), and `step=-1`.
+
+### Two-Pointer Technique:
+Two-pointer technique is useful when you need to traverse a sequence while making comparisons or adjustments on both ends simultaneously. In Python, you initialize two pointers (`left`) and (`right`) at opposite ends of the sequence and then move them towards the center based on some conditions.
+
+## Example Problems:
+
+### Problem 1: Check if a Number is Palindromic
+**Problem Description**: Write a function to check if a number is palindromic, i.e., remains the same when its digits are reversed.
+
+**Solution**:
+We convert the number to a string and apply the slicing method to check for palindrome.
+```python
+def is_number_palindromic(number: int) -> bool:
+    num_str = str(number)
+    return num_str == num_str[::-1]
+
+# Test cases
+print(is_number_palindromic(121))  # Output: True
+print(is_number_palindromic(12321))  # Output: True
+print(is_number_palindromic(123456789))  # Output: False
+```
+
+### Problem 2: Reverse a String Using a Stack
+**Problem Description**: Implement a stack-based approach to reverse a string.
+
+**Solution**:
+Using a list as a stack, push each character onto the stack and pop them off to form the reversed string.
+```python
+def reverse_string_stack(s: str) -> str:
+    stack = []
+    for char in s:
+        stack.append(char)
+    reversed_s = ''
+    while stack:
+        reversed_s += stack.pop()
+    return reversed_s
+
+# Test cases
+print(reverse_string_stack("hello"))  # Output: "olleh"
+```
+
+### Problem 3: Check if Two Strings Are Anagrams
+**Problem Description**: Write a function to determine if two strings are anagrams, meaning they contain the same characters in different orders.
+
+**Solution**:
+Sort both strings and compare them; if they are equal, the strings are anagrams.
+```python
+def are_anagrams(str1: str, str2: str) -> bool:
+    return sorted(str1) == sorted(str2)
+
+# Test cases
+print(are_anagrams("listen", "silent"))  # Output: True
+print(are_anagrams("triangle", "integral"))  # Output: True
+print(are_anagrams("apple", "orange"))  # Output: False
+```
+
+## Python3 code to solve the original problem:
+### Solution Explanation:
+To check if a given string is a palindrome, we simply reverse the string using slicing and compare it with the original string. If they match, the string is a palindrome.
+
+### Python3 Code:
+```python
+def is_palindrome(text: str) -> bool:
+    """
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+    return text == text[::-1]
+
+# Test cases
+print(is_palindrome(""))  # Output: True
+print(is_palindrome("aba"))  # Output: True
+print(is_palindrome("aaaaa"))  # Output: True
+print(is_palindrome("zbcd"))  # Output: False
+```
+
+This solution uses the slicing method to reverse the string and compares it with the original string, which is both simple and efficient for checking palindromes.
+True
+True
+True
+False
+completed 7/21, Solved: True, number of success = 7/7, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def modp(n: int, p: int):
+    """Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts & Algorithms
+
+The problem requires calculating \(2^n \mod p\). This involves understanding modular arithmetic and exponentiation by squaring, which efficiently computes large powers modulo a number.
+
+#### Modular Arithmetic:
+Modular arithmetic deals with integers and their remainders when divided by a specified modulus. It is fundamental for many cryptographic and computational tasks.
+
+#### Exponentiation by Squaring:
+Exponentiation by squaring is an efficient method for computing large powers of a number modulo another number. It reduces the time complexity from \(O(n)\) to \(O(\log n)\).
+
+### Tutorial: Exponentiation by Squaring
+
+Exponentiation by squaring works by repeatedly squaring the base and halving the exponent until the exponent becomes zero. Here¡¯s how you can implement this algorithm:
+
+1. **Base Case**: If the exponent is 0, return 1 because any number to the power of 0 is 1.
+2. **Recursive Case**:
+   - If the exponent is even, compute \((base^{exponent/2})^2 \mod p\).
+   - If the exponent is odd, compute \((base^{(exponent-1)/2})^2 \times base \mod p\).
+
+This approach ensures that you only perform necessary calculations and significantly reduce the number of operations needed.
+
+### Example Problems
+
+#### Problem 1: [SPOJ Problem 1644]
+**Problem Description**: Compute \(a^b \mod m\) where \(a, b,\) and \(m\) are given integers.
+
+**Solution**: Use the same concept as `modp`. Implement the function using exponentiation by squaring.
+
+```python
+def exp_mod(a, b, m):
+    result = 1
+    a = a % m
+    while b > 0:
+        if b % 2 == 1:
+            result = (result * a) % m
+        b = b >> 1
+        a = (a * a) % m
+    return result
+```
+
+#### Problem 2: [LeetCode Problem 50]
+**Problem Description**: Implement `pow(x, n)` which calculates \(x\) raised to the integer power `n`, where `n` is non-negative, and returns the result modulo `10^9 + 7`.
+
+**Solution**: Use the `exp_mod` function with additional handling for negative exponents.
+
+```python
+MOD = 10**9 + 7
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n < 0:
+            x = 1 / x
+            n = -n
+        return self.exp_mod(x, n, MOD)
+
+    def exp_mod(self, a, b, m):
+        result = 1
+        a = a % m
+        while b > 0:
+            if b % 2 == 1:
+                result = (result * a) % m
+            b = b >> 1
+            a = (a * a) % m
+        return result
+```
+
+#### Problem 3: [HackerEarth Problem - Power Modulo]
+**Problem Description**: Compute \(a^b \mod m\) where \(a, b,\) and \(m\) are given integers. Constraints might be larger than typical problems.
+
+**Solution**: Similar to the previous example, use the `exp_mod` function.
+
+```python
+MOD = 10**9 + 7
+
+def power_mod(a, b, m):
+    result = 1
+    a = a % m
+    while b > 0:
+        if b % 2 == 1:
+            result = (result * a) % m
+        b = b >> 1
+        a = (a * a) % m
+    return result
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation of the Solution
+The function `modp` uses the `exp_mod` function to calculate \(2^n \mod p\) efficiently using exponentiation by squaring. This ensures that the computation handles large values of \(n\) without overflow issues.
+
+```python
+MOD = 10**9 + 7
+
+def exp_mod(base, exp, mod):
+    result = 1
+    base = base % mod
+    while exp > 0:
+        if exp % 2 == 1:
+            result = (result * base) % mod
+        exp = exp >> 1
+        base = (base * base) % mod
+    return result
+
+def modp(n: int, p: int):
+    return exp_mod(2, n, p)
+```
+
+This implementation ensures that the function is both efficient and avoids numeric overflow issues by performing all calculations modulo \(10^9 + 7\).
+completed 8/21, Solved: True, number of success = 8/8, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def encode_shift(s: str):
+    """
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """
+    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])
+
+
+def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+The core concept here involves using modular arithmetic to shift characters within the alphabet. Specifically, the problem requires shifting each letter in the input string by 5 positions forward in the alphabet. This involves converting characters to their ASCII values, performing the shift operation, and then converting them back to characters.
+
+### Tutorial:
+
+**Modular Arithmetic:** Modular arithmetic is a system of arithmetic for integers where numbers "wrap around" when reaching a certain value, called the modulus. It's denoted as \( a \mod m \), which gives the remainder when \( a \) is divided by \( m \).
+
+In this problem, we use modular arithmetic to wrap around the alphabet. Since there are 26 letters in the English alphabet, we perform a modulo 26 operation to ensure that after shifting by 5 positions, if we go past 'z', we start over from 'a'.
+
+**ASCII Values:** ASCII stands for American Standard Code for Information Interchange. Each character has a corresponding integer value. In Python, you can get the ASCII value of a character using `ord(ch)` and convert an ASCII value back to a character using `chr(val)`.
+
+### Example Problems:
+
+#### Example 1: Caesar Cipher Encoding
+
+**Problem Description:** Implement a simple Caesar cipher that shifts each letter in the text by 3 positions forward in the alphabet.
+
+**Solution Explanation:**
+- Convert each character to its ASCII value.
+- Shift the ASCII value by 3.
+- Use modular arithmetic to wrap around the alphabet if necessary.
+- Convert the shifted ASCII value back to a character.
+
+```python
+def caesar_encode(s: str, shift: int):
+    return ''.join(chr((ord(ch) - ord('a') + shift) % 26 + ord('a')) for ch in s)
+```
+
+#### Example 2: Caesar Cipher Decoding
+
+**Problem Description:** Decode a string encoded with the Caesar cipher by reversing the shift operation.
+
+**Solution Explanation:**
+- Similar to encoding, but instead of adding the shift value, subtract it.
+- Handle negative shifts using modulo operations.
+
+```python
+def caesar_decode(s: str, shift: int):
+    return ''.join(chr((ord(ch) - ord('a') - shift) % 26 + ord('a')) for ch in s)
+```
+
+#### Example 3: Vigen¨¨re Cipher Encoding
+
+**Problem Description:** Implement the Vigen¨¨re cipher, which uses a keyword to determine how many places each letter in the plaintext should be shifted.
+
+**Solution Explanation:**
+- Repeat the keyword until it matches the length of the plaintext.
+- For each character in the plaintext, add the corresponding character in the keyword (after converting both to lowercase).
+- Apply modulo 26 to wrap around the alphabet.
+
+```python
+def vigenere_encode(s: str, key: str):
+    key = key.lower()
+    result = []
+    for i, ch in enumerate(s):
+        if ch.isalpha():
+            shift = ord(key[i % len(key)]) - ord('a')
+            new_char = chr((ord(ch) - ord('a') + shift) % 26 + ord('a'))
+            result.append(new_char)
+        else:
+            result.append(ch)
+    return ''.join(result)
+```
+
+### Python3 Code to Solve the Original Problem:
+
+**Explanation of the Solution:**
+- The provided solution uses list comprehension to iterate over each character in the input string.
+- For each character, it calculates its new position by shifting it 5 places forward in the alphabet.
+- The `ord()` function converts the character to its ASCII value, and `chr()` converts the shifted ASCII value back to a character.
+- The modulo operation ensures that the alphabet wraps around correctly.
+
+```python
+def encode_shift(s: str):
+    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])
+
+def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+```
+
+This code will correctly encode and decode strings by shifting characters in the alphabet by 5 positions.
+completed 9/21, Solved: True, number of success = 9/9, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def remove_vowels(text):
+    """
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels("abcdef\nghijklm")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts/Algorithms:
+
+1. **Character Iteration:** The task involves iterating through each character in the input string.
+2. **Conditionals:** We need to check whether each character is a vowel or not.
+3. **String Manipulation:** Constructing a new string by excluding vowels.
+
+### Tutorial:
+
+**Iterating Through Characters:**
+To iterate through each character in a string, we can use a `for` loop. This will allow us to access each character one by one.
+
+```python
+text = "hello"
+for char in text:
+    print(char)
+```
+
+Output:
+```
+h
+e
+l
+l
+o
+```
+
+**Checking for Vowels:**
+A set of vowels can be defined to check if a character is a vowel. In Python, sets offer efficient membership testing.
+
+```python
+vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+char = 'a'
+if char in vowels:
+    print(f"{char} is a vowel")
+else:
+    print(f"{char} is not a vowel")
+```
+
+Output:
+```
+a is a vowel
+```
+
+**Constructing New String:**
+We can build a new string by appending characters to it conditionally. Using a `join` method with an empty string as the separator simplifies this process.
+
+```python
+new_text = ''.join([char for char in text if char not in vowels])
+print(new_text)
+```
+
+Output:
+```
+hll
+```
+
+### Example Problems:
+
+1. **Problem:** Remove Consonants from a String
+   - **Description:** Given a string, return a new string containing only consonants.
+   - **Solution:** Iterate through the string, checking if each character is a consonant. If so, append it to the result string.
+   
+   ```python
+   def remove_consonants(text):
+       consonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'}
+       return ''.join([char for char in text if char in consonants])
+
+   print(remove_consonants("hello"))  # Output: "eo"
+   ```
+
+2. **Problem:** Reverse Words in a Sentence
+   - **Description:** Given a sentence, reverse the order of words but keep the characters in each word in the same order.
+   - **Solution:** Split the sentence into words, reverse the list of words, and join them back together.
+   
+   ```python
+   def reverse_words(sentence):
+       words = sentence.split()
+       reversed_words = words[::-1]
+       return ' '.join(reversed_words)
+
+   print(reverse_words("hello world"))  # Output: "world hello"
+   ```
+
+3. **Problem:** Find Common Characters Between Two Strings
+   - **Description:** Given two strings, find all common characters between them without duplicates.
+   - **Solution:** Use set intersection to find common characters and convert the result back to a list.
+   
+   ```python
+   def common_characters(str1, str2):
+       return list(set(str1) & set(str2))
+
+   print(common_characters("abc", "cba"))  # Output: ['a', 'b', 'c']
+   ```
+
+### Python3 Code to Solve the Original Problem:
+
+**Explanation:**
+The function `remove_vowels` iterates through each character in the input string. It checks if the character is a vowel using a set of vowels. If it is not a vowel, the character is appended to a new string. Finally, the new string is returned, effectively removing all vowels from the original string.
+
+**Python3 Code:**
+
+```python
+def remove_vowels(text):
+    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+    return ''.join([char for char in text if char not in vowels])
+
+# Test cases
+print(remove_vowels(''))              # Output: ''
+print(remove_vowels("abcdef\nghijklm"))  # Output: 'bcdf\nghjklm'
+print(remove_vowels('abcdef'))        # Output: 'bcdf'
+print(remove_vowels('aaaaa'))         # Output: ''
+print(remove_vowels('aaBAA'))         # Output: 'B'
+print(remove_vowels('zbcd'))          # Output: 'zbcd'
+```
+
+This code efficiently removes all vowels from the given string while maintaining the integrity of the remaining characters.
+
+bcdf
+ghjklm
+bcdf
+
+B
+zbcd
+completed 10/21, Solved: True, number of success = 10/10, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def below_threshold(l: list, t: int):
+    """Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+The core concept in this problem is **iteration** combined with a **comparison check**. We need to iterate through each element in the list and check if it is less than the given threshold. If any element fails this condition, we should return `False`. If all elements pass, we return `True`.
+
+### Tutorial:
+
+#### Iteration
+
+Iteration is the process of repeating a set of instructions until a certain condition is met. In Python, you can use various looping constructs such as `for` loops to achieve iteration. The `for` loop iterates over each item in an iterable (like a list) and executes a block of code for each item.
+
+```python
+# Example of a for loop iterating over a list
+numbers = [1, 2, 3, 4]
+for number in numbers:
+    print(number)
+```
+
+#### Comparison Check
+
+Comparison checks are used to compare two values and determine their relationship. Common comparison operators in Python include `<`, `>`, `<=`, `>=`, `==`, and `!=`. These operators return a boolean value (`True` or `False`) based on the comparison.
+
+```python
+# Example of comparison operators
+x = 5
+y = 10
+print(x < y)  # True
+print(x > y)  # False
+```
+
+Combining iteration and comparison checks allows us to perform operations on each item in a collection while checking conditions against them.
+
+### Example Problems:
+
+1. **Check if All Elements in List Are Positive**
+   - **Problem:** Write a function that returns `True` if all elements in a list are positive integers.
+   - **Solution:** Use a `for` loop to iterate through the list and check if each element is greater than zero using the `>` operator.
+
+   ```python
+   def all_positive(lst):
+       for num in lst:
+           if num <= 0:
+               return False
+       return True
+   ```
+
+2. **Find the Minimum Element in a List**
+   - **Problem:** Write a function that returns the minimum element in a non-empty list.
+   - **Solution:** Initialize a variable with the first element of the list, then iterate through the rest of the list, updating the minimum variable whenever a smaller element is found.
+
+   ```python
+   def find_min(lst):
+       min_val = lst[0]
+       for num in lst:
+           if num < min_val:
+               min_val = num
+       return min_val
+   ```
+
+3. **Count Vowels in a String**
+   - **Problem:** Write a function that counts the number of vowels in a given string.
+   - **Solution:** Iterate through each character in the string, check if it is a vowel using membership testing with a set of vowels, and increment a counter if it is.
+
+   ```python
+   def count_vowels(s):
+       vowels = {'a', 'e', 'i', 'o', 'u'}
+       count = 0
+       for char in s.lower():
+           if char in vowels:
+               count += 1
+       return count
+   ```
+
+### Python3 code to solve the original problem:
+
+#### Explanation of the Solution:
+
+The function `below_threshold` takes a list `l` and an integer `t` as input. It initializes a flag `all_below` to `True`. Using a `for` loop, it iterates through each element in the list. If any element is not below the threshold `t`, the flag is set to `False` and the loop breaks early. Finally, the function returns the value of the flag.
+
+#### Python3 Code:
+
+```python
+def below_threshold(l: list, t: int):
+    """Return True if all numbers in the list l are below threshold t."""
+    all_below = True
+    for num in l:
+        if num >= t:
+            all_below = False
+            break
+    return all_below
+```
+
+This solution efficiently checks if all elements in the list are below the threshold using a single `for` loop and a break statement to avoid unnecessary iterations once an out-of-threshold element is found.
+completed 11/21, Solved: True, number of success = 11/11, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def add(x: int, y: int):
+    """Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts
+The problem requires defining a function that takes two integers as input and returns their sum. This involves basic arithmetic operations in Python.
+
+### Algorithms
+No specific algorithm is needed for this problem since it is a straightforward implementation of adding two numbers.
+
+### Tutorial
+Adding two numbers is a fundamental operation in computer science and mathematics. In Python, you can perform addition using the `+` operator. The `add` function simply takes two integer parameters, performs the addition, and returns the result.
+
+Here's a brief example:
+
+```python
+x = 5
+y = 3
+result = x + y  # result will be 8
+```
+
+### Example Problems
+
+1. **Problem**: Sum of Two Numbers
+   - **Description**: Write a function that takes two integers as input and returns their sum.
+   - **Solution**: This is exactly the same problem we are solving.
+     ```python
+     def add(x: int, y: int) -> int:
+         return x + y
+     ```
+   - **Example Code**:
+     ```python
+     print(add(2, 3))  # Output: 5
+     ```
+
+2. **Problem**: Sum of Multiple Numbers
+   - **Description**: Write a function that takes a list of integers as input and returns their sum.
+   - **Solution**: Use a loop to iterate through the list and accumulate the sum.
+     ```python
+     def sum_numbers(numbers: List[int]) -> int:
+         total = 0
+         for num in numbers:
+             total += num
+         return total
+     ```
+   - **Example Code**:
+     ```python
+     print(sum_numbers([2, 3, 4]))  # Output: 9
+     ```
+
+3. **Problem**: Sum of First N Natural Numbers
+   - **Description**: Write a function that takes an integer `n` as input and returns the sum of the first `n` natural numbers.
+   - **Solution**: Use the formula for the sum of an arithmetic series \( \text{Sum} = \frac{n(n+1)}{2} \).
+     ```python
+     def sum_natural_numbers(n: int) -> int:
+         return n * (n + 1) // 2
+     ```
+   - **Example Code**:
+     ```python
+     print(sum_natural_numbers(5))  # Output: 15
+     ```
+
+### Python3 code to solve the original problem
+The original problem is already solved in the provided docstring. Here's the complete code with the explanation:
+
+```python
+def add(x: int, y: int) -> int:
+    """
+    Add two numbers x and y
+    
+    :param x: An integer
+    :param y: An integer
+    :return: The sum of x and y
+    
+    Examples:
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """
+    return x + y
+```
+
+### Explanation of the Solution
+The function `add` takes two parameters, `x` and `y`, both of which are integers. It simply returns the result of `x + y`. The docstring provides examples of how the function should be used and what the expected output is.
+
+This is a basic implementation of adding two numbers, and it demonstrates understanding of function definitions, parameter passing, and returning values in Python.
+completed 12/21, Solved: True, number of success = 12/12, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def same_chars(s0: str, s1: str):
+    """
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    True
+    >>> same_chars('abcd', 'dddddddabc')
+    True
+    >>> same_chars('dddddddabc', 'abcd')
+    True
+    >>> same_chars('eabcd', 'dddddddabc')
+    False
+    >>> same_chars('abcd', 'dddddddabce')
+    False
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms
+
+The core concept for solving this problem involves checking whether two strings contain exactly the same characters, regardless of their order or frequency. This can be achieved using **set operations**. By converting both strings to sets, we can easily compare if they contain identical elements.
+
+### Tutorial
+
+#### Set Operations
+A set is an unordered collection of unique elements. In Python, sets are very efficient for membership tests, removing duplicates, and performing mathematical operations like unions, intersections, differences, and symmetric differences.
+
+Here¡¯s how you can use sets:
+
+1. **Creating a Set**: You can create a set from any iterable using curly braces `{}` or the `set()` constructor.
+   ```python
+   my_set = {1, 2, 3}
+   my_set = set([1, 2, 3])
+   ```
+
+2. **Adding Elements**: Use the `add()` method to add an element to a set.
+   ```python
+   my_set.add(4)
+   ```
+
+3. **Removing Elements**: Use the `remove()` method to remove an element from a set.
+   ```python
+   my_set.remove(4)
+   ```
+
+4. **Intersection**: The intersection of two sets contains all elements common to both sets. Use the `intersection()` method or the `&` operator.
+   ```python
+   set1 = {1, 2, 3}
+   set2 = {2, 3, 4}
+   result = set1.intersection(set2)  # or result = set1 & set2
+   ```
+
+5. **Union**: The union of two sets contains all distinct elements from both sets. Use the `union()` method or the `|` operator.
+   ```python
+   set1 = {1, 2, 3}
+   set2 = {2, 3, 4}
+   result = set1.union(set2)  # or result = set1 | set2
+   ```
+
+6. **Difference**: The difference of two sets contains elements that are in the first set but not in the second set. Use the `difference()` method or the `-` operator.
+   ```python
+   set1 = {1, 2, 3}
+   set2 = {2, 3, 4}
+   result = set1.difference(set2)  # or result = set1 - set2
+   ```
+
+7. **Symmetric Difference**: The symmetric difference of two sets contains elements that are in either of the sets but not in their intersection. Use the `symmetric_difference()` method or the `^` operator.
+   ```python
+   set1 = {1, 2, 3}
+   set2 = {2, 3, 4}
+   result = set1.symmetric_difference(set2)  # or result = set1 ^ set2
+   ```
+
+### Example Problems
+
+#### Problem 1: Determine if Two Strings Have the Same Characters
+
+**Problem Description**: Write a function to check if two strings have the same characters.
+
+**Solution**: Convert both strings to sets and compare them.
+```python
+def has_same_chars(s1, s2):
+    return set(s1) == set(s2)
+```
+
+**Python3 Code**:
+```python
+print(has_same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc'))  # True
+print(has_same_chars('abcd', 'dddddddabc'))               # True
+print(has_same_chars('dddddddabc', 'abcd'))               # True
+print(has_same_chars('eabcd', 'dddddddabc'))               # False
+print(has_same_chars('abcd', 'dddddddabce'))              # False
+print(has_same_chars('eabcdzzzz', 'dddzzzzzzzddddabc'))     # False
+```
+
+#### Problem 2: Find Common Characters Between Two Strings
+
+**Problem Description**: Write a function to find common characters between two strings.
+
+**Solution**: Use the intersection of sets.
+```python
+def common_chars(s1, s2):
+    return list(set(s1).intersection(set(s2)))
+```
+
+**Python3 Code**:
+```python
+print(common_chars('eabcdzzzz', 'dddzzzzzzzddeddabc'))  # ['d', 'a', 'b', 'c']
+print(common_chars('abcd', 'dddddddabc'))               # ['a', 'b', 'c', 'd']
+print(common_chars('dddddddabc', 'abcd'))               # ['a', 'b', 'c', 'd']
+```
+
+#### Problem 3: Remove Duplicate Characters from a String
+
+**Problem Description**: Write a function to remove duplicate characters from a string.
+
+**Solution**: Convert the string to a set and back to a string.
+```python
+def remove_duplicates(s):
+    return ''.join(sorted(set(s)))
+```
+
+**Python3 Code**:
+```python
+print(remove_duplicates('eabcdzzzz'))  # 'abcdefz'
+print(remove_duplicates('abcd'))       # 'abcd'
+print(remove_duplicates('dddddddabc')) # 'abcd'
+```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation of the Solution**:
+To solve the given problem, convert both input strings to sets and check if they are equal. If they are, it means both strings have the same characters.
+
+**Python3 Code**:
+```python
+def same_chars(s0: str, s1: str):
+    """
+    Check if two words have the same characters.
+    """
+    return set(s0) == set(s1)
+```
+
+This solution efficiently checks for the same characters in two strings using set operations.
+completed 13/21, Solved: True, number of success = 13/13, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def fib(n: int):
+    """Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts & Algorithm
+
+The problem involves computing the \( n \)-th Fibonacci number. The Fibonacci sequence is defined as follows:
+
+\[ F(n) = F(n-1) + F(n-2) \]
+
+with initial conditions:
+
+\[ F(0) = 0 \]
+\[ F(1) = 1 \]
+
+This recursive definition directly translates into an algorithm for calculating the \( n \)-th Fibonacci number. However, this naive approach has exponential time complexity due to redundant calculations. To improve efficiency, we can use dynamic programming techniques such as memoization or tabulation.
+
+#### Dynamic Programming - Memoization
+Memoization involves storing the results of expensive function calls and reusing them when the same inputs occur again. This reduces the time complexity from \( O(2^n) \) to \( O(n) \).
+
+#### Dynamic Programming - Tabulation
+Tabulation involves filling up a table iteratively to store intermediate results, starting from the base cases. This also reduces the time complexity to \( O(n) \).
+
+### Tutorial on Dynamic Programming
+
+**Dynamic Programming (DP)** is a method for solving complex problems by breaking them down into simpler subproblems. It avoids the exponential time complexity of naive recursive solutions by storing previously computed results.
+
+**Key Steps in DP:**
+1. **Define the Subproblem**: Identify the smallest repeating subproblems in the given problem.
+2. **Formulate the Recurrence Relation**: Express the solution of the current subproblem using the solutions of smaller subproblems.
+3. **Initialize Base Cases**: Set up the smallest possible subproblems.
+4. **Store Intermediate Results**: Use an array or dictionary to store the results of subproblems so they can be reused.
+5. **Fill Up the Table/Array**: Compute the results iteratively based on the recurrence relation and stored values.
+
+### Example Problems
+
+#### Problem 1: Climbing Stairs
+**Problem Statement**: You are climbing a staircase. It takes `n` steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+**Solution**: This problem is equivalent to finding the \( n \)-th Fibonacci number because the number of ways to reach step \( n \) is the sum of the ways to reach step \( n-1 \) and step \( n-2 \).
+
+```python
+def climbStairs(n):
+    if n <= 1:
+        return n
+    dp = [0] * (n+1)
+    dp[1], dp[2] = 1, 2
+    for i in range(3, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+```
+
+#### Problem 2: Minimum Cost Climbing Stairs
+**Problem Statement**: You are given an integer array `cost` where `cost[i]` is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1. Return the minimum cost to reach the top of the floor.
+
+**Solution**: Similar to the previous problem, but instead of counting paths, we need to find the minimum cost to reach the top. We can use the same approach to compute the minimum cost to reach each step.
+
+```python
+def minCostClimbingStairs(cost):
+    n = len(cost)
+    dp = [0] * (n+1)
+    for i in range(2, n+1):
+        dp[i] = min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2])
+    return dp[-1]
+```
+
+#### Problem 3: Best Time to Buy and Sell Stock
+**Problem Statement**: You are given an array prices where prices[i] is the price of a given stock on the i-th day. You want to maximize your profit by choosing a single buy and sell operation. If you cannot achieve any profit, return 0.
+
+**Solution**: This problem does not directly involve the Fibonacci sequence, but it is another example of dynamic programming where we keep track of the maximum profit at each step.
+
+```python
+def maxProfit(prices):
+    if not prices:
+        return 0
+    min_price, max_profit = float('inf'), 0
+    for price in prices:
+        min_price = min(min_price, price)
+        max_profit = max(max_profit, price - min_price)
+    return max_profit
+```
+
+### Python3 Code to Solve the Original Problem: Fibonacci Number
+
+**Explanation**: Using dynamic programming with tabulation to efficiently compute the \( n \)-th Fibonacci number.
+
+```python
+def fib(n: int) -> int:
+    if n <= 1:
+        return n
+    dp = [0] * (n+1)
+    dp[1] = 1
+    for i in range(2, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+```
+
+This implementation uses an iterative approach with a time complexity of \( O(n) \) and a space complexity of \( O(n) \).
+completed 14/21, Solved: True, number of success = 14/14, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "<" and ">".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("<")
+    False
+    >>> correct_bracketing("<>")
+    True
+    >>> correct_bracketing("<<><>>")
+    True
+    >>> correct_bracketing("><<>")
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts:
+
+The problem requires checking if every opening bracket ("<") has a corresponding closing bracket (">"). This involves understanding stack data structures and how they can be utilized to track unmatched opening brackets efficiently.
+
+#### Algorithm:
+1. **Initialize an empty stack**.
+2. **Iterate through each character** in the input string:
+   - If the character is an **opening bracket ('<')**, push it onto the stack.
+   - If the character is a **closing bracket ('>')**:
+     - Check if the stack is not empty. If it is, this means there's no matching opening bracket for this closing bracket, so return `False`.
+     - Pop the top element from the stack as it matches with the current closing bracket.
+3. **After iterating through all characters**, check if the stack is empty. If it is, it means all opening brackets had matching closing brackets; otherwise, return `False`.
+
+### Tutorial on Stack Data Structure:
+A **stack** is a linear data structure that follows the Last In First Out (LIFO) principle. It supports two primary operations:
+1. **Push**: Adds an element to the top of the stack.
+2. **Pop**: Removes the element from the top of the stack.
+
+Stacks are particularly useful for scenarios where we need to keep track of elements in reverse order or when solving problems related to nested structures such as parentheses, brackets, etc.
+
+### Example Problems:
+
+#### Problem 1: [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+**Description:** Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if:
+1. Open brackets must be closed by the same type of brackets.
+2. Open brackets must be closed in the correct order.
+
+**Solution Approach:** Similar to our original problem, use a stack to track opening brackets. When encountering a closing bracket, check if it matches the latest opening bracket on the stack.
+
+```python
+def isValid(s: str) -> bool:
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping.keys():
+            if not stack or mapping[char] != stack.pop():
+                return False
+        else:
+            return False
+    return not stack
+```
+
+#### Problem 2: [Min Stack](https://leetcode.com/problems/min-stack/)
+**Description:** Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+**Solution Approach:** Use two stacks, one for storing all the elements (`stack`) and another for keeping track of the minimum values (`min_stack`).
+
+```python
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+
+    def pop(self) -> None:
+        if self.stack.pop() == self.min_stack[-1]:
+            self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
+```
+
+#### Problem 3: [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
+**Description:** Given two arrays `nums1` and `nums2`, return an array answer such that `answer[i]` is equal to the next greater element of `nums1[i]`. The next greater element of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, return -1.
+
+**Solution Approach:** Use a stack to keep track of elements for which we haven't found the next greater element yet.
+
+```python
+def nextGreaterElement(nums1: List[int], nums2: List[int]) -> List[int]:
+    res = {}
+    stack = []
+    for num in nums2:
+        while stack and stack[-1] < num:
+            res[stack.pop()] = num
+        stack.append(num)
+    return [res.get(num, -1) for num in nums1]
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation of the Solution:
+We iterate through the string and use a stack to keep track of unmatched opening brackets. Whenever we encounter a closing bracket, we check if there is a matching opening bracket at the top of the stack. If not, we return `False`. After processing all characters, if the stack is empty, it means all brackets were matched correctly, so we return `True`.
+
+```python
+def correct_bracketing(brackets: str) -> bool:
+    stack = []
+    for char in brackets:
+        if char == '<':
+            stack.append(char)
+        elif char == '>':
+            if not stack:
+                return False
+            stack.pop()
+    return len(stack) == 0
+```
+
+This code ensures that every opening bracket has a corresponding closing bracket and returns the appropriate boolean result.
+completed 15/21, Solved: True, number of success = 15/15, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def monotonic(l: list):
+    """Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The problem requires checking if a given list is **monotonic**. A list is considered monotonic if it is either entirely non-increasing or non-decreasing. To solve this, we can iterate through the list and check if the sequence breaks the monotonicity condition at any point.
+
+### Core Concepts:
+1. **Iteration**: We need to go through each element in the list once.
+2. **Comparison**: At each step, compare adjacent elements to determine if they are in the correct order.
+3. **Monotonicity Check**: Track whether the list is increasing or decreasing based on the initial comparison and ensure all subsequent comparisons maintain this order.
+
+## Tutorial:
+
+### Understanding Monotonic Lists:
+A list `[a_1, a_2, ..., a_n]` is said to be:
+- **Non-decreasing**: If for all `i`, `a_i <= a_(i+1)`.
+- **Non-increasing**: If for all `i`, `a_i >= a_(i+1)`.
+
+If a list is either non-decreasing or non-increasing, it is considered monotonic.
+
+### Steps to Solve:
+1. **Initialize Flags**: Start with two flags, `increasing` and `decreasing`, both set to `True`.
+2. **Iterate Through List**: Compare each pair of consecutive elements.
+   - If you find an element greater than the next, set `increasing` to `False`.
+   - If you find an element less than the next, set `decreasing` to `False`.
+3. **Final Check**: After the loop, if either flag remains `True`, the list is monotonic. If both are `False`, it is not.
+
+## Example Problems:
+
+### Problem 1: [Valid Mountain Array]
+**Problem Statement**: Given an array `arr`, return `true` if and only if it is a valid mountain array. Recall that an array `arr` is a mountain array if and only if there exists some `i` with `0 < i < arr.length - 1` such that:
+- `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`
+- `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`
+
+**Solution**:
+```python
+def validMountainArray(arr: list) -> bool:
+    n = len(arr)
+    i = 0
+    
+    # Walk up
+    while i + 1 < n and arr[i] < arr[i + 1]:
+        i += 1
+    
+    # Peak can't be first or last
+    if i == 0 or i == n - 1:
+        return False
+    
+    # Walk down
+    while i + 1 < n and arr[i] > arr[i + 1]:
+        i += 1
+    
+    return i == n - 1
+```
+
+### Problem 2: [Check If Sorted and Rotated]
+**Problem Statement**: Given an array nums, return true if and only if it is a rotated sorted array. An array A is sorted if it is empty, contains one element, or has its elements sorted in ascending order. An array A is rotated if it consists of two parts concatenated in any way. Formally, A was obtained by taking some pivot index i and performing the operation A = [A[i], A[i+1], ..., A[n-1], A[0], A[1], ..., A[i-1]].
+
+**Solution**:
+```python
+def checkSortedAndRotated(nums: list) -> bool:
+    count = 0
+    n = len(nums)
+    
+    for i in range(n):
+        if nums[i] > nums[(i + 1) % n]:
+            count += 1
+        if count > 1:
+            return False
+    
+    return True
+```
+
+### Problem 3: [Minimum Increment to Make Array Unique]
+**Problem Statement**: Given an array A of integers, return the minimum number of increments needed to make all elements unique. The answer should be the minimum number of operations required to achieve this.
+
+**Solution**:
+```python
+def minIncrementForUnique(A: list) -> int:
+    A.sort()
+    res = 0
+    for i in range(1, len(A)):
+        if A[i] <= A[i - 1]:
+            diff = A[i - 1] - A[i] + 1
+            A[i] += diff
+            res += diff
+    return res
+```
+
+## Python3 Code to Solve the Original Problem
+
+### Explanation of the Solution:
+We will use a single pass approach to check if the list is monotonic. We will track two boolean variables, `increasing` and `decreasing`. If the list starts increasing and later decreases, or vice versa, the list is not monotonic.
+
+### Python3 Code:
+```python
+def monotonic(l: list) -> bool:
+    increasing = decreasing = True
+    
+    for i in range(len(l) - 1):
+        if l[i] > l[i + 1]:
+            increasing = False
+        elif l[i] < l[i + 1]:
+            decreasing = False
+    
+    return increasing or decreasing
+```
+
+This code iterates through the list once, making it efficient with a time complexity of O(n). It checks the entire list to determine if it is monotonically increasing or decreasing.
+completed 16/21, Solved: True, number of success = 16/16, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def common(l1: list, l2: list):
+    """Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts/Algorithms
+
+The core concept required to solve this problem is the use of **sets**. Sets in Python are collections of unordered, unique elements which support mathematical set operations like union, intersection, difference, etc. To find common elements between two lists, converting them into sets will help us efficiently remove duplicates and perform an intersection operation.
+
+### Tutorial on Using Sets
+
+Sets are a built-in data structure in Python that allows you to store collections of unique items. Here's how you can work with sets:
+
+#### Creating a Set
+
+```python
+my_set = {1, 2, 3}
+```
+
+#### Adding Elements
+
+```python
+my_set.add(4)
+print(my_set)  # Output: {1, 2, 3, 4}
+```
+
+#### Removing Elements
+
+```python
+my_set.remove(3)
+print(my_set)  # Output: {1, 2, 4}
+```
+
+#### Checking Membership
+
+```python
+print(2 in my_set)  # Output: True
+```
+
+#### Set Operations
+
+- **Union**: Combines all elements from both sets without duplicates.
+
+  ```python
+  set1 = {1, 2, 3}
+  set2 = {3, 4, 5}
+  print(set1.union(set2))  # Output: {1, 2, 3, 4, 5}
+  ```
+
+- **Intersection**: Returns elements present in both sets.
+
+  ```python
+  print(set1.intersection(set2))  # Output: {3}
+  ```
+
+- **Difference**: Returns elements present in the first set but not in the second.
+
+  ```python
+  print(set1.difference(set2))  # Output: {1, 2}
+  ```
+
+### Example Problems
+
+#### 1. Intersection of Two Lists
+Given two lists, return their intersection as a list.
+
+##### Solution:
+Convert both lists to sets, find the intersection, and convert back to a sorted list.
+
+```python
+def intersect(l1: list, l2: list):
+    set1 = set(l1)
+    set2 = set(l2)
+    result = list(set1 & set2)
+    return sorted(result)
+```
+
+##### Example:
+```python
+print(intersect([1, 2, 3], [3, 4, 5]))  # Output: [3]
+```
+
+#### 2. Union of Two Lists
+Given two lists, return their union as a list.
+
+##### Solution:
+Convert both lists to sets, find the union, and convert back to a sorted list.
+
+```python
+def union(l1: list, l2: list):
+    set1 = set(l1)
+    set2 = set(l2)
+    result = list(set1 | set2)
+    return sorted(result)
+```
+
+##### Example:
+```python
+print(union([1, 2, 3], [3, 4, 5]))  # Output: [1, 2, 3, 4, 5]
+```
+
+#### 3. Symmetric Difference of Two Lists
+Given two lists, return elements that are in either of the lists but not in both.
+
+##### Solution:
+Convert both lists to sets, find the symmetric difference, and convert back to a sorted list.
+
+```python
+def symmetric_diff(l1: list, l2: list):
+    set1 = set(l1)
+    set2 = set(l2)
+    result = list(set1 ^ set2)
+    return sorted(result)
+```
+
+##### Example:
+```python
+print(symmetric_diff([1, 2, 3], [3, 4, 5]))  # Output: [1, 2, 4, 5]
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation:
+To solve the original problem `common`, we convert both input lists into sets to ensure uniqueness. We then find the intersection of these sets, which gives us the common elements. Finally, we sort the resulting set before returning it as a list.
+
+#### Python3 Code:
+
+```python
+def common(l1: list, l2: list) -> list:
+    set1 = set(l1)
+    set2 = set(l2)
+    common_elements = set1 & set2
+    return sorted(list(common_elements))
+
+# Test cases
+print(common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]))  # Output: [1, 5, 653]
+print(common([5, 3, 2, 8], [3, 2]))  # Output: [2, 3]
+```
+
+This code correctly finds the sorted unique common elements between two lists using set operations.
+[1, 5, 653]
+[2, 3]
+completed 17/21, Solved: True, number of success = 17/17, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def largest_prime_factor(n: int):
+    """Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core algorithm for this problem involves factoring a number \( n \) into its prime factors. The main steps are:
+1. Start with the smallest prime number, which is 2.
+2. Divide \( n \) by the current prime number as long as it is divisible.
+3. Move to the next potential prime number and repeat until \( n \) becomes 1.
+4. The last prime number used in the division process will be the largest prime factor.
+
+## Tutorial:
+
+### Factoring Numbers
+
+Factoring a number means breaking it down into smaller numbers called factors. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. To find the prime factors of a number, we start with the smallest prime number and work our way up.
+
+#### Example: Factorize 2048
+
+1. Start with 2: \( 2048 \div 2 = 1024 \)
+   - \( 1024 \div 2 = 512 \)
+   - \( 512 \div 2 = 256 \)
+   - \( 256 \div 2 = 128 \)
+   - \( 128 \div 2 = 64 \)
+   - \( 64 \div 2 = 32 \)
+   - \( 32 \div 2 = 16 \)
+   - \( 16 \div 2 = 8 \)
+   - \( 8 \div 2 = 4 \)
+   - \( 4 \div 2 = 2 \)
+   - \( 2 \div 2 = 1 \)
+
+2. We divided by 2 ten times, so the prime factorization of 2048 is \( 2^{11} \).
+
+### Finding Prime Factors Algorithm
+
+To find the largest prime factor of a number \( n \):
+
+1. Initialize the largest prime factor to None.
+2. Check divisibility starting from 2 up to \( \sqrt{n} \).
+3. If \( n \) is divisible by a number, update the largest prime factor and divide \( n \) by this number.
+4. Continue until \( n \) becomes 1.
+
+This approach ensures that we only check necessary candidates and efficiently finds the largest prime factor.
+
+## Example Problems:
+
+### Problem 1: Largest Prime Factor of 13195
+
+**Problem Statement:** Find the largest prime factor of 13195.
+
+**Solution:**
+We follow the same algorithm as described above. Starting with 2, we keep dividing 13195 until we reach 1. The last divisor used will be the largest prime factor.
+
+```python
+def largest_prime_factor(n: int):
+    largest_prime = None
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            largest_prime = i
+    if n > 1:
+        largest_prime = n
+    return largest_prime
+
+print(largest_prime_factor(13195))  # Output: 29
+```
+
+### Problem 2: Largest Prime Factor of 600851475143
+
+**Problem Statement:** Find the largest prime factor of 600851475143.
+
+**Solution:**
+Similar to the previous example, we iterate through potential divisors and update the largest prime factor accordingly.
+
+```python
+def largest_prime_factor(n: int):
+    largest_prime = None
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            largest_prime = i
+    if n > 1:
+        largest_prime = n
+    return largest_prime
+
+print(largest_prime_factor(600851475143))  # Output: 6857
+```
+
+### Problem 3: Smallest Common Multiple (LCM) and Prime Factors
+
+**Problem Statement:** Write a function to calculate the least common multiple (LCM) of two numbers using their prime factors.
+
+**Solution:**
+First, find the prime factors of both numbers, then use the LCM formula based on these factors.
+
+```python
+from math import gcd
+
+def lcm(a: int, b: int) -> int:
+    return abs(a*b) // gcd(a, b)
+
+print(lcm(12, 18))  # Output: 36
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the Solution:
+
+1. Initialize `largest_prime` to None.
+2. Use a loop to check each number from 2 upwards.
+3. If the current number divides `n`, update `largest_prime` and divide `n` by this number.
+4. Repeat until `n` becomes 1.
+5. Return `largest_prime`.
+
+### Python3 Code:
+
+```python
+def largest_prime_factor(n: int) -> int:
+    largest_prime = None
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            largest_prime = i
+    if n > 1:
+        largest_prime = n
+    return largest_prime
+
+# Test cases
+print(largest_prime_factor(13195))  # Output: 29
+print(largest_prime_factor(2048))   # Output: 2
+```
+
+This solution efficiently finds the largest prime factor by iteratively dividing the number by potential factors and keeping track of the largest one encountered.
+29
+2
+completed 18/21, Solved: True, number of success = 18/18, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def sum_to_n(n: int):
+    """sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+The core concept for solving this problem is **Arithmetic Series Sum**. The sum of the first `n` natural numbers can be calculated using the formula:
+
+\[ \text{Sum} = \frac{n \times (n + 1)}{2} \]
+
+This formula directly calculates the sum without needing to iterate through all numbers from 1 to `n`, which makes it efficient even for large values of `n`.
+
+### Tutorial:
+
+An arithmetic series is a sequence of numbers such that the difference between any two successive members is a constant. In mathematics, an arithmetic series is the sum of the terms of an arithmetic progression, a sequence of numbers in which the difference of any two successive members is a constant called the common difference.
+
+For example, the sequence \(1, 2, 3, \ldots, n\) is an arithmetic series with a common difference of 1. The sum of the first `n` terms of this series can be computed efficiently using the formula above.
+
+### Example Problems:
+
+1. **Problem**: Find the sum of the first `n` odd numbers.
+   - **Solution**: The sum of the first `n` odd numbers is \(n^2\). This can be derived from the properties of odd numbers.
+   - **Python3 Code**:
+     ```python
+     def sum_of_odds(n: int) -> int:
+         return n * n
+     ```
+
+2. **Problem**: Calculate the sum of digits of a given number.
+   - **Solution**: Convert the number to a string, iterate through each character, convert it back to an integer, and sum them up.
+   - **Python3 Code**:
+     ```python
+     def sum_of_digits(num: int) -> int:
+         return sum(int(digit) for digit in str(num))
+     ```
+
+3. **Problem**: Compute the sum of an arithmetic series.
+   - **Solution**: Use the formula \(\frac{n \times (a + l)}{2}\), where `n` is the number of terms, `a` is the first term, and `l` is the last term.
+   - **Python3 Code**:
+     ```python
+     def sum_arithmetic_series(a: int, l: int, n: int) -> int:
+         return (n * (a + l)) // 2
+     ```
+
+### Python3 code to solve the original problem:
+
+**Explanation of the Solution**:
+To solve the problem of finding the sum of numbers from 1 to `n`, we use the arithmetic series sum formula \(\frac{n \times (n + 1)}{2}\). This formula directly computes the desired sum without the need for iteration, making it both time-efficient and space-efficient.
+
+**Python3 Code**:
+```python
+def sum_to_n(n: int) -> int:
+    """sum_to_n is a function that sums numbers from 1 to n."""
+    return n * (n + 1) // 2
+
+# Test cases
+print(sum_to_n(30))  # Output: 465
+print(sum_to_n(100)) # Output: 5050
+print(sum_to_n(5))   # Output: 15
+print(sum_to_n(10))  # Output: 55
+print(sum_to_n(1))   # Output: 1
+```
+
+This code defines the function `sum_to_n` that takes an integer `n` as input and returns the sum of all integers from 1 to `n`. The formula \(\frac{n \times (n + 1)}{2}\) is used to compute the sum directly. The provided test cases demonstrate the correctness of the function.
+465
+5050
+15
+55
+1
+completed 19/21, Solved: True, number of success = 19/19, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept for solving this problem is using a stack data structure. The stack will help us keep track of the opening brackets encountered so far. When we encounter a closing bracket, we check if there's a corresponding opening bracket at the top of the stack.
+
+## Tutorial:
+
+A **stack** is a Last In First Out (LIFO) data structure. This means that the last element added to the stack is the first one to be removed. We can use a list in Python to simulate a stack with the `append()` method to push elements onto the stack and the `pop()` method to remove the top element.
+
+Here¡¯s how you can implement a simple stack in Python:
+
+```python
+# Create an empty stack
+stack = []
+
+# Push an item onto the stack
+stack.append('item')
+
+# Pop the top item from the stack
+top_item = stack.pop()
+
+# Check if the stack is empty
+if not stack:
+    print("Stack is empty")
+```
+
+In the context of the bracket matching problem, we use the stack to ensure that every opening bracket has a corresponding closing bracket. If we encounter an opening bracket '(', we push it onto the stack. If we encounter a closing bracket ')', we pop the top element from the stack. If the stack is empty before we try to pop, or if the popped element isn't an opening bracket, then the brackets are not correctly matched.
+
+## Example Problems:
+
+### Problem 1: Valid Parentheses
+
+Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if:
+
+- Open brackets must be closed by the same type of brackets.
+- Open brackets must be closed in the correct order.
+
+**Solution**: Use a stack to keep track of the opening brackets. When encountering a closing bracket, pop the top of the stack and check if they match.
+
+```python
+def isValid(s: str) -> bool:
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping.keys():
+            if not stack or mapping[char] != stack.pop():
+                return False
+        else:
+            return False
+
+    return not stack
+```
+
+### Problem 2: Longest Valid Parentheses
+
+Find the length of the longest valid (well-formed) parentheses substring.
+
+**Solution**: Use a stack to keep track of indices. When encountering a closing bracket, pop from the stack if there's a corresponding opening bracket. Calculate the length of the longest valid substring based on the indices stored in the stack.
+
+```python
+def longestValidParentheses(s: str) -> int:
+    stack = [-1]
+    max_length = 0
+
+    for i, char in enumerate(s):
+        if char == '(':
+            stack.append(i)
+        else:
+            stack.pop()
+            if not stack:
+                stack.append(i)
+            else:
+                max_length = max(max_length, i - stack[-1])
+
+    return max_length
+```
+
+### Problem 3: Score of Parentheses
+
+Given a balanced string `S` consisting only of '(' and ')', calculate its score. The score of a balanced substring '(x)' is 2 * score(x), where x is a balanced substring. The score of an empty string is 0.
+
+**Solution**: Use a stack to keep track of scores. When encountering a closing bracket, pop the top score and multiply it by 2, adding it back to the new top score if it exists.
+
+```python
+def scoreOfParentheses(S: str) -> int:
+    stack = [0]
+
+    for char in S:
+        if char == '(':
+            stack.append(0)
+        else:
+            prev_score = stack.pop()
+            current_score = prev_score * 2 + (stack[-1] if stack else 0)
+            stack[-1] += current_score
+
+    return stack[0]
+```
+
+## Python3 code to solve the original problem:
+
+**Explanation**: We iterate through the string of brackets. Whenever we encounter an opening bracket '(', we push it onto the stack. When we encounter a closing bracket ')', we pop the top of the stack. If the stack becomes empty before popping, or if the popped character isn¡¯t an opening bracket, we return `False`. If we successfully process all characters without any mismatches, we return `True`.
+
+```python
+def correct_bracketing(brackets: str) -> bool:
+    stack = []
+
+    for bracket in brackets:
+        if bracket == '(':
+            stack.append(bracket)
+        elif bracket == ')':
+            if not stack or stack[-1] != '(':
+                return False
+            stack.pop()
+
+    return len(stack) == 0
+```
+
+This function ensures that every opening bracket has a corresponding closing bracket, thus making the overall string correctly bracketed.
+completed 20/21, Solved: True, number of success = 20/20, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+
+
+def derivative(xs: list):
+    """ xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Core Concepts/Algorithms
+
+The problem requires finding the derivative of a polynomial represented as a list of coefficients. The core concept here is understanding how differentiation works for polynomials. Differentiation involves computing the slope at each point on the curve defined by the polynomial. For a polynomial \( P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0 \), the derivative \( P'(x) \) is computed as follows:
+
+- Each term \( a_i x^i \) becomes \( i \cdot a_i x^{i-1} \).
+- The constant term \( a_0 \) disappears because its derivative is zero.
+
+In essence, we multiply each coefficient by its corresponding power of \( x \) and reduce the power by one.
+
+## Tutorial
+
+### Understanding Polynomial Derivation
+
+To understand how to derive a polynomial, let's consider a few basic cases:
+
+1. **Constant Term**: If you have a polynomial like \( 5 \) (which can be written as \( 5x^0 \)), its derivative is \( 0 \). This is because the slope of a horizontal line (constant function) is always zero.
+
+2. **Linear Term**: For a linear term like \( 3x \), its derivative is \( 3 \). This is because the rate of change (slope) of a straight line is constant.
+
+3. **Quadratic Term**: For a quadratic term like \( 7x^2 \), its derivative is \( 14x \). Here, each instance of \( x \) contributes to the slope increase, so multiplying by the coefficient gives the new coefficient.
+
+### Steps for Deriving a Polynomial
+
+1. Iterate through each coefficient in the input list.
+2. Multiply each coefficient by its respective power of \( x \).
+3. Reduce the power of \( x \) by one for each term.
+4. Ignore any terms where the power of \( x \) is zero since their derivatives are zero.
+
+### Practical Implementation
+
+When implementing this in code, we need to handle the following:
+- The first element of the list represents the constant term, which has no effect when differentiated.
+- We need to create a new list with the derived coefficients.
+
+## Relevant Competitive Programming Problems
+
+### Problem 1: [Polynomial Derivative]
+
+**Problem Statement**: Given an array of integers representing the coefficients of a polynomial, return the coefficients of its derivative.
+
+**Solution**: We will follow the steps outlined above to compute the derivative.
+
+```python
+def polynomial_derivative(coeffs):
+    return [coeffs[i] * i for i in range(1, len(coeffs))]
+```
+
+### Problem 2: [Differentiate Function]
+
+**Problem Statement**: Implement a function that takes a polynomial function and returns its derivative function.
+
+**Solution**: This problem involves higher-order functions and understanding of function composition.
+
+```python
+from sympy import symbols, diff, lambdify
+
+def differentiate(f):
+    x = symbols('x')
+    df = diff(f, x)
+    return lambdify(x, df)
+```
+
+### Problem 3: [Derivative Calculator]
+
+**Problem Statement**: Create a program that can calculate the derivative of a given polynomial and output the result.
+
+**Solution**: This problem combines parsing the input polynomial, performing differentiation, and outputting the result.
+
+```python
+import re
+
+def parse_polynomial(poly_str):
+    poly_parts = re.split(r'[\+\-]', poly_str.strip())
+    coeffs = []
+    powers = []
+    for part in poly_parts:
+        if 'x' not in part:
+            coeffs.append(int(part))
+            powers.append(0)
+        else:
+            if '^' in part:
+                coeff, power = part.split('^')
+                coeffs.append(int(coeff))
+                powers.append(int(power))
+            else:
+                coeff = part.replace('x', '')
+                coeffs.append(int(coeff) if coeff else 1)
+                powers.append(1)
+    return coeffs, powers
+
+def derivative_calculator(poly_str):
+    coeffs, _ = parse_polynomial(poly_str)
+    return [coeffs[i] * i for i in range(1, len(coeffs))]
+```
+
+## Python3 Code to Solve the Original Problem
+
+### Explanation of the Solution
+
+The `derivative` function takes a list of coefficients `xs`. It iterates over the indices starting from 1 (to skip the constant term) and multiplies each coefficient by its index (the power of \( x \)). The result is a new list of coefficients representing the derivative of the polynomial.
+
+### Python3 Code
+
+```python
+def derivative(xs: list):
+    """ xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """
+    return [coeffs * i for i, coeffs in enumerate(xs)][1:]
+```
+
+This code uses list comprehension to create a new list of coefficients after skipping the first element (the constant term) and applying the differentiation rule.
+completed 21/21, Solved: True, number of success = 21/21, acc = 100.0
+#########################
+Running end QwenCoderTurbo-Analogical-HumanEval-Python3-0.0-1, Time: 2025-11-11 19:15:34.291936
+##########################
+

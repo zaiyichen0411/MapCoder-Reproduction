@@ -1,0 +1,14 @@
+python :   File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py"
+, line 123
+所在位置 行:1 字符: 1
++ python src/main.py --start-index 4 --end-index 5 > single_test.l
+og 2> ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo          : NotSpecified: (  File "C:\User...n. 
+   py", line 123:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    data=data,
+    ^^^^^^^^^
+SyntaxError: keyword argument repeated: data

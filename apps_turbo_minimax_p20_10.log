@@ -1,0 +1,561 @@
+#########################
+Running start QwenCoderTurbo-MapCoder-APPS-Python3-0.0-1, Time: 2025-11-26 13:22:01.326884
+##########################
+
+--- Starting run_single_pass ---
+Task ID: 2065
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 2\n2 1 2\n1 3\n', 'output': ['1\n']}
+failed in test case: {'input': '7 3\n3 1 3 7\n2 2 5\n2 4 6\n', 'output': ['10\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 2\n2 1 2\n1 3\n', 'output': ['1\n']}
+failed in test case: {'input': '7 3\n3 1 3 7\n2 2 5\n2 4 6\n', 'output': ['10\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 2\n2 1 2\n1 3\n', 'output': ['1\n']}
+failed in test case: {'input': '7 3\n3 1 3 7\n2 2 5\n2 4 6\n', 'output': ['10\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 2\n2 1 2\n1 3\n', 'output': ['1\n']}
+failed in test case: {'input': '7 3\n3 1 3 7\n2 2 5\n2 4 6\n', 'output': ['10\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2198
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '10\nmihail\noolyana\nkooooper\nhoon\nulyana\nkoouper\nmikhail\nkhun\nkuooper\nkkkhoon\n', 'output': ['4\n']}
+failed in test case: {'input': '9\nhariton\nhkariton\nbuoi\nkkkhariton\nboooi\nbui\nkhariton\nboui\nboi\n', 'output': ['5\n']}
+failed in test case: {'input': '2\nalex\nalex\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '10\nmihail\noolyana\nkooooper\nhoon\nulyana\nkoouper\nmikhail\nkhun\nkuooper\nkkkhoon\n', 'output': ['4\n']}
+failed in test case: {'input': '9\nhariton\nhkariton\nbuoi\nkkkhariton\nboooi\nbui\nkhariton\nboui\nboi\n', 'output': ['5\n']}
+failed in test case: {'input': '2\nalex\nalex\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '10\nmihail\noolyana\nkooooper\nhoon\nulyana\nkoouper\nmikhail\nkhun\nkuooper\nkkkhoon\n', 'output': ['4\n']}
+failed in test case: {'input': '9\nhariton\nhkariton\nbuoi\nkkkhariton\nboooi\nbui\nkhariton\nboui\nboi\n', 'output': ['5\n']}
+failed in test case: {'input': '2\nalex\nalex\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '10\nmihail\noolyana\nkooooper\nhoon\nulyana\nkoouper\nmikhail\nkhun\nkuooper\nkkkhoon\n', 'output': ['4\n']}
+failed in test case: {'input': '9\nhariton\nhkariton\nbuoi\nkkkhariton\nboooi\nbui\nkhariton\nboui\nboi\n', 'output': ['5\n']}
+failed in test case: {'input': '2\nalex\nalex\n', 'output': ['1\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2073
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5\n5 2 1 4 3\n', 'output': ['7\n']}
+failed in test case: {'input': '5\n9 8 3 5 7\n', 'output': ['15\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5\n5 2 1 4 3\n', 'output': ['7\n']}
+failed in test case: {'input': '5\n9 8 3 5 7\n', 'output': ['15\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5\n5 2 1 4 3\n', 'output': ['7\n']}
+failed in test case: {'input': '5\n9 8 3 5 7\n', 'output': ['15\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5\n5 2 1 4 3\n', 'output': ['7\n']}
+failed in test case: {'input': '5\n9 8 3 5 7\n', 'output': ['15\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2126
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2\n1 1\n', 'output': ['1\n']}
+failed in test case: {'input': '4\n10 24 40 80\n', 'output': ['40\n']}
+failed in test case: {'input': '10\n540 648 810 648 720 540 594 864 972 648\n', 'output': ['54\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2\n1 1\n', 'output': ['1\n']}
+failed in test case: {'input': '4\n10 24 40 80\n', 'output': ['40\n']}
+failed in test case: {'input': '10\n540 648 810 648 720 540 594 864 972 648\n', 'output': ['54\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2\n1 1\n', 'output': ['1\n']}
+failed in test case: {'input': '4\n10 24 40 80\n', 'output': ['40\n']}
+failed in test case: {'input': '10\n540 648 810 648 720 540 594 864 972 648\n', 'output': ['54\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2\n1 1\n', 'output': ['1\n']}
+failed in test case: {'input': '4\n10 24 40 80\n', 'output': ['40\n']}
+failed in test case: {'input': '10\n540 648 810 648 720 540 594 864 972 648\n', 'output': ['54\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+let cnt   = how many a_i are divisible by p
+let zeros = n – cnt                (how many have exponent 0)
+
+if zeros ≥ 2            → answer(p) = 0
+elif zeros == 1         → answer(p) = smallest positive exponent
+else (zeros == 0)       → answer(p) = second smallest exponent
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Exception in thread Thread-8 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1613, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+UnicodeDecodeError: 'gbk' codec can't decode byte 0x93 in position 90: illegal multibyte sequence
+--- Starting run_single_pass ---
+Task ID: 2012
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n', 'output': ['1 \n']}
+failed in test case: {'input': '2\n', 'output': ['-1\n']}
+failed in test case: {'input': '4\n', 'output': ['2 4 1 3 \n']}
+failed in test case: {'input': '5\n', 'output': ['2 5 3 1 4 \n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n', 'output': ['1 \n']}
+failed in test case: {'input': '2\n', 'output': ['-1\n']}
+failed in test case: {'input': '4\n', 'output': ['2 4 1 3 \n']}
+failed in test case: {'input': '5\n', 'output': ['2 5 3 1 4 \n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n', 'output': ['1 \n']}
+failed in test case: {'input': '2\n', 'output': ['-1\n']}
+failed in test case: {'input': '4\n', 'output': ['2 4 1 3 \n']}
+failed in test case: {'input': '5\n', 'output': ['2 5 3 1 4 \n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1\n', 'output': ['1 \n']}
+failed in test case: {'input': '2\n', 'output': ['-1\n']}
+failed in test case: {'input': '4\n', 'output': ['2 4 1 3 \n']}
+failed in test case: {'input': '5\n', 'output': ['2 5 3 1 4 \n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+A = 1 … k                (a)
+C = k+1 … 2k             (c)
+B = 3k+1 … 4k            (b)
+D = 2k+1 … 3k            (d)
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Exception in thread Thread-10 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1613, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa6 in position 82: illegal multibyte sequence
+--- Starting run_single_pass ---
+Task ID: 2162
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 2\n1 3\n1 4\n', 'output': ['0.1250000000\n0.2916666667\n0.2916666667\n0.2916666667\n']}
+failed in test case: {'input': '7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n', 'output': ['0.0850694444\n0.0664062500\n0.0664062500\n0.1955295139\n0.1955295139\n0.1955295139\n0.1955295139\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 2\n1 3\n1 4\n', 'output': ['0.1250000000\n0.2916666667\n0.2916666667\n0.2916666667\n']}
+failed in test case: {'input': '7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n', 'output': ['0.0850694444\n0.0664062500\n0.0664062500\n0.1955295139\n0.1955295139\n0.1955295139\n0.1955295139\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 2\n1 3\n1 4\n', 'output': ['0.1250000000\n0.2916666667\n0.2916666667\n0.2916666667\n']}
+failed in test case: {'input': '7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n', 'output': ['0.0850694444\n0.0664062500\n0.0664062500\n0.1955295139\n0.1955295139\n0.1955295139\n0.1955295139\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 2\n1 3\n1 4\n', 'output': ['0.1250000000\n0.2916666667\n0.2916666667\n0.2916666667\n']}
+failed in test case: {'input': '7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n', 'output': ['0.0850694444\n0.0664062500\n0.0664062500\n0.1955295139\n0.1955295139\n0.1955295139\n0.1955295139\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2192
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 9\n3 1\n6 1\n7 4\n', 'output': ['1\n']}
+failed in test case: {'input': '7\n1 1\n2 1\n3 1\n4 1\n5 1\n6 1\n7 1\n', 'output': ['3\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 9\n3 1\n6 1\n7 4\n', 'output': ['1\n']}
+failed in test case: {'input': '7\n1 1\n2 1\n3 1\n4 1\n5 1\n6 1\n7 1\n', 'output': ['3\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 9\n3 1\n6 1\n7 4\n', 'output': ['1\n']}
+failed in test case: {'input': '7\n1 1\n2 1\n3 1\n4 1\n5 1\n6 1\n7 1\n', 'output': ['3\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4\n1 9\n3 1\n6 1\n7 4\n', 'output': ['1\n']}
+failed in test case: {'input': '7\n1 1\n2 1\n3 1\n4 1\n5 1\n6 1\n7 1\n', 'output': ['3\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2056
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n100\n001\n', 'output': ['2\n']}
+failed in test case: {'input': '4\n0101\n0011\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n100\n001\n', 'output': ['2\n']}
+failed in test case: {'input': '4\n0101\n0011\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n100\n001\n', 'output': ['2\n']}
+failed in test case: {'input': '4\n0101\n0011\n', 'output': ['1\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n100\n001\n', 'output': ['2\n']}
+failed in test case: {'input': '4\n0101\n0011\n', 'output': ['1\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2060
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\n50 110 130 40 120\n', 'output': ['20\n']}
+failed in test case: {'input': '4 1\n2 3 4 1\n', 'output': ['0\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\n50 110 130 40 120\n', 'output': ['20\n']}
+failed in test case: {'input': '4 1\n2 3 4 1\n', 'output': ['0\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\n50 110 130 40 120\n', 'output': ['20\n']}
+failed in test case: {'input': '4 1\n2 3 4 1\n', 'output': ['0\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '5 2\n50 110 130 40 120\n', 'output': ['20\n']}
+failed in test case: {'input': '4 1\n2 3 4 1\n', 'output': ['0\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2087
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 4 4 19 1\n42 3 99\n', 'output': ['576\n']}
+failed in test case: {'input': '4 7 2 3 9\n1 2 3 4\n', 'output': ['34\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 4 4 19 1\n42 3 99\n', 'output': ['576\n']}
+failed in test case: {'input': '4 7 2 3 9\n1 2 3 4\n', 'output': ['34\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 4 4 19 1\n42 3 99\n', 'output': ['576\n']}
+failed in test case: {'input': '4 7 2 3 9\n1 2 3 4\n', 'output': ['34\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3 4 4 19 1\n42 3 99\n', 'output': ['576\n']}
+failed in test case: {'input': '4 7 2 3 9\n1 2 3 4\n', 'output': ['34\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2130
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n2\n2\n1\n', 'output': ['3\n']}
+failed in test case: {'input': '4\n1\n2\n3\n4\n', 'output': ['1680\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n2\n2\n1\n', 'output': ['3\n']}
+failed in test case: {'input': '4\n1\n2\n3\n4\n', 'output': ['1680\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n2\n2\n1\n', 'output': ['3\n']}
+failed in test case: {'input': '4\n1\n2\n3\n4\n', 'output': ['1680\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n2\n2\n1\n', 'output': ['3\n']}
+failed in test case: {'input': '4\n1\n2\n3\n4\n', 'output': ['1680\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1604
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1 1\n.\n', 'output': ['1\n']}
+failed in test case: {'input': '2 3\n...\n..R\n', 'output': ['0\n']}
+failed in test case: {'input': '4 4\n...R\n.RR.\n.RR.\nR...\n', 'output': ['4\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1 1\n.\n', 'output': ['1\n']}
+failed in test case: {'input': '2 3\n...\n..R\n', 'output': ['0\n']}
+failed in test case: {'input': '4 4\n...R\n.RR.\n.RR.\nR...\n', 'output': ['4\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1 1\n.\n', 'output': ['1\n']}
+failed in test case: {'input': '2 3\n...\n..R\n', 'output': ['0\n']}
+failed in test case: {'input': '4 4\n...R\n.RR.\n.RR.\nR...\n', 'output': ['4\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1 1\n.\n', 'output': ['1\n']}
+failed in test case: {'input': '2 3\n...\n..R\n', 'output': ['0\n']}
+failed in test case: {'input': '4 4\n...R\n.RR.\n.RR.\nR...\n', 'output': ['4\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2160
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6 3\n3 3 1 4 1 6\n', 'output': ['Yes\n2 3 1 ']}
+failed in test case: {'input': '3 3\n1 1 1\n', 'output': ['Yes\n1 1 1 ']}
+failed in test case: {'input': '3 3\n1 1 2\n', 'output': ['No']}
+failed in test case: {'input': '3 1\n1 10 100\n', 'output': ['Yes\n3 ']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6 3\n3 3 1 4 1 6\n', 'output': ['Yes\n2 3 1 ']}
+failed in test case: {'input': '3 3\n1 1 1\n', 'output': ['Yes\n1 1 1 ']}
+failed in test case: {'input': '3 3\n1 1 2\n', 'output': ['No']}
+failed in test case: {'input': '3 1\n1 10 100\n', 'output': ['Yes\n3 ']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6 3\n3 3 1 4 1 6\n', 'output': ['Yes\n2 3 1 ']}
+failed in test case: {'input': '3 3\n1 1 1\n', 'output': ['Yes\n1 1 1 ']}
+failed in test case: {'input': '3 3\n1 1 2\n', 'output': ['No']}
+failed in test case: {'input': '3 1\n1 10 100\n', 'output': ['Yes\n3 ']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '6 3\n3 3 1 4 1 6\n', 'output': ['Yes\n2 3 1 ']}
+failed in test case: {'input': '3 3\n1 1 1\n', 'output': ['Yes\n1 1 1 ']}
+failed in test case: {'input': '3 3\n1 1 2\n', 'output': ['No']}
+failed in test case: {'input': '3 1\n1 10 100\n', 'output': ['Yes\n3 ']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def solve() -> None:
+    data = sys.stdin.buffer.read().split()
+    if not data:
+        return
+
+    it = iter(data)
+    n = int(next(it))
+    k = int(next(it))
+    a = [int(next(it)) for _ in range(n)]
+
+    total = sum(a)
+    # total must be divisible by k, otherwise impossible
+    if total % k != 0:
+        sys.stdout.write("No\n")
+        return
+
+    target = total // k
+    cur_sum = 0          # sum of durations in the current post
+    cur_len = 0          # number of videos in the current post
+    sizes = []           # lengths of finished posts
+
+    for v in a:
+        cur_sum += v
+        cur_len += 1
+
+        if cur_sum == target:
+            # current post is complete
+            sizes.append(cur_len)
+            cur_sum = 0
+            cur_len = 0
+        elif cur_sum > target:
+            # we passed the required sum → impossible
+            sys.stdout.write("No\n")
+            return
+
+    # after processing all videos we must have exactly k posts and no remainder
+    if len(sizes) != k or cur_sum != 0:
+        sys.stdout.write("No\n")
+        return
+
+    sys.stdout.write("Yes\n")
+    sys.stdout.write(' '.join(map(str, sizes)) + '\n')
+
+
+if __name__ == "__main__":
+    solve()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2153
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n', 'output': ['2\n3 1 2 3\n3 1 2 3\n']}
+failed in test case: {'input': '5\n', 'output': ['6\n3 1 2 3\n3 2 3 4\n3 3 4 5\n3 4 5 1\n4 2 1 3 5\n4 5 1 4 2\n']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n', 'output': ['2\n3 1 2 3\n3 1 2 3\n']}
+failed in test case: {'input': '5\n', 'output': ['6\n3 1 2 3\n3 2 3 4\n3 3 4 5\n3 4 5 1\n4 2 1 3 5\n4 5 1 4 2\n']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n', 'output': ['2\n3 1 2 3\n3 1 2 3\n']}
+failed in test case: {'input': '5\n', 'output': ['6\n3 1 2 3\n3 2 3 4\n3 3 4 5\n3 4 5 1\n4 2 1 3 5\n4 5 1 4 2\n']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '3\n', 'output': ['2\n3 1 2 3\n3 1 2 3\n']}
+failed in test case: {'input': '5\n', 'output': ['6\n3 1 2 3\n3 2 3 4\n3 3 4 5\n3 4 5 1\n4 2 1 3 5\n4 5 1 4 2\n']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+#########################
+Running end QwenCoderTurbo-MapCoder-APPS-Python3-0.0-1, Time: 2025-11-26 20:59:54.336408
+##########################
+

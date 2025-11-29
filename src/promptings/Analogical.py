@@ -63,7 +63,7 @@ Include the following points in your response:
         print(input[0]['content'])
 
         response, prompt_tokens, completion_tokens = self.gpt_chat(
-            processed_input=input
+            prompt=input
         )
 
         print(response)

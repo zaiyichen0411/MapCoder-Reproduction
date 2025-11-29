@@ -1,0 +1,9 @@
+usage: main.py [-h] [--dataset {HumanEval,MBPP,APPS,xCodeEval,XCode,CC}]
+               [--strategy {Direct,CoT,SelfPlanning,Analogical,MapCoder}]
+               [--model {gpt-3.5-turbo,ChatGPT,GPT4,Gemini,QwenCoderTurbo,TongyiQianwenCoder,QwenCoder480b}]
+               [--temperature TEMPERATURE] [--pass_at_k PASS_AT_K]
+               [--language {C,C#,C++,Go,PHP,Python3,Ruby,Rust}]
+               [--start-index START_INDEX] [--end-index END_INDEX]
+               [--results-suffix RESULTS_SUFFIX] [--quiet]
+               [--discard-previous-run]
+main.py: error: argument --model: invalid choice: 'MinimaxM2' (choose from gpt-3.5-turbo, ChatGPT, GPT4, Gemini, QwenCoderTurbo, TongyiQianwenCoder, QwenCoder480b)

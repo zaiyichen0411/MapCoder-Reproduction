@@ -20,7 +20,7 @@ from datasets.HumanEvalDataset import HumanDataset
 from datasets.CodeContestDataset import CodeContestDataset
 
 from results.Results import Results
-from evaluations.func_evaluate import evaluate_io
+from evaluations.func_evaluate import evaluate_io, evaluate_functional_correctness
 
 mapping = {
     1: "one (01)",
@@ -48,100 +48,154 @@ class MapCoder(BaseStrategy):
         super().__init__(*args, **kwargs)
         self.k = k
         self.t = t
+        self.n_alternatives = 2
+        self.style_variations = [
+            "concise",
+            "robust",
+            "edge-case-focused",
+        ]
+        # Default retries for planning and improvement loops
+        self.max_retries = 4
 
     def xml_to_dict(self, element):
+        if not list(element):
+            return element.text or ''
+
         result = {}
         for child in element:
-            if child:
-                child_data = self.xml_to_dict(child)
-                if child.tag in result:
-                    if isinstance(result[child.tag], list):
-                        result[child.tag].append(child_data)
-                    else:
-                        result[child.tag] = [result[child.tag], child_data]
-                else:
-                    result[child.tag] = child_data
+            child_data = self.xml_to_dict(child)
+            if child.tag in result:
+                if not isinstance(result[child.tag], list):
+                    result[child.tag] = [result[child.tag]]
+                result[child.tag].append(child_data)
             else:
-                result[child.tag] = child.text
+                result[child.tag] = child_data
+        
+        # If the element has text content besides children, add it
+        if element.text and element.text.strip():
+            result['#text'] = element.text.strip()
+            
         return result
 
     def parse_xml(self, response: str) -> dict:
-        if '```xml' in response:
-            response = response.replace('```xml', '')
-        if '```' in response:
-            response = response.replace('```', '')
+        response = response.strip()
+        if response.startswith('```xml'):
+            response = response[len('```xml'):].strip()
+        if response.endswith('```'):
+            response = response[:-len('```')].strip()
+
+        # Attempt to fix common XML errors
+        response = re.sub(r'&(?!(amp|lt|gt|apos|quot);)', '&amp;', response)
+        # Remove CDATA sections that wrap other XML tags
+        response = re.sub(r'<!\[CDATA\[\s*<([a-zA-Z_:]+)', r'<\1', response)
+        response = re.sub(r'</([a-zA-Z_:]+)>\s*]]>', r'</\1>', response)
 
         try:
+            # First attempt to parse the response as is
             root = ET.fromstring(response)
-        except:
+        except ET.ParseError:
             try:
-                root = ET.fromstring('<root>\n' + response + '\n</root>')
-            except:
-                root = ET.fromstring('<root>\n' + response)
-        return self.xml_to_dict(root)
+                # If parsing fails, try wrapping the response in a single root element
+                response_wrapped = f"<root>{response}</root>"
+                root = ET.fromstring(response_wrapped)
+            except ET.ParseError as e:
+                # If it still fails, log the error and return a dictionary with an error message
+                print(f"XML ParseError: {e}\nResponse:\n{response}")
+                return {'error': 'XML parsing failed', 'response': response}
+
+        # The calling code expects a 'root' key. We return the parsed content under the 'root' key.
+        # The original root tag's content is preserved by xml_to_dict.
+        return {'root': {root.tag: self.xml_to_dict(root)}}
 
     def parse_code(self, response: str) -> str:
-        if "```" not in response:
-            return response
+        # Prefer fenced code blocks by language; fall back when absent
+        if "```" in response:
+            code_pattern = r'```((.|\n)*?)```'
+            if "```Python" in response:
+                code_pattern = r'```Python((.|\n)*?)```'
+            if "```Python3" in response:
+                code_pattern = r'```Python3((.|\n)*?)```'
+            if "```python" in response:
+                code_pattern = r'```python((.|\n)*?)```'
+            if "```python3" in response:
+                code_pattern = r'```python3((.|\n)*?)```'
+            if "```C" in response:
+                code_pattern = r'```C((.|\n)*?)```'
+            if "```c" in response:
+                code_pattern = r'```c((.|\n)*?)```'
+            if "```C++" in response:
+                code_pattern = r'```C\+\+((.|\n)*?)```'
+            if "```c++" in response:
+                code_pattern = r'```c\+\+((.|\n)*?)```'
+            if "```Java" in response:
+                code_pattern = r'```Java((.|\n)*?)```'
+            if "```java" in response:
+                code_pattern = r'```java((.|\n)*?)```'
+            if "```Node" in response:
+                code_pattern = r'```Node((.|\n)*?)```'
+            if "```node" in response:
+                code_pattern = r'```node((.|\n)*?)```'
+            if "```Rust" in response:
+                code_pattern = r'```Rust((.|\n)*?)```'
+            if "```rust" in response:
+                code_pattern = r'```rust((.|\n)*?)```'
+            if "```PHP" in response:
+                code_pattern = r'```PHP((.|\n)*?)```'
+            if "```php" in response:
+                code_pattern = r'```php((.|\n)*?)```'
+            if "```Go" in response:
+                code_pattern = r'```Go((.|\n)*?)```'
+            if "```go" in response:
+                code_pattern = r'```go((.|\n)*?)```'
+            if "```Ruby" in response:
+                code_pattern = r'```Ruby((.|\n)*?)```'
+            if "```ruby" in response:
+                code_pattern = r'```ruby((.|\n)*?)```'
+            if "```C#" in response:
+                code_pattern = r'```C#((.|\n)*?)```'
+            if "```c#" in response:
+                code_pattern = r'```c#((.|\n)*?)```'
+            if "```csharp" in response:
+                code_pattern = r'```csharp((.|\n)*?)```'
 
-        code_pattern = r'```((.|\n)*?)```'
-        if "```Python" in response:
-            code_pattern = r'```Python((.|\n)*?)```'
-        if "```Python3" in response:
-            code_pattern = r'```Python3((.|\n)*?)```'
-        if "```python" in response:
-            code_pattern = r'```python((.|\n)*?)```'
-        if "```python3" in response:
-            code_pattern = r'```python3((.|\n)*?)```'
-        if "```C" in response:
-            code_pattern = r'```C((.|\n)*?)```'
-        if "```c" in response:
-            code_pattern = r'```c((.|\n)*?)```'
-        if "```C++" in response:
-            code_pattern = r'```C\+\+((.|\n)*?)```'
-        if "```c++" in response:
-            code_pattern = r'```c\+\+((.|\n)*?)```'
-        if "```Java" in response:
-            code_pattern = r'```Java((.|\n)*?)```'
-        if "```java" in response:
-            code_pattern = r'```java((.|\n)*?)```'
-        if "```Node" in response:
-            code_pattern = r'```Node((.|\n)*?)```'
-        if "```node" in response:
-            code_pattern = r'```node((.|\n)*?)```'
-        if "```Rust" in response:
-            code_pattern = r'```Rust((.|\n)*?)```'
-        if "```rust" in response:
-            code_pattern = r'```rust((.|\n)*?)```'
-        if "```PHP" in response:
-            code_pattern = r'```PHP((.|\n)*?)```'
-        if "```php" in response:
-            code_pattern = r'```php((.|\n)*?)```'
-        if "```Go" in response:
-            code_pattern = r'```Go((.|\n)*?)```'
-        if "```go" in response:
-            code_pattern = r'```go((.|\n)*?)```'
-        if "```Ruby" in response:
-            code_pattern = r'```Ruby((.|\n)*?)```'
-        if "```ruby" in response:
-            code_pattern = r'```ruby((.|\n)*?)```'
-        if "```C#" in response:
-            code_pattern = r'```C#((.|\n)*?)```'
-        if "```c#" in response:
-            code_pattern = r'```c#((.|\n)*?)```'
-        if "```csharp" in response:
-            code_pattern = r'```csharp((.|\n)*?)```'
+            code_blocks = re.findall(code_pattern, response, re.DOTALL)
+            if not code_blocks:
+                return response
+            # Prefer blocks that contain function definitions
+            preferred = None
+            for blk in code_blocks:
+                text = blk[0] if isinstance(blk, (tuple, list)) else blk
+                if "def " in text:
+                    preferred = blk
+                    break
+            if preferred is None:
+                preferred = code_blocks[-1]
+            if isinstance(preferred, (tuple, list)):
+                return "\n".join(preferred)
+            return preferred
 
-        code_blocks = re.findall(code_pattern, response, re.DOTALL)
+        # Fallback: try to extract Python definitions if no fences are present
+        raw = response.strip()
+        lines = raw.splitlines()
+        start_idx = None
+        for i, ln in enumerate(lines):
+            s = ln.strip()
+            if s.startswith("def ") or s.startswith("class ") or s.startswith("import "):
+                start_idx = i
+                break
+        if start_idx is not None:
+            return "\n".join(lines[start_idx:]).strip()
+        return raw
 
-        if type(code_blocks[-1]) == tuple or type(code_blocks[-1]) == list:
-            code_str = "\n".join(code_blocks[-1])
-        elif type(code_blocks[-1]) == str:
-            code_str = code_blocks[-1]
-        else:
-            code_str = response
-
-        return code_str
+    def _sp(self, x):
+        if getattr(self, "verbose", True):
+            try:
+                print(x)
+            except Exception:
+                try:
+                    sys.stdout.buffer.write((str(x) + "\n").encode('utf-8', 'ignore'))
+                except Exception:
+                    pass
 
     @staticmethod
     def trim_text(text: str, trimmed_text: str):
@@ -164,234 +218,487 @@ class MapCoder(BaseStrategy):
         return sample_io
 
     def run_single_pass(self, item: dict):
-        print("", flush=True)
+        print("--- Starting run_single_pass ---")
+        # Be robust across datasets: use dataset-specific id_key if available
+        try:
+            id_key = getattr(self.data, 'id_key', 'task_id')
+            task_id_value = item.get(id_key, item.get('task_id', item.get('id', 'N/A')))
+        except Exception:
+            task_id_value = item.get('task_id', item.get('id', 'N/A'))
+        print(f"Task ID: {task_id_value}")
 
-        input_kb_exemplars = [
-            {
-                "role": "user",
-                "content": f"""Given a problem, provide relevant problems then identify the algorithm behind it and also explain the tutorial of the algorithm.
-# Problem:
-{self.data.get_prompt(item)}
+        code = ""
+        plan = ""
+        test_cases = ""
 
-# Exemplars:
-Recall {mapping[self.k]} relevant and distinct problems (different from problem mentioned above). For each problem,
-1. describe it
-2. generate {self.language} code step by step to solve that problem
-3. finally generate a planning to solve that problem
+        pr_tok = 0
+        com_tok = 0
 
-# Algorithm:
+        # Use dataset-specific prompt generation instead of assuming 'description'
+        try:
+            problem_description = self.data.get_prompt(item)
+        except Exception:
+            # Fallbacks if dataset lacks get_prompt or fields
+            problem_description = item.get('description') or item.get('prompt') or item.get('text') or ""
 
-----------------
-Important:
-Your response must follow the following xml format-
+        # Dataset-specific defaults for exemplars and planning steps
+        try:
+            if isinstance(self.data, HumanDataset):
+                self.k = max(self.k, 4)
+                self.t = max(self.t, 6)
+            if isinstance(self.data, MBPPDataset):
+                self.k = max(self.k, 5)
+                self.t = max(self.t, 6)
+        except Exception:
+            pass
 
-<root>
-<problem>
-# Recall {mapping[self.k]} relevant and distinct problems (different from problem mentioned above). Write each problem in the following format.
-<description>
-# Describe the problem.
-</description>
-<code>
-# Let's think step by step to solve this problem in {self.language} programming language.
-</code>
-<planning>
-# Planning to solve this problem.
-</planning>
-</problem>
-
-# similarly add more problems here...
-
-<algorithm>
-# Identify the algorithm (Brute-force, Dynamic Programming, Divide-and-conquer, Greedy, Backtracking, Recursive, Binary search, and so on) that needs to be used to solve the original problem.
-# Write a useful tutorial about the above mentioned algorithms. Provide a high level generic tutorial for solving this types of problem. Do not generate code.
-</algorithm>
-</root>
-""",
-            },
-        ]
-
-        print("\n\n________________________")
-        print("Input for knowledge base and exemplars: ")
-        print(input_kb_exemplars[0]['content'], flush=True)
-
-        response, pr_tok, com_tok = self.gpt_chat(
-            processed_input=input_kb_exemplars
-        )
-        item['api_calls'] = item.get('api_calls', 0) + 1
-
-        # Post processing
-        response = self.trim_text(
-            response, "# Identify the algorithm (Brute-force, Dynamic Programming, Divide-and-conquer, Greedy, Backtracking, Recursive, Binary search, and so on) that needs to be used to solve the original problem.")
-        response = self.trim_text(
-            response, "# Write a useful tutorial about the above mentioned algorithms. Provide a high level generic tutorial for solving this types of problem. Do not generate code.")
-        response = self.trim_text(
-            response, "# Planning to solve this problem:")
-        response = self.trim_text(
-            response, f"# Let's think step by step to solve this problem in {self.language} programming language.")
-        response = self.replace_tag(response, 'algorithm')
-        response = self.replace_tag(response, 'description')
-        response = self.replace_tag(response, 'code')
-        response = self.replace_tag(response, 'planning')
-
-        print("\n\n________________________")
-        print("Response from knowledge base and exemplars: ")
-        print(response, flush=True)
-
-        response = self.parse_xml(response)
-
-        algorithm_prompt = f"## Relevant Algorithm to solve the next problem:\n{ response['algorithm']}"
-        sample_io_prompt = f"## Sample Test cases: \n{self.get_sample_io_str(item['sample_io'])}\n"
-        # if type(self.data) != MBPPDataset and type(self.data) != XCodeDataset else ""
-
-        plannings = []
-        for example_no, example in enumerate(response["problem"], start=1):
-            example_problem = example["description"]
-            example_planning = example["planning"]
-
-            input_for_problem_planning = [
-                {
-                    "role": "user",
-                    "content": f"Given a competitive programming problem generate a concrete planning to solve the problem.\n# Problem:\n{example_problem}\n# Planning:\n{example_planning}\n{algorithm_prompt}\n## Problem to be solved:\n{self.data.get_prompt(item)}\n{sample_io_prompt}\n## Planning:\n\n----------------\nImportant: You should give only the planning to solve the problem. Do not add extra explanation or words."
-                }
-            ]
-
-            print("\n\n________________________")
-            print(
-                f"Input for our problem planning using example: {example_no}: ")
-            print(input_for_problem_planning[0]['content'], flush=True)
-
-            planning, pr_tok_1, com_tok_1 = self.gpt_chat(
-                input_for_problem_planning
-            )
-            item['api_calls'] += 1
-            # time.sleep(1)
-            pr_tok += pr_tok_1
-            com_tok += com_tok_1
-
-            # planning = self.parse_xml(planning)
-            # planning['confidence'] = int(str(planning['confidence']).strip())
-
-            print("\n\n________________________")
-            print("Response from our problem planning: ")
-            print(planning, flush=True)
-
-            input_for_planning_verification = [
-                {
-                    "role": "user",
-                    "content": f"Given a competitive programming problem and a plan to solve the problem in {self.language}, tell whether the plan is correct to solve this problem.\n\n# Problem:\n{self.data.get_prompt(item)}\n# Planning:\n{planning}\n\n----------------\nImportant: Your response must follow the following xml format-```\n<root>\n<explanation> Discuss whether the given competitive programming problem is solvable by using the above mentioned planning.</explanation>\n<confidence> Confidence score regarding the solvability of the problem. Must be an integer between 0 and 100. </confidence>\n</root>\n```"
-                }
-            ]
-
-            print("Input for planning verification: ")
-            print(input_for_planning_verification[0]['content'], flush=True)
-
-            verification_res, pr_tok_1, com_tok_1 = self.gpt_chat(
-                input_for_planning_verification
-            )
-            item['api_calls'] += 1
-            # time.sleep(1)
-            pr_tok += pr_tok_1
-            com_tok += com_tok_1
-
-            verification_res = self.replace_tag(
-                verification_res, 'explanation')
-            verification_res = self.replace_tag(verification_res, 'confidence')
-
-            verification_res = self.parse_xml(verification_res)
-
-            verification_res['confidence'] = int(
-                str(verification_res['confidence']).strip())
-
-            print("Response from planning verification: ")
-            print(verification_res, flush=True)
-
-            plannings.append((
-                planning,
-                verification_res['confidence'],
-                example
-            ))
-
-            # if type(self.data) == MBPPDataset and verification_res['confidence'] == 100:
-            #     break
-
-        plannings.sort(key=lambda x: x[1], reverse=True)
-        # time.sleep(1)
-
-        if type(self.data) == APPSDataset or type(self.data) == CodeContestDataset or type(self.data) == XCodeDataset:
-            std_input_prompt = "## Note: Strictly follow the input and output format. The input should be taken from Standard input and output should be given to standard output. If you are writing a function then after the function definition take input using `input()` function then call the function with specified parameters and finally print the output of the function. Do not add extra print statement otherwise it will failed the test cases."
-        else:
-            std_input_prompt = ""
-
-        for planning_with_ex in plannings:
-            planning, confidence, example = planning_with_ex
-
-            input_for_final_code_generation = [
-                {
-                    "role": "user",
-                    "content": f"Given a competitive programming problem generate {self.language} code to solve the problem.\n{algorithm_prompt}\n## Problem to be solved:\n{self.data.get_prompt(item)}\n## Planning:\n{planning}\n{sample_io_prompt}\n## Let's think step by step.\n\n----------------\nImportant:\n{std_input_prompt}\n## Your response must contain only the {self.language} code to solve this problem. Do not add extra explanation or words."
-                }
-            ]
-
-            print("\n\n________________________")
-            print("Input for final code generation: ")
-            print(input_for_final_code_generation[0]['content'], flush=True)
-
-            code, pr_tok_1, com_tok_1 = self.gpt_chat(
-                input_for_final_code_generation
-            )
-            item['api_calls'] += 1
-            # time.sleep(1)
-
-            code = self.parse_code(code)
-            pr_tok += pr_tok_1
-            com_tok += com_tok_1
-
-            print("\n\n________________________")
-            print("Response from final code generation: ")
-            print(code, flush=True)
-
-            response = f"## Planning: {planning}\n## Code:\n```\n{code}\n```"
-            passed = False
-
-            for i in range(1, self.t + 1):
-                passed, test_log = self.data.evaluate_sample_io(
-                    item,
-                    code,
-                    self.language
+        # Turbo simplified path
+        exemplars_override = ""
+        try:
+            is_turbo = "QwenCoderTurbo" in self.model.__class__.__name__
+            entry_point = item.get('entry_point') if isinstance(item, dict) else None
+            constraint_text = ""
+            if isinstance(self.data, (APPSDataset, CodeContestDataset, XCodeDataset)):
+                constraint_text = (
+                    "严格遵循输入/输出格式：从标准输入读取并打印到标准输出。"
+                    "生成可直接运行的完整程序。"
                 )
+            elif isinstance(self.data, (HumanDataset, MBPPDataset)):
+                if entry_point:
+                    constraint_text = (
+                        f"必须实现名为 '{entry_point}' 的函数。不要编写任何输入输出代码或顶层测试，"
+                        "仅返回函数定义。"
+                    )
+                else:
+                    constraint_text = (
+                        "实现所需函数。不编写输入输出或顶层测试，仅提供函数定义。"
+                    )
 
-                if passed:
-                    break
-
-                print(f"Input for improving code generation: {i}")
-                input_for_improving_code = [
+            if is_turbo:
+                # Formula (1) Turbo Path: Direct Code Generation without Planning
+                plan = ""
+                test_cases = ""
+                code_gen_prompt = [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a coding agent. "
+                            "Return only executable solution code for the task. "
+                            "Do not include any commentary, Markdown fences or explanations."
+                        )
+                    },
                     {
                         "role": "user",
-                        "content": f"Given a competitive programming problem you have generated {self.language} code to solve the problem. But the generated code can not pass sample test cases. Improve your code to solve the problem correctly.\n{algorithm_prompt}\n## Problem to be solved:\n{self.data.get_prompt(item)}\n{response}\n## Test Report:\n{test_log}\n## Modified Planning:\n## Let's think step by step to modify {self.language} Code for solving this problem.\n\n----------------\nImportant:\n{std_input_prompt}\n## Your response must contain the modified planning and then the {self.language} code inside ``` block to solve this problem."
+                        "content": (
+                            f"Problem description:\n{problem_description}\n\n"
+                            + (f"Constraints:\n{constraint_text}\n\n" if constraint_text else "")
+                            + f"Target language: {self.language}. "
+                            + "只输出可执行代码，无任何额外文本。"
+                        )
                     }
                 ]
-
-                print("\n\n________________________")
-                print("Input for improving code generation: ")
-                print(input_for_improving_code[0]['content'], flush=True)
-
-                response, pr_tok_1, com_tok_1 = self.gpt_chat(
-                    input_for_improving_code
-                )
+                self._sp(f"Input for Turbo Code Generation: {code_gen_prompt}")
+                code_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=code_gen_prompt)
+                self._sp(f"Response from Turbo Code Generation: {code_response}")
+                item.setdefault('api_calls', 0)
                 item['api_calls'] += 1
-                # time.sleep(1)
+                pr_tok += pr_tok_1
+                com_tok += com_tok_1
+                code = self.parse_code(code_response)
+                self._sp(f"Initial Extracted Code (Turbo): {code}")
+            else:
+                # 1. Generate Knowledge Base and Exemplars
+                print("--- Generating Knowledge Base and Exemplars ---")
+                exemplars_override = ""
+                try:
+                    if isinstance(self.data, MBPPDataset):
+                        sim_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', 'data', 'MBPPEval', 'similar_problems_solutions.jsonl'))
+                        if os.path.exists(sim_path):
+                            with open(sim_path, 'r', encoding='utf-8') as f:
+                                for line in f:
+                                    line = line.strip()
+                                    if not line:
+                                        continue
+                                    try:
+                                        obj = json.loads(line)
+                                    except Exception:
+                                        continue
+                                    name_key = item.get('name') or item.get('task_id')
+                                    if name_key and (obj.get('name') == name_key or obj.get('task_id') == name_key):
+                                        kb = obj.get('knowledge', '')
+                                        sol = obj.get('solution', '')
+                                        parts = []
+                                        if kb:
+                                            parts.append(str(kb))
+                                        if sol:
+                                            parts.append(str(sol))
+                                        if parts:
+                                            exemplars_override = "\n".join(parts)
+                                        break
+                except Exception:
+                    exemplars_override = ""
 
-                code = self.parse_code(response)
+            kb_exemplars_prompt = [
+                # Formula (1) Knowledge & Exemplars: Generate KB and examples to aid reasoning
+                {
+                    "role": "system",
+                    "content": (
+                        "You are an expert code synthesis assistant. "
+                        "Given a programming problem description, produce a concise knowledge base of relevant concepts, algorithms, data structures, and edge cases. "
+                        "Also produce up to k exemplars (worked examples or similar problems) that will help solve the task. "
+                        "Respond strictly as XML with the following structure: \n"
+                        "<response>\n"
+                        "  <knowledge_base>...</knowledge_base>\n"
+                        "  <exemplars><![CDATA[...]]></exemplars>\n"
+                        "</response>\n"
+                        "Do not include any text outside the XML."
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"Problem description:\n{problem_description}\n\n"
+                        f"Please provide a knowledge base and up to {self.k} exemplars. "
+                        + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                        + "Use the exact XML structure specified above."
+                    )
+                }
+            ]
+            self._sp(f"Input for KB and Exemplars: {kb_exemplars_prompt}")
+
+            response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+            self._sp(f"Response from KB and Exemplars: {response}")
+            item.setdefault('api_calls', 0)
+            item['api_calls'] += 1
+            pr_tok += pr_tok_1
+            com_tok += com_tok_1
+
+            # 2. Parse Knowledge Base and Exemplars
+            if not is_turbo:
+                print("--- Parsing Knowledge Base and Exemplars ---")
+                try:
+                    parsed_xml = self.parse_xml(response)
+                    root = parsed_xml.get('root', {})
+                    response_content = root.get('response', root)
+                    knowledge_base = response_content.get('knowledge_base', '')
+                    exemplars = response_content.get('exemplars', '')
+                    if isinstance(knowledge_base, dict):
+                        knowledge_base = json.dumps(knowledge_base, indent=2)
+                    if isinstance(exemplars, dict):
+                        exemplars = json.dumps(exemplars, indent=2)
+                    if exemplars_override:
+                        exemplars = (str(exemplars).strip() + "\n" + exemplars_override).strip()
+                    self._sp(f"Parsed Knowledge Base: {knowledge_base}")
+                    self._sp(f"Parsed Exemplars: {exemplars}")
+                except Exception as e:
+                    print(f"Error parsing KB and Exemplars: {e}")
+                    knowledge_base, exemplars = "", ""
+
+            # 3. Iterative Planning
+            for i in range(self.max_retries):
+                print(f"--- Planning Iteration {i+1} of {self.max_retries} ---")
+                try:
+                    # 3a. Generate Problem Planning
+                    if is_turbo:
+                        break
+                    print("--- Generating Problem Planning ---")
+                    # Formula (2) Planning: Generate step-by-step plan and test cases
+                    planning_prompt = [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a planning agent for programming tasks. "
+                                "Given a problem description, a knowledge base, and exemplars, draft a step-by-step plan and derive representative test cases. "
+                                "Respond strictly as XML with the following structure: \n"
+                                "<response>\n"
+                                "  <plan>...</plan>\n"
+                                "  <test_cases><![CDATA[...]]></test_cases>\n"
+                                "</response>\n"
+                                "Do not include any text outside the XML."
+                            )
+                        },
+                        {
+                            "role": "user",
+                            "content": (
+                                f"Problem description:\n{problem_description}\n\n"
+                                f"Knowledge base:\n{knowledge_base}\n\n"
+                                f"Exemplars:\n{exemplars}\n\n"
+                                f"Create a plan with about {self.t} steps and derive representative test cases. "
+                                "Return only the XML specified above."
+                            )
+                        }
+                    ]
+                    self._sp(f"Input for Problem Planning: {planning_prompt}")
+
+                    planning_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=planning_prompt)
+                    self._sp(f"Response from Problem Planning: {planning_response}")
+                    item.setdefault('api_calls', 0)
+                    item['api_calls'] += 1
+                    pr_tok += pr_tok_1
+                    com_tok += com_tok_1
+
+                    # 3b. Parse Plan and Test Cases
+                    print("--- Parsing Problem Planning ---")
+                    try:
+                        parsed_planning = self.parse_xml(planning_response)
+                        root = parsed_planning.get('root', {})
+                        response_content = root.get('response', root)
+                        plan = response_content.get('plan', '')
+                        test_cases = response_content.get('test_cases', '')
+                        if isinstance(plan, dict):
+                            plan = json.dumps(plan, indent=2)
+                        if isinstance(test_cases, dict):
+                            test_cases = json.dumps(test_cases, indent=2)
+                        self._sp(f"Parsed Plan: {plan}")
+                        self._sp(f"Parsed Test Cases: {test_cases}")
+                    except Exception as e:
+                        print(f"Error parsing Plan and Test Cases: {e}")
+                        plan, test_cases = "", ""
+
+                    # 3c. Verify Plan
+                    print("--- Generating Planning Verification ---")
+                    verification_prompt = [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a strict planning verifier. "
+                                "Given a plan and test cases, check their correctness and adequacy for the problem. "
+                                "If the plan and tests are sufficient, respond with the single word 'CORRECT'. "
+                                "Otherwise, respond with 'INCORRECT' and briefly explain the issues. "
+                                "Ensure test cases cover boundary conditions (empty inputs, single elements, duplicates, type conversions, and large sizes) when applicable."
+                            )
+                        },
+                        {
+                            "role": "user",
+                            "content": (
+                                f"Problem description:\n{problem_description}\n\n"
+                                f"Plan:\n{plan}\n\n"
+                                f"Test cases:\n{test_cases}\n\n"
+                                "Check correctness and adequacy. Respond with 'CORRECT' or 'INCORRECT'."
+                            )
+                        }
+                    ]
+                    self._sp(f"Input for Planning Verification: {verification_prompt}")
+
+                    verification_res, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=verification_prompt)
+                    self._sp(f"Response from Planning Verification: {verification_res}")
+                    item.setdefault('api_calls', 0)
+                    item['api_calls'] += 1
+                    pr_tok += pr_tok_1
+                    com_tok += com_tok_1
+
+                    if "CORRECT" in verification_res.upper():
+                        print("--- Plan Verification Correct ---")
+                        break
+                    else:
+                        print("--- Plan Verification Incorrect, retrying ---\n")
+
+                except Exception as e:
+                    print(f"Error in planning phase iteration {i+1}: {e}")
+                    continue
+            
+            # 4. Final Code Generation
+            if is_turbo:
+                pass
+            print("--- Generating Final Code ---")
+            # Dataset-specific constraints: enforce I/O vs function-only solutions
+            constraint_text = ""
+            entry_point = item.get('entry_point') if isinstance(item, dict) else None
+            if isinstance(self.data, (APPSDataset, CodeContestDataset, XCodeDataset)):
+                constraint_text = (
+                    "严格遵循输入/输出格式：从标准输入读取并打印到标准输出。"
+                    "生成可直接运行的完整程序。"
+                )
+            elif isinstance(self.data, (HumanDataset, MBPPDataset)):
+                if entry_point:
+                    constraint_text = (
+                        f"必须实现名为 '{entry_point}' 的函数。不要编写任何输入输出代码或顶层测试，"
+                        "仅返回函数定义。"
+                    )
+                else:
+                    constraint_text = (
+                        "实现所需函数。不编写输入输出或顶层测试，仅提供函数定义。"
+                    )
+
+            # Formula (3) Code Generation: Generate code based on plan, tests, and constraints
+            code_gen_prompt = [
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a coding agent. "
+                        "Generate a complete, correct solution for the task. "
+                        "Return only code fenced in triple backticks with an explicit language tag (e.g., ```python or ```Python3). "
+                        "Do not include any commentary outside the code fence. "
+                        "Do not include sample assertions, testing code, or print statements unless required by I/O constraints."
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"Problem description:\n{problem_description}\n\n"
+                        f"Plan:\n{plan}\n\n"
+                        f"Test cases:\n{test_cases}\n\n"
+                        + (f"Constraints:\n{constraint_text}\n\n" if constraint_text else "")
+                        + f"Target language: {self.language}. "
+                        + "Return only the solution code inside a fenced code block."
+                    )
+                }
+            ]
+            if not is_turbo:
+                self._sp(f"Input for Final Code Generation: {code_gen_prompt}")
+
+            if not is_turbo:
+                code_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=code_gen_prompt)
+                self._sp(f"Response from Final Code Generation: {code_response}")
+                item.setdefault('api_calls', 0)
+                item['api_calls'] += 1
+                pr_tok += pr_tok_1
+                com_tok += com_tok_1
+                code = self.parse_code(code_response)
+                self._sp(f"Initial Extracted Code: {code}")
+
+
+            passed = False
+            feedback = ""
+            timeout = 15
+            sample_io = item.get('sample_io', [])
+            entry_point = item.get('entry_point') if isinstance(item, dict) else None
+            if isinstance(sample_io, list) and len(sample_io) > 0:
+                if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in code):
+                    passed, feedback = False, f"Missing required entry point function '{entry_point}'"
+                else:
+                    passed, feedback = evaluate_io(sample_io, code, timeout)
+            else:
+                if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in code):
+                    passed, feedback = False, f"Missing required entry point function '{entry_point}'"
+                else:
+                    result = evaluate_functional_correctness(problem=item, completion=code, timeout=timeout)
+                    passed = (result == "passed")
+                    feedback = result if not passed else "passed"
+
+            if not passed:
+                alternatives = []
+                for idx, style in enumerate(self.style_variations[: self.n_alternatives]):
+                    alt_prompt = [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a coding agent. "
+                                "Generate a complete, correct solution for the task. "
+                                "Return only code fenced in triple backticks with an explicit language tag (e.g., ```python or ```Python3). "
+                                "Do not include any commentary outside the code fence. "
+                                "Do not include sample assertions, testing code, or print statements unless required by I/O constraints."
+                            )
+                        },
+                        {
+                            "role": "user",
+                            "content": (
+                                f"Problem description:\n{problem_description}\n\n"
+                                f"Plan:\n{plan}\n\n"
+                                f"Test cases:\n{test_cases}\n\n"
+                                + (f"Constraints:\n{constraint_text}\n\n" if constraint_text else "")
+                                + f"Target language: {self.language}. "
+                                + f"Style: {style}. "
+                                + "Return only the solution code inside a fenced code block."
+                            )
+                        }
+                    ]
+                    alt_response, pr_t, com_t = self.gpt_chat(prompt=alt_prompt)
+                    item['api_calls'] += 1
+                    pr_tok += pr_t
+                    com_tok += com_t
+                    alt_code = self.parse_code(alt_response)
+                    if isinstance(sample_io, list) and len(sample_io) > 0:
+                        if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in alt_code):
+                            alt_passed, alt_feedback = False, f"Missing required entry point function '{entry_point}'"
+                        else:
+                            alt_passed, alt_feedback = evaluate_io(sample_io, alt_code, timeout)
+                    else:
+                        if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in alt_code):
+                            alt_passed, alt_feedback = False, f"Missing required entry point function '{entry_point}'"
+                        else:
+                            alt_result = evaluate_functional_correctness(problem=item, completion=alt_code, timeout=timeout)
+                            alt_passed = (alt_result == "passed")
+                            alt_feedback = alt_result if not alt_passed else "passed"
+                    alternatives.append((alt_code, alt_passed, alt_feedback))
+                    if alt_passed:
+                        code = alt_code
+                        passed = True
+                        feedback = alt_feedback
+                        break
+
+                if not passed and alternatives:
+                    code = alternatives[0][0]
+                    feedback = alternatives[0][2]
+
+            # 5. Code Improvement Loop
+            # Formula (4) Iterative Refinement: Improve code based on execution feedback
+            for i in range(self.max_retries):
+                print(f"--- Code Improvement Iteration {i+1} of {self.max_retries} ---")
+                if isinstance(sample_io, list) and len(sample_io) > 0:
+                    entry_point = item.get('entry_point') if isinstance(item, dict) else None
+                    if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in code):
+                        passed, feedback = False, f"Missing required entry point function '{entry_point}'"
+                    else:
+                        passed, feedback = evaluate_io(sample_io, code, timeout)
+                else:
+                    entry_point = item.get('entry_point') if isinstance(item, dict) else None
+                    if entry_point and isinstance(self.data, (HumanDataset, MBPPDataset)) and (f"def {entry_point}(" not in code):
+                        passed, feedback = False, f"Missing required entry point function '{entry_point}'"
+                    else:
+                        result = evaluate_functional_correctness(problem=item, completion=code, timeout=timeout)
+                        passed = (result == "passed")
+                        feedback = result if not passed else "passed"
+
+                if passed:
+                    print("--- Code Passed All Tests ---\n")
+                    break
+                
+                print("--- Code Failed, Improving ---")
+                print(f"Feedback: {feedback}")
+                improvement_prompt = [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a debugging agent. "
+                            "Improve the given solution based on execution feedback. "
+                            "Return only the corrected code fenced in triple backticks with an explicit language tag."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": (
+                            f"Problem description:\n{problem_description}\n\n"
+                            f"Current code:\n{code}\n\n"
+                            f"Plan:\n{plan}\n\n"
+                            f"Test cases:\n{test_cases}\n\n"
+                            + (f"Constraints:\n{constraint_text}\n\n" if constraint_text else "")
+                            + f"Feedback:\n{feedback}\n\n"
+                            + f"Target language: {self.language}. "
+                            + "Return only the improved solution inside a fenced code block."
+                        )
+                    }
+                ]
+                self._sp(f"Input for Improving Code: {improvement_prompt}")
+
+                improvement_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=improvement_prompt)
+                self._sp(f"Response from Improving Code: {improvement_response}")
+                item.setdefault('api_calls', 0)
+                item['api_calls'] += 1
                 pr_tok += pr_tok_1
                 com_tok += com_tok_1
 
-                print("\n\n________________________")
-                print("Response from improving code generation: ")
-                print(response, flush=True)
+                code = self.parse_code(improvement_response)
+                self._sp(f"Extracted Improved Code: {code}")
 
-            # got a code that passed all sample test cases
-            if passed:
-                break
+        except Exception as e:
+            print(f"--- An unexpected error occurred in run_single_pass: {e} ---")
+            import traceback
+            traceback.print_exc()
 
+        print("--- Ending run_single_pass ---")
+        print(f"Final Code: {code}")
+        print(f"Total Prompt Tokens: {pr_tok}")
+        print(f"Total Completion Tokens: {com_tok}")
         print("________________________\n\n", flush=True)
         return code, pr_tok, com_tok

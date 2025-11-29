@@ -1,0 +1,193 @@
+#########################
+Running start QwenCoderTurbo-MapCoder-MBPP-Python3-0.0-10, Time: 2025-11-18 11:29:33.494871
+##########################
+
+--- Starting run_single_pass ---
+Task ID: mbpp_457_Find_Min
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+from typing import List, Any
+
+def Find_Min(lst: List[List[Any]]) -> List[Any]:
+    """
+    Find the sublist having minimum length.
+    
+    Args:
+        lst: A list of lists
+        
+    Returns:
+        The sublist with minimum length. If there are multiple sublists with 
+        the same minimum length, returns the first one encountered.
+        Returns None if the input list is empty.
+    """
+    # Handle edge case: empty input list
+    if not lst:
+        return None
+    
+    # Initialize with the first sublist
+    min_length = len(lst[0])
+    min_sublist = lst[0]
+    
+    # Iterate through remaining sublists
+    for sublist in lst[1:]:
+        # Update if current sublist is shorter
+        if len(sublist) < min_length:
+            min_length = len(sublist)
+            min_sublist = sublist
+    
+    return min_sublist
+
+
+
+Total Prompt Tokens: 1837
+Total Completion Tokens: 1155
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: mbpp_725_extract_quotation
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+from typing import List, Any
+
+def extract_quotation(text1: str) -> List[Any]:
+    # Regular expression pattern to match quoted strings, handling escaped quotes
+    pattern = r'"((?:[^"\\]|\\.)*?)"'
+    
+    # Find all matches in the text
+    matches = re.findall(pattern, text1)
+    
+    # Process matches to handle escape sequences
+    result = []
+    for match in matches:
+        # Unescape the content
+        unescaped = re.sub(r'\\(.)', r'\1', match)
+        result.append(unescaped)
+    
+    return result
+
+
+
+Total Prompt Tokens: 1574
+Total Completion Tokens: 731
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: mbpp_9_find_Rotations
+--- Generating Knowledge Base and Exemplars ---
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 149, in <module>
+    strategy.run()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 115, in run
+    response, prompt_tokens, completion_tokens = self.run_single_pass(
+                                                 ~~~~~~~~~~~~~~~~~~~~^
+        item)
+        ^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 314, in run_single_pass
+    response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=kb_exemplars_prompt)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\Qwen.py", line 10, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 982, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

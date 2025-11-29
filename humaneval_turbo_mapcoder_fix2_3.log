@@ -1,0 +1,1445 @@
+#########################
+Running start QwenCoderTurbo-MapCoder-HumanEval-Python3-0.0-10, Time: 2025-11-18 14:43:45.131982
+##########################
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/56
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 4, column 66
+Response:
+<response>
+  <knowledge_base>
+    - Bracket matching problem using stack-like counting approach
+    - Valid bracket sequences must have equal number of opening '<' and closing '>' brackets
+    - At any point while scanning left to right, number of closing brackets should not exceed opening brackets
+    - Final count of opening and closing brackets must be equal for valid sequence
+    - Time complexity: O(n), Space complexity: O(1)
+    - Edge cases: empty string, single bracket, all opening brackets, all closing brackets, mismatched sequences
+  </knowledge_base>
+  <exemplars><![CDATA[
+Exemplar 1:
+Input: "<"
+Process: Count = 1 (opening bracket)
+Result: False (unmatched opening bracket)
+
+Exemplar 2:
+Input: "<>"
+Process: Count = 1 (first '<'), Count = 0 (then '>')
+Result: True (balanced)
+
+Exemplar 3:
+Input: "><<>"
+Process: Count = -1 (first '>') -> immediately invalid
+Result: False (closing bracket before opening)
+
+Exemplar 4:
+Input: "<<><>>"
+Process: Count progression: 1->2->1->2->1->0
+Result: True (properly nested and balanced)
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+XML ParseError: not well-formed (invalid token): line 5, column 34
+Response:
+<response>
+  <plan>
+    1. Initialize a counter to track the balance of brackets, starting at 0
+    2. Iterate through each character in the input string
+    3. For each opening bracket '<', increment the counter by 1
+    4. For each closing bracket '>', decrement the counter by 1
+    5. If the counter ever becomes negative during iteration, return False (closing bracket without matching opening)
+    6. After processing all characters, return True if counter is 0 (all brackets matched), False otherwise
+  </plan>
+  <test_cases><![CDATA[
+# Test case 1: Single opening bracket
+correct_bracketing("<")  # Expected: False
+
+# Test case 2: Perfectly matched pair
+correct_bracketing("<>")  # Expected: True
+
+# Test case 3: Multiple nested brackets
+correct_bracketing("<<><>>")  # Expected: True
+
+# Test case 4: Closing bracket before opening
+correct_bracketing("><<>")  # Expected: False
+
+# Test case 5: Empty string
+correct_bracketing("")  # Expected: True
+
+# Test case 6: Only closing brackets
+correct_bracketing(">>")  # Expected: False
+
+# Test case 7: Only opening brackets
+correct_bracketing("<<")  # Expected: False
+
+# Test case 8: Complex valid nesting
+correct_bracketing("<><<><>>")  # Expected: True
+
+# Test case 9: Complex invalid nesting
+correct_bracketing("<<<>>>><")  # Expected: False
+]]></test_cases>
+</response>
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "<" and ">".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("<")
+    False
+    >>> correct_bracketing("<>")
+    True
+    >>> correct_bracketing("<<><>>")
+    True
+    >>> correct_bracketing("><<>")
+    False
+    """
+    count = 0
+    for bracket in brackets:
+        if bracket == '<':
+            count += 1
+        elif bracket == '>':
+            count -= 1
+            if count < 0:
+                return False
+    
+    return count == 0
+
+
+
+Total Prompt Tokens: 864
+Total Completion Tokens: 876
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/57
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+Error parsing KB and Exemplars: 'gbk' codec can't encode character '\u2270' in position 1068: illegal multibyte sequence
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def monotonic(l: list):
+    """Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """
+    # Handle edge cases: empty list or single element
+    if len(l) <= 1:
+        return True
+    
+    # Find the first pair of different elements to determine direction
+    direction = None
+    for i in range(len(l) - 1):
+        if l[i] < l[i + 1]:
+            direction = "increasing"
+            break
+        elif l[i] > l[i + 1]:
+            direction = "decreasing"
+            break
+    
+    # If all elements are equal, it's monotonic
+    if direction is None:
+        return True
+    
+    # Check monotonicity based on determined direction
+    if direction == "increasing":
+        for i in range(len(l) - 1):
+            if l[i] > l[i + 1]:
+                return False
+    else:  # direction == "decreasing"
+        for i in range(len(l) - 1):
+            if l[i] < l[i + 1]:
+                return False
+    
+    return True
+
+
+
+Total Prompt Tokens: 1671
+Total Completion Tokens: 1187
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/58
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def common(l1: list, l2: list):
+    """Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """
+    # Convert lists to sets to remove duplicates and find intersection
+    set1 = set(l1)
+    set2 = set(l2)
+    
+    # Find common elements using set intersection
+    common_elements = set1 & set2
+    
+    # Convert back to list and sort
+    result = sorted(list(common_elements))
+    
+    return result
+
+
+
+Total Prompt Tokens: 2218
+Total Completion Tokens: 1051
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/59
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def largest_prime_factor(n: int):
+    """Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """
+    largest_factor = -1
+    
+    # Check for factor 2
+    while n % 2 == 0:
+        largest_factor = 2
+        n //= 2
+    
+    # Check for odd factors starting from 3
+    factor = 3
+    while factor * factor <= n:
+        while n % factor == 0:
+            largest_factor = factor
+            n //= factor
+        factor += 2
+    
+    # If n is still greater than 1, then it's a prime factor
+    if n > 1:
+        largest_factor = n
+    
+    return largest_factor
+
+
+
+Total Prompt Tokens: 1924
+Total Completion Tokens: 1311
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/60
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def sum_to_n(n: int):
+    """sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
+    if n < 0:
+        raise ValueError("n must be non-negative")
+    
+    return n * (n + 1) // 2
+
+
+
+Total Prompt Tokens: 1822
+Total Completion Tokens: 956
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/61
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+    counter = 0
+    for char in brackets:
+        if char == '(':
+            counter += 1
+        elif char == ')':
+            counter -= 1
+            if counter < 0:
+                return False
+    return counter == 0
+
+
+
+Total Prompt Tokens: 1830
+Total Completion Tokens: 858
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/62
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def derivative(xs: list):
+    """ xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """
+    # Handle edge case: if input list is empty or has only one element (constant)
+    if len(xs) <= 1:
+        return []
+    
+    # Initialize result list
+    result = []
+    
+    # Iterate through the input list starting from index 1
+    for i in range(1, len(xs)):
+        # Multiply coefficient by its power (index)
+        result.append(i * xs[i])
+    
+    return result
+
+
+
+Total Prompt Tokens: 1931
+Total Completion Tokens: 942
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/63
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 9, column 21
+Response:
+<response>
+  <knowledge_base>
+    - The FibFib sequence is a variant of the Fibonacci sequence with different initial conditions and recurrence relation
+    - Initial conditions: fibfib(0) = 0, fibfib(1) = 0, fibfib(2) = 1
+    - Recurrence relation: fibfib(n) = fibfib(n-1) + fibfib(n-2) + fibfib(n-3) for n ¡Ý 3
+    - This is a third-order linear recurrence relation requiring three base cases
+    - Efficient computation can be done using dynamic programming with O(n) time and O(1) space
+    - Can use iterative approach maintaining only the last three computed values
+    - Edge cases: n < 0 (undefined), n = 0, 1, 2 (base cases)
+    - For large n, consider potential integer overflow issues
+  </knowledge_base>
+  <exemplars><![CDATA[
+Exemplar 1: Computing fibfib(3)
+Using the recurrence: fibfib(3) = fibfib(2) + fibfib(1) + fibfib(0) = 1 + 0 + 0 = 1
+
+Exemplar 2: Computing fibfib(4)
+Using the recurrence: fibfib(4) = fibfib(3) + fibfib(2) + fibfib(1) = 1 + 1 + 0 = 2
+
+Exemplar 3: Computing fibfib(5)
+Using the recurrence: fibfib(5) = fibfib(4) + fibfib(3) + fibfib(2) = 2 + 1 + 1 = 4
+
+Exemplar 4: Computing fibfib(6)
+Using the recurrence: fibfib(6) = fibfib(5) + fibfib(4) + fibfib(3) = 4 + 2 + 1 = 7
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def fibfib(n: int) -> int:
+    # Handle base cases
+    if n < 0:
+        raise ValueError("n must be non-negative")
+    if n == 0:
+        return 0
+    if n == 1:
+        return 0
+    if n == 2:
+        return 1
+    
+    # For n >= 3, use iterative approach with O(n) time and O(1) space
+    # Keep track of the last three values
+    a, b, c = 0, 0, 1  # fibfib(0), fibfib(1), fibfib(2)
+    
+    # Compute iteratively from 3 to n
+    for i in range(3, n + 1):
+        next_val = a + b + c
+        a, b, c = b, c, next_val
+        
+    return c
+
+
+
+Total Prompt Tokens: 1800
+Total Completion Tokens: 1093
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/64
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def vowels_count(s):
+    """Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count("abcde")
+    2
+    >>> vowels_count("ACEDY")
+    3
+    """
+    if not s:
+        return 0
+    
+    vowels = set('aeiouAEIOU')
+    count = 0
+    
+    for i, char in enumerate(s):
+        if char in vowels:
+            count += 1
+        elif char in 'yY' and i == len(s) - 1:
+            count += 1
+            
+    return count
+
+
+
+Total Prompt Tokens: 2166
+Total Completion Tokens: 971
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/65
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def circular_shift(x, shift):
+    """Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    "21"
+    >>> circular_shift(12, 2)
+    "12"
+    """
+    # Convert integer to string to work with digits
+    str_x = str(x)
+    num_digits = len(str_x)
+    
+    # If shift is greater than number of digits, return reversed string
+    if shift > num_digits:
+        return str_x[::-1]
+    
+    # Handle cases where shift equals or is multiple of digit count
+    shift = shift % num_digits
+    
+    # Perform circular right shift
+    # Take the last 'shift' digits and move them to the front
+    if shift == 0:
+        return str_x
+    else:
+        return str_x[-shift:] + str_x[:-shift]
+
+
+
+Total Prompt Tokens: 1895
+Total Completion Tokens: 1135
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/66
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def digitSum(s):
+    """
+    Takes a string as input and returns the sum of the ASCII codes of uppercase characters only.
+    
+    Args:
+        s (str): Input string
+        
+    Returns:
+        int: Sum of ASCII codes of uppercase characters
+    """
+    total = 0
+    for char in s:
+        if char.isupper():
+            total += ord(char)
+    return total
+
+
+
+Total Prompt Tokens: 1950
+Total Completion Tokens: 807
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/67
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+
+def fruit_distribution(s, n):
+    # Extract all numbers from the string
+    numbers = re.findall(r'\d+', s)
+    
+    # Convert to integers
+    apples = int(numbers[0])
+    oranges = int(numbers[1])
+    
+    # Calculate mangoes
+    mangoes = n - apples - oranges
+    
+    return mangoes
+
+
+
+Total Prompt Tokens: 2465
+Total Completion Tokens: 1055
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/68
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def pluck(arr):
+    if not arr:
+        return []
+    
+    min_val = None
+    min_idx = None
+    
+    for i, val in enumerate(arr):
+        if val % 2 == 0:
+            if min_val is None or val < min_val:
+                min_val = val
+                min_idx = i
+    
+    if min_val is None:
+        return []
+    
+    return [min_val, min_idx]
+
+
+
+Total Prompt Tokens: 3029
+Total Completion Tokens: 989
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/69
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def search(lst):
+    # Create a frequency dictionary to count occurrences of each integer
+    freq_dict = {}
+    for num in lst:
+        freq_dict[num] = freq_dict.get(num, 0) + 1
+    
+    # Find all integers where frequency >= integer value
+    valid_integers = []
+    for num, freq in freq_dict.items():
+        if freq >= num:
+            valid_integers.append(num)
+    
+    # Return the greatest valid integer, or -1 if none exist
+    return max(valid_integers) if valid_integers else -1
+
+
+
+Total Prompt Tokens: 2473
+Total Completion Tokens: 1115
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/70
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    strange_sort_list([]) == []
+    '''
+    # Handle edge case: empty list
+    if not lst:
+        return []
+    
+    # Sort the list to enable efficient min/max selection
+    sorted_lst = sorted(lst)
+    
+    # Initialize pointers
+    left = 0
+    right = len(sorted_lst) - 1
+    
+    # Initialize result list and flag for picking min (True) or max (False)
+    result = []
+    pick_min = True
+    
+    # Process elements until all are selected
+    while left <= right:
+        if pick_min:
+            result.append(sorted_lst[left])
+            left += 1
+        else:
+            result.append(sorted_lst[right])
+            right -= 1
+        
+        # Toggle the flag for next selection
+        pick_min = not pick_min
+    
+    return result
+
+
+
+Total Prompt Tokens: 2364
+Total Completion Tokens: 1252
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/71
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+import math
+
+def triangle_area(a, b, c):
+    # Check if all sides are positive
+    if a <= 0 or b <= 0 or c <= 0:
+        return -1
+    
+    # Check triangle inequality theorem
+    if (a + b <= c) or (a + c <= b) or (b + c <= a):
+        return -1
+    
+    # Calculate semi-perimeter
+    s = (a + b + c) / 2
+    
+    # Calculate area using Heron's formula
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+    
+    # Round to 2 decimal places
+    return round(area, 2)
+
+
+
+Total Prompt Tokens: 2184
+Total Completion Tokens: 1039
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/72
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 5, column 50
+Response:
+<response>
+  <knowledge_base>
+- Palindromic list: A list that reads the same forwards and backwards
+- Balance check: Compare list with its reverse using slicing (q == q[::-1])
+- Weight constraint: Sum of all elements must be <= maximum weight w
+- Both conditions must be true for flight: balance AND weight limit
+- Edge cases: Empty lists (balanced by definition), single element lists (always balanced), negative numbers in list
+- Time complexity: O(n) for both palindrome check and sum calculation
+- Space complexity: O(1) additional space (palindrome check uses slicing which creates temporary copy)
+  </knowledge_base>
+  <exemplars><![CDATA[
+Example 1:
+will_it_fly([1, 2, 1], 4)
+# Check balance: [1, 2, 1] == [1, 2, 1][::-1] ¡ú [1, 2, 1] == [1, 2, 1] ¡ú True
+# Check weight: sum([1, 2, 1]) = 4 ¡Ü 4 ¡ú True
+# Result: True
+
+Example 2:
+will_it_fly([1, 2, 3], 6)
+# Check balance: [1, 2, 3] == [1, 2, 3][::-1] ¡ú [1, 2, 3] == [3, 2, 1] ¡ú False
+# Since unbalanced, no need to check weight
+# Result: False
+
+Example 3:
+will_it_fly([2, 2], 3)
+# Check balance: [2, 2] == [2, 2][::-1] ¡ú [2, 2] == [2, 2] ¡ú True
+# Check weight: sum([2, 2]) = 4 > 3 ¡ú False
+# Result: False
+
+Example 4:
+will_it_fly([], 0)
+# Check balance: [] == [][::-1] ¡ú [] == [] ¡ú True
+# Check weight: sum([]) = 0 ¡Ü 0 ¡ú True
+# Result: True
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def will_it_fly(q, w):
+    # Check if the list is palindromic (balanced)
+    is_balanced = q == q[::-1]
+    
+    # Calculate the sum of elements
+    total_weight = sum(q)
+    
+    # Check if the total weight is within the limit
+    within_limit = total_weight <= w
+    
+    # Return True only if both conditions are met
+    return is_balanced and within_limit
+
+
+
+Total Prompt Tokens: 2298
+Total Completion Tokens: 1031
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/73
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def smallest_change(arr):
+    """
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any other element.
+
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6]) == 4
+    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    smallest_change([1, 2, 3, 2, 1]) == 0
+    """
+    n = len(arr)
+    
+    # Edge cases: arrays with 0 or 1 elements are already palindromic
+    if n <= 1:
+        return 0
+    
+    changes = 0
+    # Compare elements from both ends moving towards the center
+    for i in range(n // 2):
+        if arr[i] != arr[n - 1 - i]:
+            changes += 1
+    
+    return changes
+
+
+
+Total Prompt Tokens: 2465
+Total Completion Tokens: 1244
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/74
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def total_match(lst1, lst2):
+    # Calculate total number of characters in each list
+    total_chars_lst1 = sum(len(s) for s in lst1)
+    total_chars_lst2 = sum(len(s) for s in lst2)
+    
+    # Compare totals and return appropriate list
+    if total_chars_lst1 <= total_chars_lst2:
+        return lst1
+    else:
+        return lst2
+
+
+
+Total Prompt Tokens: 2550
+Total Completion Tokens: 1003
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/75
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_multiply_prime(a):
+    """Write a function that returns true if the given number is the multiplication of 3 prime numbers
+    and false otherwise.
+    Knowing that (a) is less then 100. 
+    Example:
+    is_multiply_prime(30) == True
+    30 = 2 * 3 * 5
+    """
+    if a < 8:  # Smallest product of 3 primes is 2*2*2 = 8
+        return False
+    
+    count = 0
+    n = a
+    factor = 2
+    
+    while factor * factor <= n:
+        while n % factor == 0:
+            count += 1
+            n //= factor
+        factor += 1
+    
+    if n > 1:
+        count += 1
+    
+    return count == 3
+
+
+
+Total Prompt Tokens: 2171
+Total Completion Tokens: 1358
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/76
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_simple_power(x, n):
+    # Special case: x = 1 is always a power of any n (n^0 = 1), except when n = 0
+    if x == 1:
+        return n != 0
+    
+    # Special case: n = 0
+    if n == 0:
+        return x == 0
+    
+    # Special case: n = 1
+    if n == 1:
+        return x == 1
+    
+    # Special case: x = 0
+    if x == 0:
+        return False
+    
+    # Handle negative numbers
+    if n < 0:
+        # For negative base, we need to check if x can be represented as n^k
+        # If x is positive, k must be even; if x is negative, k must be odd
+        if x > 0:
+            # Check if x is a power of |n| and the power is even
+            temp_x = x
+            power = 0
+            while temp_x > 1:
+                if temp_x % abs(n) != 0:
+                    return False
+                temp_x //= abs(n)
+                power += 1
+            return power % 2 == 0
+        else:
+            # x is negative, check if |x| is a power of |n| and the power is odd
+            temp_x = abs(x)
+            power = 0
+            while temp_x > 1:
+                if temp_x % abs(n) != 0:
+                    return False
+                temp_x //= abs(n)
+                power += 1
+            return power % 2 == 1
+    
+    # Both x and n are positive
+    if x > 0 and n > 0:
+        temp_x = x
+        while temp_x > 1:
+            if temp_x % n != 0:
+                return False
+            temp_x //= n
+        return True
+    
+    # If x is negative and n is positive, it's impossible
+    if x < 0 and n > 0:
+        return False
+    
+    return False
+
+
+
+Total Prompt Tokens: 2778
+Total Completion Tokens: 1819
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/77
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def iscube(a):
+    if a == 0:
+        return True
+    
+    # Work with the absolute value for calculation
+    abs_a = abs(a)
+    
+    # Calculate the cube root and round to nearest integer
+    cube_root = round(abs_a ** (1/3))
+    
+    # Check if this is actually a perfect cube
+    # We need to check cube_root and possibly cube_root +/- 1 due to floating point precision
+    for candidate in [cube_root - 1, cube_root, cube_root + 1]:
+        if candidate ** 3 == abs_a:
+            # If a was negative, check if candidate is negative (to maintain sign)
+            # But since we're working with abs_a, we know candidate is positive
+            # So for negative a, we need to verify that there exists a negative integer whose cube is a
+            # Which means checking if there's a negative integer that cubes to the negative of abs_a
+            # This is equivalent to checking if candidate^3 == abs_a where a < 0
+            # In that case, (-candidate)^3 = -abs_a = a
+            return True
+    
+    return False
+
+
+
+Total Prompt Tokens: 1984
+Total Completion Tokens: 1175
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/78
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def hex_key(num):
+    # Define the set of hexadecimal digits that represent prime numbers
+    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}
+    
+    # Handle empty string case
+    if not num:
+        return 0
+    
+    # Count prime digits in the hexadecimal string
+    count = 0
+    for digit in num:
+        if digit in prime_hex_digits:
+            count += 1
+    
+    return count
+
+
+
+Total Prompt Tokens: 2989
+Total Completion Tokens: 984
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/79
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def decimal_to_binary(decimal):
+    if decimal == 0:
+        return "db0db"
+    
+    binary_digits = []
+    while decimal > 0:
+        remainder = decimal % 2
+        binary_digits.append(str(remainder))
+        decimal = decimal // 2
+    
+    # Reverse the binary digits since they were generated in reverse order
+    binary_digits.reverse()
+    
+    # Join the digits and add the 'db' prefix and suffix
+    binary_string = "".join(binary_digits)
+    return "db" + binary_string + "db"
+
+
+
+Total Prompt Tokens: 2051
+Total Completion Tokens: 829
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/80
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 7, column 39
+Response:
+<response>
+  <knowledge_base>
+    - String length validation: A happy string must have length >= 3
+    - Sliding window technique: Check every consecutive triplet of characters
+    - Character comparison: All three characters in each triplet must be distinct
+    - Early termination: Return False as soon as any triplet contains duplicate characters
+    - Edge cases: Strings with length < 3 are automatically not happy
+    - Time complexity: O(n) where n is the length of the string
+    - Space complexity: O(1) - only using constant extra space
+  </knowledge_base>
+  <exemplars><![CDATA[
+Exemplar 1:
+Input: "abc"
+Process: Length is 3 >= 3. Check triplet (a,b,c) - all distinct.
+Output: True
+
+Exemplar 2:
+Input: "abca"
+Process: Length is 4 >= 3. Check triplet (a,b,c) - distinct. Check triplet (b,c,a) - distinct.
+Output: True
+
+Exemplar 3:
+Input: "aab"
+Process: Length is 3 >= 3. Check triplet (a,a,b) - first two characters are same.
+Output: False
+
+Exemplar 4:
+Input: "abcd"
+Process: Length is 4 >= 3. Check triplet (a,b,c) - distinct. Check triplet (b,c,d) - distinct.
+Output: True
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def is_happy(s):
+    # Check if the string length is at least 3
+    if len(s) < 3:
+        return False
+    
+    # Iterate through the string to check each group of 3 consecutive characters
+    for i in range(len(s) - 2):
+        # Get the current triplet of characters
+        a, b, c = s[i], s[i+1], s[i+2]
+        
+        # Check if all three characters are distinct
+        if a == b or b == c or a == c:
+            return False
+    
+    # If all triplets have distinct characters, the string is happy
+    return True
+
+
+
+Total Prompt Tokens: 1673
+Total Completion Tokens: 823
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/81
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def numerical_letter_grade(grades):
+    letter_grades = []
+    
+    for gpa in grades:
+        if gpa == 4.0:
+            letter_grades.append("A+")
+        elif gpa > 3.7:
+            letter_grades.append("A")
+        elif gpa > 3.3:
+            letter_grades.append("A-")
+        elif gpa > 3.0:
+            letter_grades.append("B+")
+        elif gpa > 2.7:
+            letter_grades.append("B")
+        elif gpa > 2.3:
+            letter_grades.append("B-")
+        elif gpa > 2.0:
+            letter_grades.append("C+")
+        elif gpa > 1.7:
+            letter_grades.append("C")
+        elif gpa > 1.3:
+            letter_grades.append("C-")
+        elif gpa > 1.0:
+            letter_grades.append("D+")
+        elif gpa > 0.7:
+            letter_grades.append("D")
+        elif gpa > 0.0:
+            letter_grades.append("D-")
+        else:  # gpa == 0.0
+            letter_grades.append("E")
+            
+    return letter_grades
+
+
+
+Total Prompt Tokens: 3136
+Total Completion Tokens: 1611
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/82
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def prime_length(string):
+    length = len(string)
+    
+    # Handle edge cases: 0 and 1 are not prime
+    if length < 2:
+        return False
+    
+    # 2 is prime
+    if length == 2:
+        return True
+    
+    # Even numbers greater than 2 are not prime
+    if length % 2 == 0:
+        return False
+    
+    # Check odd divisors up to sqrt(length)
+    for i in range(3, int(length**0.5) + 1, 2):
+        if length % i == 0:
+            return False
+    
+    return True
+
+
+
+Total Prompt Tokens: 1825
+Total Completion Tokens: 842
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: HumanEval/83
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Passed All Tests ---
+
+--- Ending run_single_pass ---
+Final Code: 
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+    if n == 1:
+        return 1
+    
+    # For n >= 2, use the derived formula: 18 * 10^(n-2)
+    return 18 * (10 ** (n - 2))
+
+
+
+Total Prompt Tokens: 2006
+Total Completion Tokens: 1691
+________________________
+
+
+#########################
+Running end QwenCoderTurbo-MapCoder-HumanEval-Python3-0.0-10, Time: 2025-11-18 15:08:36.457202
+##########################
+

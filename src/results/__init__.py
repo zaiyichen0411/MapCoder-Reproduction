@@ -1,0 +1,1 @@
+"""Result schemas and helpers for serialization and reporting."""

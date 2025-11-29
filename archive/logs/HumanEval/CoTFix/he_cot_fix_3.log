@@ -1,0 +1,29 @@
+#########################
+Running start QwenCoderTurbo-CoT-HumanEval-Python3-0.0-1, Time: 2025-11-11 14:09:15.873490
+##########################
+
+completed 1/21, Solved: True, number of success = 1/1, acc = 100.0
+completed 2/21, Solved: True, number of success = 2/2, acc = 100.0
+completed 3/21, Solved: True, number of success = 3/3, acc = 100.0
+completed 4/21, Solved: True, number of success = 4/4, acc = 100.0
+completed 5/21, Solved: True, number of success = 5/5, acc = 100.0
+completed 6/21, Solved: True, number of success = 6/6, acc = 100.0
+completed 7/21, Solved: True, number of success = 7/7, acc = 100.0
+completed 8/21, Solved: True, number of success = 8/8, acc = 100.0
+completed 9/21, Solved: False, number of success = 8/9, acc = 88.89
+completed 10/21, Solved: True, number of success = 9/10, acc = 90.0
+completed 11/21, Solved: True, number of success = 10/11, acc = 90.91
+completed 12/21, Solved: True, number of success = 11/12, acc = 91.67
+completed 13/21, Solved: True, number of success = 12/13, acc = 92.31
+completed 14/21, Solved: True, number of success = 13/14, acc = 92.86
+completed 15/21, Solved: True, number of success = 14/15, acc = 93.33
+completed 16/21, Solved: True, number of success = 15/16, acc = 93.75
+completed 17/21, Solved: True, number of success = 16/17, acc = 94.12
+completed 18/21, Solved: True, number of success = 17/18, acc = 94.44
+completed 19/21, Solved: True, number of success = 18/19, acc = 94.74
+completed 20/21, Solved: True, number of success = 19/20, acc = 95.0
+completed 21/21, Solved: True, number of success = 20/21, acc = 95.24
+#########################
+Running end QwenCoderTurbo-CoT-HumanEval-Python3-0.0-1, Time: 2025-11-11 14:10:19.664119
+##########################
+

@@ -627,7 +627,7 @@ In the second query, with P=5, the only solution is a=2 and b=4.
             },
         ]
         planning, prompt_tokens, completion_tokens = self.gpt_chat(
-            processed_input=input_for_planning
+            prompt=input_for_planning
         )
 
         input_for_implementation = [
@@ -638,7 +638,7 @@ In the second query, with P=5, the only solution is a=2 and b=4.
         ]
 
         implementation, prompt_tokens_2, completion_tokens_2 = self.gpt_chat(
-            processed_input=input_for_implementation
+            prompt=input_for_implementation
         )
 
         return implementation, \

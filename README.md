@@ -72,6 +72,13 @@ pip install -r requirements.txt
 
 3. Set up the .env file by seeing the example.
 
+   - For OpenAI-compatible providers (e.g., Qwen/Tongyi endpoints), you can override model IDs via environment variables to avoid 404s or "no available channels" errors.
+   - Supported overrides in `.env`:
+     - `OPENAI_MODEL` (global default)
+     - `QWEN_CODER_TURBO_MODEL` (e.g., set to `qwen-turbo` if your provider uses this ID)
+     - `QWEN_CODER_480B_MODEL` (e.g., set to `qwen3-coder-480b-a35b-instruct`)
+   - Ensure `OPENAI_API_BASE` and `OPENAI_API_KEY` point to your provider's compatible API.
+
 4. Run the following command to see the options of running this projects
 ```
 python src/main.py --help

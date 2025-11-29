@@ -1,0 +1,2847 @@
+#########################
+Running start QwenCoderTurbo-Analogical-MBPP-Python3-0.0-1, Time: 2025-11-13 11:13:20.765715
+##########################
+
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Any
+
+def Find_Max(lst: List[List[Any]]) -> List[Any]:
+    """
+	Write a python function to find the element of a list having maximum length.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in this problem is **iteration and comparison**. We need to iterate through each sublist in the given list, compare their lengths, and find the sublist with the maximum length. This is a basic algorithm involving loops and conditionals.
+
+## Tutorial:
+In this problem, we are given a list of lists, and we are to find the sublist with the maximum length. The algorithm works as follows:
+
+1. Initialize a variable to keep track of the maximum length found so far (e.g., `max_len = 0`) and another to store the corresponding sublist (e.g., `max_sublist = []`).
+2. Iterate through each sublist in the input list.
+3. For each sublist, check its length.
+4. If the length is greater than the current `max_len`, update `max_len` and set `max_sublist` to this sublist.
+5. After the loop, return `max_sublist`.
+
+This is a linear time algorithm, O(n), where n is the number of sublists in the input list.
+
+## Example Problems:
+
+### Problem 1: Find the Longest Word in a Sentence
+**Description:** Given a sentence, find the longest word.
+**Solution:** Split the sentence into words, iterate through them, and keep track of the longest one.
+**Python Code:**
+```python
+def longest_word(sentence: str) -> str:
+    words = sentence.split()
+    max_word = ""
+    for word in words:
+        if len(word) > len(max_word):
+            max_word = word
+    return max_word
+```
+
+### Problem 2: Find the Longest Subarray with Even Sum
+**Description:** Given an array of integers, find the longest subarray with even sum.
+**Solution:** Use a prefix sum and track the first occurrence of each remainder when divided by 2. This is a more advanced algorithm involving hash maps.
+**Python Code:**
+```python
+def longest_even_sum_subarray(arr: List[int]) -> int:
+    prefix_sum = 0
+    first_occurrence = {0: -1}
+    max_len = 0
+    for i, num in enumerate(arr):
+        prefix_sum += num
+        remainder = prefix_sum % 2
+        if remainder in first_occurrence:
+            max_len = max(max_len, i - first_occurrence[remainder])
+        else:
+            first_occurrence[remainder] = i
+    return max_len
+```
+
+### Problem 3: Find the Longest Increasing Subsequence
+**Description:** Given an array, find the length of the longest increasing subsequence.
+**Solution:** Use dynamic programming where `dp[i]` represents the length of the longest increasing subsequence ending at index `i`.
+**Python Code:**
+```python
+def longest_increasing_subsequence(arr: List[int]) -> int:
+    n = len(arr)
+    dp = [1] * n
+    for i in range(n):
+        for j in range(i):
+            if arr[j] < arr[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We are given a list of lists and need to find the sublist with the maximum length. We iterate through each sublist, compare its length to the current maximum, and update our result accordingly.
+
+### Python3 code:
+```python
+from typing import List, Any
+
+def Find_Max(lst: List[List[Any]]) -> List[Any]:
+    max_sublist = []
+    max_len = 0
+    for sublist in lst:
+        if len(sublist) > max_len:
+            max_len = len(sublist)
+            max_sublist = sublist
+    return max_sublist
+```
+completed 1/47, Solved: True, number of success = 1/1, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def split(word: str) -> List[str]:
+    """
+	Write a python function to split a string into characters.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **string manipulation**, specifically **splitting a string into individual characters**. This is a basic operation that can be achieved using Python's built-in features, such as iterating over the string or using list comprehensions.
+
+## Tutorial:
+In Python, a string is an iterable, meaning you can loop through each character. To split a string into a list of characters, you can use a list comprehension or the `list()` function. For example, `list("hello")` will return `['h', 'e', 'l', 'l', 'o']`.
+
+This is useful in many competitive programming scenarios, such as:
+- Counting character frequencies
+- Checking for palindromes
+- Solving anagram problems
+- Processing individual characters for transformations
+
+## Example Problems:
+
+### 1. **Count the number of vowels in a string**
+**Problem:** Given a string, count how many vowels (a, e, i, o, u) are present.
+
+**Solution:** Convert the string into a list of characters, iterate through each character, and check if it is a vowel.
+
+**Python3 Code:**
+```python
+def count_vowels(word: str) -> int:
+    vowels = set("aeiou")
+    return sum(1 for char in word if char in vowels)
+
+# Example usage:
+print(count_vowels("hello"))  # Output: 2
+```
+
+---
+
+### 2. **Check if a string is a palindrome**
+**Problem:** Determine if a string reads the same backward as forward.
+
+**Solution:** Convert the string to a list of characters, reverse it, and compare.
+
+**Python3 Code:**
+```python
+def is_palindrome(word: str) -> bool:
+    return word == word[::-1]
+
+# Example usage:
+print(is_palindrome("radar"))  # Output: True
+print(is_palindrome("hello"))  # Output: False
+```
+
+---
+
+### 3. **Check if two strings are anagrams**
+**Problem:** Determine if two strings contain the same characters with the same frequencies.
+
+**Solution:** Convert both strings to lists of characters, sort them, and compare.
+
+**Python3 Code:**
+```python
+def are_anagrams(s1: str, s2: str) -> bool:
+    return sorted(s1) == sorted(s2)
+
+# Example usage:
+print(are_anagrams("listen", "silent"))  # Output: True
+print(are_anagrams("hello", "world"))    # Output: False
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `split(word: str)` needs to return a list of characters from the input string. Since a string is iterable in Python, we can directly convert it into a list using `list(word)`. This is a simple and efficient way to split the string.
+
+### Python3 code:
+```python
+from typing import List
+
+def split(word: str) -> List[str]:
+    """
+    Split a string into characters.
+    """
+    return list(word)
+
+# Example usage:
+print(split("hello"))  # Output: ['h', 'e', 'l', 'l', 'o']
+```
+['h', 'e', 'l', 'l', 'o']
+completed 2/47, Solved: True, number of success = 2/2, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Any
+
+def pack_consecutive_duplicates(list1: List[Any]) -> List[List[Any]]:
+    """
+	Write a function to pack consecutive duplicates of a given list elements into sublists.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept for solving this problem is **grouping consecutive elements** in a list. We need to traverse the list and group elements that are the same and appear consecutively. This is often referred to as the **"run-length encoding"** or **"grouping consecutive elements"** algorithm.
+
+## Tutorial:
+The task is to take a list and create a new list where consecutive duplicates are grouped into sublists. For example, given `[1, 1, 2, 2, 3]`, the result should be `[[1, 1], [2, 2], [3]]`.
+
+To implement this:
+1. Initialize an empty result list.
+2. Initialize a temporary list to hold the current group of elements.
+3. Iterate through the input list:
+   - If the current element is the same as the last element in the temporary list, add it to the temporary list.
+   - If it's different, add the temporary list to the result and start a new temporary list with the current element.
+4. After the loop, add the last temporary list to the result.
+
+This is a linear time algorithm (O(n)), where n is the length of the input list.
+
+## Example Problems:
+
+### 1. LeetCode 118: Pascal's Triangle
+**Problem:** Generate Pascal's triangle up to a given number of rows.
+
+**Solution:** This involves building a 2D list where each row is generated based on the previous row. While not exactly the same as grouping consecutive elements, it involves building structured sublists.
+
+```python
+def generate_pascal_triangle(num_rows):
+    triangle = []
+    for row in range(num_rows):
+        current_row = [1] * (row + 1)
+        for i in range(1, row):
+            current_row[i] = triangle[row - 1][i - 1] + triangle[row - 1][i]
+        triangle.append(current_row)
+    return triangle
+```
+
+### 2. LeetCode 448: Find All Numbers Disappeared in an Array
+**Problem:** Given an array of integers where 1 ¡Ü a[i] ¡Ü n (n = size of array), some elements appear twice and others once. Find all the elements that appear once in the array.
+
+**Solution:** While not directly grouping consecutive elements, this problem involves traversing and grouping elements in a way to detect duplicates.
+
+```python
+def find_disappeared_numbers(nums):
+    for num in nums:
+        index = abs(num) - 1
+        if nums[index] > 0:
+            nums[index] = -nums[index]
+    return [i + 1 for i, num in enumerate(nums) if num > 0]
+```
+
+### 3. LeetCode 128: Longest Consecutive Sequence
+**Problem:** Given an unsorted array of integers, find the length of the longest consecutive sequence.
+
+**Solution:** This problem involves identifying sequences of consecutive numbers, which is similar to grouping consecutive elements.
+
+```python
+def longest_consecutive_sequence(nums):
+    num_set = set(nums)
+    longest = 0
+
+    for num in num_set:
+        if num - 1 not in num_set:
+            current_num = num
+            current_length = 1
+
+            while current_num + 1 in num_set:
+                current_num += 1
+                current_length += 1
+
+            longest = max(longest, current_length)
+
+    return longest
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `pack_consecutive_duplicates` takes a list and returns a list of sublists where each sublist contains consecutive duplicates. We iterate through the list and compare each element with the previous one. If they are the same, we add it to the current sublist; otherwise, we start a new sublist.
+
+### Python3 code:
+```python
+from typing import List, Any
+
+def pack_consecutive_duplicates(list1: List[Any]) -> List[List[Any]]:
+    if not list1:
+        return []
+    
+    result = []
+    current_group = [list1[0]]
+    
+    for element in list1[1:]:
+        if element == current_group[-1]:
+            current_group.append(element)
+        else:
+            result.append(current_group)
+            current_group = [element]
+    
+    result.append(current_group)
+    return result
+
+# Example usage:
+# print(pack_consecutive_duplicates([1, 1, 2, 2, 3]))  # Output: [[1, 1], [2, 2], [3]]
+```
+completed 3/47, Solved: True, number of success = 3/3, acc = 100.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Tuple
+
+def min_k(test_list: List[Tuple[str, int]], K: int) -> List[Tuple[str, int]]:
+    """
+	Write a function to find minimum k records from tuple list. https://www.geeksforgeeks.org/python-find-minimum-k-records-from-tuple-list/ - in this case a verbatim copy of test cases
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in solving this problem is **selection of minimum elements** from a list of tuples. This can be efficiently done using the **heapq** module in Python, specifically the `nsmallest` function, which returns the k smallest elements from a list. Alternatively, we can also sort the list and pick the first k elements.
+
+## Tutorial:
+In competitive programming, when you are required to find the k smallest or largest elements from a list, using sorting or a heap-based approach is common. For small to moderate sizes of input, sorting is straightforward and efficient. However, for very large datasets, using a heap (like `heapq.nsmallest`) is more efficient as it avoids the full sort and only keeps track of the k smallest elements.
+
+The `heapq.nsmallest(k, iterable)` function is particularly useful here. It returns the k smallest elements from the given iterable, which in this case is a list of tuples. The tuples are compared lexicographically, so the function will find the k smallest based on the first element of the tuple, then the second, etc.
+
+## Example Problems:
+
+### 1. **Find K Smallest Elements in a List**
+**Problem:** Given a list of integers, find the k smallest elements.
+
+**Solution:** We can use the `heapq.nsmallest` function to directly get the k smallest elements.
+
+**Python3 Code:**
+```python
+import heapq
+
+def find_k_smallest(nums, k):
+    return heapq.nsmallest(k, nums)
+
+# Example usage:
+nums = [5, 1, 8, 3, 2, 9]
+k = 3
+print(find_k_smallest(nums, k))  # Output: [1, 2, 3]
+```
+
+---
+
+### 2. **Find K Largest Elements in a List**
+**Problem:** Given a list of integers, find the k largest elements.
+
+**Solution:** We can use `heapq.nlargest` to find the k largest elements.
+
+**Python3 Code:**
+```python
+import heapq
+
+def find_k_largest(nums, k):
+    return heapq.nlargest(k, nums)
+
+# Example usage:
+nums = [5, 1, 8, 3, 2, 9]
+k = 3
+print(find_k_largest(nums, k))  # Output: [9, 8, 5]
+```
+
+---
+
+### 3. **Find K Smallest Tuples in a List**
+**Problem:** Given a list of tuples, find the k smallest tuples based on the first element of the tuple.
+
+**Solution:** We can use `heapq.nsmallest` to directly find the k smallest tuples.
+
+**Python3 Code:**
+```python
+import heapq
+
+def find_k_smallest_tuples(tuples, k):
+    return heapq.nsmallest(k, tuples)
+
+# Example usage:
+tuples = [("a", 10), ("b", 5), ("c", 15), ("d", 3)]
+k = 2
+print(find_k_smallest_tuples(tuples, k))  # Output: [('d', 3), ('b', 5)]
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `min_k` is intended to find the k smallest elements from a list of tuples. Since tuples are compared lexicographically in Python, we can use the `heapq.nsmallest` function to directly get the k smallest tuples.
+
+### Python3 code:
+```python
+import heapq
+from typing import List, Tuple
+
+def min_k(test_list: List[Tuple[str, int]], K: int) -> List[Tuple[str, int]]:
+    """
+    Find the K smallest elements from a list of tuples.
+    The tuples are compared lexicographically.
+    """
+    return heapq.nsmallest(K, test_list)
+
+# Example usage:
+test_list = [("a", 10), ("b", 5), ("c", 15), ("d", 3)]
+K = 2
+print(min_k(test_list, K))  # Output: [('d', 3), ('b', 5)]
+```
+[('a', 10), ('b', 5)]
+completed 4/47, Solved: False, number of success = 3/4, acc = 75.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def check_integer(text: str) -> bool:
+    """
+	Write a function to check if a string represents an integer or not.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **string validation**. Specifically, we need to check whether a given string represents a valid integer. This involves checking for:
+
+- Optional leading sign (`+` or `-`)
+- Digits only (`0-9`)
+- No leading zeros (unless the number is exactly "0")
+- No other characters or whitespace
+
+This problem involves **basic string manipulation and condition checking**.
+
+## Tutorial:
+To determine if a string represents an integer, follow these steps:
+
+1. **Check for an optional leading sign**: The string may start with `+` or `-`.
+2. **Check for digits only**: After the optional sign, the rest of the string should consist of digits only.
+3. **Check for leading zeros**: If the string has more than one character and starts with `0`, it is invalid unless it's exactly "0".
+4. **Handle edge cases**: Strings like `"0"`, `"-0"`, `"+0"` are valid, but `"00"` or `"012"` are not.
+
+This can be implemented using simple string checks and conditionals.
+
+## Example Problems:
+
+### Problem 1: Valid Number (LeetCode 65)
+**Problem Description**: Determine if a string is a valid number (integer or decimal).
+
+**Solution**:
+- Use a state machine or check for optional sign, digits, and optional decimal point.
+- This is an extension of the integer check problem.
+
+**Python3 Code**:
+```python
+def is_valid_number(s: str) -> bool:
+    s = s.strip()
+    if not s:
+        return False
+    if s[0] in "+-":
+        s = s[1:]
+    if not s:
+        return False
+    if s[0] == "0" and len(s) > 1:
+        return False
+    for c in s:
+        if not c.isdigit():
+            return False
+    return True
+```
+
+---
+
+### Problem 2: Valid Integer (LeetCode 6)
+**Problem Description**: Check if a string is a valid integer, similar to the problem described here.
+
+**Solution**:
+- Use the same logic as the `check_integer` function.
+- Handle optional sign and check for valid digits.
+
+**Python3 Code**:
+```python
+def is_valid_integer(s: str) -> bool:
+    s = s.strip()
+    if not s:
+        return False
+    if s[0] in "+-":
+        s = s[1:]
+    if not s:
+        return False
+    if s[0] == "0" and len(s) > 1:
+        return False
+    for c in s:
+        if not c.isdigit():
+            return False
+    return True
+```
+
+---
+
+### Problem 3: Check if a string is a valid integer (Codeforces)
+**Problem Description**: Given a string, check if it is a valid integer.
+
+**Solution**:
+- Similar to the problem at hand.
+- Check for optional sign and digits only.
+
+**Python3 Code**:
+```python
+def is_valid_integer(s: str) -> bool:
+    s = s.strip()
+    if not s:
+        return False
+    if s[0] in "+-":
+        s = s[1:]
+    if not s:
+        return False
+    if s[0] == "0" and len(s) > 1:
+        return False
+    return s.isdigit()
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We will implement the `check_integer` function by:
+1. Stripping whitespace from the string.
+2. Checking for an optional leading sign (`+` or `-`).
+3. Ensuring that the rest of the string consists of digits.
+4. Ensuring that there are no leading zeros (unless the string is exactly `"0"`).
+
+### Python3 code to solve the problem:
+```python
+def check_integer(text: str) -> bool:
+    text = text.strip()
+    if not text:
+        return False
+    if text[0] in "+-":
+        text = text[1:]
+    if not text:
+        return False
+    if text[0] == "0" and len(text) > 1:
+        return False
+    return text.isdigit()
+```
+completed 5/47, Solved: True, number of success = 4/5, acc = 80.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def rotate_right(list: List[int], m: int) -> List[int]:
+    """
+	Write a function to rotate a given list by specified number of items to the right direction. https://www.geeksforgeeks.org/python-program-right-rotate-list-n/
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in this problem is **array rotation**. Specifically, rotating a list to the right by `m` positions. This involves shifting elements in the list such that the last `m` elements move to the front, and the rest follow.
+
+To achieve this efficiently, we can use slicing in Python, which allows us to take parts of the list and concatenate them in the desired order.
+
+## Tutorial:
+Rotating a list to the right by `m` positions means that each element moves `m` positions to the right, and the elements that go beyond the end of the list wrap around to the front. For example, if the list is `[1, 2, 3, 4, 5]` and `m = 2`, the rotated list would be `[4, 5, 1, 2, 3]`.
+
+In Python, we can use slicing to achieve this:
+- `list[-m:]` gives the last `m` elements of the list.
+- `list[:-m]` gives the rest of the elements except the last `m`.
+
+So the rotated list can be formed by concatenating these two slices: `list[-m:] + list[:-m]`.
+
+This method is efficient and has a time complexity of O(n), where n is the length of the list, as slicing and concatenation take linear time.
+
+## Example Problems:
+
+### 1. **Rotate Array (LeetCode 189)**
+**Problem Description:**
+Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.
+
+**Solution:**
+We can use the slicing method as explained above. For example, if the array is `[1, 2, 3, 4, 5]` and `k = 2`, the result is `[4, 5, 1, 2, 3]`.
+
+**Python3 Code:**
+```python
+def rotate(nums: List[int], k: int) -> None:
+    """
+    Do not return anything, modify nums in-place.
+    """
+    n = len(nums)
+    k = k % n  # Handle cases where k > n
+    nums[:] = nums[-k:] + nums[:-k]
+```
+
+---
+
+### 2. **Rotate List (LeetCode 61)**
+**Problem Description:**
+Given a linked list, rotate the list to the right by `k` places.
+
+**Solution:**
+This problem is similar but involves linked list manipulation. We can find the length of the list, adjust `k` to be within the list length, and then perform the rotation by reordering the nodes.
+
+**Python3 Code:**
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def rotateRight(head: ListNode, k: int) -> ListNode:
+    if not head or not head.next or k == 0:
+        return head
+
+    # Find length of the list
+    length = 1
+    current = head
+    while current.next:
+        length += 1
+        current = current.next
+
+    # Adjust k
+    k = k % length
+    if k == 0:
+        return head
+
+    # Find the new head
+    new_head = head
+    for _ in range(length - k - 1):
+        new_head = new_head.next
+
+    # Split the list
+    result = new_head.next
+    new_head.next = None
+
+    # Find the end of the new list and connect to original head
+    current = result
+    while current.next:
+        current = current.next
+    current.next = head
+
+    return result
+```
+
+---
+
+### 3. **Right Rotate a String (GeeksforGeeks)**
+**Problem Description:**
+Given a string and a number `k`, rotate the string to the right by `k` positions.
+
+**Solution:**
+Similar to list rotation, we can use slicing. For example, `'abcdef'` rotated by 2 becomes `'efabcd'`.
+
+**Python3 Code:**
+```python
+def right_rotate_string(s: str, k: int) -> str:
+    k = k % len(s)
+    return s[-k:] + s[:-k]
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `rotate_right` takes a list and an integer `m`, and returns a new list that is the original list rotated to the right by `m` positions. We use Python slicing to get the last `m` elements and the rest of the elements, then concatenate them.
+
+### Python3 code to solve the problem:
+```python
+from typing import List
+
+def rotate_right(list: List[int], m: int) -> List[int]:
+    """
+    Write a function to rotate a given list by specified number of items to the right direction.
+    """
+    n = len(list)
+    m = m % n  # Handle cases where m is larger than the list length
+    return list[-m:] + list[:-m]
+```
+completed 6/47, Solved: True, number of success = 5/6, acc = 83.33
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def armstrong_number(number: int) -> bool:
+    """
+	Write a function to check whether the given number is armstrong or not.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+An error occurred: 'gbk' codec can't encode character '\xb3' in position 716: illegal multibyte sequence
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Any
+
+def sum_of_digits(nums: List[Any]) -> int:
+    """
+	Write a function to compute the sum of digits of each number of a given list.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept here is **digit extraction and summation**. For each number in the list, we need to extract its individual digits and sum them. This involves:
+- Converting a number into its individual digits.
+- Summing the digits.
+
+This is a common task in competitive programming, especially in problems involving number manipulation, digit sums, or properties of numbers.
+
+---
+
+## Tutorial:
+To compute the sum of digits of a number, you can use the following approach:
+
+1. **Convert the number to a string** (this is the easiest way to access each digit).
+2. **Iterate through each character** in the string.
+3. **Convert each character back to an integer** and add it to a running total.
+
+For example, for the number `1234`:
+- Convert to string: `"1234"`
+- Iterate through `'1'`, `'2'`, `'3'`, `'4'`
+- Convert each to int: `1, 2, 3, 4`
+- Sum: `1+2+3+4 = 10`
+
+This approach works for both positive and negative numbers, but we need to ignore the negative sign if present.
+
+In the given function, since the input is a list of `Any` type, we need to ensure that each element is a number (int or float), and handle non-numeric values appropriately (e.g., skip or raise an error).
+
+---
+
+## Example Problems:
+
+### Problem 1: **Sum of Digits (Codeforces 1001A)**
+**Problem Description:**  
+Given a number, compute the sum of its digits.
+
+**Solution:**  
+Convert the number to a string, iterate through each character, convert to int, and sum.
+
+**Python3 Code:**
+```python
+def sum_of_digits(n: int) -> int:
+    return sum(int(d) for d in str(abs(n)))
+
+# Example usage:
+print(sum_of_digits(1234))  # Output: 10
+```
+
+---
+
+### Problem 2: **Digit Sum Check (LeetCode 1662)**
+**Problem Description:**  
+Given two strings of digits, check if they have the same sum of digits.
+
+**Solution:**  
+Compute the digit sum of each string using the same method.
+
+**Python3 Code:**
+```python
+def are_equal(s1: str, s2: str) -> bool:
+    def digit_sum(s: str) -> int:
+        return sum(int(c) for c in s)
+    return digit_sum(s1) == digit_sum(s2)
+
+# Example usage:
+print(are_equal("123", "321"))  # Output: True
+```
+
+---
+
+### Problem 3: **Minimum Number with Digit Sum (LeetCode 1057)**
+**Problem Description:**  
+Find the smallest number with a given digit sum and a given number of digits.
+
+**Solution:**  
+Use a greedy approach: place the largest digits at the end to minimize the number.
+
+**Python3 Code:**
+```python
+def smallest_number_with_sum(s: int, k: int) -> str:
+    if s == 0:
+        return "0" * k
+    if s > 9 * k:
+        return "-1"
+    
+    result = ['0'] * k
+    s -= 1  # First digit is at least 1
+    for i in range(k - 1, -1, -1):
+        if s > 9:
+            result[i] = '9'
+            s -= 9
+        else:
+            result[i] = str(s)
+            s = 0
+    return ''.join(result)
+
+# Example usage:
+print(smallest_number_with_sum(10, 3))  # Output: "109"
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+- The function `sum_of_digits` takes a list of elements of type `Any`.
+- It iterates through each element in the list.
+- For each element, it checks if it is an integer (or a float that can be converted to an integer).
+- If it is, it converts it to a string, ignores the negative sign, and sums the digits.
+- If the element is not a number, it is skipped or handled accordingly.
+
+### Python3 code:
+```python
+from typing import List, Any
+
+def sum_of_digits(nums: List[Any]) -> int:
+    total = 0
+    for num in nums:
+        if isinstance(num, int):
+            num_str = str(abs(num))
+            total += sum(int(d) for d in num_str)
+        elif isinstance(num, float) and num.is_integer():
+            num_int = int(abs(num))
+            num_str = str(num_int)
+            total += sum(int(d) for d in num_str)
+    return total
+
+# Example usage:
+print(sum_of_digits([123, 456, -789]))  # Output: 1+2+3 + 4+5+6 + 7+8+9 = 45
+```
+45
+completed 8/47, Solved: False, number of success = 5/8, acc = 62.5
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def re_arrange_array(arr: List[int], n: int) -> List[int]:
+    """
+	Write a function that takes in an array and an integer n, and re-arranges the first n elements of the given array so that all negative elements appear before positive ones, and where the relative order among negative and positive elements is preserved.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept for solving this problem is **in-place rearrangement** of elements while preserving the **relative order** of elements. Specifically, we need to move all negative numbers to the front of the array, while keeping the relative order of the negative and positive numbers intact. This can be done using a **two-pointer approach** or **in-place partitioning** with order preservation.
+
+## Tutorial:
+
+The problem requires rearranging the first `n` elements of an array such that all negative numbers come before positive numbers, but without changing the **relative order** of the negatives and positives. This is a variation of the classic **partitioning** problem seen in quicksort, but with an added constraint of preserving order.
+
+### Key Concepts:
+
+1. **In-place rearrangement**: We should not use extra space to store the result, but instead modify the array in-place.
+2. **Relative order preservation**: After rearrangement, the order of negative numbers among themselves and the order of positive numbers among themselves should remain the same.
+3. **Two-pointer technique**:
+   - One pointer to track the position where the next negative number should be placed.
+   - Iterate through the array and whenever a negative number is found, swap it with the position indicated by the first pointer.
+
+This ensures that the relative order is preserved and the negatives are moved to the front.
+
+---
+
+## Example Problems:
+
+### Problem 1: "Rearrange Array in Order of Negatives and Positives"
+
+**Problem Description:**  
+Given an array of integers, rearrange the array in such a way that all negative numbers appear before positive numbers, while preserving the relative order of negative and positive numbers.
+
+**Solution:**  
+Use a two-pointer approach:
+- One pointer (`i`) tracks the position where the next negative number should be placed.
+- Iterate through the array. For each element:
+  - If it's negative, swap it with the element at index `i` and increment `i`.
+
+**Python3 Code:**
+```python
+def re_arrange_array(arr: List[int]) -> List[int]:
+    i = 0
+    for j in range(len(arr)):
+        if arr[j] < 0:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    return arr
+```
+
+---
+
+### Problem 2: "Move All Zeros to End of Array"
+
+**Problem Description:**  
+Given an array, move all zeros to the end of the array while preserving the order of non-zero elements.
+
+**Solution:**  
+This is similar to the previous problem but with the condition of moving zeros instead of negatives. We can use the same two-pointer approach:
+- One pointer (`i`) tracks the position where the next non-zero number should be placed.
+- Iterate through the array. For each element:
+  - If it's non-zero, swap it with the element at index `i` and increment `i`.
+
+**Python3 Code:**
+```python
+def move_zeros_to_end(arr: List[int]) -> List[int]:
+    i = 0
+    for j in range(len(arr)):
+        if arr[j] != 0:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    return arr
+```
+
+---
+
+### Problem 3: "Sort Array by Parity"
+
+**Problem Description:**  
+Given an array of integers, sort the array such that even numbers appear first, followed by odd numbers. The relative order of even and odd numbers should be preserved.
+
+**Solution:**  
+This is similar to the previous problems. Use a two-pointer approach:
+- One pointer (`i`) tracks the position where the next even number should be placed.
+- Iterate through the array. For each element:
+  - If it's even, swap it with the element at index `i` and increment `i`.
+
+**Python3 Code:**
+```python
+def sort_array_by_parity(arr: List[int]) -> List[int]:
+    i = 0
+    for j in range(len(arr)):
+        if arr[j] % 2 == 0:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    return arr
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The problem asks to rearrange the first `n` elements of the array such that all negative numbers appear before positive ones, while preserving the relative order of negatives and positives.
+
+We can achieve this using a two-pointer approach:
+- One pointer (`i`) keeps track of where the next negative number should be placed.
+- We iterate through the array up to index `n-1` and whenever we find a negative number, we swap it with the element at index `i` and increment `i`.
+
+### Python3 Code:
+```python
+from typing import List
+
+def re_arrange_array(arr: List[int], n: int) -> List[int]:
+    i = 0
+    for j in range(n):
+        if arr[j] < 0:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    return arr
+```
+
+### Example:
+```python
+arr = [-1, 2, -3, 4, 5]
+n = 5
+print(re_arrange_array(arr, n))  # Output: [-1, -3, 2, 4, 5]
+```
+
+This code rearranges the first `n` elements so that all negative numbers appear before positive ones, and the relative order of negatives and positives is preserved.
+completed 9/47, Solved: False, number of success = 5/9, acc = 55.56
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def wind_chill(v: int, t: int) -> int:
+    """
+	Write a function to calculate the wind chill index rounded to the next integer given the wind velocity in km/h and a temperature in celsius.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **mathematical computation** based on a given formula. Specifically, the problem involves applying the **wind chill formula** to calculate the perceived temperature based on wind speed and actual temperature. This is a straightforward formula-based problem, and the key is to implement it correctly and round the result to the next integer.
+
+## Tutorial:
+The wind chill index is a measure of how cold it feels when the wind is factored in. The formula used for calculating wind chill is:
+
+$$
+\text{Wind Chill} = 13.12 + 0.6215 \times T - 11.37 \times V^{0.16} + 0.3965 \times T \times V^{0.16}
+$$
+
+Where:
+- $ T $ is the air temperature in degrees Celsius.
+- $ V $ is the wind speed in kilometers per hour.
+- The result is rounded up to the nearest integer.
+
+The key steps in solving the problem are:
+1. Read the input values (wind speed and temperature).
+2. Apply the formula to calculate the wind chill.
+3. Round the result to the next integer (ceiling).
+4. Return the result.
+
+Note: The formula is valid for wind speeds above 4.8 km/h and temperatures below 10¡ãC.
+
+## Example Problems:
+
+### 1. **UVA 10184 - Love Calculator**
+**Problem Description**: Calculate the "love percentage" between two names by summing the ASCII values of the letters in each name and then using the formula: (sum1 + sum2) % 100 + 1.
+
+**Solution**: 
+- Read two strings.
+- Compute the sum of ASCII values of each string.
+- Use the formula to compute the love percentage.
+- Output the result.
+
+**Python Code**:
+```python
+def love_percentage(name1: str, name2: str) -> int:
+    sum1 = sum(ord(c) for c in name1)
+    sum2 = sum(ord(c) for c in name2)
+    return (sum1 + sum2) % 100 + 1
+
+# Example usage:
+# print(love_percentage("Alice", "Bob"))
+```
+
+---
+
+### 2. **Codeforces 71A - Way Too Long Words**
+**Problem Description**: For each word in a list, if the length is more than 10, replace it with the first and last letter and the count of letters in between.
+
+**Solution**: 
+- Iterate over the list of words.
+- For each word, check its length.
+- If longer than 10, format it as described.
+- Otherwise, leave it as is.
+
+**Python Code**:
+```python
+def shorten_words(words: list) -> list:
+    result = []
+    for word in words:
+        if len(word) > 10:
+            result.append(f"{word[0]}{len(word)-2}{word[-1]}")
+        else:
+            result.append(word)
+    return result
+
+# Example usage:
+# print(shorten_words(["hello", "world", "longword"]))
+```
+
+---
+
+### 3. **LeetCode 1 - Two Sum**
+**Problem Description**: Given an array of integers and a target, return the indices of the two numbers that add up to the target.
+
+**Solution**:
+- Use a hash map (dictionary) to store the value-to-index mapping.
+- For each element, check if the complement (target - current value) is in the map.
+- If found, return the indices.
+
+**Python Code**:
+```python
+def two_sum(nums: list, target: int) -> list:
+    num_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i
+    return []
+
+# Example usage:
+# print(two_sum([2, 7, 11, 15], 9))
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The wind chill formula is applied directly using the given wind velocity and temperature. The result is calculated using the formula, and then rounded up to the nearest integer using the `math.ceil()` function.
+
+### Python3 code:
+```python
+import math
+
+def wind_chill(v: int, t: int) -> int:
+    """
+    Calculate the wind chill index rounded to the next integer.
+    """
+    wind_chill = 13.12 + 0.6215 * t - 11.37 * (v ** 0.16) + 0.3965 * t * (v ** 0.16)
+    return math.ceil(wind_chill)
+
+# Example usage:
+# print(wind_chill(20, 5))
+```
+completed 10/47, Solved: False, number of success = 5/10, acc = 50.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def bell_Number(n: int) -> int:
+    """
+	Write a python function to find nth bell number.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept used to compute the nth Bell number is **Dynamic Programming**. The Bell number B(n) represents the number of ways to partition a set of n elements. The Bell number can be computed using a **Bell Triangle**, which is built using the following recurrence relation:
+
+```
+B(0) = 1
+B(n) = sum of the previous row in the Bell triangle
+```
+
+Alternatively, the Bell triangle can be built using the recurrence:
+
+```
+bell[0][0] = 1
+bell[i][0] = bell[i-1][i-1]
+bell[i][j] = bell[i][j-1] + bell[i-1][j-1]
+```
+
+This is a standard approach for computing Bell numbers efficiently using dynamic programming.
+
+---
+
+## Tutorial:
+
+### What is a Bell Number?
+
+A Bell number, B(n), is the number of ways to partition a set of n elements. For example:
+
+- B(0) = 1 (There's 1 way to partition an empty set)
+- B(1) = 1 (Only one way to partition a single-element set)
+- B(2) = 2 (Two ways: {1}, {2} or {1,2})
+- B(3) = 5
+
+### Bell Triangle:
+
+The Bell triangle is a way to compute Bell numbers. The triangle is constructed as follows:
+
+- The first row has one element: `1`
+- The second row has two elements: `1`, `2`
+- The third row has three elements: `2`, `3`, `5`
+- The fourth row has four elements: `5`, `7`, `10`, `15`
+- And so on...
+
+Each row starts with the last element of the previous row. Each subsequent element is the sum of the previous element in the same row and the element from the previous row at the same position.
+
+For example:
+- Row 1: [1]
+- Row 2: [1, 2] (1 is the last element of previous row, 1+1=2)
+- Row 3: [2, 3, 5] (2 is the last element of previous row, 2+1=3, 3+2=5)
+- Row 4: [5, 7, 10, 15] (5 is the last element of previous row, 5+2=7, 7+3=10, 10+5=15)
+
+The Bell number B(n) is the first element of the nth row.
+
+---
+
+## Example Problems:
+
+### 1. **LeetCode 1915. Number of Ways to Split a String into Substrings**
+
+**Problem Description:**  
+Given a string, count the number of ways to split the string into non-empty substrings such that no two substrings have the same character.
+
+**Solution:**  
+This is not directly a Bell number problem, but the concept of partitioning and counting ways to split is similar. Bell numbers can be used to count the number of ways to partition a set of elements, which is a similar idea.
+
+**Python3 Code:**
+
+```python
+def numberOfWays(s: str) -> int:
+    MOD = 10**9 + 7
+    n = len(s)
+    count = [0] * 26
+    for ch in s:
+        count[ord(ch) - ord('a')] += 1
+    res = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if s[i] != s[j]:
+                res += 1
+    return res % MOD
+```
+
+---
+
+### 2. **Codeforces 1095F. Equalizing Two Strings**
+
+**Problem Description:**  
+Given two strings s and t, determine if it's possible to make them equal by rearranging the characters in each of them.
+
+**Solution:**  
+This problem is not about Bell numbers, but it involves counting partitions and permutations, which is related to combinatorics and dynamic programming.
+
+**Python3 Code:**
+
+```python
+from collections import Counter
+
+def canBeEqual(s: str, t: str) -> bool:
+    return Counter(s) == Counter(t)
+```
+
+---
+
+### 3. **SPOJ BELL - Bell Numbers**
+
+**Problem Description:**  
+Compute the nth Bell number modulo 1000000007.
+
+**Solution:**  
+This is a direct application of the Bell triangle approach with dynamic programming.
+
+**Python3 Code:**
+
+```python
+def bell_numbers(n: int) -> int:
+    MOD = 10**9 + 7
+    bell = [[0] * (n + 1) for _ in range(n + 1)]
+    bell[0][0] = 1
+    for i in range(1, n + 1):
+        bell[i][0] = bell[i - 1][i - 1]
+        for j in range(1, i + 1):
+            bell[i][j] = (bell[i][j - 1] + bell[i - 1][j - 1]) % MOD
+    return bell[n][0]
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+
+We use a dynamic programming approach to compute the Bell number using a Bell triangle. The Bell triangle is built such that:
+
+- `bell[i][0] = bell[i-1][i-1]`
+- `bell[i][j] = bell[i][j-1] + bell[i-1][j-1]`
+
+The nth Bell number is the first element of the nth row in the triangle.
+
+### Python3 code:
+
+```python
+def bell_Number(n: int) -> int:
+    """
+    Write a python function to find nth bell number.
+    """
+    # Initialize a 2D list to store the Bell triangle
+    bell = [[0] * (n + 1) for _ in range(n + 1)]
+    bell[0][0] = 1  # Base case
+
+    for i in range(1, n + 1):
+        # The first element of each row is the last element of the previous row
+        bell[i][0] = bell[i - 1][i - 1]
+
+        # Fill the rest of the elements
+        for j in range(1, i + 1):
+            bell[i][j] = bell[i][j - 1] + bell[i - 1][j - 1]
+
+    return bell[n][0]
+```
+
+### Example usage:
+
+```python
+print(bell_Number(3))  # Output: 5
+print(bell_Number(5))  # Output: 52
+print(bell_Number(10)) # Output: 115975
+```
+completed 11/47, Solved: False, number of success = 5/11, acc = 45.45
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def sum_div(number: int) -> int:
+    """
+	Write a function to return the sum of all divisors of a number.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concepts involved in solving this problem are:
+- **Finding all divisors of a number**: This involves checking numbers from 1 up to the square root of the given number.
+- **Efficient computation**: Instead of checking every number up to `number`, we can check up to `sqrt(number)` to optimize the solution.
+- **Summing the divisors**: For each divisor found, we add both the divisor and its complement (if they are different) to the sum.
+
+## Tutorial:
+To compute the sum of all divisors of a number efficiently, we can use the following approach:
+
+1. **Initialize a sum variable** to 0.
+2. **Iterate from 1 to sqrt(number)**:
+   - For each `i` in this range, check if `number % i == 0`.
+   - If it is, then `i` is a divisor, and `number // i` is also a divisor.
+   - Add both `i` and `number // i` to the sum, unless `i == number // i` (i.e., when the number is a perfect square), in which case we only add `i` once.
+3. **Return the sum**.
+
+This method is efficient and runs in **O(sqrt(n))** time, which is significantly faster than the naive O(n) approach.
+
+## Example Problems:
+
+### 1. **LeetCode - 204. Count Primes**
+- **Problem**: Count the number of prime numbers less than a non-negative number `n`.
+- **Solution**: Use the Sieve of Eratosthenes to efficiently find all primes up to `n`. This is a classic example of using efficient algorithms for divisor-like problems.
+- **Code**:
+```python
+def countPrimes(n: int) -> int:
+    if n < 2:
+        return 0
+    is_prime = [True] * n
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(n ** 0.5) + 1):
+        if is_prime[i]:
+            for j in range(i*i, n, i):
+                is_prime[j] = False
+    return sum(is_prime)
+```
+
+### 2. **HackerRank - Divisors**
+- **Problem**: Find the number of divisors of a given number.
+- **Solution**: Use the same approach as described in the tutorial: iterate up to `sqrt(n)` and count divisors.
+- **Code**:
+```python
+def count_divisors(n):
+    count = 0
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            if i * i == n:
+                count += 1
+            else:
+                count += 2
+    return count
+```
+
+### 3. **Codeforces - 230A. Dragons**
+- **Problem**: Determine if a knight can defeat all dragons by choosing the right order of battle.
+- **Solution**: This problem involves checking conditions and using a greedy approach. While not directly about divisors, it shows how efficient algorithms can be used to solve complex conditions.
+- **Code**:
+```python
+def can_defeat_dragons(knight_power, dragons):
+    dragons.sort()
+    for power, strength in dragons:
+        if knight_power < power:
+            return "NO"
+        knight_power += strength
+    return "YES"
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `sum_div` computes the sum of all divisors of a given number efficiently by iterating only up to the square root of the number. For each divisor `i` found, both `i` and `number // i` are added to the sum, unless `i == number // i`, in which case we only add `i` once.
+
+### Python3 code:
+```python
+def sum_div(number: int) -> int:
+    if number == 0:
+        return 0
+    total = 0
+    for i in range(1, int(number ** 0.5) + 1):
+        if number % i == 0:
+            if i * i == number:
+                total += i
+            else:
+                total += i + number // i
+    return total
+```
+completed 12/47, Solved: False, number of success = 5/12, acc = 41.67
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import Tuple, List
+
+def get_coordinates(test_tup: Tuple[int, int]) -> List[List[int]]:
+    """
+	Write a function to extract all the adjacent coordinates of the given coordinate tuple.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem involves **coordinate manipulation and adjacency checks**. The task is to generate all the coordinates that are adjacent to a given coordinate (x, y) in a 2D grid. This is commonly done by checking the 4 or 8 surrounding cells (depending on the problem's requirements).
+
+This is typically used in grid traversal problems, such as BFS and DFS, and in problems that involve exploring neighboring cells.
+
+## Tutorial:
+In competitive programming, when working with a grid, it's often necessary to find the adjacent cells of a given position. For a 2D grid, a cell (x, y) can have up to 4 or 8 neighbors:
+
+- **4-directional neighbors**: (x+1, y), (x-1, y), (x, y+1), (x, y-1)
+- **8-directional neighbors**: (x+1, y), (x-1, y), (x, y+1), (x, y-1), (x+1, y+1), (x+1, y-1), (x-1, y+1), (x-1, y-1)
+
+The function `get_coordinates` is expected to return all these adjacent coordinates. The solution involves generating all 4 or 8 surrounding coordinates, and then returning them in a list of lists.
+
+## Example Problems:
+
+### 1. **LeetCode 200. Number of Islands**
+- **Problem**: Count the number of islands in a 2D grid where '1's represent land and '0's represent water.
+- **Solution**: Use BFS or DFS to explore all connected '1's starting from any unvisited '1'. For each cell, check its 4-directional neighbors.
+- **Code**:
+```python
+from collections import deque
+
+def numIslands(grid: List[List[str]]) -> int:
+    if not grid:
+        return 0
+
+    rows, cols = len(grid), len(grid[0])
+    visited = [[False for _ in range(cols)] for _ in range(rows)]
+    count = 0
+
+    def bfs(r, c):
+        queue = deque()
+        queue.append((r, c))
+        visited[r][c] = True
+
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < rows and 0 <= ny < cols and not visited[nx][ny] and grid[nx][ny] == '1':
+                    visited[nx][ny] = True
+                    queue.append((nx, ny))
+
+    for r in range(rows):
+        for c in range(cols):
+            if not visited[r][c] and grid[r][c] == '1':
+                bfs(r, c)
+                count += 1
+
+    return count
+```
+
+---
+
+### 2. **LeetCode 127. Word Ladder**
+- **Problem**: Find the length of the shortest transformation sequence from a start word to an end word, where each transformation changes one character and the new word exists in a word list.
+- **Solution**: Use BFS to explore all possible transformations. For each word, generate all 1-letter variations and check if they are in the word list.
+- **Code**:
+```python
+from collections import deque
+
+def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
+    word_set = set(wordList)
+    if endWord not in word_set:
+        return 0
+
+    queue = deque([(beginWord, 1)])
+    visited = set([beginWord])
+
+    while queue:
+        word, level = queue.popleft()
+        for i in range(len(word)):
+            for c in 'abcdefghijklmnopqrstuvwxyz':
+                next_word = word[:i] + c + word[i+1:]
+                if next_word in word_set and next_word not in visited:
+                    if next_word == endWord:
+                        return level + 1
+                    visited.add(next_word)
+                    queue.append((next_word, level + 1))
+
+    return 0
+```
+
+---
+
+### 3. **AtCoder ABC 123 C ¨C Yamanote Line**
+- **Problem**: Given a circular train line, find the minimum number of stations to travel between two given stations.
+- **Solution**: Calculate the clockwise and counter-clockwise distances between the two stations and return the minimum.
+- **Code**:
+```python
+def main():
+    N, A, B = map(int, input().split())
+    clockwise = B - A
+    counter_clockwise = A + N - B
+    print(min(clockwise, counter_clockwise))
+
+main()
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `get_coordinates` should return all 4-directional adjacent coordinates of the input tuple `(x, y)`. The adjacent coordinates are:
+- (x+1, y)
+- (x-1, y)
+- (x, y+1)
+- (x, y-1)
+
+We generate these coordinates and return them as a list of lists.
+
+### Python3 code:
+```python
+from typing import Tuple, List
+
+def get_coordinates(test_tup: Tuple[int, int]) -> List[List[int]]:
+    x, y = test_tup
+    directions = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    return [[dx, dy] for dx, dy in directions]
+```
+completed 13/47, Solved: False, number of success = 5/13, acc = 38.46
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import Tuple
+
+def find_dissimilar(test_tup1: Tuple[int, int, int, int], test_tup2: Tuple[int, int, int, int]) -> Tuple[int, int, int, int]:
+    """
+	Write a function to find the dissimilar elements in the given two tuples.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **tuple comparison and element-wise difference**. We need to compare corresponding elements of two tuples and find the elements that are different.
+
+This is a basic operation in Python, and the solution involves iterating over the elements of both tuples and checking for differences.
+
+## Tutorial:
+In Python, tuples are ordered and immutable collections of elements. To find dissimilar elements between two tuples, we can iterate through each position (index) of the tuples, compare the elements at the same index, and collect those that are different.
+
+For example, if `tup1 = (1, 2, 3, 4)` and `tup2 = (1, 5, 3, 6)`, then the dissimilar elements are at index 1 and 3, i.e., 2 and 5, and 4 and 6. The output would be `(2, 5, 4, 6)`.
+
+This is a simple but useful operation in competitive programming for tasks like checking differences between two sets of data.
+
+## Example Problems:
+
+### 1. **Problem: Compare Two Tuples**
+**Description**: Given two tuples of the same length, return a new tuple containing the elements that are different at each position.
+
+**Solution**: Iterate through each index of the tuples, compare the elements, and collect the differing elements.
+
+**Python Code:**
+```python
+def compare_tuples(tup1, tup2):
+    return tuple(a for a, b in zip(tup1, tup2) if a != b)
+
+# Example usage
+print(compare_tuples((1, 2, 3), (1, 4, 3)))  # Output: (2,)
+```
+
+---
+
+### 2. **Problem: Find Mismatched Elements in Two Strings**
+**Description**: Given two strings of equal length, return a string of characters that are different at each position.
+
+**Solution**: Convert the strings to tuples or iterate directly, and compare character by character.
+
+**Python Code:**
+```python
+def find_mismatched_chars(s1, s2):
+    return ''.join(c for c, d in zip(s1, s2) if c != d)
+
+# Example usage
+print(find_mismatched_chars("abc", "adc"))  # Output: "b"
+```
+
+---
+
+### 3. **Problem: Find the Differences Between Two Lists**
+**Description**: Given two lists of the same length, return a list of elements that are different at each index.
+
+**Solution**: Use list comprehension to compare elements at each index and collect the differing ones.
+
+**Python Code:**
+```python
+def find_differences(list1, list2):
+    return [x for x, y in zip(list1, list2) if x != y]
+
+# Example usage
+print(find_differences([1, 2, 3], [1, 4, 3]))  # Output: [2]
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `find_dissimilar` takes two 4-element tuples as input. We need to compare the elements at each position and return a new tuple containing the elements that are different.
+
+We can use a generator expression with `zip` to iterate through the tuples in pairs, check for inequality, and collect the differing elements.
+
+### Python3 code:
+```python
+from typing import Tuple
+
+def find_dissimilar(test_tup1: Tuple[int, int, int, int], test_tup2: Tuple[int, int, int, int]) -> Tuple[int, int, int, int]:
+    return tuple(a for a, b in zip(test_tup1, test_tup2) if a != b)
+
+# Example usage
+print(find_dissimilar((1, 2, 3, 4), (1, 5, 3, 6)))  # Output: (2, 5, 4)
+```
+(2, 4)
+completed 14/47, Solved: False, number of success = 5/14, acc = 35.71
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def find_length(string: str) -> int:
+    """
+	Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in solving this problem is **Kadane's Algorithm**, which is typically used to find the maximum subarray sum. In this case, we need to find the maximum difference between the number of 0s and 1s in any sub-string. To apply Kadane¡¯s algorithm, we can treat 0s as +1 and 1s as -1, and then find the maximum subarray sum, which will give us the maximum difference between 0s and 1s.
+
+## Tutorial:
+Kadane's Algorithm is a dynamic programming approach used to find the maximum sum of a contiguous subarray in a list of integers. The algorithm works by iterating through the array and keeping track of the maximum sum ending at each position. The idea is to maintain a running sum (`current_max`) and update it as we go. If the current sum becomes negative, we reset it to zero, as a negative sum would not help in finding the maximum subarray sum.
+
+In this problem, we convert the binary string into a list of values where '0' is treated as +1 and '1' as -1. Then, we apply Kadane¡¯s algorithm to find the maximum subarray sum, which corresponds to the maximum difference between the number of 0s and 1s in any sub-string.
+
+## Example Problems:
+
+### Problem 1: Maximum Subarray Sum (LeetCode 53)
+**Description**: Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+**Solution**: Use Kadane¡¯s algorithm. Initialize `current_max` and `max_so_far` to the first element. Iterate through the array, updating `current_max` as `max(nums[i], current_max + nums[i])`, and update `max_so_far` accordingly.
+
+**Python3 Code**:
+```python
+def maxSubArray(nums):
+    current_max = max_so_far = nums[0]
+    for num in nums[1:]:
+        current_max = max(num, current_max + num)
+        max_so_far = max(max_so_far, current_max)
+    return max_so_far
+```
+
+### Problem 2: Maximum Difference in a Binary String (Similar to this problem)
+**Description**: Given a binary string, find the maximum difference between the number of 0s and 1s in any sub-string.
+
+**Solution**: Convert '0' to +1 and '1' to -1, then apply Kadane¡¯s algorithm to find the maximum subarray sum.
+
+**Python3 Code**:
+```python
+def max_diff_binary_string(s):
+    nums = [1 if c == '0' else -1 for c in s]
+    current_max = max_so_far = nums[0]
+    for num in nums[1:]:
+        current_max = max(num, current_max + num)
+        max_so_far = max(max_so_far, current_max)
+    return max_so_far
+```
+
+### Problem 3: Maximum Absolute Difference in a Binary String
+**Description**: Given a binary string, find the maximum absolute difference between the number of 0s and 1s in any sub-string.
+
+**Solution**: Convert '0' to +1 and '1' to -1, then apply Kadane¡¯s algorithm to find the maximum subarray sum and also the minimum subarray sum. The maximum absolute difference is the maximum between the absolute value of the max and min.
+
+**Python3 Code**:
+```python
+def max_abs_diff_binary_string(s):
+    nums = [1 if c == '0' else -1 for c in s]
+    current_max = max_so_far = nums[0]
+    current_min = min_so_far = nums[0]
+    for num in nums[1:]:
+        current_max = max(num, current_max + num)
+        max_so_far = max(max_so_far, current_max)
+        current_min = min(num, current_min + num)
+        min_so_far = min(min_so_far, current_min)
+    return max(abs(max_so_far), abs(min_so_far))
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We convert the binary string into a list of integers where '0' is +1 and '1' is -1. Then, we apply Kadane¡¯s algorithm to find the maximum subarray sum. This sum represents the maximum difference between the number of 0s and 1s in any sub-string of the original string.
+
+### Python3 Code:
+```python
+def find_length(string: str) -> int:
+    # Convert '0' to +1 and '1' to -1
+    nums = [1 if c == '0' else -1 for c in string]
+    
+    # Apply Kadane's algorithm
+    current_max = max_so_far = nums[0]
+    for num in nums[1:]:
+        current_max = max(num, current_max + num)
+        max_so_far = max(max_so_far, current_max)
+    
+    return max_so_far
+```
+completed 15/47, Solved: True, number of success = 6/15, acc = 40.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Any
+
+def split_two_parts(list1: List[Any], L: int) -> Any:
+    """
+	Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in this problem is **list slicing**, which is a fundamental operation in Python. The task involves dividing a list into two parts, where the first part has a specified length `L`, and the second part contains the remaining elements.
+
+## Tutorial:
+In Python, list slicing allows you to extract a portion of a list using the syntax `list[start:end]`. Here:
+- `start` is the index from which to begin the slice (inclusive).
+- `end` is the index at which to stop the slice (exclusive).
+
+To split a list into two parts, where the first part has length `L`, we can:
+- Take the first `L` elements using `list1[:L]`
+- Take the remaining elements using `list1[L:]`
+
+This is a simple and efficient operation with a time complexity of O(n), where n is the length of the list.
+
+## Example Problems:
+
+### Problem 1: Split Array Into Two Parts
+**Problem Description:**  
+Given an array and an integer L, split the array into two parts where the first part has length L.
+
+**Solution:**  
+Use list slicing to get the first L elements and the rest.
+
+**Python3 Code:**
+```python
+def split_array(arr, L):
+    return arr[:L], arr[L:]
+
+# Example usage
+print(split_array([1, 2, 3, 4, 5], 2))  # Output: ([1, 2], [3, 4, 5])
+```
+
+---
+
+### Problem 2: Split List into Two Equal Parts
+**Problem Description:**  
+Given a list, split it into two equal parts if the length is even. Otherwise, return the first half and the second half.
+
+**Solution:**  
+Calculate the midpoint using integer division and slice the list accordingly.
+
+**Python3 Code:**
+```python
+def split_list_even(lst):
+    mid = len(lst) // 2
+    return lst[:mid], lst[mid:]
+
+# Example usage
+print(split_list_even([1, 2, 3, 4]))  # Output: ([1, 2], [3, 4])
+```
+
+---
+
+### Problem 3: Split a String into Two Parts
+**Problem Description:**  
+Given a string and an integer L, split the string into two parts where the first part has length L.
+
+**Solution:**  
+Convert the string to a list of characters, slice it, and rejoin the parts.
+
+**Python3 Code:**
+```python
+def split_string(s, L):
+    return s[:L], s[L:]
+
+# Example usage
+print(split_string("abcdef", 3))  # Output: ('abc', 'def')
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `split_two_parts` takes a list and an integer `L`. It splits the list into two parts:
+- The first part is the first `L` elements of the list.
+- The second part is the remaining elements of the list.
+
+This is achieved using Python's list slicing.
+
+### Python3 code:
+```python
+from typing import List, Any
+
+def split_two_parts(list1: List[Any], L: int) -> Any:
+    """
+    Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.
+    """
+    return (list1[:L], list1[L:])
+
+# Example usage
+print(split_two_parts([1, 2, 3, 4, 5], 2))  # Output: ([1, 2], [3, 4, 5])
+```
+([1, 2], [3, 4, 5])
+completed 16/47, Solved: True, number of success = 7/16, acc = 43.75
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def check_expression(exp: str) -> bool:
+    """
+	Write a function to check if the given expression is balanced or not. https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept used to solve the problem of checking a balanced expression is **stack-based processing**. The algorithm involves:
+
+- Using a **stack** to keep track of opening brackets.
+- For every **closing bracket**, we check if the top of the stack contains the corresponding opening bracket.
+- If the stack is empty when a closing bracket is encountered, or if the top of the stack does not match the closing bracket, the expression is unbalanced.
+- At the end, the stack should be empty (all opening brackets should have been matched).
+
+This approach is commonly used in problems involving matching of brackets, such as parentheses, braces, and square brackets.
+
+---
+
+## Tutorial:
+
+A **stack** is a data structure that follows the **Last-In-First-Out (LIFO)** principle. In the context of checking balanced expressions, we use the stack to keep track of the opening brackets.
+
+Here's how the algorithm works:
+
+1. Initialize an empty stack.
+2. Iterate through each character in the expression:
+   - If the character is an opening bracket (`'('`, `'{'`, `'['`), push it onto the stack.
+   - If the character is a closing bracket (`')'`, `'}'`, `']'`), check if the stack is empty. If it is, the expression is unbalanced.
+   - Pop the top element from the stack and check if it matches the corresponding opening bracket. If not, the expression is unbalanced.
+3. After processing all characters, check if the stack is empty. If not, the expression is unbalanced.
+
+This approach ensures that each opening bracket is matched with the correct closing bracket in the correct order.
+
+---
+
+## Example Problems:
+
+### 1. **Valid Parentheses** (LeetCode 20)
+- **Problem**: Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+- **Solution**: Use a stack to match opening and closing brackets. If at any point the brackets don't match or the stack is empty when a closing bracket is found, return `False`. At the end, return `True` if the stack is empty.
+- **Python3 code**:
+```python
+def is_valid(s: str) -> bool:
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping:
+            if not stack or stack.pop() != mapping[char]:
+                return False
+        else:
+            return False  # invalid character
+    return not stack
+```
+
+---
+
+### 2. **Minimum Number of Swaps to Make the String Balanced** (LeetCode 1816)
+- **Problem**: Given a string consisting of `'['` and `']'`, find the minimum number of swaps needed to make the string balanced.
+- **Solution**: Use a greedy approach with a stack. Count the number of unmatched opening brackets and calculate the required swaps based on the imbalance.
+- **Python3 code**:
+```python
+def min_swaps(s: str) -> int:
+    stack = []
+    swaps = 0
+    for char in s:
+        if char == '[':
+            stack.append(char)
+        else:
+            if stack:
+                stack.pop()
+            else:
+                swaps += 1
+                stack.append('[')
+    return swaps // 2
+```
+
+---
+
+### 3. **Check for Balanced Parentheses in an Expression** (GeeksforGeeks)
+- **Problem**: Check if the given expression has balanced parentheses.
+- **Solution**: Use a stack to match opening and closing brackets.
+- **Python3 code**:
+```python
+def is_balanced(expr: str) -> bool:
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    
+    for char in expr:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping:
+            if not stack or stack.pop() != mapping[char]:
+                return False
+    return not stack
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We will use a **stack** to track the opening brackets. For each closing bracket, we check if the top of the stack contains the corresponding opening bracket. If it does, we pop the stack. If it doesn¡¯t, or if the stack is empty, the expression is unbalanced. At the end, the stack should be empty.
+
+### Python3 code:
+```python
+def check_expression(exp: str) -> bool:
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    
+    for char in exp:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping:
+            if not stack or stack.pop() != mapping[char]:
+                return False
+    return not stack
+```
+
+### Example usage:
+```python
+print(check_expression("()"))          # True
+print(check_expression("([)]"))        # False
+print(check_expression("{[()]}"))      # True
+print(check_expression("((()))"))      # True
+print(check_expression("((())"))       # False
+```
+completed 17/47, Solved: False, number of success = 7/17, acc = 41.18
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def test_three_equal(x: int, y: int, z: int) -> int:
+    """
+	Write a python function to count the number of equal numbers from three given integers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept for this problem is **comparative analysis** of three integers to determine how many are equal. The solution involves checking all possible pairs and counting the occurrences of equal values.
+
+This problem can be solved using simple conditional checks and counting logic.
+
+## Tutorial:
+The task is to count how many of the three given integers are equal. The possible cases are:
+- All three are equal (e.g., 5, 5, 5 ¡ú count is 3)
+- Two are equal (e.g., 5, 5, 3 ¡ú count is 2)
+- All are different (e.g., 1, 2, 3 ¡ú count is 0)
+
+To solve this, you can:
+1. Check if all three values are the same.
+2. If not, check if any two are equal.
+3. If none are equal, return 0.
+
+This is a basic logic-based problem, often encountered in coding interviews and competitive programming.
+
+## Example Problems:
+
+### Problem 1: "Equal Numbers" (Codeforces)
+**Description:** Given three integers, return the number of equal numbers among them.
+
+**Solution:** Check for equality between all three values, and count accordingly.
+
+```python
+def equal_numbers(a, b, c):
+    if a == b == c:
+        return 3
+    elif a == b or b == c or a == c:
+        return 2
+    else:
+        return 0
+```
+
+### Problem 2: "Check if All Three Are Equal" (LeetCode)
+**Description:** Given three integers, return `True` if all are equal, else `False`.
+
+**Solution:** Direct comparison of all three values.
+
+```python
+def are_equal(a, b, c):
+    return a == b == c
+```
+
+### Problem 3: "Count Duplicates" (HackerRank)
+**Description:** Given three integers, count how many duplicates are present (i.e., how many numbers appear more than once).
+
+**Solution:** Use a frequency dictionary or direct comparisons.
+
+```python
+def count_duplicates(a, b, c):
+    freq = {}
+    for num in [a, b, c]:
+        freq[num] = freq.get(num, 0) + 1
+    return sum(1 for count in freq.values() if count > 1)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We need to count how many of the three input integers are equal. We can do this by:
+- Checking if all three are equal: return 3.
+- If two are equal, return 2.
+- Otherwise, return 0.
+
+### Python3 code to solve the problem:
+
+```python
+def test_three_equal(x: int, y: int, z: int) -> int:
+    """
+    Write a Python function to count the number of equal numbers from three given integers.
+    """
+    if x == y == z:
+        return 3
+    elif x == y or y == z or x == z:
+        return 2
+    else:
+        return 0
+```
+completed 18/47, Solved: True, number of success = 8/18, acc = 44.44
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def find_lucas(n: int) -> int:
+    """
+	Write a function to find the n'th lucas number.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves computing the n-th Lucas number, which is a sequence similar to the Fibonacci sequence. The core concepts include **recursion**, **dynamic programming**, and **iterative computation**. The Lucas sequence is defined as:
+- L(0) = 2
+- L(1) = 1
+- L(n) = L(n-1) + L(n-2) for n ¡Ý 2
+
+This is a classic example of a **linear recurrence relation**, and the solution can be implemented using **iterative** or **recursive** methods with memoization.
+
+## Tutorial:
+The Lucas sequence is similar to the Fibonacci sequence, but with different starting values. The sequence starts with 2 and 1, and each subsequent number is the sum of the two previous ones.
+
+### Key Concepts:
+- **Recursive Approach**: Directly implement the recurrence relation. However, this approach has exponential time complexity and is not efficient for large n.
+- **Iterative Approach**: Use a loop to compute the Lucas numbers up to n. This is efficient and runs in O(n) time.
+- **Dynamic Programming (Memoization)**: Store previously computed values to avoid redundant calculations. This is efficient and can be used for larger n.
+
+### Example:
+For n = 5, the Lucas sequence is: 2, 1, 3, 4, 7, 11 ¡ú L(5) = 11
+
+## Example Problems:
+
+### 1. Fibonacci Number (LeetCode 509)
+**Problem Description**:
+Given n, compute the n-th Fibonacci number.
+
+**Solution**:
+Use an iterative approach to compute the Fibonacci numbers. The logic is very similar to the Lucas sequence, with different base cases.
+
+**Python3 Code**:
+```python
+def fib(n: int) -> int:
+    if n == 0:
+        return 0
+    a, b = 0, 1
+    for _ in range(1, n + 1):
+        a, b = b, a + b
+    return a
+```
+
+### 2. Tribonacci Sequence (LeetCode 1137)
+**Problem Description**:
+Given n, compute the n-th Tribonacci number, where T(n) = T(n-1) + T(n-2) + T(n-3), with base cases T(0) = 0, T(1) = 1, T(2) = 1.
+
+**Solution**:
+Use an iterative approach to compute the sequence up to n. This is similar to the Lucas sequence, but with three previous terms instead of two.
+
+**Python3 Code**:
+```python
+def tribonacci(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1 or n == 2:
+        return 1
+    a, b, c = 0, 1, 1
+    for _ in range(3, n + 1):
+        a, b, c = b, c, a + b + c
+    return c
+```
+
+### 3. Lucas Numbers (LeetCode 1195)
+**Problem Description**:
+Same as the original problem, but in a more complex context. This is a direct application of the Lucas sequence.
+
+**Solution**:
+Use an iterative approach to compute the n-th Lucas number.
+
+**Python3 Code**:
+```python
+def lucas(n: int) -> int:
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    a, b = 2, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `find_lucas(n)` computes the n-th Lucas number using an **iterative approach**. We start with the base cases:
+- L(0) = 2
+- L(1) = 1
+
+Then, for each n ¡Ý 2, we compute L(n) = L(n-1) + L(n-2) iteratively, which ensures an efficient O(n) time complexity and O(1) space complexity.
+
+### Python3 code to solve the problem:
+```python
+def find_lucas(n: int) -> int:
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    a, b = 2, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+```
+completed 19/47, Solved: True, number of success = 9/19, acc = 47.37
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def snake_to_camel(word: str) -> str:
+    """
+	Write a function to convert a snake case string to camel case string.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept for solving this problem is **string manipulation**, specifically **splitting a string based on a delimiter** (in this case, the underscore `_`) and **capitalizing the first letter of each subsequent word** (except the first one) to form a camel case string.
+
+This problem involves:
+- Splitting a string using `split('_')`
+- Iterating through the resulting list
+- Capitalizing the first letter of each word (except the first)
+- Concatenating all words into a single string
+
+## Tutorial:
+In programming, especially in competitive programming, string manipulation is a fundamental skill. For converting a snake case string to camel case:
+
+1. **Split the string** using the underscore `_` as the delimiter.
+2. The first word remains in lowercase.
+3. For each subsequent word, **capitalize the first letter** and **append it to the result**.
+4. Concatenate all the words to form the final camel case string.
+
+For example:
+- Input: `"hello_world"`
+- Split: `["hello", "world"]`
+- Process: `"hello" + "World" => "helloWorld"`
+
+This technique is widely used in code generation, API naming, and data transformation.
+
+## Example Problems:
+
+### 1. LeetCode - 1221. Split a String in Balanced Strings
+**Problem Description**:  
+A string `s` is **balanced** if it contains the same number of `'L'` and `'R'` characters. Return the maximum number of **balanced** substrings you can split the string into.
+
+**Solution**:  
+We can iterate through the string, counting `'L'` and `'R'` characters. Whenever the counts are equal, we increment a result counter.
+
+**Python3 Code**:
+```python
+def balancedStringSplit(s: str) -> int:
+    count = 0
+    result = 0
+    for char in s:
+        if char == 'L':
+            count += 1
+        else:
+            count -= 1
+        if count == 0:
+            result += 1
+    return result
+```
+
+---
+
+### 2. LeetCode - 1431. Kids With the Greatest Number of Candies
+**Problem Description**:  
+Given the number of candies each child has, and a number `extra`, determine which children can have the greatest number of candies after receiving the extra.
+
+**Solution**:  
+We can calculate the maximum number of candies among the children, then check for each child if adding `extra` to their count would be greater than or equal to that maximum.
+
+**Python3 Code**:
+```python
+def kidsWithCandies(candies: list[int], extra: int) -> list[bool]:
+    max_candies = max(candies)
+    return [c + extra >= max_candies for c in candies]
+```
+
+---
+
+### 3. LeetCode - 1704. Determine if String Halves Are Alike
+**Problem Description**:  
+A string `s` of even length is **balanced** if the number of vowels in the first half equals the number of vowels in the second half.
+
+**Solution**:  
+We can split the string into two halves, count the vowels in each, and compare the counts.
+
+**Python3 Code**:
+```python
+def halvesAreAlike(s: str) -> bool:
+    vowels = set("aeiouAEIOU")
+    n = len(s)
+    first_half = s[:n//2]
+    second_half = s[n//2:]
+    count_first = sum(1 for c in first_half if c in vowels)
+    count_second = sum(1 for c in second_half if c in vowels)
+    return count_first == count_second
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+- The function `snake_to_camel` takes a string `word` in snake case.
+- It splits the string using the underscore `_` as the delimiter.
+- The first word is kept in lowercase.
+- Each subsequent word is capitalized and appended to the result.
+- The final result is the camel case string.
+
+### Python3 code:
+```python
+def snake_to_camel(word: str) -> str:
+    words = word.split('_')
+    if not words:
+        return ""
+    result = words[0]
+    for word in words[1:]:
+        result += word.capitalize()
+    return result
+```
+completed 20/47, Solved: False, number of success = 9/20, acc = 45.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def reverse_words(s: str) -> str:
+    """
+	Write a function to reverse words seperated by spaces in a given string.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concepts involved in this problem are:
+- String manipulation
+- Splitting a string into words
+- Reversing the order of words
+- Joining words back into a string
+
+This problem primarily uses basic string operations and can be solved with a simple approach using Python's built-in `split()` and `join()` functions.
+
+## Tutorial:
+To reverse words in a string separated by spaces:
+1. **Split the string** into a list of words using the `split()` method. By default, `split()` splits on whitespace, which is exactly what we need.
+2. **Reverse the list** of words.
+3. **Join the reversed list** of words back into a string using `join()` with a space as the separator.
+
+This is a straightforward approach and works efficiently for most cases, including handling multiple spaces or leading/trailing spaces, as `split()` automatically ignores those.
+
+## Example Problems:
+
+### 1. **LeetCode 151: Reverse Words in a String**
+**Problem Description**: Given a string, reverse the words in it, ensuring that multiple spaces between words are reduced to a single space, and there is no leading or trailing space.
+
+**Solution**: Use `split()` to split the string into words, reverse the list, and `join()` to form the result.
+
+**Python3 Code**:
+```python
+def reverse_words(s: str) -> str:
+    return ' '.join(reversed(s.split()))
+```
+
+---
+
+### 2. **HackerRank: Reverse Words in a String**
+**Problem Description**: Reverse the words in a given string, but the input may contain leading, trailing, or multiple spaces between words.
+
+**Solution**: Use `split()` to remove extra spaces, reverse the list of words, and `join()` to reconstruct the string.
+
+**Python3 Code**:
+```python
+def reverse_words(s):
+    return ' '.join(reversed(s.split()))
+```
+
+---
+
+### 3. **Codeforces: Reverse Words**
+**Problem Description**: Given a string of words separated by spaces, reverse the order of the words.
+
+**Solution**: Split the string into a list of words, reverse the list, and join the words with a space.
+
+**Python3 Code**:
+```python
+def reverse_words(s):
+    words = s.split()
+    words.reverse()
+    return ' '.join(words)
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `reverse_words` takes a string `s`, splits it into words using `split()`, reverses the list of words, and then joins them back into a string using `join()` with a space as the separator. This handles all cases of extra spaces and ensures a clean output.
+
+### Python3 code:
+```python
+def reverse_words(s: str) -> str:
+    """
+    Write a function to reverse words separated by spaces in a given string.
+    """
+    return ' '.join(reversed(s.split()))
+```
+completed 21/47, Solved: True, number of success = 10/21, acc = 47.62
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def is_upper(string: str) -> str:
+    """
+	Write a python function to convert a given string to uppercase.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **string manipulation**, specifically **converting characters in a string to uppercase**. In Python, this can be achieved using the built-in `str.upper()` method or by manually converting each character using ASCII values.
+
+## Tutorial:
+In Python, strings are immutable, so any operation that modifies a string creates a new string. To convert a string to uppercase, you can use the `upper()` method, which returns a new string where all lowercase letters are converted to uppercase. For example:
+
+```python
+"hello".upper()  # returns "HELLO"
+```
+
+Alternatively, you can manually convert each character by checking if it is lowercase and then converting it using `ord()` and `chr()` functions. For example:
+
+```python
+def is_upper(string):
+    result = ""
+    for char in string:
+        if 'a' <= char <= 'z':
+            result += chr(ord(char) - 32)
+        else:
+            result += char
+    return result
+```
+
+This approach checks if a character is lowercase (between 'a' and 'z') and converts it to uppercase by subtracting 32 from its ASCII value.
+
+## Example Problems:
+
+### Problem 1: Convert to Uppercase
+**Description:** Given a string, convert all lowercase letters to uppercase and leave other characters unchanged.
+
+**Solution:** Use the `upper()` method or manually convert each character.
+
+**Python Code:**
+```python
+def convert_to_upper(s: str) -> str:
+    return s.upper()
+```
+
+### Problem 2: Check for Uppercase
+**Description:** Check if a string contains only uppercase letters.
+
+**Solution:** Iterate through the string and verify that each character is uppercase using `isupper()`.
+
+**Python Code:**
+```python
+def is_all_upper(s: str) -> bool:
+    return all(char.isupper() for char in s)
+```
+
+### Problem 3: Count Uppercase Letters
+**Description:** Count the number of uppercase letters in a given string.
+
+**Solution:** Loop through the string and increment a counter for each uppercase character.
+
+**Python Code:**
+```python
+def count_uppercase(s: str) -> int:
+    return sum(1 for char in s if char.isupper())
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `is_upper` is supposed to convert a given string to uppercase. In Python, the easiest and most efficient way to do this is by using the built-in `str.upper()` method, which handles all the necessary character conversions.
+
+### Python3 code:
+```python
+def is_upper(string: str) -> str:
+    """
+    Write a Python function to convert a given string to uppercase.
+    """
+    return string.upper()
+```
+completed 22/47, Solved: True, number of success = 11/22, acc = 50.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def digit_distance_nums(n1: int, n2: int) -> int:
+    """
+	Write a python function to find the sum of the per-digit difference between two integers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 142, in <module>
+    strategy.run()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 115, in run
+    response, prompt_tokens, completion_tokens = self.run_single_pass(
+                                                 ~~~~~~~~~~~~~~~~~~~~^
+        item)
+        ^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Analogical.py", line 65, in run_single_pass
+    response, prompt_tokens, completion_tokens = self.gpt_chat(
+                                                 ~~~~~~~~~~~~~^
+        prompt=input
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\Qwen.py", line 10, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 982, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

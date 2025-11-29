@@ -1,0 +1,996 @@
+#########################
+Running start QwenCoderTurbo-MapCoder-APPS-Python3-0.0-1, Time: 2025-11-26 13:22:01.323055
+##########################
+
+--- Starting run_single_pass ---
+Task ID: 1617
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '13', 'output': ['103']}
+failed in test case: {'input': '13\n3', 'output': ['103.010']}
+failed in test case: {'input': '-13\n0\n2', 'output': ['-1101']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '13', 'output': ['103']}
+failed in test case: {'input': '13\n3', 'output': ['103.010']}
+failed in test case: {'input': '-13\n0\n2', 'output': ['-1101']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '13', 'output': ['103']}
+failed in test case: {'input': '13\n3', 'output': ['103.010']}
+failed in test case: {'input': '-13\n0\n2', 'output': ['-1101']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '13', 'output': ['103']}
+failed in test case: {'input': '13\n3', 'output': ['103.010']}
+failed in test case: {'input': '-13\n0\n2', 'output': ['-1101']}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1660
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'cb+cba', 'output': ['bc+abc']}
+failed in test case: {'input': '2xy-yx', 'output': ['xy']}
+failed in test case: {'input': '-a+5ab+3a-c-2a', 'output': ['-c+5ab']}
+failed in test case: {'input': '-abc+3a+2ac', 'output': ['3a+2ac-abc']}
+failed in test case: {'input': 'xyz-xz', 'output': ['-xz+xyz']}
+failed in test case: {'input': 'a+ca-ab', 'output': ['a-ab+ac']}
+failed in test case: {'input': 'xzy+zby', 'output': ['byz+xyz']}
+failed in test case: {'input': '-y+x', 'output': ['x-y']}
+failed in test case: {'input': 'y-x', 'output': ['-x+y']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'cb+cba', 'output': ['bc+abc']}
+failed in test case: {'input': '2xy-yx', 'output': ['xy']}
+failed in test case: {'input': '-a+5ab+3a-c-2a', 'output': ['-c+5ab']}
+failed in test case: {'input': '-abc+3a+2ac', 'output': ['3a+2ac-abc']}
+failed in test case: {'input': 'xyz-xz', 'output': ['-xz+xyz']}
+failed in test case: {'input': 'a+ca-ab', 'output': ['a-ab+ac']}
+failed in test case: {'input': 'xzy+zby', 'output': ['byz+xyz']}
+failed in test case: {'input': '-y+x', 'output': ['x-y']}
+failed in test case: {'input': 'y-x', 'output': ['-x+y']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'cb+cba', 'output': ['bc+abc']}
+failed in test case: {'input': '2xy-yx', 'output': ['xy']}
+failed in test case: {'input': '-a+5ab+3a-c-2a', 'output': ['-c+5ab']}
+failed in test case: {'input': '-abc+3a+2ac', 'output': ['3a+2ac-abc']}
+failed in test case: {'input': 'xyz-xz', 'output': ['-xz+xyz']}
+failed in test case: {'input': 'a+ca-ab', 'output': ['a-ab+ac']}
+failed in test case: {'input': 'xzy+zby', 'output': ['byz+xyz']}
+failed in test case: {'input': '-y+x', 'output': ['x-y']}
+failed in test case: {'input': 'y-x', 'output': ['-x+y']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'cb+cba', 'output': ['bc+abc']}
+failed in test case: {'input': '2xy-yx', 'output': ['xy']}
+failed in test case: {'input': '-a+5ab+3a-c-2a', 'output': ['-c+5ab']}
+failed in test case: {'input': '-abc+3a+2ac', 'output': ['3a+2ac-abc']}
+failed in test case: {'input': 'xyz-xz', 'output': ['-xz+xyz']}
+failed in test case: {'input': 'a+ca-ab', 'output': ['a-ab+ac']}
+failed in test case: {'input': 'xzy+zby', 'output': ['byz+xyz']}
+failed in test case: {'input': '-y+x', 'output': ['x-y']}
+failed in test case: {'input': 'y-x', 'output': ['-x+y']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import re
+
+def simplify(poly: str) -> str:
+    """
+    Simplify a multilinear polynomial given as a string.
+    """
+    # 1. Extract (sign, coefficient_digits, variable_letters) triples.
+    #    The pattern also matches empty leading sign.
+    pattern = r'([+-]?)(\d*)([a-z]*)'
+    matches = re.findall(pattern, poly)
+
+    coeff_map = {}                     # variable_key -> summed coefficient
+    for sign, digits, letters in matches:
+        # ignore empty monomials (both parts empty)
+        if not digits and not letters:
+            continue
+        # the problem guarantees non‑constant polynomials,
+        # but we still ignore a pure constant if it occurs.
+        if not letters:
+            continue
+
+        # numeric coefficient
+        coeff = int(digits) if digits else 1
+        if sign == '-':
+            coeff = -coeff
+
+        # canonical variable string (sorted letters)
+        var_key = ''.join(sorted(letters))
+
+        # accumulate
+        coeff_map[var_key] = coeff_map.get(var_key, 0) + coeff
+
+    # 2. Remove zero coefficients
+    coeff_map = {v: c for v, c in coeff_map.items() if c != 0}
+
+    # 3. Sort by (degree, lexicographic)
+    sorted_items = sorted(coeff_map.items(),
+                          key=lambda kv: (len(kv[0]), kv[0]))
+
+    # 4. Build the output string
+    parts = []
+    for i, (var, coeff) in enumerate(sorted_items):
+        # separate sign from absolute value
+        if coeff < 0:
+            sign = '-'
+            mag = -coeff
+        else:
+            sign = '+'
+            mag = coeff
+
+        # magnitude part without sign
+        if var == '':
+            # constant term (should not appear for the given constraints)
+            mag_str = str(mag)
+        else:
+            if mag == 1:
+                mag_str = var          # omit the coefficient 1
+            else:
+                mag_str = str(mag) + var
+
+        # prepend sign according to position
+        if i == 0:
+            # first term – no leading '+'
+            parts.append(mag_str if sign == '+' else '-' + mag_str)
+        else:
+            parts.append(sign + mag_str)
+
+    result = ''.join(parts)
+
+    # if everything cancelled, output 0 (well‑behaved)
+    if not result:
+        result = '0'
+    return result
+
+
+def main() -> None:
+    data = sys.stdin.read().strip()
+    # Input may contain several lines – we only need the first one.
+    poly = data.splitlines()[0].strip()
+    print(simplify(poly))
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1613
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "apples, pears # and bananas\ngrapes\nbananas !apples\n['#', '!']", 'output': ['apples, pears\ngrapes\nbananas']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "apples, pears # and bananas\ngrapes\nbananas !apples\n['#', '!']", 'output': ['apples, pears\ngrapes\nbananas']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "apples, pears # and bananas\ngrapes\nbananas !apples\n['#', '!']", 'output': ['apples, pears\ngrapes\nbananas']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "apples, pears # and bananas\ngrapes\nbananas !apples\n['#', '!']", 'output': ['apples, pears\ngrapes\nbananas']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import ast
+
+def solution(text: str, markers: list[str]) -> str:
+    """Return *text* with everything after any marker in *markers* removed.
+    Trailing whitespace on each line is stripped.
+    """
+    cleaned = []
+    for line in text.splitlines():
+        cut = len(line)
+        for m in markers:
+            idx = line.find(m)
+            if idx != -1 and idx < cut:
+                cut = idx
+        cleaned.append(line[:cut].rstrip())
+    return "\n".join(cleaned)
+
+
+def main():
+    lines = []
+    while True:
+        try:
+            line = input()
+            lines.append(line)
+        except EOFError:
+            break
+
+    markers_line_idx = None
+    for i, line in enumerate(lines):
+        try:
+            parsed = ast.literal_eval(line)
+            if isinstance(parsed, list) and all(isinstance(x, str) for x in parsed):
+                markers_line_idx = i
+                break
+        except Exception:
+            continue
+
+    if markers_line_idx is None:
+        markers = []
+        text = "\n".join(lines)
+    else:
+        markers = ast.literal_eval(lines[markers_line_idx])
+        text = "\n".join(lines[:markers_line_idx] + lines[markers_line_idx + 1:])
+
+    result = solution(text, markers)
+    print(result, end='')
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1630
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[3,4]', 'output': [5]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[3,4]', 'output': [5]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[3,4]', 'output': [5]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[3,4]', 'output': [5]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import math
+import heapq
+import re
+
+def solve() -> None:
+    """
+    Reads a list of positive integers from standard input,
+    computes the largest integer that cannot be expressed as a
+    non‑negative linear combination of the given numbers
+    (unbounded usage) and prints the answer.
+
+    Output:
+        -1  if infinitely many integers are not representable,
+        0   if every positive integer is representable,
+        otherwise the required largest non‑representable integer.
+    """
+    data = sys.stdin.read().strip()
+    if not data:
+        # No input – nothing to do.
+        return
+
+    # Extract all integer tokens (handles formats like "[3,4]" or "3 4")
+    numbers = list(map(int, re.findall(r'\d+', data)))
+    if not numbers:
+        # No denominations – no positive integer can be built,
+        # therefore infinitely many are not representable.
+        print(-1)
+        return
+
+    # Remove duplicates and sort
+    coins = sorted(set(numbers))
+
+    # 1) overall gcd
+    g = coins[0]
+    for c in coins[1:]:
+        g = math.gcd(g, c)
+    if g > 1:
+        # infinitely many unreachable numbers
+        print(-1)
+        return
+
+    # 2) presence of 1 makes everything reachable
+    if 1 in coins:
+        print(0)
+        return
+
+    # 3) general case: gcd == 1 and no coin equals 1
+    a = min(coins)               # modulus for residues
+    INF = 10 ** 18
+    dist = [INF] * a
+    dist[0] = 0
+    heap = [(0, 0)]              # (distance, residue)
+
+    while heap:
+        d, r = heapq.heappop(heap)
+        if d != dist[r]:
+            continue            # stale entry
+        for c in coins:
+            nr = (r + c) % a
+            nd = d + c
+            if nd < dist[nr]:
+                dist[nr] = nd
+                heapq.heappush(heap, (nd, nr))
+
+    max_dist = max(dist)         # the largest minimal reachable sum
+    answer = max_dist - a        # Frobenius number
+    print(answer)
+
+
+if __name__ == "__main__":
+    solve()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1668
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '21', 'output': [12]}
+failed in test case: {'input': '531', 'output': [513]}
+failed in test case: {'input': '2071', 'output': [2017]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '135', 'output': [-1]}
+failed in test case: {'input': '1027', 'output': [-1]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '21', 'output': [12]}
+failed in test case: {'input': '531', 'output': [513]}
+failed in test case: {'input': '2071', 'output': [2017]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '135', 'output': [-1]}
+failed in test case: {'input': '1027', 'output': [-1]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '21', 'output': [12]}
+failed in test case: {'input': '531', 'output': [513]}
+failed in test case: {'input': '2071', 'output': [2017]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '135', 'output': [-1]}
+failed in test case: {'input': '1027', 'output': [-1]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '21', 'output': [12]}
+failed in test case: {'input': '531', 'output': [513]}
+failed in test case: {'input': '2071', 'output': [2017]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '135', 'output': [-1]}
+failed in test case: {'input': '1027', 'output': [-1]}
+
+--- Ending run_single_pass ---
+Final Code: 
+#!/usr/bin/env python3
+import sys
+
+def next_smaller(n: int) -> int:
+    """
+    Return the next smaller positive integer that can be formed with the
+    same digits as `n`.  If it does not exist (or would start with a zero)
+    return -1.
+    """
+    # Work with the digit characters – no overflow problems.
+    digits = list(str(n))
+    length = len(digits)
+
+    # 1) Find the rightmost position i where digits[i] > digits[i+1]
+    i = length - 2
+    while i >= 0 and digits[i] <= digits[i + 1]:
+        i -= 1
+    if i < 0:                     # already the smallest permutation
+        return -1
+
+    # 2) Find the rightmost digit smaller than digits[i] on the suffix
+    j = length - 1
+    while j > i and digits[j] >= digits[i]:
+        j -= 1
+    if j <= i:                     # shouldn't happen, but safety check
+        return -1
+
+    # 3) Swap them
+    digits[i], digits[j] = digits[j], digits[i]
+
+    # 4) Sort the suffix after i in descending order (largest possible)
+    suffix = digits[i + 1:]
+    suffix.sort(reverse=True)
+    digits[i + 1:] = suffix
+
+    # 5) Reject leading zero
+    if digits[0] == '0':
+        return -1
+
+    # Convert back to integer (Python handles arbitrarily large ints)
+    return int(''.join(digits))
+
+
+def main() -> None:
+    data = sys.stdin.read().strip().split()
+    if not data:
+        return
+    # The problem describes a single input value, but we also support
+    # multiple numbers (one per line) by processing each token.
+    results = []
+    for token in data:
+        try:
+            n = int(token)
+        except ValueError:
+            continue
+        results.append(str(next_smaller(n)))
+    # Print results, one per line.
+    sys.stdout.write("\n".join(results))
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1634
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': [1]}
+failed in test case: {'input': '1', 'output': [10]}
+failed in test case: {'input': '2', 'output': [100]}
+failed in test case: {'input': '3', 'output': [475]}
+failed in test case: {'input': '4', 'output': [1675]}
+failed in test case: {'input': '5', 'output': [4954]}
+failed in test case: {'input': '6', 'output': [12952]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': [1]}
+failed in test case: {'input': '1', 'output': [10]}
+failed in test case: {'input': '2', 'output': [100]}
+failed in test case: {'input': '3', 'output': [475]}
+failed in test case: {'input': '4', 'output': [1675]}
+failed in test case: {'input': '5', 'output': [4954]}
+failed in test case: {'input': '6', 'output': [12952]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': [1]}
+failed in test case: {'input': '1', 'output': [10]}
+failed in test case: {'input': '2', 'output': [100]}
+failed in test case: {'input': '3', 'output': [475]}
+failed in test case: {'input': '4', 'output': [1675]}
+failed in test case: {'input': '5', 'output': [4954]}
+failed in test case: {'input': '6', 'output': [12952]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': [1]}
+failed in test case: {'input': '1', 'output': [10]}
+failed in test case: {'input': '2', 'output': [100]}
+failed in test case: {'input': '3', 'output': [475]}
+failed in test case: {'input': '4', 'output': [1675]}
+failed in test case: {'input': '5', 'output': [4954]}
+failed in test case: {'input': '6', 'output': [12952]}
+
+--- Ending run_single_pass ---
+Final Code: 
+0 ≤ n < 10^x
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Exception in thread Thread-100 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1613, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xa4 in position 78: illegal multibyte sequence
+--- Starting run_single_pass ---
+Task ID: 1645
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '15', 'output': [4]}
+failed in test case: {'input': '16', 'output': [1]}
+failed in test case: {'input': '17', 'output': [2]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '15', 'output': [4]}
+failed in test case: {'input': '16', 'output': [1]}
+failed in test case: {'input': '17', 'output': [2]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '15', 'output': [4]}
+failed in test case: {'input': '16', 'output': [1]}
+failed in test case: {'input': '17', 'output': [2]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '15', 'output': [4]}
+failed in test case: {'input': '16', 'output': [1]}
+failed in test case: {'input': '17', 'output': [2]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import math
+
+def sum_of_squares(n: int) -> int:
+    """Return the minimal number of perfect squares whose sum equals n.
+
+    Lagrange's four‑square theorem guarantees a solution exists.
+    Legendre's three‑square theorem tells us when four squares are necessary.
+    """
+    # 1. One square?
+    r = math.isqrt(n)
+    if r * r == n:
+        return 1
+
+    # 2. Two squares?
+    for a in range(1, r + 1):
+        b2 = n - a * a
+        b = math.isqrt(b2)
+        if b * b == b2:
+            return 2
+
+    # 3. Legendre's three‑square theorem: numbers of the form 4^a*(8b+7) need four squares.
+    m = n
+    while m % 4 == 0:
+        m //= 4
+    if m % 8 == 7:
+        return 4
+
+    # 4. Otherwise three squares are sufficient.
+    return 3
+
+
+def main() -> None:
+    # Read all whitespace‑separated integers from stdin.
+    data = sys.stdin.read().strip().split()
+    if not data:
+        return
+    out = [str(sum_of_squares(int(x))) for x in data]
+    sys.stdout.write("\n".join(out))
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1666
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[6, 9, 21]', 'output': [9]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[6, 9, 21]', 'output': [9]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[6, 9, 21]', 'output': [9]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[6, 9, 21]', 'output': [9]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import math
+import re
+from functools import reduce
+
+def solve() -> None:
+    """
+    Reads the whole standard input, extracts all positive integers,
+    computes the smallest possible sum after repeatedly applying
+        if X[i] > X[j] then X[i] = X[i] - X[j]
+    and prints the answer.
+
+    The result is n * gcd(all numbers).
+    """
+    # read complete input (handles possible trailing newlines)
+    data = sys.stdin.buffer.read().decode()
+    if not data:
+        return
+
+    # extract every integer, regardless of brackets, commas or spaces
+    numbers = list(map(int, re.findall(r'\d+', data)))
+
+    if not numbers:                # no numbers at all
+        print(0)
+        return
+
+    # gcd of the whole array
+    g = reduce(math.gcd, numbers)
+
+    # final sum = g repeated n times
+    print(g * len(numbers))
+
+
+if __name__ == "__main__":
+    solve()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1659
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [2]}
+failed in test case: {'input': '3', 'output': [3]}
+failed in test case: {'input': '4', 'output': [5]}
+failed in test case: {'input': '5', 'output': [7]}
+failed in test case: {'input': '10', 'output': [42]}
+failed in test case: {'input': '50', 'output': [204226]}
+failed in test case: {'input': '80', 'output': [15796476]}
+failed in test case: {'input': '100', 'output': [190569292]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [2]}
+failed in test case: {'input': '3', 'output': [3]}
+failed in test case: {'input': '4', 'output': [5]}
+failed in test case: {'input': '5', 'output': [7]}
+failed in test case: {'input': '10', 'output': [42]}
+failed in test case: {'input': '50', 'output': [204226]}
+failed in test case: {'input': '80', 'output': [15796476]}
+failed in test case: {'input': '100', 'output': [190569292]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [2]}
+failed in test case: {'input': '3', 'output': [3]}
+failed in test case: {'input': '4', 'output': [5]}
+failed in test case: {'input': '5', 'output': [7]}
+failed in test case: {'input': '10', 'output': [42]}
+failed in test case: {'input': '50', 'output': [204226]}
+failed in test case: {'input': '80', 'output': [15796476]}
+failed in test case: {'input': '100', 'output': [190569292]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [2]}
+failed in test case: {'input': '3', 'output': [3]}
+failed in test case: {'input': '4', 'output': [5]}
+failed in test case: {'input': '5', 'output': [7]}
+failed in test case: {'input': '10', 'output': [42]}
+failed in test case: {'input': '50', 'output': [204226]}
+failed in test case: {'input': '80', 'output': [15796476]}
+failed in test case: {'input': '100', 'output': [190569292]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def partition_numbers_up_to(max_n: int):
+    """
+    Returns a list p where p[i] is the number of integer partitions of i,
+    for i = 0 .. max_n.
+    """
+    p = [0] * (max_n + 1)
+    p[0] = 1                       # empty partition
+
+    for n in range(1, max_n + 1):
+        total = 0
+        k = 1
+        while True:
+            # generalized pentagonal numbers
+            g1 = k * (3 * k - 1) // 2   # for +k
+            if g1 > n:
+                break
+            sign = 1 if (k % 2 == 1) else -1   # (+) for odd k, (‑) for even k
+            total += sign * p[n - g1]
+
+            g2 = k * (3 * k + 1) // 2   # for -k
+            if g2 <= n:
+                total += sign * p[n - g2]
+
+            k += 1
+        p[n] = total
+    return p
+
+
+def exp_sum(n: int) -> int:
+    """Number of integer partitions of n."""
+    # compute once up to n (fast enough) – could be cached globally if needed
+    return partition_numbers_up_to(n)[n]
+
+
+def main():
+    data = sys.stdin.read().strip().split()
+    if not data:
+        return
+    numbers = list(map(int, data))
+
+    max_n = max(numbers)
+    # Pre‑compute all needed values in one pass
+    part = partition_numbers_up_to(max_n)
+
+    out = [str(part[n]) for n in numbers]
+    sys.stdout.write("\n".join(out))
+
+
+if __name__ == "__main__":
+    # If a single‑line I/O is preferred, the following two lines suffice:
+    # n = int(input())
+    # print(exp_sum(n))
+    # The more general version above handles any amount of test cases.
+    main()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1647
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '12', 'output': [21]}
+failed in test case: {'input': '513', 'output': [531]}
+failed in test case: {'input': '2017', 'output': [2071]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '111', 'output': [-1]}
+failed in test case: {'input': '531', 'output': [-1]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '12', 'output': [21]}
+failed in test case: {'input': '513', 'output': [531]}
+failed in test case: {'input': '2017', 'output': [2071]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '111', 'output': [-1]}
+failed in test case: {'input': '531', 'output': [-1]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '12', 'output': [21]}
+failed in test case: {'input': '513', 'output': [531]}
+failed in test case: {'input': '2017', 'output': [2071]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '111', 'output': [-1]}
+failed in test case: {'input': '531', 'output': [-1]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '12', 'output': [21]}
+failed in test case: {'input': '513', 'output': [531]}
+failed in test case: {'input': '2017', 'output': [2071]}
+failed in test case: {'input': '9', 'output': [-1]}
+failed in test case: {'input': '111', 'output': [-1]}
+failed in test case: {'input': '531', 'output': [-1]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def next_bigger(n: int) -> int:
+    """
+    Return the smallest integer larger than `n` that can be obtained by
+    permuting its decimal digits. If no such permutation exists, return -1.
+    """
+    digits = list(str(n))
+
+    # 1. Find the first index from the right where digits[i] < digits[i+1]
+    i = len(digits) - 2
+    while i >= 0 and digits[i] >= digits[i + 1]:
+        i -= 1
+    if i < 0:                     # already the highest permutation
+        return -1
+
+    # 2. Find the smallest digit greater than digits[i] to its right
+    j = len(digits) - 1
+    while digits[j] <= digits[i]:
+        j -= 1
+
+    # 3. Swap them
+    digits[i], digits[j] = digits[j], digits[i]
+
+    # 4. Reverse the suffix to obtain the minimal ordering
+    digits[i + 1:] = reversed(digits[i + 1:])
+
+    return int(''.join(digits))
+
+def solve() -> None:
+    """
+    Read a single integer from standard input, compute its next bigger number,
+    and output the result (as a plain integer, not a list).
+    """
+    data = sys.stdin.read().strip().split()
+    if not data:          # no input
+        return
+    n = int(data[0])
+    result = next_bigger(n)
+    # Output the integer directly, as required by the problem statement
+    sys.stdout.write(str(result))
+
+if __name__ == "__main__":
+    solve()
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1646
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [5]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [5]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [5]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [5]}
+
+--- Ending run_single_pass ---
+Final Code: 
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 1656
+--- Planning Iteration 1 of 4 ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+MOD = 10**8
+
+def countSubsequences(needle: str, haystack: str) -> int:
+    """Return the number of times ``needle`` occurs as a subsequence of
+    ``haystack``. If the total exceeds 8 digits only the last 8 digits are
+    returned (the test data guarantees the true answer is < 10⁸)."""
+    n = len(needle)
+    # dp[i] – number of ways the first i characters of ``needle`` can be formed
+    dp = [0] * (n + 1)
+    dp[0] = 1  # empty pattern
+
+    for ch in haystack:
+        # iterate backwards so each character of haystack is used at most once
+        for i in range(n, 0, -1):
+            if needle[i - 1] == ch:
+                dp[i] = (dp[i] + dp[i - 1]) % MOD
+    return dp[n]
+
+if __name__ == "__main__":
+    # read all input; first line is the needle, everything after belongs to haystack
+    data = sys.stdin.read().splitlines()
+    if not data:
+        sys.exit(0)
+
+    needle = data[0]
+    haystack = "\n".join(data[1:]) if len(data) > 1 else ""
+
+    result = countSubsequences(needle, haystack)
+    print(result)
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+#########################
+Running end QwenCoderTurbo-MapCoder-APPS-Python3-0.0-1, Time: 2025-11-26 16:49:28.783099
+##########################
+

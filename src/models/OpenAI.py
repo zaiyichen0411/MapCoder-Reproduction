@@ -5,7 +5,7 @@ from openai import OpenAI, AzureOpenAI
 from .Base import BaseModel
 from utils.token_count import token_count
 
-dotenv.load_dotenv()
+dotenv.load_dotenv(override=True)
 
 
 class OpenAIBaseModel(BaseModel):
@@ -60,7 +60,7 @@ class OpenAIBaseModel(BaseModel):
         frequency_penalty=0,
         presence_penalty=0,
     ):
-        api_type = api_type or os.getenv("API_TYPE")
+        api_type = api_type or os.getenv("API_TYPE") or "openai"
 
         azure_vars = self.read_azure_env_vars()  if api_type == "azure" else {
             "api_version": None,
@@ -95,7 +95,11 @@ class OpenAIBaseModel(BaseModel):
                 azure_endpoint=api_base
             )
         else:
-            self.openai = OpenAI(api_key=api_key)
+            self.openai = OpenAI(
+                api_key=api_key,
+                base_url=api_base,
+                timeout=60.0
+            )
         
         # GPT parameters
         self.model_params = {}
@@ -169,7 +173,7 @@ class OpenAIModel(OpenAIBaseModel):
 
 
     # @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
-    def prompt(self, processed_input: list[dict]):
+    def prompt(self, processed_input: list[dict], **kwargs):
         """
         OpenAI API ChatCompletion implementation
 
@@ -186,23 +190,39 @@ class OpenAIModel(OpenAIBaseModel):
             Response from the openai python library
 
         """
-        self.model_params["max_tokens"] = 4096
-
-        response = self.openai.chat.completions.create(
-            messages=processed_input,
-            **self.model_params
-        )
-
-        return response.choices[0].message.content, response.usage.prompt_tokens, response.usage.completion_tokens
+        self.model_params["max_tokens"] = 8192
+        model_params = {**self.model_params, **kwargs}
+        use_stream = (os.getenv("OPENAI_STREAM", "0") == "1") or (str(os.getenv("OPENAI_API_BASE", "")).find("qnaigc.com") != -1)
+        if use_stream:
+            resp = self.openai.chat.completions.create(messages=processed_input, stream=True, stream_options={"include_usage": True}, **model_params)
+            content_parts = []
+            prompt_tokens = 0
+            completion_tokens = 0
+            for chunk in resp:
+                try:
+                    if getattr(chunk, "choices", None):
+                        delta = getattr(getattr(chunk.choices[0], "delta", None), "content", None) or ""
+                        if delta:
+                            content_parts.append(delta)
+                    elif getattr(chunk, "usage", None):
+                        prompt_tokens = getattr(chunk.usage, "prompt_tokens", 0) or 0
+                        completion_tokens = getattr(chunk.usage, "completion_tokens", 0) or 0
+                except Exception:
+                    continue
+            content = "".join(content_parts)
+            return content, prompt_tokens, completion_tokens
+        else:
+            response = self.openai.chat.completions.create(messages=processed_input, **model_params)
+            return response.choices[0].message.content, response.usage.prompt_tokens, response.usage.completion_tokens
 
 
 class GPT4(OpenAIModel):
-    def prompt(self, processed_input: list[dict]):
+    def prompt(self, processed_input: list[dict], **kwargs):
         self.model_params["model"] = "gpt-4-1106-preview"
-        return super().prompt(processed_input)
+        return super().prompt(processed_input, **kwargs)
 
 
 class ChatGPT(OpenAIModel):
-    def prompt(self, processed_input: list[dict]):
+    def prompt(self, processed_input: list[dict], **kwargs):
         self.model_params["model"] = "GPT-35-TURBO-1106"
-        return super().prompt(processed_input)
+        return super().prompt(processed_input, **kwargs)

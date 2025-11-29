@@ -86,6 +86,7 @@ class APICommunication:
         if unittests is None or len(unittests) == 0:
             raise EmptyUnittestError
 
+        # Prepare request body for remote executor
         request_body = dict(
             language=language,
             source_code=source_code,
@@ -99,17 +100,93 @@ class APICommunication:
             stop_on_first_fail=stop_on_first_fail,
             use_sanitizer=use_sanitizer,
         )
-        json_response = self._session.post(
-            self.execute_code_url,
-            json=request_body,
-            headers={"Content-Type": "application/json"},
-        ).json()
 
-        if "data" not in json_response:
-            return "error", sample_id, task_id
+        # Try remote executor first; if unavailable, fall back to local Python runner for Python 3
+        try:
+            json_response = self._session.post(
+                self.execute_code_url,
+                json=request_body,
+                headers={"Content-Type": "application/json"},
+            ).json()
 
-        return (
-            json_response["data"],
-            sample_id,
-            task_id,
-        )
+            if "data" not in json_response:
+                return "error", sample_id, task_id
+
+            return (
+                json_response["data"],
+                sample_id,
+                task_id,
+            )
+        except Exception:
+            # Remote executor not available; provide a minimal local fallback for Python 3
+            if (language or "").lower() != "python 3":
+                return "error", sample_id, task_id
+
+            import tempfile
+            import subprocess
+            import os
+            import textwrap
+            from .exec_outcome import ExecOutcome
+
+            # Write the source code to a temporary file
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False, encoding="utf-8") as tmp:
+                tmp.write(textwrap.dedent(source_code))
+                tmp_path = tmp.name
+
+            results: list[dict] = []
+            try:
+                for ut in unittests:
+                    test_input = ut.get("input", "")
+                    expected_out = None
+                    # expected may be list[str] or str
+                    if isinstance(ut.get("output"), list) and ut.get("output"):
+                        expected_out = str(ut["output"][0])
+                    elif isinstance(ut.get("output"), str):
+                        expected_out = ut.get("output")
+
+                    try:
+                        proc = subprocess.run(
+                            ["python", tmp_path],
+                            input=test_input,
+                            capture_output=True,
+                            text=True,
+                            timeout=5,
+                            cwd=os.path.dirname(tmp_path) or None,
+                        )
+                        stdout = proc.stdout.strip()
+                        # Compare output; normalize expected as string
+                        exp = ("" if expected_out is None else str(expected_out).strip())
+                        outcome = ExecOutcome.PASSED.value if stdout == exp else ExecOutcome.WRONG_ANSWER.value
+                        results.append({
+                            "input": test_input,
+                            "output": ut.get("output", []),
+                            "result": stdout,
+                            "exec_outcome": outcome,
+                        })
+                        if stop_on_first_fail and outcome != ExecOutcome.PASSED.value:
+                            break
+                    except subprocess.TimeoutExpired:
+                        results.append({
+                            "input": test_input,
+                            "output": ut.get("output", []),
+                            "result": "",
+                            "exec_outcome": ExecOutcome.TIME_LIMIT_EXCEEDED.value,
+                        })
+                        if stop_on_first_fail:
+                            break
+                    except Exception:
+                        results.append({
+                            "input": test_input,
+                            "output": ut.get("output", []),
+                            "result": "",
+                            "exec_outcome": ExecOutcome.RUNTIME_ERROR.value,
+                        })
+                        if stop_on_first_fail:
+                            break
+            finally:
+                try:
+                    os.unlink(tmp_path)
+                except Exception:
+                    pass
+
+            return results, sample_id, task_id

@@ -1,0 +1,2686 @@
+#########################
+Running start QwenCoderTurbo-Analogical-MBPP-Python3-0.0-1, Time: 2025-11-13 11:13:20.765039
+##########################
+
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def geometric_sum(n: int) -> float:
+    """
+	Write a function to calculate the geometric sum of n-1. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-recursion-exercise-9.php
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in solving this problem is **recursion**. The geometric sum of `n-1` refers to the sum of the series:  
+`1 + 1/2 + 1/4 + 1/8 + ... + 1/(2^(n-1))`.  
+This can be efficiently calculated using a recursive approach, where each step reduces the problem size by one until it reaches the base case.
+
+## Tutorial:
+Recursion is a programming technique where a function calls itself to solve smaller instances of a problem. It is useful for problems that can be broken down into similar subproblems. In the case of a geometric sum, the sum of `n` terms can be expressed as the sum of `n-1` terms plus the nth term.
+
+For example, the geometric sum `S(n)` can be defined recursively as:
+- Base case: `S(0) = 1`
+- Recursive case: `S(n) = S(n-1) + 1/(2^n)`
+
+This approach is simple but may not be the most efficient for large values of `n` due to the overhead of multiple function calls. However, for small to moderate values of `n`, it is a clean and effective solution.
+
+## Example Problems:
+
+### Problem 1: Sum of First n Natural Numbers
+**Description:** Calculate the sum of the first n natural numbers using recursion.
+
+**Solution:**  
+Use a recursive function where the base case is `n == 0` and the recursive case is `n + sum(n-1)`.
+
+```python
+def sum_natural(n):
+    if n == 0:
+        return 0
+    return n + sum_natural(n - 1)
+```
+
+### Problem 2: Fibonacci Sequence
+**Description:** Compute the nth Fibonacci number using recursion.
+
+**Solution:**  
+The Fibonacci sequence is defined as:
+- `F(0) = 0`
+- `F(1) = 1`
+- `F(n) = F(n-1) + F(n-2)` for `n > 1`
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
+
+### Problem 3: Power of a Number
+**Description:** Compute the value of `a^b` using recursion.
+
+**Solution:**  
+Use the recursive relation:
+- `a^0 = 1`
+- `a^b = a * a^(b-1)`
+
+```python
+def power(a, b):
+    if b == 0:
+        return 1
+    return a * power(a, b - 1)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The geometric sum of `n-1` is the sum of the series `1 + 1/2 + 1/4 + ... + 1/(2^(n-1))`.  
+We can compute this using a recursive function:
+- Base case: if `n == 0`, return `1` (since the sum of 0 terms is 1).
+- Recursive case: return `1/(2 ** (n-1)) + geometric_sum(n-1)`.
+
+This approach works well for small values of `n`, but for large `n`, an iterative approach or using the formula for a geometric series would be more efficient.
+
+### Python3 code to solve the problem:
+
+```python
+def geometric_sum(n: int) -> float:
+    """
+    Calculate the geometric sum of n-1 terms: 1 + 1/2 + 1/4 + ... + 1/(2^(n-1))
+    """
+    if n == 0:
+        return 1.0
+    return 1 / (2 ** (n - 1)) + geometric_sum(n - 1)
+
+# Example usage:
+# print(geometric_sum(3))  # Output: 1.75 (1 + 0.5 + 0.25)
+```
+completed 1/50, Solved: False, number of success = 0/1, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def filter_oddnumbers(nums: List[int]) -> List[int]:
+    """
+	Write a function to filter odd numbers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in this problem is **filtering** ¡ª specifically, filtering elements of a list based on a condition. In this case, the condition is whether a number is **odd**. This is a basic application of **list comprehension** or **looping and condition checking**.
+
+## Tutorial:
+Filtering is a common operation in programming, especially in data processing. The idea is to iterate through a list and select elements that meet a certain condition. In Python, this can be done using **list comprehensions**, which are concise and efficient.
+
+For example, to filter odd numbers from a list, we can check for each number if it is not divisible by 2. If `num % 2 != 0`, the number is odd and should be included in the result.
+
+## Example Problems:
+
+### 1. **LeetCode 1346. Check If N and Its Double Exist**
+**Problem Description:**  
+Given an array `arr` of integers, check if there exists two integers `N` and `M` such that `N = 2 * M`.
+
+**Solution:**  
+We can use a set to store the elements we've seen so far. For each number in the array, check if `num * 2` is in the set, or if `num / 2` is in the set (if `num` is even). This uses the concept of **set-based filtering** and **conditional checks**.
+
+```python
+def checkIfExist(arr: List[int]) -> bool:
+    seen = set()
+    for num in arr:
+        if num * 2 in seen or (num % 2 == 0 and num // 2 in seen):
+            return True
+        seen.add(num)
+    return False
+```
+
+---
+
+### 2. **LeetCode 1431. Kids With the Greatest Number of Candies**
+**Problem Description:**  
+Given an array of integers `candies` and an integer `extraCandies`, determine for each child if they can have the greatest number of candies after receiving the extra.
+
+**Solution:**  
+We first find the maximum number of candies any child has. Then, for each child, we check if `candies[i] + extraCandies >= max_candies`. This is a simple **filtering and comparison** problem.
+
+```python
+def kidsWithCandies(candies: List[int], extraCandies: int) -> List[bool]:
+    max_candies = max(candies)
+    return [c + extraCandies >= max_candies for c in candies]
+```
+
+---
+
+### 3. **LeetCode 1281. Subtract the Product and Sum of Digits of an Integer**
+**Problem Description:**  
+Given an integer `n`, return the difference between the product of its digits and the sum of its digits.
+
+**Solution:**  
+We extract each digit using modulo and division operations, then compute the product and sum. This uses **digit manipulation** and **filtering** of individual digits.
+
+```python
+def subtractProductAndSum(n: int) -> int:
+    product = 1
+    sum_digits = 0
+    while n > 0:
+        digit = n % 10
+        product *= digit
+        sum_digits += digit
+        n //= 10
+    return product - sum_digits
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The goal is to return a list of all **odd numbers** from the input list `nums`. We can do this using a **list comprehension** that checks if each number is odd (`num % 2 != 0`).
+
+### Python3 code:
+```python
+from typing import List
+
+def filter_oddnumbers(nums: List[int]) -> List[int]:
+    """
+    Write a function to filter odd numbers.
+    """
+    return [num for num in nums if num % 2 != 0]
+```
+completed 2/50, Solved: True, number of success = 1/2, acc = 50.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def remove_odd(str1: str) -> str:
+    """
+	Write a function to remove odd characters in a string.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept for solving this problem is **string manipulation** and **index-based iteration**. Specifically, the problem involves iterating over the characters of a string and removing characters at odd indices (i.e., 1st, 3rd, 5th, etc.). This is a simple example of filtering characters based on their position.
+
+## Tutorial:
+In competitive programming, string manipulation is a common task. A string is a sequence of characters, and each character has an index starting from 0. To remove characters at odd indices, we can loop through the string and collect characters at even indices (0, 2, 4, etc.) into a new string.
+
+For example, if the input is `"abcdef"`, the characters at even indices are:
+- index 0: `'a'`
+- index 2: `'c'`
+- index 4: `'e'`
+
+So the output would be `"ace"`.
+
+This is a simple but important concept, and it's often used in more complex string problems such as pattern matching, substring operations, and string transformations.
+
+## Example Problems:
+
+### Problem 1: Remove Even Index Characters
+**Description:** Given a string, return a new string that contains only the characters at even indices (0, 2, 4, ...).
+
+**Solution:** Iterate over the string using a loop, and for each index, check if it is even. If it is, add the character to the result.
+
+**Python3 Code:**
+```python
+def remove_even_indices(s: str) -> str:
+    result = ""
+    for i in range(len(s)):
+        if i % 2 == 0:
+            result += s[i]
+    return result
+```
+
+### Problem 2: Reverse String by Even Indices
+**Description:** Given a string, return a new string that contains only the characters at even indices, but in reverse order.
+
+**Solution:** First, collect the characters at even indices, then reverse the resulting string.
+
+**Python3 Code:**
+```python
+def reverse_even_indices(s: str) -> str:
+    even_chars = [s[i] for i in range(len(s)) if i % 2 == 0]
+    return ''.join(even_chars[::-1])
+```
+
+### Problem 3: Check if String is a Palindrome Using Even Indices
+**Description:** Check if the string formed by characters at even indices is a palindrome.
+
+**Solution:** Extract the characters at even indices, then compare the string with its reverse.
+
+**Python3 Code:**
+```python
+def is_even_palindrome(s: str) -> bool:
+    even_chars = [s[i] for i in range(len(s)) if i % 2 == 0]
+    return ''.join(even_chars) == ''.join(even_chars[::-1])
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `remove_odd(str1: str) -> str` is to remove characters at **odd indices**. To do this, we loop through the string and collect characters at **even indices** (0, 2, 4, ...). We can do this using a list comprehension or a loop.
+
+### Python3 code to solve the problem:
+```python
+def remove_odd(str1: str) -> str:
+    """
+    Write a function to remove odd characters in a string.
+    """
+    return ''.join([str1[i] for i in range(len(str1)) if i % 2 == 0])
+```
+
+### Example:
+```python
+print(remove_odd("abcdef"))  # Output: "ace"
+print(remove_odd("hello"))   # Output: "hlo"
+print(remove_odd("a"))       # Output: "a"
+```
+completed 3/50, Solved: False, number of success = 1/3, acc = 33.33
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def min_of_three(a: int, b: int, c: int) -> int:
+    """
+	Write a function to find minimum of three numbers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **basic comparison logic**. To find the minimum of three numbers, we can use conditional statements (`if`, `elif`, `else`) or take advantage of Python's built-in `min()` function.
+
+This problem is a simple application of **comparison-based logic** and is often used to introduce the concept of decision-making in programming.
+
+---
+
+## Tutorial:
+In programming, comparing values is a fundamental operation. When you need to find the smallest among multiple numbers, you can use conditional logic to compare them step by step.
+
+For example, to find the minimum of three numbers `a`, `b`, and `c`:
+
+1. Compare `a` and `b`, find the smaller of the two.
+2. Compare that smaller value with `c` to find the overall minimum.
+
+Alternatively, Python provides a built-in `min()` function that can take multiple arguments and return the smallest one. This is more efficient and readable.
+
+This concept is widely used in competitive programming for tasks such as:
+- Finding the minimum or maximum in a list.
+- Comparing values in loops.
+- Sorting small sets of values.
+
+---
+
+## Example Problems:
+
+### 1. **Find the Minimum of Two Numbers**
+**Problem:** Write a function to find the minimum of two numbers.
+
+**Solution:** Use a simple `if-else` statement or the `min()` function.
+
+**Python3 Code:**
+```python
+def min_of_two(a: int, b: int) -> int:
+    return a if a < b else b
+```
+
+---
+
+### 2. **Find the Maximum of Three Numbers**
+**Problem:** Write a function to find the maximum of three numbers.
+
+**Solution:** Similar to the minimum problem, but with `>` instead of `<`.
+
+**Python3 Code:**
+```python
+def max_of_three(a: int, b: int, c: int) -> int:
+    return a if a > b and a > c else (b if b > c else c)
+```
+
+---
+
+### 3. **Find the Minimum in a List**
+**Problem:** Given a list of integers, find the minimum value.
+
+**Solution:** Use the built-in `min()` function.
+
+**Python3 Code:**
+```python
+def find_min_in_list(nums: list[int]) -> int:
+    return min(nums)
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `min_of_three` takes three integers as input and returns the smallest of them. This can be easily done using Python's built-in `min()` function, which is both concise and efficient.
+
+### Python3 code to solve the problem:
+```python
+def min_of_three(a: int, b: int, c: int) -> int:
+    """
+    Write a function to find minimum of three numbers.
+    """
+    return min(a, b, c)
+```
+completed 4/50, Solved: True, number of success = 2/4, acc = 50.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def count_occurance(s: str) -> int:
+    """
+	Write a function to count the number of occurence of the string 'std' in a given string.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concepts involved in solving this problem are **string matching** and **sliding window** technique. The task is to count the number of times a specific substring (`'std'`) appears in a given string. This can be efficiently done using a sliding window approach or by using built-in string methods like `count()`.
+
+## Tutorial:
+
+In competitive programming, string matching is a common task. One of the most straightforward ways to count occurrences of a substring is to use Python's built-in `str.count()` method. However, when the problem is more complex (e.g., overlapping occurrences, or when you need to process the string manually), you can implement a **sliding window** approach.
+
+### Sliding Window Technique:
+- Iterate through the string with a window of size equal to the substring (`'std'` in this case).
+- At each step, check if the substring within the window matches `'std'`.
+- Increment the count whenever a match is found.
+
+This method is efficient and has a time complexity of **O(n)** where **n** is the length of the string.
+
+## Example Problems:
+
+### 1. Count Occurrences of Substring
+**Problem:** Given a string `s`, count how many times the substring `'abc'` appears.
+
+**Solution:** Use `s.count('abc')` directly, or implement a sliding window.
+
+**Code:**
+```python
+def count_substring(s: str) -> int:
+    return s.count('abc')
+```
+
+### 2. Count Occurrences of '101' in a Binary String
+**Problem:** Given a binary string `s`, count how many times `'101'` appears.
+
+**Solution:** Use a sliding window approach to check every 3-character window.
+
+**Code:**
+```python
+def count_101(s: str) -> int:
+    count = 0
+    for i in range(len(s) - 2):
+        if s[i:i+3] == '101':
+            count += 1
+    return count
+```
+
+### 3. Count Occurrences of 'a' in a String
+**Problem:** Given a string `s`, count how many times the character `'a'` appears.
+
+**Solution:** Use a simple loop or `s.count('a')`.
+
+**Code:**
+```python
+def count_a(s: str) -> int:
+    return s.count('a')
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We are given a string `s` and need to count the number of times the substring `'std'` appears. The simplest and most efficient way is to use Python¡¯s built-in `str.count()` method, which directly returns the number of non-overlapping occurrences of the substring.
+
+### Python3 code:
+```python
+def count_occurance(s: str) -> int:
+    return s.count('std')
+```
+completed 5/50, Solved: True, number of success = 3/5, acc = 60.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def text_match_one(text: str) -> bool:
+    """
+	Write a function that matches a string that has an a followed by one or more b's.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+This problem is a classic example of **string matching using regular expressions**. The core concepts involved are:
+- **Regular Expressions (Regex)**: A powerful tool to define patterns in text.
+- **Pattern Matching**: Checking if a string conforms to a certain pattern.
+
+The specific pattern in this problem is: a string that starts with an 'a' followed by **one or more** 'b's.
+
+## Tutorial:
+Regular expressions are used to describe patterns of text. In Python, the `re` module is used to work with regular expressions. The syntax for a regex pattern is as follows:
+
+- `^` : Matches the start of the string.
+- `a` : Matches the character 'a'.
+- `b+` : Matches one or more 'b's.
+- `$` : Matches the end of the string.
+
+So, the regex pattern for this problem would be `^a+b$`. The `+` quantifier means "one or more" of the preceding element.
+
+To use this in Python, you can use the `re.match()` function which checks if the pattern matches at the beginning of the string. If it matches the entire string, then it returns a match object, otherwise it returns `None`.
+
+## Example Problems:
+
+### Problem 1: LeetCode 10 - Regular Expression Matching
+**Description**: Given an input string and a pattern, implement a regular expression matching with support for `'.'` and `'*'`.  
+**Solution**: This problem involves complex regex matching and dynamic programming. The `re` module can be used for simple cases, but for advanced pattern matching, a DP approach is needed.
+
+```python
+import re
+
+def is_match(s: str, p: str) -> bool:
+    return re.fullmatch(p, s) is not None
+```
+
+### Problem 2: Codeforces 155A - Chat
+**Description**: Check if a string contains at least one 'a' followed by at least one 'b'.  
+**Solution**: Use regex to check for the pattern `a+b`.
+
+```python
+import re
+
+def check_string(s):
+    return bool(re.match(r'a+b', s))
+```
+
+### Problem 3: HackerRank - Regex Substitution
+**Description**: Replace '&&' with 'and' and '||' with 'or' in a given string, but only when they appear as standalone operators.  
+**Solution**: Use regex to match the pattern and replace accordingly.
+
+```python
+import re
+
+def replace_operators(s):
+    s = re.sub(r' && ', ' and ', s)
+    s = re.sub(r' \|\| ', ' or ', s)
+    return s
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `text_match_one` checks if the input string starts with an 'a' and is followed by one or more 'b's. We use the `re` module to match the pattern `^a+b$` against the input string.
+
+### Python3 code to solve the problem:
+```python
+import re
+
+def text_match_one(text: str) -> bool:
+    """
+    Write a function that matches a string that has an a followed by one or more b's.
+    """
+    return bool(re.match(r'^a+b$', text))
+```
+completed 6/50, Solved: False, number of success = 3/6, acc = 50.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def count_no_of_ways(n: int, k: int) -> int:
+    """
+	Write a function to find out the number of ways of painting the fence such that at most 2 adjacent posts have the same color for the given fence with n posts and k colors.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept behind this problem is **Dynamic Programming (DP)**. The problem involves counting the number of ways to paint a fence with `n` posts using `k` colors, such that no more than two adjacent posts have the same color.
+
+The key idea is to break the problem into subproblems and build up the solution using recurrence relations.
+
+## Tutorial:
+
+This problem is a classic example of a **DP problem with state transitions**.
+
+### Key Observations:
+
+- For the first post, there are `k` ways to paint it.
+- For the second post, we have two scenarios:
+  - It's painted with the same color as the previous post: `1 * (k-1)` ways (since we can't choose the same color as the one before the previous).
+  - It's painted with a different color: `k * (k-1)` ways (since we have `k` choices for the first and `k-1` for the second).
+- For the `n`th post, we can define two states:
+  - `same[n]`: the number of ways to paint the `n`th post with the same color as the `(n-1)`th.
+  - `diff[n]`: the number of ways to paint the `n`th post with a different color from the `(n-1)`th.
+- Recurrence relations:
+  - `same[n] = diff[n-1]` (we can only paint the same color if the previous one was different).
+  - `diff[n] = (same[n-1] + diff[n-1]) * (k-1)` (we can paint it with any of the other `k-1` colors).
+
+The total number of ways to paint `n` posts is `same[n] + diff[n]`.
+
+## Example Problems:
+
+### 1. **Fence Painting (LeetCode 276)**
+
+**Problem Description:**  
+You are given `n` posts and `k` colors. You need to paint the posts such that no more than two adjacent posts have the same color.
+
+**Solution:**  
+Use the DP approach described above. The recurrence relations are:
+- `same[i] = diff[i-1]`
+- `diff[i] = (same[i-1] + diff[i-1]) * (k-1)`
+
+**Python3 Code:**
+```python
+def numWays(n: int, k: int) -> int:
+    if n == 0:
+        return 0
+    if n == 1:
+        return k
+    same, diff = k, k * (k - 1)
+    for i in range(3, n + 1):
+        new_same = diff
+        new_diff = (same + diff) * (k - 1)
+        same, diff = new_same, new_diff
+    return same + diff
+```
+
+---
+
+### 2. **Paint House (LeetCode 256)**
+
+**Problem Description:**  
+You are given a row of `n` houses, and each house has to be painted with one of `k` colors. The cost of painting house `i` with color `j` is given in a 2D array. You cannot paint two adjacent houses the same color. Find the minimum cost to paint all houses.
+
+**Solution:**  
+Use DP with state transitions. For each house, track the minimum cost of painting it with each color, ensuring no two adjacent houses have the same color.
+
+**Python3 Code:**
+```python
+def minCostII(costs: List[List[int]]) -> int:
+    if not costs:
+        return 0
+    n, k = len(costs), len(costs[0])
+    for i in range(1, n):
+        for j in range(k):
+            min_prev = float('inf')
+            for l in range(k):
+                if l != j:
+                    min_prev = min(min_prev, costs[i-1][l])
+            costs[i][j] += min_prev
+    return min(costs[-1])
+```
+
+---
+
+### 3. **Number of Ways to Paint N ¡Á 3 Grid (LeetCode 1196)**
+
+**Problem Description:**  
+You are given a grid of `n` rows and 3 columns. You can paint each cell with one of `k` colors. No two adjacent cells can have the same color. Count the number of ways to paint the grid.
+
+**Solution:**  
+Use DP to count valid colorings row by row. Track the number of valid colorings for each row based on the previous row.
+
+**Python3 Code:**
+```python
+def numOfWays(n: int) -> int:
+    same, diff = 0, 0
+    for i in range(n):
+        if i == 0:
+            same = 3
+            diff = 3 * 2
+        else:
+            new_same = diff
+            new_diff = (same + diff) * 2
+            same, diff = new_same, new_diff
+    return same + diff
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+
+We use dynamic programming to calculate the number of ways to paint `n` posts using `k` colors, with the constraint that no more than two adjacent posts can have the same color. We define two states:
+
+- `same[i]` = number of ways to paint the `i`th post with the same color as the `(i-1)`th.
+- `diff[i]` = number of ways to paint the `i`th post with a different color from the `(i-1)`th.
+
+The recurrence relations are:
+- `same[i] = diff[i-1]`
+- `diff[i] = (same[i-1] + diff[i-1]) * (k - 1)`
+
+We initialize the base cases for `n = 1` and `n = 2` and iterate from 3 to `n` to build up the solution.
+
+### Python3 code:
+```python
+def count_no_of_ways(n: int, k: int) -> int:
+    if n == 0:
+        return 0
+    if n == 1:
+        return k
+    same, diff = k, k * (k - 1)
+    for i in range(3, n + 1):
+        new_same = diff
+        new_diff = (same + diff) * (k - 1)
+        same, diff = new_same, new_diff
+    return same + diff
+```
+completed 7/50, Solved: True, number of success = 4/7, acc = 57.14
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def find_remainder(arr: List[int], n: int) -> int:
+    """
+	Write a python function to find the product of the array multiplication modulo n.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used in this problem is **modular arithmetic**, specifically **modular multiplication**. The problem requires computing the product of all elements in an array and then taking the result modulo `n`. This is a common operation in competitive programming, especially when dealing with large numbers that could overflow standard data types.
+
+The key idea is to compute the product incrementally and apply the modulo at each step to avoid integer overflow and ensure efficiency.
+
+## Tutorial:
+Modular arithmetic is a system of arithmetic for integers where numbers "wrap around" when reaching a certain value ¡ª the modulus. In this problem, we're interested in the **product of an array modulo `n`**.
+
+To compute this efficiently:
+
+1. Initialize a variable `result` to 1.
+2. Iterate through each element in the array.
+3. Multiply `result` by the current element.
+4. Take the result modulo `n` after each multiplication to keep the number manageable.
+
+This prevents integer overflow and ensures that the computation remains efficient, even for large arrays or large values of `n`.
+
+## Example Problems:
+
+### Problem 1: Product of Array Elements Modulo n
+**Description:** Given an array of integers, compute the product of all elements modulo `n`.
+
+**Solution:** Use the approach described above: initialize a result variable, multiply it by each element, and take modulo `n` at each step.
+
+**Python3 Code:**
+```python
+def product_mod(arr: List[int], n: int) -> int:
+    result = 1
+    for num in arr:
+        result = (result * num) % n
+    return result
+```
+
+### Problem 2: Modular Exponentiation
+**Description:** Compute `a^b % m` efficiently for very large values of `a` and `b`.
+
+**Solution:** Use **modular exponentiation** with repeated squaring to compute the result in O(log b) time.
+
+**Python3 Code:**
+```python
+def mod_pow(a: int, b: int, m: int) -> int:
+    result = 1
+    a = a % m
+    while b > 0:
+        if b % 2 == 1:
+            result = (result * a) % m
+        a = (a * a) % m
+        b //= 2
+    return result
+```
+
+### Problem 3: Large Product Modulo
+**Description:** Given a list of integers, compute the product modulo a given number `n`, which can be large.
+
+**Solution:** Similar to the first problem ¡ª iterate through the array, multiply and apply modulo at each step.
+
+**Python3 Code:**
+```python
+def large_product_mod(arr: List[int], n: int) -> int:
+    result = 1
+    for num in arr:
+        result = (result * num) % n
+    return result
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `find_remainder` is designed to compute the product of all elements in the array `arr` and then take the result modulo `n`. To avoid overflow and ensure efficiency, we apply the modulo after each multiplication.
+
+### Python3 code:
+```python
+from typing import List
+
+def find_remainder(arr: List[int], n: int) -> int:
+    """
+    Write a python function to find the product of the array multiplication modulo n.
+    """
+    result = 1
+    for num in arr:
+        result = (result * num) % n
+    return result
+```
+completed 8/50, Solved: True, number of success = 5/8, acc = 62.5
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def check_K(test_tup: List[int], K: int) -> bool:
+    """
+	Write a function to check if the given tuples contain the k or not.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The problem involves checking whether a given value `K` exists in a list (or tuple) of integers. This is a basic search problem. The core algorithms involved are:
+
+- **Linear Search**: Iterating through the elements of the list to check if `K` is present.
+- **Set Membership Check**: Using a set for O(1) time complexity to check if `K` is present.
+
+## Tutorial:
+
+In competitive programming, checking for the presence of a value in a collection is a common operation. The two main approaches are:
+
+1. **Linear Search**: This involves iterating through the list and comparing each element with `K`. It has a time complexity of O(n), where n is the number of elements in the list. This is simple and works well for small datasets.
+
+2. **Set Membership Check**: Converting the list into a set allows for constant time (O(1)) lookups. This is more efficient for large datasets and is a preferred approach when dealing with multiple queries.
+
+## Example Problems:
+
+### Problem 1: "Find if a number exists in an array"
+**Description**: Given an array of integers, check if a specific number `K` exists in the array.
+
+**Solution**: Use a set to store the elements of the array and check if `K` is in the set.
+
+**Python3 Code:**
+```python
+def contains_number(arr: List[int], K: int) -> bool:
+    return K in set(arr)
+```
+
+### Problem 2: "Check for duplicates in an array"
+**Description**: Determine if there are any duplicate elements in the array.
+
+**Solution**: Use a set to track elements as we iterate through the array. If an element is already in the set, it is a duplicate.
+
+**Python3 Code:**
+```python
+def has_duplicates(arr: List[int]) -> bool:
+    seen = set()
+    for num in arr:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
+```
+
+### Problem 3: "Check if a list contains all elements of another list"
+**Description**: Given two lists, check if the second list contains all elements of the first list.
+
+**Solution**: Convert the first list into a set and check if all elements of the second list are in the set.
+
+**Python3 Code:**
+```python
+def contains_all_elements(list1: List[int], list2: List[int]) -> bool:
+    set1 = set(list1)
+    return all(num in set1 for num in list2)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+
+The function `check_K` is supposed to check if the given tuple (or list) `test_tup` contains the value `K`. This can be efficiently done by converting the list to a set and checking if `K` is in the set. This approach has a time complexity of O(n) for the conversion and O(1) for the lookup.
+
+### Python3 code to solve the problem:
+```python
+from typing import List
+
+def check_K(test_tup: List[int], K: int) -> bool:
+    """
+    Write a function to check if the given list contains the K or not.
+    """
+    return K in set(test_tup)
+```
+completed 9/50, Solved: True, number of success = 6/9, acc = 66.67
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def is_Monotonic(A: List[int]) -> bool:
+    """
+	Write a python function to check whether the given array is monotonic or not.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves checking whether an array is monotonic. A monotonic array is one that is either entirely non-increasing or non-decreasing. The core concepts used here are:
+
+- **Two-pass check**: Check if the array is non-decreasing and then check if it is non-increasing.
+- **Single-pass check**: Track the direction of the array as we iterate and ensure it doesn't change.
+
+## Tutorial:
+A monotonic array is either always increasing (non-decreasing) or always decreasing (non-increasing). To check this, we can:
+
+- **Non-decreasing check**: For each element, ensure that the next element is greater than or equal to the current.
+- **Non-increasing check**: For each element, ensure that the next element is less than or equal to the current.
+
+Alternatively, we can check in a single pass by tracking the direction. If the array is both increasing and decreasing, it's still monotonic. But if it changes direction, it's not.
+
+## Example Problems:
+
+### Problem 1: Check if Array is Monotonic (LeetCode 896)
+**Problem Description**: An array is monotonic if it is either entirely non-increasing or non-decreasing.
+
+**Solution**: We can check both directions in a single pass. We track if the array is increasing and if it is decreasing. If both are true, it's monotonic. If either is false, it's not.
+
+**Python Code**:
+```python
+def isMonotonic(A: List[int]) -> bool:
+    increasing = decreasing = True
+    for i in range(1, len(A)):
+        if A[i] > A[i-1]:
+            decreasing = False
+        elif A[i] < A[i-1]:
+            increasing = False
+    return increasing or decreasing
+```
+
+### Problem 2: Valid Mountain Array (LeetCode 941)
+**Problem Description**: Given an array A, determine if it is a valid mountain array. A mountain array must first strictly increase, then strictly decrease.
+
+**Solution**: Check that the array increases to a peak and then decreases. Ensure the peak is not at the start or end.
+
+**Python Code**:
+```python
+def validMountainArray(A: List[int]) -> bool:
+    if len(A) < 3:
+        return False
+    i = 0
+    # Walk up
+    while i + 1 < len(A) and A[i] < A[i+1]:
+        i += 1
+    # Peak can't be first or last
+    if i == 0 or i == len(A) - 1:
+        return False
+    # Walk down
+    while i + 1 < len(A) and A[i] > A[i+1]:
+        i += 1
+    return i == len(A) - 1
+```
+
+### Problem 3: Increasing Decreasing String (LeetCode 1370)
+**Problem Description**: Given a string `s`, rearrange the characters in such a way that the resulting string is in increasing order, then in decreasing order, and so on.
+
+**Solution**: Use a frequency counter, then build the result by alternating between increasing and decreasing order.
+
+**Python Code**:
+```python
+from collections import Counter
+
+def sortString(s: str) -> str:
+    count = Counter(s)
+    result = []
+    while len(result) < len(s):
+        for c in sorted(count.keys()):
+            if count[c] > 0:
+                result.append(c)
+                count[c] -= 1
+        for c in sorted(count.keys(), reverse=True):
+            if count[c] > 0:
+                result.append(c)
+                count[c] -= 1
+    return ''.join(result)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We can check whether the array is monotonic by tracking whether it is increasing or decreasing. We loop through the array and compare each element with the next. If the array is both non-increasing and non-decreasing, it's monotonic.
+
+### Python3 code:
+```python
+from typing import List
+
+def is_Monotonic(A: List[int]) -> bool:
+    increasing = decreasing = True
+    for i in range(1, len(A)):
+        if A[i] > A[i-1]:
+            decreasing = False
+        elif A[i] < A[i-1]:
+            increasing = False
+    return increasing or decreasing
+```
+completed 10/50, Solved: True, number of success = 7/10, acc = 70.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def parabola_directrix(a: int, b: int, c: int) -> int:
+    """
+	Write a function to find the directrix of a parabola.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves understanding the mathematical properties of a parabola, specifically how to calculate the directrix of a parabola given its equation in standard form. The core concepts include:
+- The standard form of a parabola: $ y = ax^2 + bx + c $
+- The formula for the directrix of a parabola in this form: $ y = c - \frac{b^2}{4a} - \frac{1}{4a} $
+- Basic arithmetic operations and handling of integer inputs.
+
+## Tutorial:
+A parabola is a U-shaped curve that is symmetric about a vertical or horizontal line. In this problem, we are dealing with a parabola that opens upwards or downwards. The equation of such a parabola is given in the form $ y = ax^2 + bx + c $.
+
+The **directrix** of a parabola is a line that is perpendicular to the axis of symmetry of the parabola. For a parabola in the form $ y = ax^2 + bx + c $, the directrix can be found using the formula:
+$$
+y = c - \frac{b^2}{4a} - \frac{1}{4a}
+$$
+
+This can be simplified as:
+$$
+y = c - \frac{b^2 + 1}{4a}
+$$
+
+In this problem, we are given the coefficients $ a $, $ b $, and $ c $, and we are to return the **integer value** of the directrix.
+
+Note: Since the problem returns an integer, we assume that the result of the formula is an integer, or we can cast it to an integer.
+
+## Example Problems:
+
+### 1. **Parabola Directrix Calculation**
+- **Problem**: Given the coefficients of a parabola $ y = ax^2 + bx + c $, find the equation of the directrix.
+- **Solution**: Use the formula $ y = c - \frac{b^2 + 1}{4a} $. Return the integer value of the result.
+- **Python Code**:
+```python
+def parabola_directrix(a: int, b: int, c: int) -> int:
+    return c - (b*b + 1) // (4 * a)
+```
+
+### 2. **Find the Vertex of a Parabola**
+- **Problem**: Given the coefficients of a parabola $ y = ax^2 + bx + c $, find the vertex.
+- **Solution**: The x-coordinate of the vertex is $ -\frac{b}{2a} $, and the y-coordinate is $ y = a(-\frac{b}{2a})^2 + b(-\frac{b}{2a}) + c $.
+- **Python Code**:
+```python
+def parabola_vertex(a: int, b: int, c: int) -> tuple:
+    x = -b / (2 * a)
+    y = a * x * x + b * x + c
+    return (x, y)
+```
+
+### 3. **Find the Focus of a Parabola**
+- **Problem**: Given the coefficients of a parabola $ y = ax^2 + bx + c $, find the focus.
+- **Solution**: The focus is located at $ (h, k + \frac{1}{4a}) $, where $ (h, k) $ is the vertex.
+- **Python Code**:
+```python
+def parabola_focus(a: int, b: int, c: int) -> tuple:
+    x = -b / (2 * a)
+    y = c - (b * b) / (4 * a) + 1 / (4 * a)
+    return (x, y)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We are given the coefficients $ a $, $ b $, and $ c $ of a parabola in the form $ y = ax^2 + bx + c $. The directrix of the parabola is given by the formula:
+$$
+y = c - \frac{b^2 + 1}{4a}
+$$
+Since we are to return an integer, we perform integer division using `//` to ensure the result is an integer.
+
+### Python3 code to solve the problem:
+```python
+def parabola_directrix(a: int, b: int, c: int) -> int:
+    return c - (b * b + 1) // (4 * a)
+```
+completed 11/50, Solved: False, number of success = 7/11, acc = 63.64
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def div_list(nums1: List[int], nums2: List[int]) -> List[float]:
+    """
+	Write a function to divide two lists element wise.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **element-wise operations on lists**. Specifically, we are dividing corresponding elements of two lists. This involves:
+- Iterating through both lists simultaneously.
+- Performing a division operation on each pair of elements.
+- Handling potential division by zero or invalid input (if necessary).
+
+This is a basic list traversal and arithmetic operation problem.
+
+## Tutorial:
+In competitive programming, it's common to perform operations on multiple lists. For example, you might have two lists of numbers and need to compute the result of applying an operation (like addition, multiplication, or division) element-wise.
+
+To perform element-wise division of two lists:
+1. Ensure both lists are of the same length.
+2. Iterate through the elements using a loop or list comprehension.
+3. For each index `i`, compute `nums1[i] / nums2[i]`.
+4. Handle any edge cases, such as division by zero.
+
+This is a fundamental concept used in many data processing and mathematical problems.
+
+## Example Problems:
+
+### 1. **Element-wise Sum of Two Lists**
+**Problem Description**: Given two lists of integers, return a new list where each element is the sum of the corresponding elements in the input lists.
+
+**Solution**: Iterate through the lists, add corresponding elements, and append the result to a new list.
+
+```python
+def sum_lists(a: List[int], b: List[int]) -> List[int]:
+    return [x + y for x, y in zip(a, b)]
+```
+
+### 2. **Element-wise Multiplication of Two Lists**
+**Problem Description**: Given two lists of integers, return a new list where each element is the product of the corresponding elements in the input lists.
+
+**Solution**: Use a list comprehension to multiply each pair of elements from the two lists.
+
+```python
+def multiply_lists(a: List[int], b: List[int]) -> List[int]:
+    return [x * y for x, y in zip(a, b)]
+```
+
+### 3. **Element-wise Division with Error Handling**
+**Problem Description**: Given two lists of integers, return a new list where each element is the result of dividing the corresponding elements in the first list by the second list. Handle division by zero by returning `None` for those cases.
+
+**Solution**: Use a list comprehension and check for division by zero.
+
+```python
+def safe_divide_lists(a: List[int], b: List[int]) -> List[float]:
+    return [x / y if y != 0 else None for x, y in zip(a, b)]
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `div_list` takes two lists of integers as input and returns a list of floats where each element is the result of dividing the corresponding elements of the first list by the second list. We use a list comprehension to iterate over the pairs of elements and perform the division.
+
+### Python3 code:
+```python
+from typing import List
+
+def div_list(nums1: List[int], nums2: List[int]) -> List[float]:
+    """
+    Write a function to divide two lists element-wise.
+    """
+    return [x / y for x, y in zip(nums1, nums2)]
+```
+completed 12/50, Solved: True, number of success = 8/12, acc = 66.67
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import Tuple
+
+def concatenate_tuple(test_tup: Tuple[str, str, int, str]) -> str:
+    """
+	Write a function to concatenate each element of tuple by the delimiter.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **tuple manipulation and string concatenation**. The task is to take a tuple with elements of different types (strings and integers), convert each element to a string, and then concatenate them using a specified delimiter.
+
+This problem involves:
+- Type conversion (converting integers to strings)
+- String concatenation
+- Tuple iteration
+
+## Tutorial:
+In Python, tuples are ordered, immutable collections of elements. To process a tuple, you often need to iterate through its elements. When the elements are of different types, you may need to convert them to a common type (like strings) before performing operations like concatenation.
+
+To concatenate elements of a tuple:
+1. Iterate through each element in the tuple.
+2. Convert each element to a string (using `str()`).
+3. Join them together using a delimiter (e.g., `"-"`, `"_"`, etc.).
+
+This technique is commonly used in competitive programming for tasks involving string formatting and data transformation.
+
+## Example Problems:
+
+### 1. **Problem: Format a Date**
+**Description:** Given a date in the format `(year, month, day)`, write a function to return a string in the format `"YYYY-MM-DD"`.
+
+**Solution:** Convert each element of the tuple to a string and join them with `"-"`.
+
+**Python Code:**
+```python
+def format_date(date_tuple: Tuple[int, int, int]) -> str:
+    return "-".join(str(x) for x in date_tuple)
+```
+
+---
+
+### 2. **Problem: Join Elements with Delimiter**
+**Description:** Given a tuple of strings, join them with a specified delimiter.
+
+**Solution:** Use `join()` on a generator expression that converts each element to a string.
+
+**Python Code:**
+```python
+def join_tuple_elements(test_tup: Tuple[str, str, str], delimiter: str) -> str:
+    return delimiter.join(test_tup)
+```
+
+---
+
+### 3. **Problem: Convert and Concatenate Mixed Types**
+**Description:** Given a tuple with mixed types (strings and integers), convert all elements to strings and concatenate them with a space.
+
+**Solution:** Iterate through the tuple, convert each element to a string, and use `join()` with a space.
+
+**Python Code:**
+```python
+def concatenate_mixed_tuple(test_tup: Tuple[str, int, str, int]) -> str:
+    return " ".join(str(x) for x in test_tup)
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `concatenate_tuple` takes a tuple of type `Tuple[str, str, int, str]`. We need to:
+- Convert each element to a string (especially the integer).
+- Concatenate the string representations of the elements using a delimiter (e.g., `"-"`).
+
+For this problem, since no delimiter is specified, we'll use a default delimiter, such as `"-"`.
+
+### Python3 code:
+```python
+def concatenate_tuple(test_tup: Tuple[str, str, int, str]) -> str:
+    return "-".join(str(x) for x in test_tup)
+
+# Example usage:
+# print(concatenate_tuple(("Hello", "World", 42, "Python")))  # Output: "Hello-World-42-Python"
+```
+completed 13/50, Solved: True, number of success = 9/13, acc = 69.23
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Tuple
+
+def add_tuple(test_list: List[int], test_tup: Tuple[int, int]) -> List[int]:
+    """
+	Write a function to add the given tuple to the given list.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept in this problem is **basic list and tuple manipulation in Python**. The function needs to **add the elements of a tuple to a list**. This is a simple operation involving **appending elements** from one data structure to another.
+
+## Tutorial:
+
+In Python, `list` and `tuple` are two common data structures. A `list` is **mutable**, meaning its contents can be changed after creation, while a `tuple` is **immutable**, meaning its elements cannot be modified once defined.
+
+To add elements of a tuple to a list, we can use the `list.extend()` method or manually append each element of the tuple to the list.
+
+For example:
+```python
+my_list = [1, 2, 3]
+my_tuple = (4, 5)
+my_list.extend(my_tuple)  # Now my_list is [1, 2, 3, 4, 5]
+```
+
+Alternatively:
+```python
+for item in my_tuple:
+    my_list.append(item)
+```
+
+This is a fundamental operation in many programming tasks, especially when dealing with data structures and transformations.
+
+## Example Problems:
+
+### Problem 1: Add Elements of a Tuple to a List
+**Description:** Given a list and a tuple, add all the elements of the tuple to the end of the list.
+
+**Solution:** Use `extend()` to add all elements of the tuple to the list.
+
+```python
+def add_tuple_to_list(lst, t):
+    lst.extend(t)
+    return lst
+```
+
+---
+
+### Problem 2: Merge Two Tuples into a List
+**Description:** Given two tuples, merge them into a single list.
+
+**Solution:** Convert both tuples to lists and then concatenate them, or use `extend()` to merge them.
+
+```python
+def merge_tuples(t1, t2):
+    result = list(t1)
+    result.extend(t2)
+    return result
+```
+
+---
+
+### Problem 3: Convert Tuple to List and Append Elements
+**Description:** Convert a tuple to a list and append additional elements to it.
+
+**Solution:** Convert the tuple to a list using `list()` and then append elements as needed.
+
+```python
+def convert_and_append(t, elements):
+    lst = list(t)
+    lst.extend(elements)
+    return lst
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+
+The function `add_tuple` takes a list `test_list` and a tuple `test_tup`. We need to **add the elements of the tuple to the list**. This can be done efficiently using the `extend()` method of the list.
+
+### Python3 code:
+
+```python
+from typing import List, Tuple
+
+def add_tuple(test_list: List[int], test_tup: Tuple[int, int]) -> List[int]:
+    """
+    Write a function to add the given tuple to the given list.
+    """
+    test_list.extend(test_tup)
+    return test_list
+```
+
+### Example usage:
+
+```python
+result = add_tuple([1, 2, 3], (4, 5))
+print(result)  # Output: [1, 2, 3, 4, 5]
+```
+completed 14/50, Solved: False, number of success = 9/14, acc = 64.29
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def find_Element(arr: List[int], ranges: List[List[int]], rotations: int, index: int) -> int:
+    """
+	Write a python function to find element at a given index after number of rotations.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concepts used in this problem involve **array manipulation**, **range operations**, and **efficient updates**. The key idea is to efficiently determine the position of an element after a certain number of rotations, without actually performing the rotations (which would be computationally expensive for large arrays and many rotations).
+
+This can be achieved using **simulation** or **reverse mapping**. In this case, since we are only interested in the final position of a specific index, we can **track the index through each rotation**.
+
+## Tutorial:
+When dealing with array rotations, a rotation can be defined as moving elements from one part of the array to another. For example, a rotation on a range [L, R] can mean that the elements in that range are rotated left or right.
+
+However, in this problem, we are given a list of ranges and a number of rotations, and we are asked to find the element at a given index after all the rotations.
+
+### Key Observations:
+- For each rotation, we can simulate the movement of the index.
+- If we are given a range [L, R], and we rotate the elements in that range, the index we're interested in may be affected.
+- We need to **reverse the effect of each rotation** starting from the last one to the first, to determine where the original index ends up after all the rotations.
+
+This approach is efficient and avoids the need to actually rotate the array, which is crucial for large arrays and many rotations.
+
+## Example Problems:
+
+### 1. **LeetCode 190: Reverse Bits**
+- **Problem**: Reverse the bits of a 32-bit unsigned integer.
+- **Solution**: Use bit manipulation to reverse the bits.
+- **Code**:
+```python
+def reverseBits(n):
+    res = 0
+    for _ in range(32):
+        res = (res << 1) | (n & 1)
+        n >>= 1
+    return res
+```
+
+### 2. **LeetCode 189: Rotate Array**
+- **Problem**: Rotate the array to the right by `k` steps.
+- **Solution**: Use slicing or reverse the array in parts.
+- **Code**:
+```python
+def rotate(nums, k):
+    k %= len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
+```
+
+### 3. **Codeforces 711A: Bus to Udayland**
+- **Problem**: Find the first seat that is not occupied in a bus.
+- **Solution**: Iterate through the rows and check for empty seats.
+- **Code**:
+```python
+n = int(input())
+for i in range(n):
+    s = input()
+    if 'O' in s:
+        print("NO")
+        print(s.replace('O', 'A', 1))
+        exit()
+print("YES")
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We are given an array `arr`, a list of ranges `ranges`, and we need to find the element at a specific index after applying `rotations` number of operations. Each rotation is defined by a range [L, R], and we assume that the elements in that range are rotated left by 1. To find the final element at the given index, we simulate the effect of the rotations in reverse order, starting from the last one.
+
+### Python3 code:
+```python
+from typing import List
+
+def find_Element(arr: List[int], ranges: List[List[int]], rotations: int, index: int) -> int:
+    # We simulate the rotations in reverse to find the original position of the index
+    for i in range(rotations - 1, -1, -1):
+        L, R = ranges[i]
+        if L <= index <= R:
+            # If index is in the range, it moves left by 1 (since the rotation is left by 1)
+            index -= 1
+            # If index becomes less than L, it wraps around to R
+            if index < L:
+                index = R
+    return arr[index]
+```
+
+### Example usage:
+```python
+arr = [1, 2, 3, 4, 5]
+ranges = [[0, 2], [1, 4]]
+rotations = 2
+index = 2
+print(find_Element(arr, ranges, rotations, index))  # Output: 2
+```
+completed 15/50, Solved: False, number of success = 9/15, acc = 60.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import Tuple, Dict
+
+def tuple_to_dict(test_tup: Tuple[int, int, int, int, int, int]) -> Dict[int, int]:
+    """
+	Write a function to convert the given tuple to a key-value dictionary using adjacent elements. https://www.geeksforgeeks.org/python-convert-tuple-to-adjacent-pair-dictionary/
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **tuple iteration** and **dictionary construction**. The function needs to take a tuple with an even number of elements and convert it into a dictionary where the first element of each adjacent pair is the key, and the second is the value.
+
+This involves:
+- Iterating over the tuple in steps of 2.
+- Creating key-value pairs from these steps.
+- Building a dictionary from these pairs.
+
+## Tutorial:
+In Python, a tuple is an ordered, immutable collection of elements. To convert a tuple into a dictionary using adjacent elements, you can use a loop that steps through the tuple two elements at a time. Each pair of elements (index `i` and `i+1`) becomes a key-value pair in the dictionary.
+
+This is a common pattern in competitive programming for converting structured data into more usable formats like dictionaries.
+
+For example, if the tuple is `(1, 2, 3, 4)`, the dictionary should be `{1: 2, 3: 4}`.
+
+## Example Problems:
+### 1. **Convert Tuple to Dictionary (GeeksforGeeks)**
+**Problem Description**: Given a tuple with an even number of elements, convert it into a dictionary using adjacent elements as key-value pairs.
+
+**Solution**: Iterate over the tuple in steps of 2, and for each step, assign the first element as the key and the second as the value.
+
+**Python3 Code:**
+```python
+def tuple_to_dict(test_tup):
+    res = {}
+    for i in range(0, len(test_tup), 2):
+        res[test_tup[i]] = test_tup[i+1]
+    return res
+```
+
+### 2. **Convert List to Dictionary with Alternating Keys and Values**
+**Problem Description**: Given a list with alternating keys and values, convert it to a dictionary.
+
+**Solution**: Use a loop to iterate over the list in steps of 2, and assign the even-indexed elements as keys and the odd-indexed as values.
+
+**Python3 Code:**
+```python
+def list_to_dict(lst):
+    res = {}
+    for i in range(0, len(lst), 2):
+        res[lst[i]] = lst[i+1]
+    return res
+```
+
+### 3. **Convert String to Dictionary Using Delimiters**
+**Problem Description**: Given a string with alternating key-value pairs separated by a delimiter (e.g., `key1=value1,key2=value2`), convert it to a dictionary.
+
+**Solution**: Split the string by the delimiter, then split each part by `=`, and build the dictionary.
+
+**Python3 Code:**
+```python
+def string_to_dict(s, delimiter=',', pair_delimiter='='):
+    res = {}
+    for pair in s.split(delimiter):
+        key, value = pair.split(pair_delimiter)
+        res[key] = value
+    return res
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `tuple_to_dict` takes a tuple with 6 elements (since the input type is `Tuple[int, int, int, int, int, int]`). We iterate through the tuple in steps of 2, taking the first element as the key and the second as the value. This builds the required dictionary.
+
+### Python3 code:
+```python
+from typing import Tuple, Dict
+
+def tuple_to_dict(test_tup: Tuple[int, int, int, int, int, int]) -> Dict[int, int]:
+    """
+    Convert the given tuple to a key-value dictionary using adjacent elements.
+    """
+    result = {}
+    for i in range(0, len(test_tup), 2):
+        result[test_tup[i]] = test_tup[i + 1]
+    return result
+```
+completed 16/50, Solved: True, number of success = 10/16, acc = 62.5
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def find_First_Missing(array: List[int]) -> int:
+    """
+	Write a python function to find the smallest missing number from a sorted list of natural numbers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves finding the smallest missing number in a **sorted list of natural numbers**. The core concepts used here are:
+- **Binary Search**: Efficiently find the missing number in O(log n) time.
+- **Index-Value Relationship**: Since the list is sorted and contains natural numbers (starting from 1), the value at index `i` should be `i + 1`. If this is not the case, the missing number is somewhere before that index.
+
+---
+
+## Tutorial:
+In a **sorted list of natural numbers**, the numbers start from 1 and increase by 1. For example: `[1, 2, 3, 5, 6]` ¨C the smallest missing number is `4`.
+
+If the list is sorted, we can use **binary search** to efficiently find the missing number. The key idea is to check if the value at the middle index is equal to the expected value (i.e., `mid + 1`). If it's not, the missing number must be in the left half. Otherwise, it's in the right half.
+
+### Steps:
+1. Initialize `left = 0` and `right = len(array) - 1`.
+2. While `left <= right`:
+   - Compute `mid = (left + right) // 2`.
+   - If `array[mid] == mid + 1`, the missing number is on the right.
+   - Else, the missing number is on the left.
+3. After the loop, the missing number is `left + 1`.
+
+---
+
+## Example Problems:
+
+### 1. **LeetCode 268. Missing Number**
+**Problem Description**: Given an array of `n` distinct numbers from `0` to `n`, find the missing number.
+
+**Solution**: Since the array contains numbers from `0` to `n` (inclusive), the length of the array is `n`, and the missing number is the one not in the array. We can use the formula: `expected_sum = n * (n + 1) // 2`, and subtract the actual sum of the array.
+
+```python
+def missingNumber(nums: List[int]) -> int:
+    n = len(nums)
+    expected_sum = n * (n + 1) // 2
+    return expected_sum - sum(nums)
+```
+
+### 2. **LeetCode 41. First Missing Positive**
+**Problem Description**: Given an unsorted array of integers, find the smallest positive integer that is not present in the array.
+
+**Solution**: Use in-place hashing. For each element, if it is in the range [1, n], place it at its correct index (i.e., `nums[i]` should be at `nums[nums[i] - 1]`). After this, the first index where the value doesn't match the index + 1 is the missing number.
+
+```python
+def firstMissingPositive(nums: List[int]) -> int:
+    n = len(nums)
+    for i in range(n):
+        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
+            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+    for i in range(n):
+        if nums[i] != i + 1:
+            return i + 1
+    return n + 1
+```
+
+### 3. **Codeforces 1373B. 01 Game**
+**Problem Description**: Given a binary string, find the number of operations to make it all 0s. Each operation is to remove two adjacent characters, one '0' and one '1'.
+
+**Solution**: Use a stack. For each character, if the top of the stack is different from the current character, pop the top (as a pair), else push the current character. The number of remaining characters is the answer.
+
+```python
+def countOperations(s: str) -> int:
+    stack = []
+    for c in s:
+        if stack and stack[-1] != c:
+            stack.pop()
+        else:
+            stack.append(c)
+    return len(stack)
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We use **binary search** to find the smallest missing number in a **sorted list of natural numbers**. Since the list is sorted, we can compare the value at each index to the index + 1. If they are not equal, the missing number is before that index. Otherwise, it's after.
+
+### Python3 code:
+```python
+from typing import List
+
+def find_First_Missing(array: List[int]) -> int:
+    left, right = 0, len(array) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if array[mid] == mid + 1:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return left + 1
+```
+completed 17/50, Solved: False, number of success = 10/17, acc = 58.82
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Union
+
+def max_val(listval: List[Union[str, int]]) -> int:
+    """
+	Write a function to find the maximum value in a given heterogeneous list.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **type checking and comparison**. Since the list contains both integers and strings, we need to:
+1. Filter out non-integer elements.
+2. Compare the remaining integers to find the maximum.
+
+This involves basic **iteration**, **type checking** (e.g., `isinstance()`), and **comparative logic**.
+
+---
+
+## Tutorial:
+
+### Understanding the Problem:
+A **heterogeneous list** is a list that contains elements of different data types (like `int`, `str`, `float`, etc.). The goal is to find the **maximum integer** in the list, ignoring the non-integer elements.
+
+### Steps to Solve:
+1. **Iterate through the list** to check each element.
+2. **Check if the element is an integer** using `isinstance(element, int)`.
+3. **Collect all the integers** in a new list or keep track of the maximum while iterating.
+4. **Return the maximum** of the collected integers.
+5. If no integers are found, return an appropriate value (like `None` or raise an error, but the problem assumes at least one integer exists).
+
+### Key Concepts:
+- **Type checking** (`isinstance`)
+- **Iteration**
+- **Comparison operators**
+
+---
+
+## Example Problems:
+
+### 1. **Find Maximum Integer in List (Heterogeneous)**
+**Problem Description:**  
+Given a list containing integers and strings, find the maximum integer.
+
+**Solution:**  
+Iterate through the list, check for integers, and keep track of the maximum.
+
+**Python3 Code:**
+```python
+def max_val(listval: list) -> int:
+    max_int = None
+    for item in listval:
+        if isinstance(item, int):
+            if max_int is None or item > max_int:
+                max_int = item
+    return max_int
+```
+
+---
+
+### 2. **Filter and Sum Even Numbers in List**
+**Problem Description:**  
+Given a list with mixed types, sum all even integers.
+
+**Solution:**  
+Iterate through the list, check for even integers, and sum them.
+
+**Python3 Code:**
+```python
+def sum_even(listval: list) -> int:
+    total = 0
+    for item in listval:
+        if isinstance(item, int) and item % 2 == 0:
+            total += item
+    return total
+```
+
+---
+
+### 3. **Count Occurrences of a Number in a List**
+**Problem Description:**  
+Count how many times a specific number appears in a list with mixed data types.
+
+**Solution:**  
+Iterate through the list, check for the target number, and count matches.
+
+**Python3 Code:**
+```python
+def count_number(listval: list, target: int) -> int:
+    count = 0
+    for item in listval:
+        if isinstance(item, int) and item == target:
+            count += 1
+    return count
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We will iterate through the list, check if each item is an integer, and keep track of the maximum integer encountered. If no integers are found, we return `None` (though the problem likely assumes there's at least one integer).
+
+### Python3 code:
+```python
+from typing import List, Union
+
+def max_val(listval: List[Union[str, int]]) -> int:
+    max_int = None
+    for item in listval:
+        if isinstance(item, int):
+            if max_int is None or item > max_int:
+                max_int = item
+    return max_int
+```
+completed 18/50, Solved: True, number of success = 11/18, acc = 61.11
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def count_char_position(str1: str) -> int:
+    """
+	Write a function to count the number of characters in a string that occur at the same position in the string as in the English alphabet (case insensitive).
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept in this problem is **character position comparison**. We need to compare each character in the input string with the corresponding position in the English alphabet (case-insensitive). This involves:
+
+- Iterating over each character in the string.
+- Converting characters to lowercase (or uppercase) for case-insensitive comparison.
+- Checking if the character's position in the alphabet matches its index in the string.
+- Counting how many such characters exist.
+
+This problem is a simple application of **string traversal** and **alphabet index mapping**.
+
+---
+
+## Tutorial:
+
+To solve this problem, we need to understand the position of each letter in the English alphabet. For example:
+- 'a' is at position 0 (or 1, depending on how you count).
+- 'b' is at position 1 (or 2).
+- ...
+- 'z' is at position 25 (or 26).
+
+In Python, we can use the `ord()` function to get the ASCII value of a character. For example, `ord('a')` returns 97. To get the position in the alphabet (0-based), we can subtract 97 from the ASCII value.
+
+So, for a character `c`, its position in the alphabet is `ord(c.lower()) - ord('a')`.
+
+Now, we iterate through the string, and for each character at index `i`, we check if its position in the alphabet is equal to `i`. If it is, we increment our count.
+
+---
+
+## Example Problems:
+
+### Problem 1: **Count Vowels in a String**
+**Description**: Count the number of vowels ('a', 'e', 'i', 'o', 'u') in a given string.
+
+**Solution**:
+- Iterate through each character in the string.
+- Convert to lowercase.
+- Check if the character is in the set of vowels.
+- Count and return.
+
+**Python3 Code**:
+```python
+def count_vowels(s: str) -> int:
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    return sum(1 for c in s.lower() if c in vowels)
+```
+
+---
+
+### Problem 2: **Check if a String is a Palindrome**
+**Description**: Determine whether a given string is the same forwards and backwards.
+
+**Solution**:
+- Convert the string to lowercase.
+- Compare the string with its reverse.
+
+**Python3 Code**:
+```python
+def is_palindrome(s: str) -> bool:
+    return s.lower() == s[::-1]
+```
+
+---
+
+### Problem 3: **Check if a String is an Anagram**
+**Description**: Determine whether two strings are anagrams (contain the same characters in the same frequency).
+
+**Solution**:
+- Convert both strings to lowercase.
+- Sort both strings and compare.
+
+**Python3 Code**:
+```python
+def are_anagrams(s1: str, s2: str) -> bool:
+    return sorted(s1.lower()) == sorted(s2.lower())
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+- We iterate over each character in the input string.
+- For each character, we convert it to lowercase and calculate its position in the alphabet using `ord(c) - ord('a')`.
+- We compare this position with the index of the character in the string.
+- If they match, we increment the count.
+- Finally, we return the count.
+
+### Python3 Code:
+```python
+def count_char_position(str1: str) -> int:
+    count = 0
+    for i, c in enumerate(str1.lower()):
+        if ord(c) - ord('a') == i:
+            count += 1
+    return count
+```
+completed 19/50, Solved: True, number of success = 12/19, acc = 63.16
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def perfect_squares(a: int, b: int) -> List[int]:
+    """
+	Write a function to find perfect squares between two given numbers.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+An error occurred: 'gbk' codec can't encode character '\xb2' in position 628: illegal multibyte sequence
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import Any
+
+def check_none(test_tup: Any) -> bool:
+    """
+	Write a function to check if the given tuple has any none value or not.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept in this problem is **checking for the presence of a specific value (None)** in a collection (in this case, a tuple). This is a simple iteration and membership check. The algorithm involves:
+- Iterating over each element in the tuple.
+- Checking if any element is `None`.
+- Returning `True` if `None` is found, `False` otherwise.
+
+## Tutorial:
+In Python, tuples are immutable sequences of elements. To check if any element in a tuple is `None`, we can use a simple loop or a generator expression with the `any()` function. The `any()` function returns `True` if at least one element in the iterable is `True`. In this case, we can use it to check if any element in the tuple is `None`.
+
+For example, the expression `any(x is None for x in test_tup)` will return `True` if any element in `test_tup` is `None`.
+
+This approach is efficient and concise, and it's commonly used in competitive programming for quick checks.
+
+## Example Problems:
+
+### Problem 1: Check for Zero in a List
+**Description**: You are given a list of integers. Determine if the list contains a zero.
+
+**Solution**: Iterate through the list and check if any element is zero.
+
+```python
+def has_zero(lst):
+    return 0 in lst
+```
+
+### Problem 2: Check for Empty String in a List
+**Description**: You are given a list of strings. Determine if the list contains an empty string.
+
+**Solution**: Use the `any()` function to check for an empty string.
+
+```python
+def has_empty_string(lst):
+    return any(s == "" for s in lst)
+```
+
+### Problem 3: Check for Missing Value in a Dictionary
+**Description**: You are given a dictionary. Determine if any value in the dictionary is `None`.
+
+**Solution**: Iterate over the dictionary's values and check for `None`.
+
+```python
+def has_none_value(d):
+    return any(v is None for v in d.values())
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `check_none` takes a tuple `test_tup` as input. It uses the `any()` function with a generator expression that checks if any element in the tuple is `None`. If at least one element is `None`, the function returns `True`; otherwise, it returns `False`.
+
+### Python3 code:
+```python
+from typing import Any
+
+def check_none(test_tup: Any) -> bool:
+    """
+    Write a function to check if the given tuple has any None value or not.
+    """
+    return any(x is None for x in test_tup)
+```
+completed 21/50, Solved: True, number of success = 13/21, acc = 61.9
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Any
+
+def multiply_elements(test_tup: List[int]) -> List[Any]:
+    """
+	Write a function that takes as input a list of numbers (t_1,...,t_{N+1}) and returns a list of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept in this problem is **iterating through a list and performing operations on adjacent elements**. Specifically, for each index `i` from `0` to `N-1`, we compute the product of the element at index `i` and the element at index `i+1`.
+
+This is a **simple traversal** and **element-wise operation** problem, commonly used in competitive programming to test understanding of list operations and iteration.
+
+---
+
+## Tutorial:
+
+In this type of problem, the goal is to process a list of elements and produce a new list based on adjacent elements. This is often done using a **loop** that runs from the first element to the second-to-last element.
+
+### Steps:
+1. Iterate through the list from index `0` to `len(test_tup) - 2`.
+2. For each index `i`, compute `test_tup[i] * test_tup[i+1]`.
+3. Append the result to a new list.
+4. Return the new list.
+
+This is a **linear time** operation (O(N)), where N is the length of the input list.
+
+---
+
+## Example Problems:
+
+### Problem 1: Product of Adjacent Elements
+**Description:** Given a list of integers, return a list where each element is the product of adjacent elements in the input list.
+
+**Solution:** Traverse the list from the first to the second-to-last element, compute the product of `i` and `i+1`, and store the result in a new list.
+
+**Python Code:**
+```python
+def product_of_adjacent_elements(nums):
+    return [nums[i] * nums[i+1] for i in range(len(nums)-1)]
+```
+
+---
+
+### Problem 2: Sum of Adjacent Elements
+**Description:** Given a list of integers, return a list where each element is the sum of adjacent elements in the input list.
+
+**Solution:** Similar to the previous problem, but instead of multiplying, we add `nums[i]` and `nums[i+1]`.
+
+**Python Code:**
+```python
+def sum_of_adjacent_elements(nums):
+    return [nums[i] + nums[i+1] for i in range(len(nums)-1)]
+```
+
+---
+
+### Problem 3: Check if Adjacent Elements are Increasing
+**Description:** Given a list of integers, return a list of boolean values where each value is `True` if the current element is less than the next one, and `False` otherwise.
+
+**Solution:** Iterate through the list and compare `nums[i]` and `nums[i+1]`.
+
+**Python Code:**
+```python
+def is_increasing_adjacent(nums):
+    return [nums[i] < nums[i+1] for i in range(len(nums)-1)]
+```
+
+---
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `multiply_elements` takes a list of integers and returns a new list where each element is the product of adjacent elements. We loop from index `0` to `len(test_tup) - 2`, and for each index `i`, we compute `test_tup[i] * test_tup[i+1]`.
+
+### Python3 code:
+```python
+from typing import List, Any
+
+def multiply_elements(test_tup: List[int]) -> List[Any]:
+    """
+    Write a function that takes as input a list of numbers (t_1,...,t_{N+1}) and returns a list of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.
+    """
+    return [test_tup[i] * test_tup[i+1] for i in range(len(test_tup) - 1)]
+```
+completed 22/50, Solved: True, number of success = 14/22, acc = 63.64
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List
+
+def left_insertion(a: List[int], x: int) -> int:
+    """
+	Write a function to locate the left insertion point for a specified value in sorted order. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-24.php
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves finding the **left insertion point** for a given value `x` in a **sorted list** `a`. This is a classic use case for **binary search**. The core concept is to find the **first position** where `x` can be inserted such that the list remains sorted, and if `x` is already present, the insertion point should be **before** any existing entries of `x`.
+
+This is similar to the `bisect_left` function in Python's `bisect` module.
+
+## Tutorial:
+Binary search is an efficient algorithm to find the position of an element in a sorted array. The algorithm works by repeatedly dividing the search interval in half. Here's how it works for finding the left insertion point:
+
+1. Initialize `low = 0` and `high = len(a)`.
+2. While `low < high`:
+   - Compute `mid = (low + high) // 2`.
+   - If `a[mid] < x`, then `x` should be inserted after `mid`, so set `low = mid + 1`.
+   - Else (i.e., `a[mid] >= x`), `x` should be inserted before or at `mid`, so set `high = mid`.
+3. When the loop ends, `low` is the left insertion point.
+
+This approach ensures that we find the first index where `x` can be inserted without violating the sorted order.
+
+## Example Problems:
+
+### 1. LeetCode - Search Insert Position
+**Problem:** Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be inserted in order.
+
+**Solution:** Use binary search to find the left insertion point.
+
+**Python Code:**
+```python
+def search_insert(nums: List[int], target: int) -> int:
+    low, high = 0, len(nums)
+    while low < high:
+        mid = (low + high) // 2
+        if nums[mid] < target:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+```
+
+---
+
+### 2. Codeforces - Find the Position
+**Problem:** Given a sorted array, find the index where a given value would be inserted to maintain the sorted order.
+
+**Solution:** Same as the `bisect_left` logic.
+
+**Python Code:**
+```python
+def find_position(a, x):
+    low, high = 0, len(a)
+    while low < high:
+        mid = (low + high) // 2
+        if a[mid] < x:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+```
+
+---
+
+### 3. HackerRank - Insertion Position
+**Problem:** Given a sorted list, find the index where a new element should be inserted to keep the list sorted.
+
+**Solution:** Use binary search to find the left insertion point.
+
+**Python Code:**
+```python
+def insertion_position(a, x):
+    low, high = 0, len(a)
+    while low < high:
+        mid = (low + high) // 2
+        if a[mid] < x:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+We implement the `left_insertion` function using binary search. The function takes a sorted list `a` and a value `x` and returns the index where `x` should be inserted to maintain the sorted order. If `x` is already in the list, it returns the index of the first occurrence of `x`.
+
+### Python3 code:
+```python
+from typing import List
+
+def left_insertion(a: List[int], x: int) -> int:
+    """
+    Write a function to locate the left insertion point for a specified value in sorted order.
+    """
+    low, high = 0, len(a)
+    while low < high:
+        mid = (low + high) // 2
+        if a[mid] < x:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+```
+completed 23/50, Solved: True, number of success = 15/23, acc = 65.22
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+from typing import List, Tuple
+
+def max_difference(test_list: List[Tuple[int, int]]) -> int:
+    """
+	Write a function to find the maximum difference between available pairs in the given tuple list.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The problem involves finding the maximum difference between elements in a list of tuples. The core concepts include:
+- Iteration through the list.
+- Comparing elements to find the maximum difference.
+- Understanding that the maximum difference is between the maximum and minimum values in the list.
+
+This problem is similar to the "maximum difference in array" problem, where the goal is to find the maximum difference between any two elements such that the smaller element comes before the larger one.
+
+## Tutorial:
+To solve this problem, the approach is straightforward:
+1. Traverse the list of tuples.
+2. Keep track of the minimum value seen so far.
+3. For each element, compute the difference between the current element and the minimum value.
+4. Update the maximum difference if the current difference is greater than the previous maximum.
+
+This is a linear time solution, O(n), where n is the length of the list.
+
+## Example Problems:
+
+### Problem 1: "Best Time to Buy and Sell Stock"
+**Description**: You are given an array of prices where `prices[i]` is the price of a stock on day `i`. You want to maximize the profit by buying on one day and selling on another day after the buying day.
+
+**Solution**: Iterate through the list, keep track of the minimum price seen so far. For each day, compute the profit and update the maximum profit.
+
+```python
+def maxProfit(prices: List[int]) -> int:
+    min_price = float('inf')
+    max_profit = 0
+    for price in prices:
+        if price < min_price:
+            min_price = price
+        else:
+            max_profit = max(max_profit, price - min_price)
+    return max_profit
+```
+
+### Problem 2: "Maximum Difference Between Two Elements"
+**Description**: Given an array of integers, find the maximum difference between two elements such that the smaller element comes before the larger one.
+
+**Solution**: Traverse the array, keep track of the minimum value so far. For each element, compute the difference and update the maximum difference.
+
+```python
+def maxDifference(arr: List[int]) -> int:
+    if not arr or len(arr) < 2:
+        return 0
+    min_val = arr[0]
+    max_diff = 0
+    for i in range(1, len(arr)):
+        max_diff = max(max_diff, arr[i] - min_val)
+        min_val = min(min_val, arr[i])
+    return max_diff
+```
+
+### Problem 3: "Maximum Difference in a List of Tuples"
+**Description**: Given a list of tuples, find the maximum difference between the second elements of the tuples, ensuring that the first element of the tuple is in increasing order.
+
+**Solution**: Sort the list by the first element of the tuples, then iterate and compute the maximum difference between the second elements.
+
+```python
+def max_diff_in_tuples(tuples: List[Tuple[int, int]]) -> int:
+    if not tuples or len(tuples) < 2:
+        return 0
+    tuples.sort()
+    min_val = tuples[0][1]
+    max_diff = 0
+    for i in range(1, len(tuples)):
+        max_diff = max(max_diff, tuples[i][1] - min_val)
+        min_val = min(min_val, tuples[i][1])
+    return max_diff
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the solution:
+The function `max_difference` takes a list of tuples as input. For each tuple, we are interested in the second element (since the first element is likely to be a key or index). We iterate through the list, track the minimum value seen so far, and for each element, calculate the difference with the minimum. The maximum of these differences is the result.
+
+### Python3 code:
+```python
+from typing import List, Tuple
+
+def max_difference(test_list: List[Tuple[int, int]]) -> int:
+    if not test_list or len(test_list) < 2:
+        return 0
+    
+    min_val = test_list[0][1]
+    max_diff = 0
+    
+    for i in range(1, len(test_list)):
+        current_val = test_list[i][1]
+        max_diff = max(max_diff, current_val - min_val)
+        min_val = min(min_val, current_val)
+    
+    return max_diff
+```
+completed 24/50, Solved: False, number of success = 15/24, acc = 62.5
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+def dog_age(h_age: int) -> int:
+    """
+	Write a function to calculate a dog's age in dog's years.
+	"""
+
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 142, in <module>
+    strategy.run()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 115, in run
+    response, prompt_tokens, completion_tokens = self.run_single_pass(
+                                                 ~~~~~~~~~~~~~~~~~~~~^
+        item)
+        ^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Analogical.py", line 65, in run_single_pass
+    response, prompt_tokens, completion_tokens = self.gpt_chat(
+                                                 ~~~~~~~~~~~~~^
+        prompt=input
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\Qwen.py", line 10, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openai\_base_client.py", line 982, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\chenzaiyi\AppData\Local\Python\pythoncore-3.14-64\Lib\ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

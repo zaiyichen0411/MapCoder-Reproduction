@@ -1,105 +1,106 @@
 from utils.jsonl import read_jsonl, write_jsonl
-from evaluations.func_evaluate import evaluate_io_et
+from utils.parse import parse_response
+import argparse
 import os
 
 
-def generate_ep_dataset(
-        NORMAL_RESULTS_PATH,
-        EP_SAMPLES_PATH,
-):
+def _ensure_typing_header(code: str) -> str:
+    code = code or ""
+    if "from typing import *" not in code:
+        return "from typing import *\n" + code
+    return code
+
+
+def generate_ep_dataset_humaneval(normal_results_path: str, ep_samples_path: str):
     samples = []
-    results = read_jsonl(NORMAL_RESULTS_PATH)
+    results = read_jsonl(normal_results_path)
     for result in results:
-        completion = result["source_codes"][-1]
+        completion = ""
+        try:
+            if isinstance(result.get("source_codes"), list) and result["source_codes"]:
+                completion = result["source_codes"][-1]
+        except Exception:
+            completion = ""
 
-        if "from typing import *" not in completion:
-            completion = "from typing import *\n" + completion
+        if not completion:
+            # Fallback to parsing the latest response
+            responses = result.get("responses", [])
+            if isinstance(responses, list) and responses:
+                completion = parse_response(responses[-1])
 
-        samples.append(
-            {
-                "task_id": result["task_id"],
-                "solution": completion,
-                # "completion": result["solution"]
-            }
-        )
+        completion = _ensure_typing_header(completion)
 
-    write_jsonl(EP_SAMPLES_PATH, samples)
+        samples.append({
+            "task_id": result.get("task_id"),
+            "solution": completion,
+        })
+
+    write_jsonl(ep_samples_path, samples)
 
 
-generate_ep_dataset(
-    "./final-results/GPT4/HumanEval/GPT4-Turbo-Analogical-Human-Python3-0-1.jsonl",
-    "./final-results/GPT4/HumanEvalPlus/GPT4-Turbo-Analogical-Human-Python3-0-1.jsonl"
-)
-
-mbpp_not_included_set = set([
+MBPP_EXCLUDE = set([
     "Mbpp/304", "Mbpp/393", "Mbpp/399", "Mbpp/401", "Mbpp/408",
     "Mbpp/411", "Mbpp/417", "Mbpp/434", "Mbpp/443", "Mbpp/444",
     "Mbpp/452", "Mbpp/464", "Mbpp/584", "Mbpp/617", "Mbpp/625",
     "Mbpp/627", "Mbpp/738", "Mbpp/747", "Mbpp/756", "Mbpp/776",
-    "Mbpp/802", "Mbpp/228", "Mbpp/291"
+    "Mbpp/802", "Mbpp/228", "Mbpp/291",
 ])
 
-def generate_ep_dataset_mbpp(
-        NORMAL_RESULTS_PATH,
-        EP_SAMPLES_PATH,
-):
+
+def generate_ep_dataset_mbpp(normal_results_path: str, ep_samples_path: str):
     samples = []
-    results = read_jsonl(NORMAL_RESULTS_PATH)
+    results = read_jsonl(normal_results_path)
     for result in results:
-        completion = result["source_codes"][-1]
-        task_id = "Mbpp/" + result["name"].split("_")[1]
-        if task_id in mbpp_not_included_set:
+        completion = ""
+        try:
+            if isinstance(result.get("source_codes"), list) and result["source_codes"]:
+                completion = result["source_codes"][-1]
+        except Exception:
+            completion = ""
+
+        if not completion:
+            responses = result.get("responses", [])
+            if isinstance(responses, list) and responses:
+                completion = parse_response(responses[-1])
+
+        # Derive task_id from name (e.g., Mbpp/304)
+        name = result.get("name", "")
+        try:
+            task_id = "Mbpp/" + name.split("_")[1]
+        except Exception:
+            # Fallback: require explicit task_id if name is missing
+            task_id = result.get("task_id")
+
+        if task_id in MBPP_EXCLUDE:
             continue
 
-        if "from typing import *" not in completion:
-            completion = "from typing import *\n" + completion
+        completion = _ensure_typing_header(completion)
+        samples.append({
+            "task_id": task_id,
+            "solution": completion,
+        })
 
-        samples.append(
-            {
-                "task_id": task_id,
-                "solution": completion
-            }
-        )
-
-    write_jsonl(EP_SAMPLES_PATH, samples)
+    write_jsonl(ep_samples_path, samples)
 
 
-# generate_ep_dataset_mbpp(
-#     "./final-results/GPT4/MBPP/GPT4-Turbo-MapCoder-3-5-MBPP-Python3-0-1.jsonl",
-#     "./final-results/GPT4/MBPPPlus/GPT4-Turbo-MapCoder-3-5-MBPP-Python3-0-1.jsonl"
-# )
+def main():
+    parser = argparse.ArgumentParser(description="Generate EvalPlus samples from normal result JSONL.")
+    parser.add_argument("--dataset", choices=["human", "mbpp"], required=True, help="Target dataset type")
+    parser.add_argument("--in", dest="input_path", required=True, help="Normal results JSONL path")
+    parser.add_argument("--out", dest="output_path", required=True, help="EvalPlus samples JSONL output path")
 
-# generate_ep_dataset_mbpp(
-#     "./final-results/ChatGPT/MBPP/ChatGPT-MapCoder-3-5-MBPP-Python3-0-1.jsonl",
-#     "./final-results/ChatGPT/MBPPPlus/ChatGPT-MapCoder-3-5-MBPP-Python3-0-1.jsonl"
-# )
+    args = parser.parse_args()
 
-# results_dir = "./final-results"
-# for model in os.listdir(results_dir):
-#     if model == "Gemini":
-#         continue
-#     human_dir = os.path.join(results_dir, model, "HumanEval")
-#     human_et_dir = os.path.join(results_dir, model, "HumanEvalET")
-#     mbpp_dir = os.path.join(results_dir, model, "MBPP")
-#     mbpp_et_dir = os.path.join(results_dir, model, "MBPPET")
+    # Ensure output directory exists
+    out_dir = os.path.dirname(os.path.abspath(args.output_path))
+    if out_dir and not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
 
-#     if os.path.exists(human_dir):
-#         for file in os.listdir(human_dir):
-#             if file.endswith(".jsonl"):
-#                 if os.path.exists(os.path.join(human_et_dir, file)):
-#                     continue
-#                 print(file)
-#                 generate_et_dataset(
-#                     os.path.join(human_dir, file),
-#                     os.path.join(human_et_dir, file)
-#                 )
-#     if os.path.exists(mbpp_dir):
-#         for file in os.listdir(mbpp_dir):
-#             if file.endswith(".jsonl"):
-#                 if os.path.exists(os.path.join(mbpp_et_dir, file)):
-#                     continue
-#                 print(file)
-#                 generate_et_dataset_mbpp(
-#                     os.path.join(mbpp_dir, file),
-#                     os.path.join(mbpp_et_dir, file)
-#                 )
+    if args.dataset == "human":
+        generate_ep_dataset_humaneval(args.input_path, args.output_path)
+    else:
+        generate_ep_dataset_mbpp(args.input_path, args.output_path)
+
+
+if __name__ == "__main__":
+    main()

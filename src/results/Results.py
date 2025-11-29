@@ -1,6 +1,6 @@
 import os
 
-from utils.jsonl import read_jsonl, write_jsonl
+from utils.jsonl import read_jsonl, write_jsonl, append_jsonl
 
 """
 In this file, we define the Results class, 
@@ -22,11 +22,16 @@ class Results(object):
     ):
         self.result_path = result_path
         self.discard_previous_run = discard_previous_run
+        
+        result_dir = os.path.dirname(self.result_path)
+        if not os.path.exists(result_dir):
+            os.makedirs(result_dir)
+
         self.load_results()
 
     def add_result(self, result: dict):
         self.results.append(result)
-        self.save_results()
+        append_jsonl(self.result_path, result)
 
     def save_results(self):
         write_jsonl(self.result_path, self.results)
@@ -35,6 +40,8 @@ class Results(object):
         if os.path.exists(self.result_path):
             if self.discard_previous_run:
                 os.remove(self.result_path)
+                # Initialize empty results after discarding previous run
+                self.results = []
             else:
                 self.results = read_jsonl(self.result_path)
         else:

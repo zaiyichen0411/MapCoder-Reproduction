@@ -1,0 +1,1497 @@
+#########################
+Running start QwenCoder480b-MapCoder-APPS-Python3-0.0-20, Time: 2025-11-18 21:46:27.499083
+##########################
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6) - only for 6 dice
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs - only for 6 dice
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    # Calculate maximum score
+    score = 0
+    
+    # Handle N of a kind (6, 5, 4, 3)
+    for die, count in counts.items():
+        while count >= 3:
+            # Calculate three of a kind
+            if die == 1:
+                three_score = 1000
+            else:
+                three_score = die * 100
+            
+            # See how many sets of three we can make
+            if count >= 6:
+                score += 4 * three_score  # Six of a kind
+                count -= 6
+            elif count >= 5:
+                score += 3 * three_score  # Five of a kind
+                count -= 5
+            elif count >= 4:
+                score += 2 * three_score  # Four of a kind
+                count -= 4
+            else:  # count == 3
+                score += three_score      # Three of a kind
+                count -= 3
+        
+        # Update the count
+        counts[die] = count
+    
+    # Handle remaining 1s and 5s
+    score += counts.get(1, 0) * 100
+    score += counts.get(5, 0) * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 18604
+Total Completion Tokens: 5433
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    if not dice:
+        return "Zonk"
+    
+    counts = Counter(dice)
+    score = 0
+    
+    # Check for straight (1,2,3,4,5,6) - only for exactly 6 dice
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs - only for exactly 6 dice
+    if len(dice) == 6 and list(counts.values()).count(2) == 3:
+        return 750
+    
+    # Make a copy to work with
+    temp_counts = counts.copy()
+    
+    # Handle six of a kind
+    for die in range(1, 7):
+        if temp_counts[die] >= 6:
+            if die == 1:
+                score += 4 * 1000
+            else:
+                score += 4 * die * 100
+            temp_counts[die] -= 6
+    
+    # Handle five of a kind
+    for die in range(1, 7):
+        if temp_counts[die] >= 5:
+            if die == 1:
+                score += 3 * 1000
+            else:
+                score += 3 * die * 100
+            temp_counts[die] -= 5
+    
+    # Handle four of a kind
+    for die in range(1, 7):
+        if temp_counts[die] >= 4:
+            if die == 1:
+                score += 2 * 1000
+            else:
+                score += 2 * die * 100
+            temp_counts[die] -= 4
+    
+    # Handle three of a kind
+    for die in range(1, 7):
+        if temp_counts[die] >= 3:
+            if die == 1:
+                score += 1000
+            else:
+                score += die * 100
+            temp_counts[die] -= 3
+    
+    # Handle remaining singles
+    score += temp_counts[1] * 100
+    score += temp_counts[5] * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 18582
+Total Completion Tokens: 5384
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6)
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and list(sorted(counts.values())) == [2, 2, 2]:
+        return 750
+    
+    score = 0
+    
+    # Handle six of a kind
+    for num in range(1, 7):
+        if counts[num] >= 6:
+            if num == 1:
+                score += 4 * 1000
+            else:
+                score += 4 * num * 100
+            counts[num] -= 6
+    
+    # Handle five of a kind
+    for num in range(1, 7):
+        if counts[num] >= 5:
+            if num == 1:
+                score += 3 * 1000
+            else:
+                score += 3 * num * 100
+            counts[num] -= 5
+    
+    # Handle four of a kind
+    for num in range(1, 7):
+        if counts[num] >= 4:
+            if num == 1:
+                score += 2 * 1000
+            else:
+                score += 2 * num * 100
+            counts[num] -= 4
+    
+    # Handle three of a kind
+    for num in range(1, 7):
+        if counts[num] >= 3:
+            if num == 1:
+                score += 1000
+            else:
+                score += num * 100
+            counts[num] -= 3
+    
+    # Handle remaining 1s and 5s
+    score += counts[1] * 100
+    score += counts[5] * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19082
+Total Completion Tokens: 6076
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    if not dice:
+        return "Zonk"
+    
+    counts = Counter(dice)
+    score = 0
+    
+    # Check for straight (only if we have exactly 6 dice)
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs (only if we have exactly 6 dice)
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    # Make a copy to avoid modifying during iteration
+    temp_counts = counts.copy()
+    
+    # Check for N-of-a-kind from highest to lowest
+    # Process six of a kind first
+    for num in range(1, 7):
+        if temp_counts[num] >= 6:
+            base_points = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_points * 4  # 4 times the three-of-a-kind score
+            temp_counts[num] -= 6
+    
+    # Process five of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 5:
+            base_points = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_points * 3  # 3 times the three-of-a-kind score
+            temp_counts[num] -= 5
+    
+    # Process four of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 4:
+            base_points = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_points * 2  # 2 times the three-of-a-kind score
+            temp_counts[num] -= 4
+    
+    # Process three of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 3:
+            base_points = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_points
+            temp_counts[num] -= 3
+    
+    # Add points for remaining 1s and 5s
+    score += temp_counts[1] * 100
+    score += temp_counts[5] * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19089
+Total Completion Tokens: 6126
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight
+    if len(dice) == 6 and set(dice) == {1, 2, 3, 4, 5, 6}:
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    score = 0
+    temp_counts = counts.copy()
+    
+    # Handle six of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 6:
+            if num == 1:
+                score += 4 * 1000
+            else:
+                score += 4 * num * 100
+            temp_counts[num] -= 6
+    
+    # Handle five of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 5:
+            if num == 1:
+                score += 3 * 1000
+            else:
+                score += 3 * num * 100
+            temp_counts[num] -= 5
+    
+    # Handle four of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 4:
+            if num == 1:
+                score += 2 * 1000
+            else:
+                score += 2 * num * 100
+            temp_counts[num] -= 4
+    
+    # Handle three of a kind
+    for num in range(1, 7):
+        if temp_counts[num] >= 3:
+            if num == 1:
+                score += 1000
+            else:
+                score += num * 100
+            temp_counts[num] -= 3
+    
+    # Handle remaining 1s and 5s
+    score += temp_counts[1] * 100
+    score += temp_counts[5] * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and call function
+dice = eval(input())
+result = get_score(dice)
+print(result)
+
+
+
+Total Prompt Tokens: 18388
+Total Completion Tokens: 5980
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6)
+    if sorted(dice) == [1,2,3,4,5,6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    # Calculate score
+    score = 0
+    temp_counts = counts.copy()
+    
+    # Handle N of a kind in proper order (6, 5, 4, 3)
+    # Check for 6 of a kind
+    for value in range(1, 7):
+        if temp_counts[value] >= 6:
+            if value == 1:
+                score += 4 * 1000
+            else:
+                score += 4 * value * 100
+            temp_counts[value] -= 6
+    
+    # Check for 5 of a kind
+    for value in range(1, 7):
+        if temp_counts[value] >= 5:
+            if value == 1:
+                score += 3 * 1000
+            else:
+                score += 3 * value * 100
+            temp_counts[value] -= 5
+    
+    # Check for 4 of a kind
+    for value in range(1, 7):
+        if temp_counts[value] >= 4:
+            if value == 1:
+                score += 2 * 1000
+            else:
+                score += 2 * value * 100
+            temp_counts[value] -= 4
+    
+    # Check for 3 of a kind
+    for value in range(1, 7):
+        if temp_counts[value] >= 3:
+            if value == 1:
+                score += 1000
+            else:
+                score += value * 100
+            temp_counts[value] -= 3
+    
+    # Add points for remaining 1s and 5s
+    score += temp_counts.get(1, 0) * 100
+    score += temp_counts.get(5, 0) * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and call function
+dice = eval(input())
+result = get_score(dice)
+print(result)
+
+
+
+Total Prompt Tokens: 18819
+Total Completion Tokens: 5198
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    if not dice:
+        return 0
+    
+    counts = Counter(dice)
+    
+    # Check for straight first (highest priority)
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    max_score = 0
+    
+    # Try all possible combinations and find the maximum score
+    # We need to try different ways of combining the dice
+    
+    # Generate all possible scoring combinations
+    def find_all_combinations(counts):
+        combinations = []
+        
+        # Check for six of a kind
+        for die in range(1, 7):
+            if counts.get(die, 0) >= 6:
+                new_counts = counts.copy()
+                new_counts[die] -= 6
+                score = 4 * (1000 if die == 1 else die * 100)
+                combinations.append((new_counts, score))
+        
+        # Check for five of a kind
+        for die in range(1, 7):
+            if counts.get(die, 0) >= 5:
+                new_counts = counts.copy()
+                new_counts[die] -= 5
+                score = 3 * (1000 if die == 1 else die * 100)
+                combinations.append((new_counts, score))
+        
+        # Check for four of a kind
+        for die in range(1, 7):
+            if counts.get(die, 0) >= 4:
+                new_counts = counts.copy()
+                new_counts[die] -= 4
+                score = 2 * (1000 if die == 1 else die * 100)
+                combinations.append((new_counts, score))
+        
+        # Check for three of a kind
+        for die in range(1, 7):
+            if counts.get(die, 0) >= 3:
+                new_counts = counts.copy()
+                new_counts[die] -= 3
+                score = 1000 if die == 1 else die * 100
+                combinations.append((new_counts, score))
+        
+        # Check for single 1s
+        if counts.get(1, 0) >= 1:
+            new_counts = counts.copy()
+            new_counts[1] -= 1
+            score = 100
+            combinations.append((new_counts, score))
+        
+        # Check for single 5s
+        if counts.get(5, 0) >= 1:
+            new_counts = counts.copy()
+            new_counts[5] -= 1
+            score = 50
+            combinations.append((new_counts, score))
+            
+        return combinations
+    
+    def max_score_recursive(remaining_counts):
+        if not any(remaining_counts.values()):
+            return 0
+            
+        # Convert back to list to check for special patterns
+        dice_list = []
+        for die, count in remaining_counts.items():
+            dice_list.extend([die] * count)
+        
+        # Check for straight
+        if len(dice_list) == 6 and sorted(dice_list) == [1, 2, 3, 4, 5, 6]:
+            return 1000
+        
+        # Check for three pairs
+        if len(dice_list) == 6 and len(remaining_counts) == 3 and all(count == 2 for count in remaining_counts.values()):
+            return 750
+        
+        combinations = find_all_combinations(remaining_counts)
+        
+        if not combinations:
+            return 0
+        
+        max_score = 0
+        for new_counts, score in combinations:
+            max_score = max(max_score, score + max_score_recursive(new_counts))
+        
+        return max_score
+    
+    score = max_score_recursive(counts)
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19361
+Total Completion Tokens: 6154
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6)
+    if len(dice) == 6 and set(dice) == {1, 2, 3, 4, 5, 6}:
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    score = 0
+    
+    # Handle six of a kind
+    for die_value, count in counts.items():
+        if count >= 6:
+            if die_value == 1:
+                score += 4 * 1000
+            else:
+                score += 4 * die_value * 100
+            counts[die_value] -= 6
+    
+    # Handle five of a kind
+    for die_value, count in counts.items():
+        if counts[die_value] >= 5:
+            if die_value == 1:
+                score += 3 * 1000
+            else:
+                score += 3 * die_value * 100
+            counts[die_value] -= 5
+    
+    # Handle four of a kind
+    for die_value, count in counts.items():
+        if counts[die_value] >= 4:
+            if die_value == 1:
+                score += 2 * 1000
+            else:
+                score += 2 * die_value * 100
+            counts[die_value] -= 4
+    
+    # Handle three of a kind
+    for die_value, count in counts.items():
+        if counts[die_value] >= 3:
+            if die_value == 1:
+                score += 1000
+            else:
+                score += die_value * 100
+            counts[die_value] -= 3
+    
+    # Handle remaining 1s and 5s
+    score += counts.get(1, 0) * 100
+    score += counts.get(5, 0) * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19506
+Total Completion Tokens: 6222
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def get_score(dice):
+    from collections import Counter
+    
+    counts = Counter(dice)
+    score = 0
+    
+    # Straight check (exactly 6 dice, all different)
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Three pairs check (exactly 6 dice, three pairs)
+    if len(dice) == 6 and sorted(counts.values()) == [2, 2, 2]:
+        return 750
+    
+    # Work with a copy of counts
+    temp_counts = counts.copy()
+    
+    # Handle N of a kind (6, 5, 4, 3) - prioritize higher multiples
+    for n in range(6, 2, -1):  # 6 down to 3
+        for num in range(1, 7):
+            if temp_counts[num] >= n:
+                base_score = 1000 if num == 1 else num * 100
+                if n == 6:
+                    score += base_score * 4
+                elif n == 5:
+                    score += base_score * 3
+                elif n == 4:
+                    score += base_score * 2
+                elif n == 3:
+                    score += base_score
+                temp_counts[num] -= n
+    
+    # Handle remaining individual dice
+    score += temp_counts.get(1, 0) * 100
+    score += temp_counts.get(5, 0) * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 18328
+Total Completion Tokens: 4772
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4724
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def drop_cap(s):
+    words = s.split(' ')
+    result = []
+    for word in words:
+        if len(word) > 2:
+            result.append(word.capitalize())
+        else:
+            result.append(word)
+    return ' '.join(result)
+
+s = input()
+print(drop_cap(s))
+
+
+
+Total Prompt Tokens: 6338
+Total Completion Tokens: 2502
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4561
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def solve(st):
+    n = len(st)
+    for i in range(n // 2):
+        x, y = st[i], st[n - 1 - i]
+        diff = ord(x) - ord(y)
+        if diff not in [-2, 0, 2]:
+            return False
+    return True
+
+st = input().strip()
+print(solve(st))
+
+
+
+Total Prompt Tokens: 11381
+Total Completion Tokens: 3107
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4468
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def expanded_form(num):
+    if num == 0:
+        return ""
+    
+    num_str = str(num)
+    length = len(num_str)
+    result = []
+    
+    for i, digit in enumerate(num_str):
+        if digit != '0':
+            place_value = 10 ** (length - i - 1)
+            if place_value == 1:
+                result.append(digit)
+            else:
+                result.append(f"{digit}*{place_value}")
+    
+    return "+".join(result)
+
+# Read input and print output
+num = int(input())
+print(expanded_form(num))
+
+
+
+Total Prompt Tokens: 7732
+Total Completion Tokens: 2719
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3613
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 149, in <module>
+    strategy.run()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 115, in run
+    response, prompt_tokens, completion_tokens = self.run_single_pass(
+                                                 ~~~~~~~~~~~~~~~~~~~~^
+        item)
+        ^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 619, in run_single_pass
+    improvement_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=improvement_prompt)
+                                                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\Qwen.py", line 33, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 982, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

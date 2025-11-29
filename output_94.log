@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\_core\__init__.py", line 22, in <module>
+    from . import multiarray
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\_core\multiarray.py", line 11, in <module>
+    from . import _multiarray_umath, overrides
+ImportError: DLL load failed while importing _multiarray_umath: 页面文件太小，无法完成操作。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\__init__.py", line 125, in <module>
+    from numpy.__config__ import show_config
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+    ...<3 lines>...
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\_core\__init__.py", line 48, in <module>
+    raise ImportError(msg) from exc
+ImportError: 
+
+IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
+
+Importing the numpy C-extensions failed. This error can happen for
+many reasons, often due to issues with your setup or how NumPy was
+installed.
+
+We have compiled some common reasons and troubleshooting tips at:
+
+    https://numpy.org/devdocs/user/troubleshooting-importerror.html
+
+Please note and check the following:
+
+  * The Python version is: Python3.13 from "C:\Users\chenzaiyi\miniconda3\python.exe"
+  * The NumPy version is: "2.3.4"
+
+and make sure that they are the versions you expect.
+Please carefully study the documentation linked above for further help.
+
+Original error was: DLL load failed while importing _multiarray_umath: 页面文件太小，无法完成操作。
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 10, in <module>
+    from promptings.PromptingFactory import PromptingFactory
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\PromptingFactory.py", line 1, in <module>
+    from promptings.CoT import CoTStrategy
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\CoT.py", line 12, in <module>
+    from datasets.APPSDataset import APPSDataset
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\datasets\APPSDataset.py", line 2, in <module>
+    from evaluations.evalute import contest_evaluate, contest_evaluate_public_tests
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\evaluations\evalute.py", line 3, in <module>
+    import numpy as np
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\__init__.py", line 130, in <module>
+    raise ImportError(msg) from e
+ImportError: Error importing numpy: you should not try to import numpy from
+        its source directory; please exit the numpy source tree, and relaunch
+        your python interpreter from there.

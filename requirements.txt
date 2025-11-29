@@ -3,13 +3,13 @@ openai
 numpy
 pandas
 python-dotenv
-pyyml
+pyyaml
 tenacity
 tiktoken
 tqdm
-gensim
 jsonlines
 astunparse
 pyarrow
 google-generativeai
 accelerate
+matplotlib

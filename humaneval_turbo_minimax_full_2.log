@@ -1,0 +1,1751 @@
+#########################
+Running start QwenCoderTurbo-MapCoder-HumanEval-Python3-0.0-10, Time: 2025-11-25 17:40:29.380450
+##########################
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/28
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef concatenate(strings: List[str]) -> str:\n    """ Concatenate list of strings into a single string\n    >>> concatenate([])\n    \'\'\n    >>> concatenate([\'a\', \'b\', \'c\'])\n    \'abc\'\n    """\n\n\nConstraints:\n必须实现名为 \'concatenate\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    """Concatenate list of strings into a single string."""
+    return ''.join(strings)
+Initial Extracted Code (Turbo): def concatenate(strings: List[str]) -> str:
+    """Concatenate list of strings into a single string."""
+    return ''.join(strings)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def concatenate(strings: List[str]) -> str:
+    """Concatenate list of strings into a single string."""
+    return ''.join(strings)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 1/28, Solved: True, number of success = 1/1, acc = 100.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/29
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\nfrom typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    """ Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], \'a\')\n    []\n    >>> filter_by_prefix([\'abc\', \'bcd\', \'cde\', \'array\'], \'a\')\n    [\'abc\', \'array\']\n    """\n\n\nConstraints:\n必须实现名为 \'filter_by_prefix\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+from typing import List
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """Filter an input list of strings only for ones that start with a given prefix.
+
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """
+    return [s for s in strings if s.startswith(prefix)]
+Initial Extracted Code (Turbo): def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """Filter an input list of strings only for ones that start with a given prefix.
+
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """
+    return [s for s in strings if s.startswith(prefix)]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """Filter an input list of strings only for ones that start with a given prefix.
+
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """
+    return [s for s in strings if s.startswith(prefix)]
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 2/28, Solved: True, number of success = 2/2, acc = 100.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/30
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef get_positive(l: list):\n    """Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    """\n\n\nConstraints:\n必须实现名为 \'get_positive\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def get_positive(l: list):
+    """Return only positive numbers in the list."""
+    return [x for x in l if x > 0]
+Initial Extracted Code (Turbo): def get_positive(l: list):
+    """Return only positive numbers in the list."""
+    return [x for x in l if x > 0]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def get_positive(l: list):
+    """Return only positive numbers in the list."""
+    return [x for x in l if x > 0]
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 3/28, Solved: True, number of success = 3/3, acc = 100.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/31
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef is_prime(n):\n    """Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'is_prime\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def is_prime(n):
+    """Return True if n is a prime number, otherwise False."""
+    if not isinstance(n, int):
+        return False
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+Initial Extracted Code (Turbo): def is_prime(n):
+    """Return True if n is a prime number, otherwise False."""
+    if not isinstance(n, int):
+        return False
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def is_prime(n):
+    """Return True if n is a prime number, otherwise False."""
+    if not isinstance(n, int):
+        return False
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 4/28, Solved: True, number of success = 4/4, acc = 100.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def find_zero(xs):
+    """
+    Return a real root of the polynomial whose coefficients are given in xs.
+    The list xs contains the coefficients in ascending order of degree:
+    xs[0] + xs[1] * x + xs[2] * x^2 + ...
+
+    The function is guaranteed to be called only with a list that has an odd
+    degree (i.e., len(xs) is even) and a non鈥憐ero leading coefficient, which
+    ensures at least one real root.
+    """
+    # Linear case (degree 1)
+    if len(xs) == 2:
+        a1 = xs[1]
+        if a1 == 0:
+            # Constant polynomial: either zero everywhere or no solution
+            if xs[0] == 0:
+                return 0.0
+            raise ValueError("Constant non鈥憐ero polynomial has no root.")
+        return -xs[0] / a1
+
+    # Polynomial evaluation using Horner's method for numerical stability
+    def poly(x):
+        result = 0.0
+        for coeff in reversed(xs):
+            result = result * x + coeff
+        return result
+
+    # Initial interval [-1, 1]
+    left, right = -1.0, 1.0
+    f_left, f_right = poly(left), poly(right)
+
+    if f_left == 0.0:
+        return left
+    if f_right == 0.0:
+        return right
+
+    # Expand the interval until a sign change (and thus a root) is guaranteed.
+    max_expand = 1000
+    expand_iter = 0
+    while f_left * f_right > 0:
+        left *= 2.0
+        right *= 2.0
+        f_left = poly(left)
+        f_right = poly(right)
+        if f_left == 0.0:
+            return left
+        if f_right == 0.0:
+            return right
+        expand_iter += 1
+        if expand_iter > max_expand:
+            # Fallback to numpy.roots if available (helps with pathological cases)
+            try:
+                import numpy as np
+                roots = np.roots(xs)
+                for r in roots:
+                    if abs(r.imag) < 1e-12:
+                        return float(r.real)
+            except Exception:
+                pass
+            raise RuntimeError("Failed to locate a bracketing interval.")
+
+    # Bisection method to refine the root
+    for _ in range(100):
+        mid = (left + right) / 2.0
+        f_mid = poly(mid)
+        if f_mid == 0.0:
+            return mid
+        if f_left * f_mid <= 0:
+            right, f_right = mid, f_mid
+        else:
+            left, f_left = mid, f_mid
+        if abs(right - left) < 1e-12:
+            return (left + right) / 2.0
+
+    # Return midpoint if tolerance not reached (rare)
+    return (left + right) / 2.0
+Initial Extracted Code (Turbo): def find_zero(xs):
+    """
+    Return a real root of the polynomial whose coefficients are given in xs.
+    The list xs contains the coefficients in ascending order of degree:
+    xs[0] + xs[1] * x + xs[2] * x^2 + ...
+
+    The function is guaranteed to be called only with a list that has an odd
+    degree (i.e., len(xs) is even) and a non鈥憐ero leading coefficient, which
+    ensures at least one real root.
+    """
+    # Linear case (degree 1)
+    if len(xs) == 2:
+        a1 = xs[1]
+        if a1 == 0:
+            # Constant polynomial: either zero everywhere or no solution
+            if xs[0] == 0:
+                return 0.0
+            raise ValueError("Constant non鈥憐ero polynomial has no root.")
+        return -xs[0] / a1
+
+    # Polynomial evaluation using Horner's method for numerical stability
+    def poly(x):
+        result = 0.0
+        for coeff in reversed(xs):
+            result = result * x + coeff
+        return result
+
+    # Initial interval [-1, 1]
+    left, right = -1.0, 1.0
+    f_left, f_right = poly(left), poly(right)
+
+    if f_left == 0.0:
+        return left
+    if f_right == 0.0:
+        return right
+
+    # Expand the interval until a sign change (and thus a root) is guaranteed.
+    max_expand = 1000
+    expand_iter = 0
+    while f_left * f_right > 0:
+        left *= 2.0
+        right *= 2.0
+        f_left = poly(left)
+        f_right = poly(right)
+        if f_left == 0.0:
+            return left
+        if f_right == 0.0:
+            return right
+        expand_iter += 1
+        if expand_iter > max_expand:
+            # Fallback to numpy.roots if available (helps with pathological cases)
+            try:
+                import numpy as np
+                roots = np.roots(xs)
+                for r in roots:
+                    if abs(r.imag) < 1e-12:
+                        return float(r.real)
+            except Exception:
+                pass
+            raise RuntimeError("Failed to locate a bracketing interval.")
+
+    # Bisection method to refine the root
+    for _ in range(100):
+        mid = (left + right) / 2.0
+        f_mid = poly(mid)
+        if f_mid == 0.0:
+            return mid
+        if f_left * f_mid <= 0:
+            right, f_right = mid, f_mid
+        else:
+            left, f_left = mid, f_mid
+        if abs(right - left) < 1e-12:
+            return (left + right) / 2.0
+
+    # Return midpoint if tolerance not reached (rare)
+    return (left + right) / 2.0
+--- Starting run_single_pass ---
+Task ID: HumanEval/32
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\nimport math\n\n\ndef poly(xs: list, x: float):\n    """\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n    """\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\n\ndef find_zero(xs: list):\n    """ xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n    """\n\n\nConstraints:\n必须实现名为 \'find_zero\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 359: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/33
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef sort_third(l: list):\n    """This function takes a list l and returns a list l\' such that\n    l\' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    """\n\n\nConstraints:\n必须实现名为 \'sort_third\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def sort_third(l):
+    """Return a new list where elements at indices divisible by 3 are sorted,
+    while all other elements remain unchanged.
+    """
+    result = list(l)
+    idxs = list(range(0, len(l), 3))
+    values = [l[i] for i in idxs]
+    sorted_vals = sorted(values)
+    for i, v in zip(idxs, sorted_vals):
+        result[i] = v
+    return result
+Initial Extracted Code (Turbo): def sort_third(l):
+    """Return a new list where elements at indices divisible by 3 are sorted,
+    while all other elements remain unchanged.
+    """
+    result = list(l)
+    idxs = list(range(0, len(l), 3))
+    values = [l[i] for i in idxs]
+    sorted_vals = sorted(values)
+    for i, v in zip(idxs, sorted_vals):
+        result[i] = v
+    return result
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def sort_third(l):
+    """Return a new list where elements at indices divisible by 3 are sorted,
+    while all other elements remain unchanged.
+    """
+    result = list(l)
+    idxs = list(range(0, len(l), 3))
+    values = [l[i] for i in idxs]
+    sorted_vals = sorted(values)
+    for i, v in zip(idxs, sorted_vals):
+        result[i] = v
+    return result
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 6/28, Solved: True, number of success = 5/6, acc = 83.33
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/34
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef unique(l: list):\n    """Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    """\n\n\nConstraints:\n必须实现名为 \'unique\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def unique(l: list):
+    """Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """
+    return sorted(set(l))
+Initial Extracted Code (Turbo): def unique(l: list):
+    """Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """
+    return sorted(set(l))
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def unique(l: list):
+    """Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """
+    return sorted(set(l))
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 7/28, Solved: True, number of success = 6/7, acc = 85.71
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/35
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef max_element(l: list):\n    """Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    """\n\n\nConstraints:\n必须实现名为 \'max_element\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def max_element(l: list):
+    """Return maximum element in the list."""
+    if not l:
+        raise ValueError("max_element() arg is an empty sequence")
+    max_val = l[0]
+    for x in l[1:]:
+        if x > max_val:
+            max_val = x
+    return max_val
+Initial Extracted Code (Turbo): def max_element(l: list):
+    """Return maximum element in the list."""
+    if not l:
+        raise ValueError("max_element() arg is an empty sequence")
+    max_val = l[0]
+    for x in l[1:]:
+        if x > max_val:
+            max_val = x
+    return max_val
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def max_element(l: list):
+    """Return maximum element in the list."""
+    if not l:
+        raise ValueError("max_element() arg is an empty sequence")
+    max_val = l[0]
+    for x in l[1:]:
+        if x > max_val:
+            max_val = x
+    return max_val
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 8/28, Solved: True, number of success = 7/8, acc = 87.5
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/36
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef fizz_buzz(n: int):\n    """Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    """\n\n\nConstraints:\n必须实现名为 \'fizz_buzz\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+```python
+def fizz_buzz(n: int):
+    """Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """
+    total = 0
+    for i in range(1, n):
+        if i % 11 == 0 or i % 13 == 0:
+            total += str(i).count('7')
+    return total
+```
+Initial Extracted Code (Turbo): 
+def fizz_buzz(n: int):
+    """Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """
+    total = 0
+    for i in range(1, n):
+        if i % 11 == 0 or i % 13 == 0:
+            total += str(i).count('7')
+    return total
+
+
+
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: 
+def fizz_buzz(n: int):
+    """Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """
+    total = 0
+    for i in range(1, n):
+        if i % 11 == 0 or i % 13 == 0:
+            total += str(i).count('7')
+    return total
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 9/28, Solved: True, number of success = 8/9, acc = 88.89
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/37
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef sort_even(l: list):\n    """This function takes a list l and returns a list l\' such that\n    l\' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    """\n\n\nConstraints:\n必须实现名为 \'sort_even\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def sort_even(l: list):
+    """Return a new list where the elements at even indices are sorted,
+    while elements at odd indices remain unchanged.
+
+    Args:
+        l: List of comparable items.
+
+    Returns:
+        List with even-indexed items sorted in ascending order.
+    """
+    n = len(l)
+    # Sorted values for even positions (0, 2, 4, ...)
+    sorted_evens = sorted(l[i] for i in range(0, n, 2))
+    # Build the result list by placing sorted evens at even indices
+    result = []
+    even_iter = iter(sorted_evens)
+    for i in range(n):
+        if i % 2 == 0:
+            result.append(next(even_iter))
+        else:
+            result.append(l[i])
+    return result
+Initial Extracted Code (Turbo): def sort_even(l: list):
+    """Return a new list where the elements at even indices are sorted,
+    while elements at odd indices remain unchanged.
+
+    Args:
+        l: List of comparable items.
+
+    Returns:
+        List with even-indexed items sorted in ascending order.
+    """
+    n = len(l)
+    # Sorted values for even positions (0, 2, 4, ...)
+    sorted_evens = sorted(l[i] for i in range(0, n, 2))
+    # Build the result list by placing sorted evens at even indices
+    result = []
+    even_iter = iter(sorted_evens)
+    for i in range(n):
+        if i % 2 == 0:
+            result.append(next(even_iter))
+        else:
+            result.append(l[i])
+    return result
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def sort_even(l: list):
+    """Return a new list where the elements at even indices are sorted,
+    while elements at odd indices remain unchanged.
+
+    Args:
+        l: List of comparable items.
+
+    Returns:
+        List with even-indexed items sorted in ascending order.
+    """
+    n = len(l)
+    # Sorted values for even positions (0, 2, 4, ...)
+    sorted_evens = sorted(l[i] for i in range(0, n, 2))
+    # Build the result list by placing sorted evens at even indices
+    result = []
+    even_iter = iter(sorted_evens)
+    for i in range(n):
+        if i % 2 == 0:
+            result.append(next(even_iter))
+        else:
+            result.append(l[i])
+    return result
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 10/28, Solved: True, number of success = 9/10, acc = 90.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/38
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_cyclic(s: str):\n    """\n    returns encoded string by cycling groups of three characters.\n    """\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return "".join(groups)\n\n\ndef decode_cyclic(s: str):\n    """\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_cyclic\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_cyclic(s: str):
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return "".join(groups)
+Initial Extracted Code (Turbo): def decode_cyclic(s: str):
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return "".join(groups)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_cyclic(s: str):
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return "".join(groups)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def decode_cyclic(s: str) -> str:
+    """
+    Decodes a string that was encoded with `encode_cyclic`.
+
+    Splits the input into groups of up to three characters,
+    rotates each group of length three to the right (reverse of the
+    left鈥憆otation performed during encoding), and returns the
+    concatenated result.
+    """
+    # Split the string into groups of at most three characters
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # Decode each group: groups of length 3 are rotated right, others stay unchanged
+    decoded_groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return "".join(decoded_groups)
+Initial Extracted Code (Turbo): def decode_cyclic(s: str) -> str:
+    """
+    Decodes a string that was encoded with `encode_cyclic`.
+
+    Splits the input into groups of up to three characters,
+    rotates each group of length three to the right (reverse of the
+    left鈥憆otation performed during encoding), and returns the
+    concatenated result.
+    """
+    # Split the string into groups of at most three characters
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # Decode each group: groups of length 3 are rotated right, others stay unchanged
+    decoded_groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return "".join(decoded_groups)
+completed 11/28, Solved: False, number of success = 9/11, acc = 81.82
+--- Starting run_single_pass ---
+Task ID: HumanEval/38
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_cyclic(s: str):\n    """\n    returns encoded string by cycling groups of three characters.\n    """\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return "".join(groups)\n\n\ndef decode_cyclic(s: str):\n    """\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_cyclic\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 257: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def _is_prime(n: int) -> bool:
+    """Deterministic Miller鈥慠abin primality test for 64鈥慴it integers."""
+    if n < 2:
+        return False
+    for p in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29):
+        if n % p == 0:
+            return n == p
+    d = n - 1
+    s = 0
+    while d % 2 == 0:
+        d //= 2
+        s += 1
+    # Bases that make Miller鈥慠abin deterministic for n < 2^64
+    for a in (2, 325, 9375, 28178, 450775, 9780504, 1795265022):
+        if a % n == 0:
+            continue
+        x = pow(a, d, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(s - 1):
+            x = (x * x) % n
+            if x == n - 1:
+                break
+        else:
+            return False
+    return True
+
+
+def prime_fib(n: int) -> int:
+    """
+    Return the n鈥憈h number that is both a Fibonacci number and a prime.
+    The sequence starts: 2, 3, 5, 13, 89, 233, ...
+
+    Parameters
+    ----------
+    n : int
+        1鈥慴ased index of the desired prime Fibonacci number.
+
+    Returns
+    -------
+    int
+        The n鈥憈h prime Fibonacci number.
+    """
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    count = 0
+    a, b = 0, 1
+    while True:
+        a, b = b, a + b   # a becomes the next Fibonacci number
+        if a >= 2 and _is_prime(a):
+            count += 1
+            if count == n:
+                return a
+```
+Initial Extracted Code (Turbo): 
+
+def _is_prime(n: int) -> bool:
+    """Deterministic Miller鈥慠abin primality test for 64鈥慴it integers."""
+    if n < 2:
+        return False
+    for p in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29):
+        if n % p == 0:
+            return n == p
+    d = n - 1
+    s = 0
+    while d % 2 == 0:
+        d //= 2
+        s += 1
+    # Bases that make Miller鈥慠abin deterministic for n < 2^64
+    for a in (2, 325, 9375, 28178, 450775, 9780504, 1795265022):
+        if a % n == 0:
+            continue
+        x = pow(a, d, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(s - 1):
+            x = (x * x) % n
+            if x == n - 1:
+                break
+        else:
+            return False
+    return True
+
+
+def prime_fib(n: int) -> int:
+    """
+    Return the n鈥憈h number that is both a Fibonacci number and a prime.
+    The sequence starts: 2, 3, 5, 13, 89, 233, ...
+
+    Parameters
+    ----------
+    n : int
+        1鈥慴ased index of the desired prime Fibonacci number.
+
+    Returns
+    -------
+    int
+        The n鈥憈h prime Fibonacci number.
+    """
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    count = 0
+    a, b = 0, 1
+    while True:
+        a, b = b, a + b   # a becomes the next Fibonacci number
+        if a >= 2 and _is_prime(a):
+            count += 1
+            if count == n:
+                return a
+```
+--- Starting run_single_pass ---
+Task ID: HumanEval/39
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef prime_fib(n: int):\n    """\n    prime_fib returns n-th number that is a Fibonacci number and it\'s also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    """\n\n\nConstraints:\n必须实现名为 \'prime_fib\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 75: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def triples_sum_to_zero(l: list):
+    """
+    Return True if there exist three distinct elements in the list `l`
+    whose sum is zero, otherwise return False.
+    """
+    n = len(l)
+    if n < 3:
+        return False
+    a = sorted(l)  # create a sorted copy to use the two鈥憄ointer technique
+    for i in range(n - 2):
+        left = i + 1
+        right = n - 1
+        while left < right:
+            total = a[i] + a[left] + a[right]
+            if total == 0:
+                return True
+            elif total < 0:
+                left += 1
+            else:
+                right -= 1
+    return False
+Initial Extracted Code (Turbo): def triples_sum_to_zero(l: list):
+    """
+    Return True if there exist three distinct elements in the list `l`
+    whose sum is zero, otherwise return False.
+    """
+    n = len(l)
+    if n < 3:
+        return False
+    a = sorted(l)  # create a sorted copy to use the two鈥憄ointer technique
+    for i in range(n - 2):
+        left = i + 1
+        right = n - 1
+        while left < right:
+            total = a[i] + a[left] + a[right]
+            if total == 0:
+                return True
+            elif total < 0:
+                left += 1
+            else:
+                right -= 1
+    return False
+--- Starting run_single_pass ---
+Task ID: HumanEval/40
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef triples_sum_to_zero(l: list):\n    """\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'triples_sum_to_zero\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 294: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def car_race_collision(n: int) -> int:
+    """Return the number of collisions between n left鈥憈o鈥憆ight and n right鈥憈o鈥憀eft cars."""
+    return n * n
+Initial Extracted Code (Turbo): def car_race_collision(n: int) -> int:
+    """Return the number of collisions between n left鈥憈o鈥憆ight and n right鈥憈o鈥憀eft cars."""
+    return n * n
+--- Starting run_single_pass ---
+Task ID: HumanEval/41
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef car_race_collision(n: int):\n    """\n    Imagine a road that\'s a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that\'s moving left to right hits a car that\'s moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    """\n\n\nConstraints:\n必须实现名为 \'car_race_collision\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 105: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/42
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef incr_list(l: list):\n    """Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    """\n\n\nConstraints:\n必须实现名为 \'incr_list\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def incr_list(l: list):
+    return [x + 1 for x in l]
+Initial Extracted Code (Turbo): def incr_list(l: list):
+    return [x + 1 for x in l]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def incr_list(l: list):
+    return [x + 1 for x in l]
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 15/28, Solved: True, number of success = 10/15, acc = 66.67
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/43
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef pairs_sum_to_zero(l):\n    """\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'pairs_sum_to_zero\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def pairs_sum_to_zero(l):
+    """
+    Takes a list of integers and returns True if there are two distinct elements
+    that sum to zero, otherwise False.
+    """
+    seen = set()
+    for x in l:
+        if -x in seen:
+            return True
+        seen.add(x)
+    return False
+Initial Extracted Code (Turbo): def pairs_sum_to_zero(l):
+    """
+    Takes a list of integers and returns True if there are two distinct elements
+    that sum to zero, otherwise False.
+    """
+    seen = set()
+    for x in l:
+        if -x in seen:
+            return True
+        seen.add(x)
+    return False
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def pairs_sum_to_zero(l):
+    """
+    Takes a list of integers and returns True if there are two distinct elements
+    that sum to zero, otherwise False.
+    """
+    seen = set()
+    for x in l:
+        if -x in seen:
+            return True
+        seen.add(x)
+    return False
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 16/28, Solved: True, number of success = 11/16, acc = 68.75
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/44
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef change_base(x: int, base: int):\n    """Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    \'22\'\n    >>> change_base(8, 2)\n    \'1000\'\n    >>> change_base(7, 2)\n    \'111\'\n    """\n\n\nConstraints:\n必须实现名为 \'change_base\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def change_base(x: int, base: int) -> str:
+    """Change numerical base of input number x to base.
+    Return string representation after the conversion.
+    Base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """
+    if base < 2 or base > 9:
+        raise ValueError("Base must be between 2 and 9 inclusive")
+    if x == 0:
+        return "0"
+    negative = x < 0
+    if negative:
+        x = -x
+    digits = []
+    while x > 0:
+        digits.append(str(x % base))
+        x //= base
+    result = "".join(reversed(digits))
+    return "-" + result if negative else result
+Initial Extracted Code (Turbo): def change_base(x: int, base: int) -> str:
+    """Change numerical base of input number x to base.
+    Return string representation after the conversion.
+    Base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """
+    if base < 2 or base > 9:
+        raise ValueError("Base must be between 2 and 9 inclusive")
+    if x == 0:
+        return "0"
+    negative = x < 0
+    if negative:
+        x = -x
+    digits = []
+    while x > 0:
+        digits.append(str(x % base))
+        x //= base
+    result = "".join(reversed(digits))
+    return "-" + result if negative else result
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def change_base(x: int, base: int) -> str:
+    """Change numerical base of input number x to base.
+    Return string representation after the conversion.
+    Base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """
+    if base < 2 or base > 9:
+        raise ValueError("Base must be between 2 and 9 inclusive")
+    if x == 0:
+        return "0"
+    negative = x < 0
+    if negative:
+        x = -x
+    digits = []
+    while x > 0:
+        digits.append(str(x % base))
+        x //= base
+    result = "".join(reversed(digits))
+    return "-" + result if negative else result
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 17/28, Solved: True, number of success = 12/17, acc = 70.59
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/45
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef triangle_area(a, h):\n    """Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    """\n\n\nConstraints:\n必须实现名为 \'triangle_area\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def triangle_area(a, h):
+    """Return the area of a triangle given base length a and height h."""
+    return a * h / 2
+Initial Extracted Code (Turbo): def triangle_area(a, h):
+    """Return the area of a triangle given base length a and height h."""
+    return a * h / 2
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def triangle_area(a, h):
+    """Return the area of a triangle given base length a and height h."""
+    return a * h / 2
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 18/28, Solved: True, number of success = 13/18, acc = 72.22
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def fib4(n: int) -> int:
+    """Return the n-th element of the Fib4 sequence.
+
+    The Fib4 sequence is defined as:
+        fib4(0) = 0
+        fib4(1) = 0
+        fib4(2) = 2
+        fib4(3) = 0
+        fib4(k) = fib4(k-1) + fib4(k-2) + fib4(k-3) + fib4(k-4) for k >= 4
+
+    The implementation uses an iterative approach to avoid recursion.
+    """
+    if n < 0:
+        raise ValueError("n must be non鈥憂egative")
+
+    # Base cases
+    if n <= 3:
+        return (0, 0, 2, 0)[n]
+
+    # a, b, c, d store the four most recent Fib4 values
+    a, b, c, d = 0, 0, 2, 0  # fib4(0), fib4(1), fib4(2), fib4(3)
+
+    for _ in range(4, n + 1):
+        next_val = a + b + c + d
+        a, b, c, d = b, c, d, next_val
+
+    return d
+Initial Extracted Code (Turbo): def fib4(n: int) -> int:
+    """Return the n-th element of the Fib4 sequence.
+
+    The Fib4 sequence is defined as:
+        fib4(0) = 0
+        fib4(1) = 0
+        fib4(2) = 2
+        fib4(3) = 0
+        fib4(k) = fib4(k-1) + fib4(k-2) + fib4(k-3) + fib4(k-4) for k >= 4
+
+    The implementation uses an iterative approach to avoid recursion.
+    """
+    if n < 0:
+        raise ValueError("n must be non鈥憂egative")
+
+    # Base cases
+    if n <= 3:
+        return (0, 0, 2, 0)[n]
+
+    # a, b, c, d store the four most recent Fib4 values
+    a, b, c, d = 0, 0, 2, 0  # fib4(0), fib4(1), fib4(2), fib4(3)
+
+    for _ in range(4, n + 1):
+        next_val = a + b + c + d
+        a, b, c, d = b, c, d, next_val
+
+    return d
+--- Starting run_single_pass ---
+Task ID: HumanEval/46
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef fib4(n: int):\n    """The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that\'s defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    """\n\n\nConstraints:\n必须实现名为 \'fib4\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 428: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/47
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef median(l: list):\n    """Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    """\n\n\nConstraints:\n必须实现名为 \'median\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def median(l: list):
+    """Return median of elements in the list l.
+
+    Examples:
+        >>> median([3, 1, 2, 4, 5])
+        3
+        >>> median([-10, 4, 6, 1000, 10, 20])
+        15.0
+    """
+    if not l:
+        raise ValueError("median of empty list is undefined")
+    s = sorted(l)
+    n = len(s)
+    if n % 2 == 1:
+        return s[n // 2]
+    else:
+        return (s[n // 2 - 1] + s[n // 2]) / 2
+Initial Extracted Code (Turbo): def median(l: list):
+    """Return median of elements in the list l.
+
+    Examples:
+        >>> median([3, 1, 2, 4, 5])
+        3
+        >>> median([-10, 4, 6, 1000, 10, 20])
+        15.0
+    """
+    if not l:
+        raise ValueError("median of empty list is undefined")
+    s = sorted(l)
+    n = len(s)
+    if n % 2 == 1:
+        return s[n // 2]
+    else:
+        return (s[n // 2 - 1] + s[n // 2]) / 2
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def median(l: list):
+    """Return median of elements in the list l.
+
+    Examples:
+        >>> median([3, 1, 2, 4, 5])
+        3
+        >>> median([-10, 4, 6, 1000, 10, 20])
+        15.0
+    """
+    if not l:
+        raise ValueError("median of empty list is undefined")
+    s = sorted(l)
+    n = len(s)
+    if n % 2 == 1:
+        return s[n // 2]
+    else:
+        return (s[n // 2 - 1] + s[n // 2]) / 2
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 20/28, Solved: True, number of success = 14/20, acc = 70.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/48
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef is_palindrome(text: str):\n    """\n    Checks if given string is a palindrome\n    >>> is_palindrome(\'\')\n    True\n    >>> is_palindrome(\'aba\')\n    True\n    >>> is_palindrome(\'aaaaa\')\n    True\n    >>> is_palindrome(\'zbcd\')\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'is_palindrome\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+```python
+def is_palindrome(text: str) -> bool:
+    """Checks if the given string is a palindrome."""
+    return text == text[::-1]
+```
+Initial Extracted Code (Turbo): 
+def is_palindrome(text: str) -> bool:
+    """Checks if the given string is a palindrome."""
+    return text == text[::-1]
+
+
+
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: 
+def is_palindrome(text: str) -> bool:
+    """Checks if the given string is a palindrome."""
+    return text == text[::-1]
+
+
+
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 21/28, Solved: True, number of success = 15/21, acc = 71.43
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/49
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef modp(n: int, p: int):\n    """Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    """\n\n\nConstraints:\n必须实现名为 \'modp\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def modp(n: int, p: int):
+    """Return 2^n modulo p."""
+    return pow(2, n, p)
+Initial Extracted Code (Turbo): def modp(n: int, p: int):
+    """Return 2^n modulo p."""
+    return pow(2, n, p)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def modp(n: int, p: int):
+    """Return 2^n modulo p."""
+    return pow(2, n, p)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 22/28, Solved: True, number of success = 16/22, acc = 72.73
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    """
+    Takes as input a string encoded with `encode_shift`. Returns the decoded string.
+    Each lowercase alphabetical character is shifted backward by 5 positions within the alphabet, wrapping around as needed.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    """
+    Takes as input a string encoded with `encode_shift`. Returns the decoded string.
+    Each lowercase alphabetical character is shifted backward by 5 positions within the alphabet, wrapping around as needed.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    """
+    Takes as input a string encoded with `encode_shift`. Returns the decoded string.
+    Each lowercase alphabetical character is shifted backward by 5 positions within the alphabet, wrapping around as needed.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join(
+        chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) if "a" <= ch <= "z" else ch
+        for ch in s
+    )
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join(
+        chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) if "a" <= ch <= "z" else ch
+        for ch in s
+    )
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join(
+        chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) if "a" <= ch <= "z" else ch
+        for ch in s
+    )
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str) -> str:
+    return "".join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+--- Starting run_single_pass ---
+Task ID: HumanEval/50
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef encode_shift(s: str):\n    """\n    returns encoded string by shifting every character by 5 in the alphabet.\n    """\n    return "".join([chr(((ord(ch) + 5 - ord("a")) % 26) + ord("a")) for ch in s])\n\n\ndef decode_shift(s: str):\n    """\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    """\n\n\nConstraints:\n必须实现名为 \'decode_shift\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def decode_shift(s: str):
+    """
+    Takes a string encoded with `encode_shift` and returns the decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Initial Extracted Code (Turbo): def decode_shift(s: str):
+    """
+    Takes a string encoded with `encode_shift` and returns the decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def decode_shift(s: str):
+    """
+    Takes a string encoded with `encode_shift` and returns the decoded string.
+    """
+    return "".join([chr(((ord(ch) - 5 - ord("a")) % 26) + ord("a")) for ch in s])
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 23/28, Solved: False, number of success = 16/23, acc = 69.57
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/51
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef remove_vowels(text):\n    """\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels(\'\')\n    \'\'\n    >>> remove_vowels("abcdef\\nghijklm")\n    \'bcdf\\nghjklm\'\n    >>> remove_vowels(\'abcdef\')\n    \'bcdf\'\n    >>> remove_vowels(\'aaaaa\')\n    \'\'\n    >>> remove_vowels(\'aaBAA\')\n    \'B\'\n    >>> remove_vowels(\'zbcd\')\n    \'zbcd\'\n    """\n\n\nConstraints:\n必须实现名为 \'remove_vowels\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def remove_vowels(text):
+    vowels = set('aeiouAEIOU')
+    return ''.join(ch for ch in text if ch not in vowels)
+Initial Extracted Code (Turbo): def remove_vowels(text):
+    vowels = set('aeiouAEIOU')
+    return ''.join(ch for ch in text if ch not in vowels)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def remove_vowels(text):
+    vowels = set('aeiouAEIOU')
+    return ''.join(ch for ch in text if ch not in vowels)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 24/28, Solved: True, number of success = 17/24, acc = 70.83
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/52
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef below_threshold(l: list, t: int):\n    """Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'below_threshold\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def below_threshold(l: list, t: int):
+    return all(x < t for x in l)
+Initial Extracted Code (Turbo): def below_threshold(l: list, t: int):
+    return all(x < t for x in l)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def below_threshold(l: list, t: int):
+    return all(x < t for x in l)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 25/28, Solved: True, number of success = 18/25, acc = 72.0
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/53
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef add(x: int, y: int):\n    """Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    """\n\n\nConstraints:\n必须实现名为 \'add\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def add(x: int, y: int):
+    """Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """
+    return x + y
+Initial Extracted Code (Turbo): def add(x: int, y: int):
+    """Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """
+    return x + y
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def add(x: int, y: int):
+    """Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """
+    return x + y
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 26/28, Solved: True, number of success = 19/26, acc = 73.08
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+--- Starting run_single_pass ---
+Task ID: HumanEval/54
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef same_chars(s0: str, s1: str):\n    """\n    Check if two words have the same characters.\n    >>> same_chars(\'eabcdzzzz\', \'dddzzzzzzzddeddabc\')\n    True\n    >>> same_chars(\'abcd\', \'dddddddabc\')\n    True\n    >>> same_chars(\'dddddddabc\', \'abcd\')\n    True\n    >>> same_chars(\'eabcd\', \'dddddddabc\')\n    False\n    >>> same_chars(\'abcd\', \'dddddddabce\')\n    False\n    >>> same_chars(\'eabcdzzzz\', \'dddzzzzzzzddddabc\')\n    False\n    """\n\n\nConstraints:\n必须实现名为 \'same_chars\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+Response from Turbo Code Generation: 
+
+def same_chars(s0: str, s1: str):
+    """Check if two words have the same characters."""
+    return set(s0) == set(s1)
+Initial Extracted Code (Turbo): def same_chars(s0: str, s1: str):
+    """Check if two words have the same characters."""
+    return set(s0) == set(s1)
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+Final Code: def same_chars(s0: str, s1: str):
+    """Check if two words have the same characters."""
+    return set(s0) == set(s1)
+Total Prompt Tokens: 0
+Total Completion Tokens: 0
+________________________
+
+
+completed 27/28, Solved: True, number of success = 20/27, acc = 74.07
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 359, in run_single_pass
+    + (f"You may reuse the following exemplars if relevant:\n{exemplars_override}\n\n" if exemplars_override else "")
+                                                                                          ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'exemplars_override' where it is not associated with a value
+Response from Turbo Code Generation: 
+
+def fib(n: int) -> int:
+    """Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """
+    if n < 0:
+        raise ValueError("n must be non鈥憂egative")
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+Initial Extracted Code (Turbo): def fib(n: int) -> int:
+    """Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """
+    if n < 0:
+        raise ValueError("n must be non鈥憂egative")
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+--- Starting run_single_pass ---
+Task ID: HumanEval/55
+Input for Turbo Code Generation: [{'role': 'system', 'content': 'You are a coding agent. Return only executable solution code for the task. Do not include any commentary, Markdown fences or explanations.'}, {'role': 'user', 'content': 'Problem description:\n\n\ndef fib(n: int):\n    """Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    """\n\n\nConstraints:\n必须实现名为 \'fib\' 的函数。不要编写任何输入输出代码或顶层测试，仅返回函数定义。\n\nTarget language: Python3. 只输出可执行代码，无任何额外文本。'}]
+--- An unexpected error occurred in run_single_pass: cannot access local variable 'exemplars_override' where it is not associated with a value ---
+--- Ending run_single_pass ---
+An error occurred: 'gbk' codec can't encode character '\u2011' in position 210: illegal multibyte sequence
+#########################
+Running end QwenCoderTurbo-MapCoder-HumanEval-Python3-0.0-10, Time: 2025-11-25 17:48:27.300480
+##########################
+

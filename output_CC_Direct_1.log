@@ -1,0 +1,11 @@
+#########################
+Running start QwenCoderTurbo-Direct-CC-Python3-0.0-1, Time: 2025-11-12 21:29:15.461528
+##########################
+
+An error occurred: Error code: 400 - {'error': {'message': 'no available channels for model qwen-coder-turbo', 'type': 'invalid_request_error'}}
+An error occurred: Error code: 400 - {'error': {'message': 'no available channels for model qwen-coder-turbo', 'type': 'invalid_request_error'}}
+An error occurred: Error code: 400 - {'error': {'message': 'no available channels for model qwen-coder-turbo', 'type': 'invalid_request_error'}}
+#########################
+Running end QwenCoderTurbo-Direct-CC-Python3-0.0-1, Time: 2025-11-12 21:29:17.134023
+##########################
+

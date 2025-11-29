@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\main.py", line 10, in <module>
+    from promptings.PromptingFactory import PromptingFactory
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\PromptingFactory.py", line 1, in <module>
+    from promptings.CoT import CoTStrategy
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\CoT.py", line 12, in <module>
+    from datasets.APPSDataset import APPSDataset
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\datasets\APPSDataset.py", line 2, in <module>
+    from evaluations.evalute import contest_evaluate, contest_evaluate_public_tests
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\evaluations\evalute.py", line 3, in <module>
+    import numpy as np
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\__init__.py", line 467, in <module>
+    from . import lib
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\lib\__init__.py", line 18, in <module>
+    from . import (
+    ...<23 lines>...
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\lib\_arraypad_impl.py", line 8, in <module>
+    from numpy.lib._index_tricks_impl import ndindex
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\numpy\lib\_index_tricks_impl.py", line 14, in <module>
+    from numpy.lib._function_base_impl import diff
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1118, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1218, in get_data
+MemoryError

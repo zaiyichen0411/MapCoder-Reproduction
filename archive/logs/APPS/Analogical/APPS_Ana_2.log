@@ -1,0 +1,2939 @@
+#########################
+Running start QwenCoderTurbo-Analogical-APPS-Python3-0.0-1, Time: 2025-11-11 19:44:43.904599
+##########################
+
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+# Description:
+
+ Find the longest successive exclamation marks and question marks combination in the string. A successive exclamation marks and question marks combination must contains two part: a substring of "!" and a substring "?", they are adjacent. 
+ 
+ If more than one result are found, return the one which at left side; If no such a combination found, return `""`.
+
+# Examples
+
+```
+find("!!") === ""
+find("!??") === "!??"
+find("!?!!") === "?!!"
+find("!!???!????") === "!!???"
+find("!!???!?????") === "!?????"
+find("!????!!!?") === "????!!!" 
+find("!?!!??!!!?") === "??!!!"
+```
+
+# Note
+Please don't post issue about difficulty or duplicate. Because:
+>[That's unfair on the kata creator. This is a valid kata and introduces new people to javascript some regex or loops, depending on how they tackle this problem.  --matt c](https://www.codewars.com/kata/remove-exclamation-marks/discuss#57fabb625c9910c73000024e)
+
+Sample Input Format:
+!!
+Sample Output Format:
+
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts & Algorithms
+
+The problem involves finding the longest successive combination of exclamation marks (`!`) and question marks (`?`). The key concept here is string manipulation and pattern matching. Specifically, we need to identify sequences where there is an adjacent pair of substrings: one containing only `!` and another containing only `?`. We also need to ensure that our solution handles multiple occurrences efficiently and returns the earliest one if there are ties.
+
+### Tutorial: String Manipulation & Pattern Matching in Python
+
+In Python, strings can be manipulated easily using slicing, concatenation, and various built-in methods. For pattern matching, regular expressions (regex) provided by the `re` module are very powerful.
+
+#### Key Functions & Methods:
+1. **Slicing**: Extract parts of the string using `string[start:end]`.
+2. **Regex**: Use `re.findall(pattern, string)` to find all occurrences of a pattern.
+3. **String Concatenation**: Combine strings using `+` operator.
+
+#### Steps to Solve String Manipulation Problems:
+1. **Understand the Pattern**: Define the pattern you're looking for.
+2. **Iterate Over String**: Loop through the string or use regex to find matches.
+3. **Track Maximum Length**: Keep track of the longest match found so far.
+4. **Return Result**: Return the desired result based on the pattern matches.
+
+### Example Problems
+
+#### Problem 1: Reverse Words in a String
+**Description**: Given a string, reverse each word in it while maintaining the order of words.
+**Solution**: Split the string into words, reverse each word, and join them back together.
+```python
+def reverse_words(s):
+    words = s.split()
+    reversed_words = [word[::-1] for word in words]
+    return ' '.join(reversed_words)
+
+print(reverse_words("hello world"))  # Output: "olleh dlrow"
+```
+
+#### Problem 2: Count Vowels in a String
+**Description**: Given a string, count the number of vowels (a, e, i, o, u).
+**Solution**: Iterate over the string and check if each character is a vowel.
+```python
+def count_vowels(s):
+    vowels = set('aeiouAEIOU')
+    count = sum(1 for char in s if char in vowels)
+    return count
+
+print(count_vowels("Hello World"))  # Output: 3
+```
+
+#### Problem 3: Remove Duplicates from a List
+**Description**: Given a list, remove all duplicates and return the resulting list.
+**Solution**: Use a set to store unique elements.
+```python
+def remove_duplicates(lst):
+    return list(set(lst))
+
+print(remove_duplicates([1, 2, 2, 3, 4, 4]))  # Output: [1, 2, 3, 4]
+```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation**:
+1. **Initialize Variables**: Start with an empty string to keep track of the longest sequence.
+2. **Loop Through String**: Check every possible pair of characters to see if they form a valid sequence.
+3. **Update Longest Sequence**: If a valid sequence is found and it's longer than the current longest, update the longest sequence.
+4. **Return Result**: After checking all possible pairs, return the longest sequence found.
+
+```python
+import re
+
+def find_longest_sequence(s):
+    max_length = 0
+    longest_seq = ""
+    
+    for i in range(len(s)):
+        for j in range(i + 2, len(s) + 1):
+            seq = s[i:j]
+            if seq.count('!') > 0 and seq.count('?') > 0:
+                if j - i > max_length:
+                    max_length = j - i
+                    longest_seq = seq
+    
+    return longest_seq
+
+# Example usage
+if __name__ == "__main__":
+    s = input()  # Take input from standard input
+    result = find_longest_sequence(s)
+    print(result)  # Print the result to standard output
+```
+
+This code snippet defines a function `find_longest_sequence` that takes a string as input and returns the longest successive combination of exclamation marks and question marks. It iterates through all possible substrings and checks if they contain both `!` and `?`. If a valid sequence is found and it's longer than the current longest, it updates the longest sequence. Finally, it prints the longest sequence found.
+completed 1/19, Solved: False, number of success = 0/1, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+Your task is to find the number couple with the greatest difference from a given array of number-couples. 
+
+All number couples will be given as strings and all numbers in them will be positive integers.  
+
+For instance: ['56-23','1-100']; in this case, you should identify '1-100' as the number couple with the greatest difference and return it.
+
+In case there are more than one option, for instance ['1-3','5-7','2-3'], you should identify whichever is first, so in this case '1-3'. 
+
+If there is no difference, like so ['11-11', '344-344'], return false.
+
+Sample Input Format:
+['56-23','1-100']
+Sample Output Format:
+1-100
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts and Algorithm:
+
+The problem requires finding the number couple with the greatest difference from an array of string-formatted number couples. To achieve this, we need to:
+1. Parse the input strings to extract integer pairs.
+2. Calculate the absolute difference between the two integers in each pair.
+3. Track the maximum difference found.
+4. Identify the first pair with the maximum difference.
+
+Here's a step-by-step breakdown of the algorithm:
+1. Split each string on the hyphen ('-') to get the two integers.
+2. Convert the resulting substrings into integers.
+3. Compute the absolute difference between the two integers.
+4. Maintain the highest difference and the corresponding pair.
+5. Return the pair with the highest difference if it exists; otherwise, return False.
+
+### Tutorial: Parsing Strings and Calculating Differences
+
+To solve this problem, we'll use basic string manipulation and arithmetic operations. Here¡¯s how you can break down the steps:
+
+1. **Splitting Strings**: We'll use Python's `.split('-')` method to divide each string into two parts.
+2. **Converting Strings to Integers**: After splitting, the parts are still strings. We'll convert them to integers using the `int()` function.
+3. **Calculating Absolute Difference**: Use the `abs()` function to calculate the absolute value of the difference between the two integers.
+4. **Tracking Maximum Difference**: Keep track of the maximum difference encountered and store the corresponding pair.
+
+### Example Problems
+
+#### Problem 1: Find the Largest Number in a List
+**Problem Description**: Given a list of integers, find the largest number.
+
+**Solution**: Iterate through the list and keep track of the maximum number seen.
+
+```python
+def find_largest_number(numbers):
+    max_num = float('-inf')
+    for num in numbers:
+        if num > max_num:
+            max_num = num
+    return max_num
+
+numbers = [3, 5, 1, 8, 2]
+print(find_largest_number(numbers))  # Output: 8
+```
+
+#### Problem 2: Calculate the Average of Elements in an Array
+**Problem Description**: Given an array of numbers, calculate their average.
+
+**Solution**: Sum up all elements and divide by the count of elements.
+
+```python
+def calculate_average(arr):
+    total_sum = sum(arr)
+    count = len(arr)
+    average = total_sum / count
+    return average
+
+arr = [10, 20, 30, 40, 50]
+print(calculate_average(arr))  # Output: 30.0
+```
+
+#### Problem 3: Count Vowels in a String
+**Problem Description**: Given a string, count the number of vowels (a, e, i, o, u).
+
+**Solution**: Iterate through the string and check if each character is a vowel.
+
+```python
+def count_vowels(s):
+    vowels = set('aeiouAEIOU')
+    count = 0
+    for char in s:
+        if char in vowels:
+            count += 1
+    return count
+
+s = "Hello World"
+print(count_vowels(s))  # Output: 3
+```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation of the Solution**:
+1. Initialize variables to keep track of the maximum difference and the corresponding pair.
+2. Iterate through the list of strings.
+3. For each string, split it into two integers.
+4. Calculate the absolute difference and update the maximum difference if the current difference is greater.
+5. Return the first pair with the maximum difference if found; otherwise, return False.
+
+**Python3 Code**:
+```python
+def find_greatest_difference_pair(number_couples):
+    max_diff = None
+    result_pair = None
+    
+    for couple in number_couples:
+        parts = couple.split('-')
+        int_parts = [int(part) for part in parts]
+        diff = abs(int_parts[1] - int_parts[0])
+        
+        if max_diff is None or diff > max_diff:
+            max_diff = diff
+            result_pair = couple
+            
+    return result_pair if result_pair else False
+
+# Read input from standard input
+number_couples = input().strip().split(',')
+
+# Call the function and print the result
+result = find_greatest_difference_pair(number_couples)
+print(result)
+```
+
+This code reads a comma-separated list of number couples from standard input, processes them according to the described logic, and prints the result to standard output.
+completed 2/19, Solved: False, number of success = 0/2, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+You need to play around with the provided string (s).
+
+Move consonants forward 9 places through the alphabet.
+If they pass 'z', start again at 'a'.
+
+Move vowels back 5 places through the alphabet.
+If they pass 'a', start again at 'z'.
+For our Polish friends this kata does not count 'y' as a vowel.
+
+Exceptions:
+
+If the character is 'c' or 'o', move it back 1 place.
+For 'd' move it back 3, and for 'e', move it back 4.
+
+If a moved letter becomes 'c', 'o', 'd' or 'e', revert it back to it's original value.
+
+Provided string will always be lower case, won't be empty and will have no special characters.
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts & Algorithms
+
+The core concepts involved in solving this problem are:
+1. **Character Manipulation**: We need to manipulate characters based on specific rules related to vowels and consonants.
+2. **String Operations**: We will use string operations to iterate through the characters and apply transformations.
+3. **Modular Arithmetic**: Since we need to wrap around the alphabet when moving letters forward or backward, modular arithmetic will help us manage the boundaries.
+4. **Conditionals**: To handle exceptions like 'c', 'o', 'd', and 'e', conditional statements are necessary.
+
+### Tutorial: Character Manipulation and String Operations in Python
+
+#### Character Manipulation
+In Python, manipulating individual characters of a string involves converting the string to a list of characters, modifying the elements, and then joining them back into a string.
+
+```python
+# Convert string to list
+char_list = list('hello')
+
+# Modify the first character
+char_list[0] = 'H'
+
+# Join back into string
+result = ''.join(char_list)
+print(result)  # Output: 'Hello'
+```
+
+#### String Operations
+Python provides various methods to operate on strings, such as slicing, concatenation, and finding substrings.
+
+```python
+# Slicing
+substring = 'hello'[1:4]
+print(substring)  # Output: 'ell'
+
+# Concatenation
+combined = 'hello' + ' world'
+print(combined)  # Output: 'hello world'
+
+# Finding Substrings
+index = combined.find('world')
+print(index)  # Output: 6
+```
+
+#### Modular Arithmetic
+Modular arithmetic can be performed using the `%` operator in Python.
+
+```python
+# Modulo operation
+remainder = 25 % 26
+print(remainder)  # Output: 25
+```
+
+### Example Problems
+
+#### Problem 1: Reverse Vowels of a String
+Given a string `s`, reverse only the vowels of the string and return it.
+
+**Solution**:
+- Identify vowels.
+- Use a stack to store vowels in reverse order.
+- Replace vowels in the original string with those from the stack.
+
+**Code**:
+```python
+def reverseVowels(s):
+    vowels = set("aeiou")
+    s = list(s)
+    i, j = 0, len(s) - 1
+    
+    while i < j:
+        if s[i] not in vowels:
+            i += 1
+        elif s[j] not in vowels:
+            j -= 1
+        else:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
+            
+    return ''.join(s)
+
+# Example usage
+s = "hello"
+print(reverseVowels(s))  # Output: 'holle'
+```
+
+#### Problem 2: Caesar Cipher
+Implement a simple Caesar cipher where each letter in the text is shifted by a certain number of positions in the alphabet.
+
+**Solution**:
+- Shift each character by a fixed number.
+- Handle wrapping around the alphabet.
+
+**Code**:
+```python
+def caesarCipher(text, shift):
+    result = []
+    
+    for char in text:
+        if char.isalpha():
+            ascii_offset = ord('a') if char.islower() else ord('A')
+            new_char = chr((ord(char) - ascii_offset + shift) % 26 + ascii_offset)
+            result.append(new_char)
+        else:
+            result.append(char)
+            
+    return ''.join(result)
+
+# Example usage
+text = "hello"
+shift = 3
+print(caesarCipher(text, shift))  # Output: 'khoor'
+```
+
+#### Problem 3: Repeated DNA Sequences
+Find all DNA sequences of length 10 that occur more than once in a given DNA sequence.
+
+**Solution**:
+- Use a dictionary to count occurrences of each 10-character substring.
+- Return those that appear more than once.
+
+**Code**:
+```python
+def findRepeatedDnaSequences(s):
+    seen = {}
+    repeated = set()
+    
+    for i in range(len(s) - 9):
+        substring = s[i:i+10]
+        if substring in seen:
+            repeated.add(substring)
+        else:
+            seen[substring] = 1
+            
+    return list(repeated)
+
+# Example usage
+s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+print(findRepeatedDnaSequences(s))  # Output: ['CCCCC']
+```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation**:
+- Iterate through each character in the string.
+- Check if the character is a vowel or a consonant.
+- Apply the transformation rules accordingly.
+- Handle exceptions for 'c', 'o', 'd', and 'e'.
+- Revert characters back if they become 'c', 'o', 'd', or 'e'.
+
+**Code**:
+```python
+def transform_string(s):
+    vowels = "aeiou"
+    transformed = []
+
+    for char in s:
+        if char in vowels:
+            if char == 'a':
+                new_char = 't'
+            elif char == 'e':
+                new_char = 'j'
+            elif char == 'i':
+                new_char = 'u'
+            elif char == 'o':
+                new_char = 'p'
+            elif char == 'u':
+                new_char = 'z'
+        elif char == 'c':
+            new_char = 'b'
+        elif char == 'd':
+            new_char = 'a'
+        elif char == 'e':
+            new_char = 'a'
+        elif char == 'o':
+            new_char = 'n'
+        else:
+            ascii_offset = ord('a') if char.islower() else ord('A')
+            new_char = chr((ord(char) - ascii_offset + 9) % 26 + ascii_offset)
+        
+        transformed.append(new_char)
+
+    return ''.join(transformed)
+
+# Example usage
+s = input()
+result = transform_string(s)
+print(result)
+```
+
+This code reads the input string from standard input, applies the transformation rules, and prints the resulting string to standard output.
+completed 3/19, Solved: False, number of success = 0/3, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+In this kata you will have to modify a sentence so it meets the following rules:
+
+convert every word backwards that is:
+
+    longer than 6 characters
+
+  OR
+
+    has 2 or more 'T' or 't' in it
+
+convert every word uppercase that is:
+
+    exactly 2 characters long
+
+  OR
+
+    before a comma
+
+convert every word to a "0" that is:
+
+    exactly one character long
+ 
+
+ NOTES: 
+
+      Punctuation must not be touched. if a word is 6 characters long, and a "." is behind it,
+      it counts as 6 characters so it must not be flipped, but if a word is 7 characters long,
+      it must be flipped but the "." must stay at the end of the word.
+      -----------------------------------------------------------------------------------------
+      Only the first transformation applies to a given word, for example 'companions,'
+      will be 'snoinapmoc,' and not 'SNOINAPMOC,'.
+      -----------------------------------------------------------------------------------------
+      As for special characters like apostrophes or dashes, they count as normal characters, 
+      so e.g 'sand-colored' must be transformed to 'deroloc-dnas'.
+
+Sample Input Format:
+companions,
+Sample Output Format:
+snoinapmoc,
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts/Algorithms
+
+The problem requires transforming words in a sentence based on specific conditions. The core concepts involved include string manipulation, conditionals, loops, and regular expressions. Here¡¯s how these concepts are applied:
+
+1. **String Manipulation**: Extracting and manipulating individual parts of strings.
+2. **Conditionals**: Applying logic to determine whether transformations are needed.
+3. **Loops**: Iterating over each word in the sentence.
+4. **Regular Expressions**: Matching specific patterns within strings (e.g., counting 'T's).
+
+### Tutorial
+
+#### String Manipulation
+
+String manipulation involves operations such as slicing, concatenation, and splitting strings. For example:
+```python
+s = "Hello, World!"
+print(s[0:5])  # Outputs: Hello
+print(s.upper())  # Outputs: HELLO, WORLD!
+```
+
+#### Conditionals
+
+Conditionals allow you to execute different blocks of code based on certain conditions. For example:
+```python
+x = 10
+if x > 5:
+    print("Greater than 5")
+else:
+    print("Less than or equal to 5")
+```
+
+#### Loops
+
+Loops iterate over collections such as lists or strings. For example:
+```python
+for i in range(5):
+    print(i)  # Outputs: 0, 1, 2, 3, 4
+```
+
+#### Regular Expressions
+
+Regular expressions are powerful tools for matching patterns in strings. For example, to count the number of 'T's in a string:
+```python
+import re
+text = "This is a test."
+count = len(re.findall('T', text))
+print(count)  # Outputs: 2
+```
+
+### Example Problems
+
+#### Problem 1: Reverse Words Longer Than 6 Characters
+
+**Problem Description**: Reverse words in a sentence that are longer than 6 characters.
+
+**Solution**: Iterate over each word, check its length, and reverse it if necessary.
+
+```python
+def reverse_long_words(sentence):
+    words = sentence.split()
+    result = []
+    for word in words:
+        if len(word) > 6:
+            result.append(word[::-1])
+        else:
+            result.append(word)
+    return ' '.join(result)
+
+# Example usage
+sentence = input().strip()
+result = reverse_long_words(sentence)
+print(result)
+```
+
+#### Problem 2: Convert Words to Uppercase Based on Length or Position
+
+**Problem Description**: Convert words to uppercase if they are exactly 2 characters long or appear before a comma.
+
+**Solution**: Split the sentence into words, apply the transformations, and join them back together.
+
+```python
+def convert_uppercase(sentence):
+    words = sentence.split()
+    result = []
+    for word in words:
+        if len(word) == 2 or word[-1] == ',':
+            result.append(word.upper())
+        else:
+            result.append(word)
+    return ' '.join(result)
+
+# Example usage
+sentence = input().strip()
+result = convert_uppercase(sentence)
+print(result)
+```
+
+#### Problem 3: Replace Single Character Words
+
+**Problem Description**: Replace single-character words with '0'.
+
+**Solution**: Split the sentence into words, replace single-character words, and join them back together.
+
+```python
+def replace_single_char_words(sentence):
+    words = sentence.split()
+    result = []
+    for word in words:
+        if len(word) == 1:
+            result.append('0')
+        else:
+            result.append(word)
+    return ' '.join(result)
+
+# Example usage
+sentence = input().strip()
+result = replace_single_char_words(sentence)
+print(result)
+```
+
+### Python3 Code to Solve the Original Problem
+
+**Explanation of the Solution**:
+
+1. Split the input sentence into words.
+2. Iterate over each word and apply the transformations based on the given conditions.
+3. Join the transformed words back into a sentence and print the result.
+
+**Python3 Code**:
+
+```python
+def transform_sentence(sentence):
+    def transform_word(word):
+        if any(char == 'T' or char == 't' for char in word) and word.count('T') + word.count('t') >= 2:
+            return word[::-1]
+        elif len(word) > 6:
+            return word[::-1]
+        elif len(word) == 2 or word.endswith(','):
+            return word.upper()
+        elif len(word) == 1:
+            return '0'
+        else:
+            return word
+    
+    words = sentence.split()
+    transformed_words = [transform_word(word) for word in words]
+    return ' '.join(transformed_words)
+
+# Example usage
+sentence = input().strip()
+result = transform_sentence(sentence)
+print(result)
+```
+
+This code takes an input sentence, transforms it according to the specified rules, and prints the transformed sentence.
+completed 4/19, Solved: False, number of success = 0/4, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+# RegExp Fun #1 - When I miss few days of gym
+
+## Disclaimer
+
+The background story of this Kata is 100% fiction.  Any resemblance to real people or real events is **nothing more than a coincidence** and should be regarded as such.
+
+## Background Story
+
+You are a person who loves to go to the gym everyday with the squad of people that you've known since early childhood.  However, you recently contracted a sickness that forced you to stay at home for over a week.  As you see your body getting weaker and weaker every day and as you see your biceps and triceps disappearing, you can't help but lay in bed and cry.  You're usually an optimistic person but this time negative thoughts come to your head ... 
+
+![When I miss few days of gym](https://pics.onsizzle.com/Instagram-faf8c9.png)
+
+
+## Task
+
+As can be seen from the funny image above (or am I the only person to find the picture above hilarious?) there is lots of slang.  Your task is to define a function ```gymSlang``` which accepts a string argument and does the following:
+
+1. Replace *all* instances of ```"probably"``` to ```"prolly"```
+2. Replace *all* instances of ```"i am"``` to ```"i'm"```
+3. Replace *all* instances of ```"instagram"``` to ```"insta"```
+4. Replace *all* instances of ```"do not"``` to ```"don't"```
+5. Replace *all* instances of ```"going to"``` to ```"gonna"```
+6. Replace *all* instances of ```"combination"``` to ```"combo"```
+
+Your replacement regexes **should be case-sensitive**, only replacing the words above with slang if the detected pattern is in **lowercase**.  However, please note that apart from 100% lowercase matches, you will **also have to replace matches that are correctly capitalized** (e.g. ```"Probably" => "Prolly"``` or ```"Instagram" => "Insta"```).
+
+Finally, your code will be tested to make sure that you have used **RegExp** replace in your code.
+
+Enjoy :D
+
+Sample Input Format:
+Probably
+Sample Output Format:
+Prolly
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept involved in solving this problem is the use of regular expressions (RegEx) for text manipulation. Regular expressions allow us to perform complex search patterns on strings and modify them according to our needs.
+
+## Tutorial:
+Regular Expressions (RegEx) are sequences of characters that forms a search pattern. It is used to check if a string contains a specified set of characters. In Python, the re module provides support for RegEx operations. Some common functions used in RegEx are:
+- `re.sub(pattern, repl, string)`: This function returns a string where all occurrences of the pattern are replaced with the repl string.
+
+To replace words in a string while considering both lower and uppercase cases, we can use the `re.IGNORECASE` flag in the `re.sub()` function.
+
+## Example Problems: 
+
+### Problem 1: Email Validation
+Given an email address, validate whether it's in a valid format using RegEx.
+
+Solution:
+We can use a simple RegEx pattern to match the general structure of an email address.
+
+Python3 Code:
+```python
+import re
+
+def validate_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(pattern, email))
+
+email = input()
+print(validate_email(email))
+```
+
+### Problem 2: URL Validation
+Given a URL, validate whether it's in a valid format using RegEx.
+
+Solution:
+We can create a RegEx pattern to match the different parts of a URL.
+
+Python3 Code:
+```python
+import re
+
+def validate_url(url):
+    pattern = r'^(http|https)://([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(/.*)?$'
+    return bool(re.match(pattern, url))
+
+url = input()
+print(validate_url(url))
+```
+
+### Problem 3: Credit Card Validation
+Given a credit card number, validate whether it's in a valid format using RegEx.
+
+Solution:
+We can use a Luhn algorithm-based RegEx pattern to check the validity of a credit card number.
+
+Python3 Code:
+```python
+import re
+
+def validate_credit_card(card_number):
+    pattern = r'^\d{4}-\d{4}-\d{4}-\d{4}$'
+    return bool(re.match(pattern, card_number)) and sum(int(digit) * (2 if index % 2 else 1) for index, digit in enumerate(str(card_number).replace('-', ''))) % 10 == 0
+
+card_number = input()
+print(validate_credit_card(card_number))
+```
+
+## Python3 code to solve the original problem: 
+
+Explanation of the solution:
+In the `gymSlang` function, we use the `re.sub()` function from the `re` module to replace specific words in the input string with their slang equivalents. We use the `re.IGNORECASE` flag to ensure that the replacements are case-insensitive.
+
+Python3 Code:
+```python
+import re
+
+def gymSlang(s):
+    s = re.sub(r'\bprobably\b', 'prolly', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bi am\b', "i'm", s, flags=re.IGNORECASE)
+    s = re.sub(r'\binstagram\b', 'insta', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bdo not\b', "don't", s, flags=re.IGNORECASE)
+    s = re.sub(r'\bgoing to\b', "gonna", s, flags=re.IGNORECASE)
+    s = re.sub(r'\bcombination\b', 'combo', s, flags=re.IGNORECASE)
+    return s
+
+s = input().strip()
+print(gymSlang(s))
+```
+completed 5/19, Solved: False, number of success = 0/5, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+A Madhav array has the following property:
+
+```a[0] = a[1] + a[2] = a[3] + a[4] + a[5] = a[6] + a[7] + a[8] + a[9] = ...```
+
+Complete the function/method that returns `true` if the given array is a Madhav array, otherwise it returns `false`.
+
+*Edge cases: An array of length* `0` *or* `1` *should not be considered a Madhav array as there is nothing to compare.*
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts
+
+The problem involves checking whether an array follows a specific pattern known as a "Madhav array." A Madhav array has the property where every group of consecutive elements sums up to the same value. Specifically, the sum of the first two elements equals the sum of the next three elements, which in turn equals the sum of the next four elements, and so on.
+
+#### Key Points:
+1. **Pattern Recognition**: The main task is to recognize the repeating pattern of sums within the array.
+2. **Sum Calculation**: Compute the sum of consecutive groups and verify if they match.
+3. **Boundary Conditions**: Handle edge cases like arrays of length 0 or 1, which should not be considered valid Madhav arrays.
+
+### Algorithms
+
+1. **Sliding Window Technique**:
+   - Use a sliding window approach to calculate the sum of consecutive groups of increasing sizes.
+   - Compare each calculated sum with the previous one to ensure consistency.
+
+### Tutorial
+
+The Sliding Window technique is particularly useful for this problem because it allows us to efficiently compute the sum of consecutive elements without recalculating parts of the sum repeatedly.
+
+#### Steps:
+1. Initialize variables to keep track of the current sum and the expected sum.
+2. Iterate through the array using a loop.
+3. For each group size starting from 2 upwards, calculate the sum of the current group.
+4. Check if this sum matches the expected sum. If not, return `False`.
+5. Update the expected sum to the current sum for the next iteration.
+6. If all checks pass, return `True`.
+
+### Example Problems
+
+#### Problem 1: [Array Sum Pattern]
+Given an array, determine if the sum of every pair of adjacent elements is constant.
+
+**Solution**:
+- Calculate the sum of the first pair.
+- Check if the sum of every subsequent pair is equal to the first sum.
+
+**Python Code**:
+```python
+def check_adjacent_sum(arr):
+    if len(arr) < 2:
+        return False
+    target_sum = arr[0] + arr[1]
+    for i in range(2, len(arr), 2):
+        if i + 1 == len(arr) or arr[i] + arr[i+1] != target_sum:
+            return False
+    return True
+
+# Test cases
+print(check_adjacent_sum([1, 2, 3, 2]))  # True
+print(check_adjacent_sum([1, 2, 2, 1]))  # False
+```
+
+#### Problem 2: [Subarray Sum Equals K]
+Given an array, find if there exists a subarray whose sum equals a given number `k`.
+
+**Solution**:
+- Use a cumulative sum approach with a dictionary to store the frequency of sums encountered.
+- Check if the difference between the current cumulative sum and `k` exists in the dictionary.
+
+**Python Code**:
+```python
+def subarray_sum_equals_k(nums, k):
+    cum_sum = 0
+    count = {0: 1}
+    for num in nums:
+        cum_sum += num
+        if cum_sum - k in count:
+            return True
+        count[cum_sum] = count.get(cum_sum, 0) + 1
+    return False
+
+# Test cases
+print(subarray_sum_equals_k([1, 2, 3, 4], 6))  # True
+print(subarray_sum_equals_k([1, 2, 3, 4], 10))  # False
+```
+
+#### Problem 3: [Maximum Product Subarray]
+Given an array, find the contiguous subarray with the largest product.
+
+**Solution**:
+- Track both the maximum and minimum products at each step since a negative number can flip the sign.
+- Update the result whenever a larger product is found.
+
+**Python Code**:
+```python
+def max_product_subarray(nums):
+    if not nums:
+        return 0
+    max_product = min_product = result = nums[0]
+    for num in nums[1:]:
+        temp_max = max(num, max_product * num, min_product * num)
+        min_product = min(num, max_product * num, min_product * num)
+        max_product = temp_max
+        result = max(result, max_product)
+    return result
+
+# Test cases
+print(max_product_subarray([-2, 0, -1]))  # 0
+print(max_product_subarray([2, 3, -2, 4]))  # 6
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation of the Solution:
+- Start by handling the edge case where the array length is less than 2.
+- Initialize variables to keep track of the expected sum and the current sum.
+- Iterate through the array, calculating the sum of consecutive groups.
+- Compare each group sum with the expected sum and update accordingly.
+- Return `True` if all sums match; otherwise, return `False`.
+
+#### Python3 Code:
+```python
+def is_madhav_array(arr):
+    n = len(arr)
+    if n < 2:
+        return False
+    
+    expected_sum = arr[0] + arr[1]
+    
+    for i in range(2, n, 1):
+        group_size = i + 1
+        if n - i < group_size:
+            return False
+        
+        current_sum = sum(arr[i:i+group_size])
+        
+        if current_sum != expected_sum:
+            return False
+        
+        expected_sum = current_sum
+    
+    return True
+
+# Input and output handling
+arr = list(map(int, input().split()))
+result = is_madhav_array(arr)
+print("true" if result else "false")
+```
+
+This code correctly implements the logic to check if the given array is a Madhav array based on the provided problem statement.
+completed 6/19, Solved: False, number of success = 0/6, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+In Russia regular bus tickets usually consist of 6 digits. The ticket is called lucky when the sum of the first three digits equals to the sum of the last three digits. Write a function to find out whether the ticket is lucky or not. Return true if so, otherwise return false. Consider that input is always a string. Watch examples below.
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts & Algorithms
+
+The problem at hand involves checking the balance between the first half and the second half of a six-digit number. This essentially requires basic arithmetic operations such as summing elements of a list and comparing them.
+
+**Algorithm Steps:**
+1. Extract the first three digits and calculate their sum.
+2. Extract the last three digits and calculate their sum.
+3. Compare the two sums.
+4. Return `True` if they are equal; otherwise, return `False`.
+
+### Tutorial
+
+To implement this algorithm, we can use Python's built-in functions and methods. Here¡¯s a step-by-step guide:
+
+1. **Extracting Digits**: We can convert the string representation of the number into an integer array using list comprehension.
+2. **Summing Elements**: Use the `sum()` function to add up the elements of the slices representing the first three and last three digits.
+3. **Comparison**: Simply compare the two sums using the equality operator (`==`).
+
+### Example Problems
+
+#### Problem 1: Check if a Number is Palindrome
+
+A palindrome reads the same backward as forward. For example, "12321" is a palindrome. Implement a function to check if a given number is a palindrome.
+
+**Solution**:
+```python
+def is_palindrome(num):
+    str_num = str(num)
+    return str_num == str_num[::-1]
+
+# Example usage
+num = int(input("Enter a number: "))
+print(is_palindrome(num))
+```
+
+#### Problem 2: Sum of Even Numbers in an Array
+
+Given an array of integers, write a function to calculate the sum of even numbers.
+
+**Solution**:
+```python
+def sum_of_even(numbers):
+    return sum(x for x in numbers if x % 2 == 0)
+
+# Example usage
+numbers = list(map(int, input("Enter numbers separated by space: ").split()))
+print(sum_of_even(numbers))
+```
+
+#### Problem 3: Count Vowels in a String
+
+Implement a function to count the number of vowels ('a', 'e', 'i', 'o', 'u') in a given string.
+
+**Solution**:
+```python
+def count_vowels(s):
+    vowels = set('aeiouAEIOU')
+    return sum(1 for char in s if char in vowels)
+
+# Example usage
+s = input("Enter a string: ")
+print(count_vowels(s))
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation of the Solution
+
+1. Convert the input string to a list of integers.
+2. Calculate the sum of the first three digits.
+3. Calculate the sum of the last three digits.
+4. Compare the two sums and return the result.
+
+#### Python3 Code
+
+```python
+def is_lucky_ticket(ticket):
+    # Ensure the input is a string of length 6
+    if len(ticket) != 6 or not ticket.isdigit():
+        raise ValueError("Input must be a 6-digit string")
+    
+    # Convert the string to a list of integers
+    digits = [int(digit) for digit in ticket]
+    
+    # Calculate the sum of the first three digits and the last three digits
+    first_half_sum = sum(digits[:3])
+    second_half_sum = sum(digits[3:])
+    
+    # Compare the sums and return the result
+    return first_half_sum == second_half_sum
+
+# Main function to handle input and output
+if __name__ == "__main__":
+    # Take input from user
+    ticket = input("Enter a 6-digit ticket number: ")
+    
+    # Call the function and print the result
+    result = is_lucky_ticket(ticket)
+    print(result)
+```
+
+This code defines a function `is_lucky_ticket` which checks if a given 6-digit ticket is lucky. It also includes input handling and printing the result based on the function's output.
+completed 7/19, Solved: False, number of success = 0/7, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+Return a new array consisting of elements which are multiple of their own index in input array (length > 1).
+
+Some cases: 
+
+```
+[22, -6, 32, 82, 9, 25] =>  [-6, 32, 25]
+
+[68, -1, 1, -7, 10, 10] => [-1, 10]
+
+[-56,-85,72,-26,-14,76,-27,72,35,-21,-67,87,0,21,59,27,-92,68] => [-85, 72, 0, 68]
+```
+
+Sample Input Format:
+[22, -6, 32, 82, 9, 25]
+Sample Output Format:
+[-6, 32, 25]
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+**Core Concepts:**
+1. **Iteration:** We need to iterate over each element in the input array to check if it meets the condition.
+2. **Condition Checking:** For each element, we need to check if it is a multiple of its index.
+3. **Appending to List:** If the condition is met, we append the element to a new list.
+4. **Returning the Result:** Finally, return the new list containing all elements that meet the condition.
+
+**Algorithm Steps:**
+1. Initialize an empty list named `result`.
+2. Iterate over the input array using a loop where the index and value can be accessed simultaneously.
+3. Check if the current element is a multiple of its index.
+4. If the condition is true, append the element to the `result` list.
+5. After iterating through the entire array, return the `result` list.
+
+### Tutorial:
+
+#### Iteration in Python:
+Iteration allows us to go through each item in a collection like a list or dictionary. In this problem, we use a for loop to iterate over the indices and values of the array simultaneously.
+
+```python
+for index, value in enumerate(input_array):
+    # Code to process the value based on the index
+```
+
+#### Condition Checking:
+To check if a number is a multiple of another number, we use the modulus operator (`%`). A number `a` is a multiple of `b` if `a % b == 0`.
+
+```python
+if value % index == 0:
+    # Code to execute if the condition is true
+```
+
+#### Appending to a List:
+We use the `append()` method to add elements to a list.
+
+```python
+result.append(value)
+```
+
+#### Returning the Result:
+Finally, we return the list that contains all elements meeting the condition.
+
+```python
+return result
+```
+
+### Example Problems:
+
+1. **Problem: Find Multiples of Indexes**
+   - **Description:** Given an array, return a new array with elements that are multiples of their respective indexes.
+   - **Solution:** Use iteration to check each element's divisibility by its index.
+   
+   ```python
+   def find_multiples_of_indexes(arr):
+       result = []
+       for i, x in enumerate(arr):
+           if x % i == 0:
+               result.append(x)
+       return result
+   
+   arr = list(map(int, input().split()))
+   print(find_multiples_of_indexes(arr))
+   ```
+
+2. **Problem: Filter Array Based on Index Position**
+   - **Description:** Given an array, filter out elements based on whether they are at an odd or even index position.
+   - **Solution:** Use iteration and conditional checks.
+   
+   ```python
+   def filter_by_index_position(arr):
+       result = [x for i, x in enumerate(arr) if i % 2 == 0]
+       return result
+   
+   arr = list(map(int, input().split()))
+   print(filter_by_index_position(arr))
+   ```
+
+3. **Problem: Sum Elements at Even Indices**
+   - **Description:** Given an array, compute the sum of elements located at even indices.
+   - **Solution:** Use iteration and conditional checks.
+   
+   ```python
+   def sum_even_index_elements(arr):
+       total = 0
+       for i, x in enumerate(arr):
+           if i % 2 == 0:
+               total += x
+       return total
+   
+   arr = list(map(int, input().split()))
+   print(sum_even_index_elements(arr))
+   ```
+
+### Python3 code to solve the original problem:
+
+#### Explanation of the Solution:
+- We initialize an empty list `result` to store the elements that are multiples of their index.
+- We iterate over the input array using `enumerate` to get both the index and the value.
+- For each element, we check if it is a multiple of its index using the modulus operator (`value % index == 0`).
+- If the condition is true, we append the element to the `result` list.
+- After iterating through the entire array, we return the `result` list.
+
+#### Python3 code to solve the problem:
+
+```python
+def find_multiples_of_index(arr):
+    result = []
+    for index, value in enumerate(arr):
+        if value % index == 0:
+            result.append(value)
+    return result
+
+# Take input from standard input
+arr = list(map(int, input().split()))
+
+# Call the function and print the output
+print(find_multiples_of_index(arr))
+```
+
+This code will correctly solve the given problem by returning a new array containing elements that are multiples of their index positions.
+completed 8/19, Solved: False, number of success = 0/8, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+Implement a function which takes a string, and returns its hash value.
+
+Algorithm steps:
+
+* `a` := sum of the ascii values of the input characters
+* `b` := sum of every difference between the consecutive characters of the input (second char minus first char, third minus second, ...)
+* `c` := (`a` OR `b`) AND ((NOT `a`) shift left by 2 bits)
+* `d` := `c` XOR (32 * (`total_number_of_spaces` + 1))
+* return `d`
+
+**Note**: OR, AND, NOT, XOR are bitwise operations.
+
+___
+
+### Examples
+
+```
+input = "a"
+a = 97
+b = 0
+result = 64
+
+input = "ca"
+a = 196
+b = -2
+result = -820
+```
+
+___
+
+Give an example why this hashing algorithm is bad?
+
+Sample Input Format:
+a
+Sample Output Format:
+64
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithm Concepts Used
+
+The problem involves basic arithmetic and bit manipulation techniques, including addition, subtraction, bitwise OR, AND, NOT, and XOR operations. These operations are fundamental for creating custom hash functions that can be applied to strings.
+
+### Tutorial on Bitwise Operations
+
+Bitwise operations are a way of performing calculations at the level of individual bits within a binary number. Here¡¯s how they work:
+
+1. **AND (`&`)**: The result has a bit set to 1 if both corresponding bits of the operands are 1.
+2. **OR (`|`)**: The result has a bit set to 1 if at least one corresponding bit of the operands is 1.
+3. **XOR (`^`)**: The result has a bit set to 1 if exactly one of the corresponding bits of the operands is 1.
+4. **NOT (`~`)**: This operator performs a bitwise negation on the operand. Each bit in the result is the opposite of the corresponding bit in the operand.
+
+### Relevant Competitive Programming Problems
+
+1. **Problem: Implementing a Simple Hash Function**
+   - **Description**: Write a function that takes a string and returns a simple hash value based on ASCII values and differences.
+   - **Solution**: Use ASCII summation and differences to compute the hash value.
+   - **Python Code**:
+     ```python
+     def simple_hash(s):
+         a = sum(ord(c) for c in s)
+         b = sum(ord(s[i]) - ord(s[i-1]) for i in range(1, len(s)))
+         return a & b
+     ```
+
+2. **Problem: Advanced String Hashing**
+   - **Description**: Implement a more complex hash function using additional bitwise operations.
+   - **Solution**: Combine ASCII sums, differences, and shifts to create a more robust hash.
+   - **Python Code**:
+     ```python
+     def advanced_hash(s):
+         a = sum(ord(c) for c in s)
+         b = sum(ord(s[i]) - ord(s[i-1]) for i in range(1, len(s)))
+         c = (a | b) & ((~a) << 2)
+         d = c ^ (32 * (s.count(' ') + 1))
+         return d
+     ```
+
+3. **Problem: Hash Collisions**
+   - **Description**: Analyze the likelihood of hash collisions with different hash functions.
+   - **Solution**: Test multiple hash functions and observe their collision rates.
+   - **Python Code**:
+     ```python
+     def test_collisions(func):
+         colliding_pairs = []
+         for i in range(256):
+             for j in range(i+1, 256):
+                 if func(chr(i)) == func(chr(j)):
+                     colliding_pairs.append((chr(i), chr(j)))
+         return colliding_pairs
+     ```
+
+### Solution to the Original Problem
+
+#### Explanation of the Solution
+
+1. **Calculate `a`**: Sum the ASCII values of all characters in the string.
+2. **Calculate `b`**: Compute the sum of the differences between consecutive characters.
+3. **Calculate `c`**: Use bitwise OR and AND operations to combine `a` and `b`, and shift `a` left by 2 bits.
+4. **Calculate `d`**: Perform a bitwise XOR operation between `c` and `(32 * (number_of_spaces + 1))`.
+
+#### Python3 Code to Solve the Problem
+
+```python
+def string_hash(s):
+    # Calculate 'a' as the sum of ASCII values of all characters
+    a = sum(ord(c) for c in s)
+    
+    # Calculate 'b' as the sum of differences between consecutive characters
+    b = sum(ord(s[i]) - ord(s[i-1]) for i in range(1, len(s)))
+    
+    # Calculate 'c' using bitwise OR, AND, and left shift
+    c = (a | b) & ((~a) << 2)
+    
+    # Calculate 'd' using bitwise XOR
+    d = c ^ (32 * (s.count(' ') + 1))
+    
+    return d
+
+# Take input from standard input
+input_string = input().strip()
+
+# Call the function and print the result
+print(string_hash(input_string))
+```
+
+This solution follows the instructions provided, ensuring the code is self-contained and uses standard input/output for interaction.
+completed 9/19, Solved: False, number of success = 0/9, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+## The Story
+Green Lantern's long hours of study and practice with his ring have really paid off -- his skills, focus, and control have improved so much that now he can even use his ring to update and redesign his web site. Earlier today he was focusing his will and a beam from his ring upon the Justice League web server, while intensely brainstorming and visualizing in minute detail different looks and ideas for his web site, and when he finished and reloaded his home page, he was absolutely thrilled to see that among other things it now displayed
+
+~~~~
+In brightest day, in blackest night,
+There's nothing cooler than my site!
+~~~~
+
+in his favorite font in very large blinking green letters.
+
+The problem is, Green Lantern's ring has no power over anything yellow, so if he's experimenting with his web site and accidentally changes some text or background color to yellow, he will no longer be able to make any changes to those parts of the content or presentation (because he doesn't actually know any HTML, CSS, programming languages, frameworks, etc.) until he gets a more knowledgable friend to edit the code for him.
+
+## Your Mission
+You can help Green Lantern by writing a function that will replace any color property values that are too yellow with shades of green or blue-green. Presumably at a later time the two of you will be doing some testing to find out at exactly which RGB values yellow stops being yellow and starts being off-white, orange, brown, etc. as far as his ring is concerned, but here's the plan to get version 1.0 up and running as soon as possible:
+
+Your function will receive either an HTML color name or a six-digit hex color code. (You're not going to bother with other types of color codes just now because you don't think they will come up.) If the color is too yellow, your function needs to return a green or blue-green shade instead, but if it is not too yellow, it needs to return the original color name or hex color code unchanged.
+
+### HTML Color Names
+(If don't know what HTML color names are, take a look at this HTML colors names reference.)
+
+For HMTL color names, you are going to start out trying a pretty strict definition of yellow, replacing any of the following colors as specified:
+
+~~~~
+Gold => ForestGreen
+Khaki => LimeGreen
+LemonChiffon => PaleGreen
+LightGoldenRodYellow => SpringGreen
+LightYellow => MintCream
+PaleGoldenRod => LightGreen
+Yellow => Lime
+~~~~
+
+HTML color names are case-insensitive, so your function will need to be able to identify the above yellow shades regardless of the cases used, but should output the green shades as capitalized above.
+
+Some examples:
+```
+"lemonchiffon"    "PaleGreen"
+"GOLD"            "ForestGreen"
+"pAlEgOlDeNrOd"   "LightGreen"
+"BlueViolet"      "BlueViolet"
+```
+
+### Hex Color Codes
+(If you don't know what six-digit hex color codes are, take a look at this Wikipedia description. Basically the six digits are made up of three two-digit numbers in base 16, known as hexidecimal or hex, from 00 to FF (equivalent to 255 in base 10, also known as decimal), with the first two-digit number specifying the color's red value, the second the green value, and the third blue.)
+
+With six-digit color hex codes, you are going to start out going really overboard, interpreting as "yellow" any hex code where the red (R) value and the green (G) value are each greater than the blue (B) value. When you find one of these "yellow" hex codes, your function will take the three hex values and rearrange them that the largest goes to G, the middle goes to B, and the smallest to R. 
+
+For example, with the six-digit hex color code `#FFD700`, which has an R value of hex FF (decimal 255), a G value of hex D7 (decimal 215), and a B value of hex 00 (decimal 0), as the R and G values are each larger than the B value, you would return it as `#00FFD7` -- the FF reassigned to G, the D7 to B, and the 00 to R. 
+
+Hex color codes are also case-insensitive, but your function should output them in the same case they were received in, just for consistency with whatever style is being used.
+
+Some examples:
+```
+"#000000"   "#000000"
+"#b8860b"   "#0bb886"
+"#8FBC8F"   "#8FBC8F"
+"#C71585"   "#C71585"
+```
+
+Sample Input Format:
+lemonchiffon
+Sample Output Format:
+PaleGreen
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+To solve this problem, we'll break it down into several steps:
+
+1. **Input Handling**: We need to handle both HTML color names and hex color codes. Since input could be either, we'll check for both formats before processing.
+
+2. **HTML Color Name Conversion**:
+   - Create a dictionary mapping yellow HTML color names to their respective green shades.
+   - Convert the input string to lower case for uniformity.
+   - Check if the lower-case input matches any of the keys in our dictionary. If it does, return the corresponding value from the dictionary.
+
+3. **Hex Color Code Conversion**:
+   - Validate the input string to ensure it's a valid hex color code (starts with `#` followed by exactly six hexadecimal characters).
+   - Extract the red, green, and blue components from the hex code.
+   - Convert these components to integers.
+   - Check if the red and green values are greater than the blue value. If they are, swap the largest component with the green component, the middle with the blue, and the smallest with the red.
+   - Reconstruct the hex code from the modified RGB values.
+
+4. **Output Formatting**:
+   - Ensure the output maintains the case of the input for hex color codes.
+
+## Tutorial:
+
+### Step-by-Step Explanation:
+
+1. **Input Handling**:
+   - Use the `input()` function to read the input string.
+   - Check if the input starts with `#`. If it does, treat it as a hex color code; otherwise, treat it as an HTML color name.
+
+2. **HTML Color Name Conversion**:
+   - Define a dictionary (`yellow_to_green`) that maps yellow HTML color names to their green counterparts.
+   - Convert the input string to lowercase to handle case insensitivity.
+   - Use the dictionary to check if the lowercase input exists. If it does, return the corresponding green shade.
+
+3. **Hex Color Code Conversion**:
+   - Ensure the input is a valid hex color code by checking its length and starting character.
+   - Extract the red, green, and blue values by slicing the string.
+   - Convert these values from hexadecimal to integer.
+   - Compare the red and green values with the blue value:
+     - If red > blue and green > blue, swap red and green.
+     - Sort the values to ensure the largest becomes green, the middle becomes blue, and the smallest becomes red.
+   - Recreate the hex code from the sorted RGB values.
+
+4. **Output Formatting**:
+   - Return the output in the same case as the input for hex color codes.
+
+## Example Problems:
+
+### Problem 1: Determine if a String is a Valid Hexadecimal Number
+
+**Problem Description**: Write a function to determine if a given string is a valid hexadecimal number.
+
+**Solution**: Check if all characters in the string are within the set `{0-9, A-F}`.
+
+```python
+def is_valid_hex(s):
+    valid_chars = '0123456789ABCDEFabcdef'
+    return all(char in valid_chars for char in s)
+```
+
+### Problem 2: Convert an Integer to a Hexadecimal String
+
+**Problem Description**: Write a function to convert an integer to its corresponding hexadecimal string representation.
+
+**Solution**: Use the built-in `hex()` function and remove the '0x' prefix.
+
+```python
+def int_to_hex(n):
+    return hex(n)[2:].upper()
+```
+
+### Problem 3: Swap Characters in a String Based on Conditions
+
+**Problem Description**: Write a function that takes a string and swaps certain characters based on specific conditions.
+
+**Solution**: Iterate through the string and apply conditions to swap characters.
+
+```python
+def swap_characters(s):
+    result = []
+    for char in s:
+        if char == 'a':
+            result.append('A')
+        elif char == 'A':
+            result.append('a')
+        else:
+            result.append(char)
+    return ''.join(result)
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the Solution:
+
+1. **Input Handling**: Read the input string and determine if it's a hex color code or an HTML color name.
+2. **HTML Color Name Conversion**: Check against the predefined dictionary and return the mapped value.
+3. **Hex Color Code Conversion**: Validate the input, extract RGB components, sort them based on the condition, and reconstruct the hex code.
+4. **Output Formatting**: Maintain the case of the input for hex color codes.
+
+### Python3 code:
+
+```python
+def convert_color(color):
+    # Dictionary mapping yellow HTML color names to their green counterparts
+    yellow_to_green = {
+        'gold': 'ForestGreen',
+        'khaki': 'LimeGreen',
+        'lemonchiffon': 'PaleGreen',
+        'lightgoldenrodyellow': 'SpringGreen',
+        'lightyellow': 'MintCream',
+        'palegoldenrod': 'LightGreen',
+        'yellow': 'Lime'
+    }
+
+    # Check if the input is a hex color code
+    if color.startswith('#'):
+        # Validate hex color code
+        if len(color) != 7 or not all(c in '0123456789ABCDEFabcdef' for c in color[1:]):
+            raise ValueError("Invalid hex color code")
+        
+        # Extract RGB components
+        r, g, b = int(color[1:3], 16), int(color[3:5], 16), int(color[5:], 16)
+        
+        # Check if the color is too yellow
+        if r > g and g > b:
+            # Swap the largest component with the green component,
+            # the middle with the blue, and the smallest with the red
+            if r > b:
+                r, b = b, r
+            if g < b:
+                g, b = b, g
+        
+        # Reconstruct the hex code
+        return f'#{r:02X}{g:02X}{b:02X}'
+    
+    # Check if the input is a valid HTML color name
+    elif color.lower() in yellow_to_green:
+        # Return the corresponding green shade
+        return yellow_to_green[color.lower()].capitalize()
+    
+    else:
+        raise ValueError("Invalid color input")
+
+# Take input from user
+color_input = input().strip()
+
+# Call the function and print the output
+print(convert_color(color_input))
+```
+
+This solution covers the requirements by handling both HTML color names and hex color codes, converting them according to the specified rules, and maintaining the case of the input for hex color codes.
+completed 10/19, Solved: False, number of success = 0/10, acc = 0.0
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+# Task
+Imagine `n` horizontal lines and `m` vertical lines.
+
+Some of these lines intersect, creating rectangles.
+
+How many rectangles are there?
+
+# Examples
+
+For `n=2, m=2,` the result should be `1`.
+
+there is only one 1x1 rectangle.
+
+For `n=2, m=3`, the result should be `3`.
+
+there are two 1x1 rectangles and one 1x2 rectangle. So `2 + 1 = 3`.
+
+For n=3, m=3, the result should be `9`.
+
+there are four 1x1 rectangles, two 1x2 rectangles, two 2x1 rectangles and one 2x2 rectangle. So `4 + 2 + 2 + 1 = 9`.
+
+
+
+# Input & Output
+
+
+- `[input]` integer `n`
+
+Number of horizontal lines.
+
+Constraints: `0 <= n <= 100`
+
+
+- `[input]` integer `m`
+
+Number of vertical lines.
+
+Constraints: `0 <= m <= 100`
+
+
+- `[output]` an integer
+
+Number of rectangles.
+
+Sample Input Format:
+2
+3
+Sample Output Format:
+3
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used to solve this problem is combinatorial mathematics. Specifically, we need to count how many ways we can choose two horizontal lines and two vertical lines to form a rectangle. The number of ways to choose `k` items from `n` items is given by the binomial coefficient, often referred to as "n choose k" and denoted as \( C(n, k) \).
+
+## Tutorial:
+### Binomial Coefficient:
+The binomial coefficient \( C(n, k) \) represents the number of ways to choose `k` elements from a set of `n` elements without regard to the order of selection. It is calculated using the formula:
+
+\[ C(n, k) = \frac{n!}{k!(n-k)!} \]
+
+Where `n!` denotes the factorial of `n`, which is the product of all positive integers up to `n`.
+
+### Applying Binomial Coefficient to Rectangles:
+To find the total number of rectangles formed by `n` horizontal lines and `m` vertical lines, we need to select 2 out of `n` horizontal lines and 2 out of `m` vertical lines. This can be done using the binomial coefficient:
+
+\[ \text{Total Rectangles} = C(n, 2) \times C(m, 2) \]
+
+This formula works because choosing any 2 horizontal lines and any 2 vertical lines will uniquely define a rectangle.
+
+## Example Problems:
+1. **Combining Two Sets of Items**:
+   - **Problem**: Given `n` red balls and `m` blue balls, how many ways can you pick 2 balls such that both are either red or blue?
+   - **Solution**: Use the binomial coefficient to calculate the number of ways to pick 2 red balls and add it to the number of ways to pick 2 blue balls.
+   - **Python3 Code**:
+     ```python
+     def combinations(n, k):
+         return factorial(n) // (factorial(k) * factorial(n - k))
+
+     def pick_two_balls(n, m):
+         return combinations(n, 2) + combinations(m, 2)
+     ```
+
+2. **Painting a Grid**:
+   - **Problem**: You have a grid of size `n x m`. How many ways can you color a cell if you are allowed to color a cell only if no adjacent cell has been colored?
+   - **Solution**: Use dynamic programming to keep track of the number of ways to color cells based on their neighbors.
+   - **Python3 Code**:
+     ```python
+     def paint_grid(n, m):
+         dp = [[0 for _ in range(m)] for _ in range(n)]
+         for i in range(n):
+             for j in range(m):
+                 if i == 0 and j == 0:
+                     dp[i][j] = 1
+                 else:
+                     dp[i][j] = dp[i-1][j] + dp[i][j-1]
+         return dp[n-1][m-1]
+     ```
+
+3. **Forming Teams**:
+   - **Problem**: Given a group of `n` people, how many different teams of 2 can be formed where each team consists of exactly one male and one female?
+   - **Solution**: Use the binomial coefficient to calculate the number of ways to pick 1 male from `m` males and 1 female from `f` females.
+   - **Python3 Code**:
+     ```python
+     def form_teams(males, females):
+         return males * females
+     ```
+
+## Python3 code to solve the original problem:
+### Explanation:
+We use the combination formula to calculate the number of ways to choose 2 horizontal lines and 2 vertical lines. The total number of rectangles is the product of these two values.
+
+### Python3 Code:
+```python
+import math
+
+def combinations(n, k):
+    return math.comb(n, k)
+
+def count_rectangles(n, m):
+    # Calculate the number of ways to choose 2 horizontal lines and 2 vertical lines
+    horizontal_combinations = combinations(n, 2)
+    vertical_combinations = combinations(m, 2)
+    
+    # Total number of rectangles is the product of the two combinations
+    total_rectangles = horizontal_combinations * vertical_combinations
+    
+    return total_rectangles
+
+# Read input from standard input
+n = int(input())
+m = int(input())
+
+# Call the function with the specified parameters
+result = count_rectangles(n, m)
+
+# Print the output to standard output
+print(result)
+```
+
+This code reads the input values for `n` and `m`, calculates the number of rectangles using the `count_rectangles` function, and prints the result.
+completed 11/19, Solved: True, number of success = 1/11, acc = 9.09
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+The prime number sequence starts with: `2,3,5,7,11,13,17,19...`. Notice that `2` is in position `one`. 
+
+`3` occupies position `two`, which is a prime-numbered position. Similarly, `5`, `11` and `17` also occupy prime-numbered positions. We shall call primes such as `3,5,11,17` dominant primes because they occupy prime-numbered positions in the prime number sequence. Let's call this `listA`. 
+
+As you can see from listA, for the prime range `range(0,10)`, there are `only two` dominant primes (`3` and `5`) and the sum of these primes is: `3 + 5 = 8`. 
+
+Similarly, as shown in listA, in the `range (6,20)`, the dominant primes in this range are `11` and `17`, with a sum of `28`.
+
+Given a `range (a,b)`, what is the sum of dominant primes within that range? Note that  `a <= range <= b` and `b` will not exceed `500000`.
+
+Good luck!
+
+If you like this Kata, you will enjoy:
+
+[Simple Prime Streaming](https://www.codewars.com/kata/5a908da30025e995880000e3)
+
+[Sum of prime-indexed elements](https://www.codewars.com/kata/59f38b033640ce9fc700015b)
+
+[Divisor harmony](https://www.codewars.com/kata/59bf97cd4f98a8b1cd00007e)
+
+Sample Input Format:
+0
+10
+Sample Output Format:
+8
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+To solve this problem, we need to identify two main things:
+1. **Prime Numbers**: We need to generate prime numbers up to a certain limit efficiently.
+2. **Prime-Indexed Primes**: Identify prime numbers that occupy prime-numbered positions in the sequence of all prime numbers.
+
+### Algorithm Steps:
+1. **Generate Prime Numbers**: Use the Sieve of Eratosthenes algorithm to generate all prime numbers up to a maximum value (since `b` can be as large as 500,000, we need an efficient way to handle this).
+2. **Check Prime-Indexed Positions**: Iterate through the generated prime numbers and check if their index (position in the sequence of all primes) is itself a prime number.
+3. **Sum Dominant Primes**: Sum up all the prime numbers that meet the criteria.
+
+### Tutorial:
+#### Sieve of Eratosthenes:
+The Sieve of Eratosthenes is an ancient algorithm used to find all primes smaller than a given number `n`. It works by iteratively marking the multiples of each prime number starting from 2.
+
+#### Checking Prime Index:
+Once we have the list of prime numbers, we need to determine if the index of each prime number is also a prime number. This involves checking the primality of each index.
+
+#### Summing Up:
+Finally, sum up all the prime numbers that satisfy both conditions (prime number and its index is also a prime number).
+
+### Example Problems:
+1. **Find All Prime Numbers Less Than N**:
+   - **Problem**: Given a number `N`, print all prime numbers less than `N`.
+   - **Solution**: Implement the Sieve of Eratosthenes to generate all primes below `N`.
+
+2. **Check If a Number Is Prime**:
+   - **Problem**: Given a number `N`, check if it is a prime number.
+   - **Solution**: Write a function that checks divisibility up to the square root of `N`.
+
+3. **Sum Of Prime Indexed Elements**:
+   - **Problem**: Given an array, return the sum of elements at prime indices.
+   - **Solution**: Generate a list of prime indices and sum the corresponding elements in the array.
+
+## Python3 Code to Solve the Original Problem:
+```python
+def sieve_of_eratosthenes(limit):
+    is_prime = [True] * (limit + 1)
+    p = 2
+    while (p * p <= limit):
+        if (is_prime[p] == True):
+            for i in range(p * p, limit + 1, p):
+                is_prime[i] = False
+        p += 1
+    prime_numbers = []
+    for p in range(2, limit + 1):
+        if is_prime[p]:
+            prime_numbers.append(p)
+    return prime_numbers
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def sum_dominant_primes(a, b):
+    max_limit = b + 100  # Safety margin to ensure we cover the range
+    primes = sieve_of_eratosthenes(max_limit)
+    
+    prime_indices = [False] * len(primes)
+    prime_count = 0
+    
+    # Mark indices that are prime numbers
+    for i in range(len(primes)):
+        if is_prime(i + 1):
+            prime_indices[i] = True
+            prime_count += 1
+    
+    # Find dominant primes and calculate their sum
+    dominant_primes_sum = 0
+    for i in range(len(primes)):
+        if a <= primes[i] <= b and prime_indices[i]:
+            dominant_primes_sum += primes[i]
+    
+    return dominant_primes_sum
+
+# Input handling
+a = int(input())
+b = int(input())
+
+# Solve the problem
+result = sum_dominant_primes(a, b)
+
+# Output the result
+print(result)
+```
+
+### Explanation of the Solution:
+1. **Sieve of Eratosthenes**: Generates all prime numbers up to `b + 100` to ensure we cover the range `[a, b]`.
+2. **Marking Prime Indices**: Creates a boolean array to mark prime indices.
+3. **Finding Dominant Primes**: Iterates through the list of primes and sums those that are located at prime indices within the range `[a, b]`.
+
+This approach ensures that we efficiently find and sum the required prime numbers.
+completed 13/19, Solved: True, number of success = 2/13, acc = 15.38
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+In this exercise, you will have to create a function named tiyFizzBuzz. This function will take on a string parameter and will return that string with some characters replaced, depending on the value:
+
+- If a letter is a upper case consonants, replace that character with "Iron".
+- If a letter is a lower case consonants or a non-alpha character, do nothing to that character
+- If a letter is a upper case vowel, replace that character with "Iron Yard".
+- If a letter is a lower case vowel, replace that character with "Yard".
+
+Ready?
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Core Concepts
+
+The problem involves iterating through each character of a given string and applying specific transformations based on the nature of each character (uppercase consonants, lowercase consonants/vowels, non-alphabetic characters). This requires basic string manipulation techniques in Python, such as checking character types (uppercase, lowercase, alphabetic), and conditional logic for transformations.
+
+### Algorithms
+
+1. **String Iteration**: Loop through each character in the input string.
+2. **Character Type Checking**: Determine if a character is uppercase, lowercase, a vowel, or a consonant/non-alphabet character.
+3. **Conditional Replacement**:
+   - Replace uppercase consonants with "Iron".
+   - Leave lowercase consonants and non-alphabetic characters unchanged.
+   - Replace uppercase vowels with "Iron Yard".
+   - Replace lowercase vowels with "Yard".
+
+### Tutorial
+
+#### String Iteration
+
+To iterate through each character in a string in Python, use a `for` loop:
+```python
+string = "Hello World"
+for char in string:
+    print(char)
+```
+
+#### Character Type Checking
+
+Use built-in methods like `isupper()`, `islower()`, and `isalpha()` to check the type of a character:
+```python
+char = 'A'
+if char.isupper():
+    print("Uppercase")
+elif char.islower():
+    print("Lowercase")
+elif char.isalpha():
+    print("Alphabetic")
+else:
+    print("Non-Alphabetic")
+```
+
+#### Conditional Replacement
+
+Apply conditions to determine the replacement:
+```python
+char = 'A'
+if char.isupper():
+    if char.lower() in 'aeiou':
+        print("Iron Yard")
+    else:
+        print("Iron")
+else:
+    if char.lower() in 'aeiou':
+        print("Yard")
+    else:
+        print(char)
+```
+
+### Example Problems
+
+#### Problem 1: Reverse String and Capitalize Vowels
+
+**Problem Description**: Write a function to reverse a string and capitalize all vowels.
+
+**Solution**:
+1. Iterate through the string in reverse order.
+2. Check each character and capitalize it if it's a vowel.
+
+**Python Code**:
+```python
+def reverse_and_capitalize_vowels(s):
+    result = []
+    vowels = 'aeiouAEIOU'
+    for char in reversed(s):
+        if char in vowels:
+            result.append(char.upper())
+        else:
+            result.append(char)
+    return ''.join(result)
+
+# Test
+s = "hello world"
+print(reverse_and_capitalize_vowels(s))  # Output: dlroW olleh
+```
+
+#### Problem 2: Count Consonants and Vowels in a String
+
+**Problem Description**: Write a function to count the number of consonants and vowels in a string.
+
+**Solution**:
+1. Initialize counters for consonants and vowels.
+2. Iterate through the string and increment the appropriate counter based on whether the character is a vowel or consonant.
+
+**Python Code**:
+```python
+def count_consonants_and_vowels(s):
+    consonants = 0
+    vowels = 0
+    for char in s:
+        if char.isalpha():
+            if char.lower() in 'aeiou':
+                vowels += 1
+            else:
+                consonants += 1
+    return consonants, vowels
+
+# Test
+s = "hello world"
+consonants, vowels = count_consonants_and_vowels(s)
+print(f"Consonants: {consonants}, Vowels: {vowels}")  # Output: Consonants: 7, Vowels: 3
+```
+
+#### Problem 3: Remove Non-Alphabetic Characters
+
+**Problem Description**: Write a function to remove all non-alphabetic characters from a string.
+
+**Solution**:
+1. Use a list comprehension to filter out non-alphabetic characters.
+2. Join the remaining characters back into a string.
+
+**Python Code**:
+```python
+def remove_non_alphabetic_chars(s):
+    return ''.join([char for char in s if char.isalpha()])
+
+# Test
+s = "hello, world!"
+cleaned_s = remove_non_alphabetic_chars(s)
+print(cleaned_s)  # Output: helloworld
+```
+
+### Python3 Code to Solve the Original Problem
+
+#### Explanation of the Solution
+
+1. Define the function `tiyFizzBuzz`.
+2. Initialize an empty list to store transformed characters.
+3. Iterate through each character in the input string.
+4. Apply the transformation rules based on the character type.
+5. Append the transformed character to the list.
+6. Join the list into a final string and return it.
+
+#### Python3 Code
+
+```python
+def tiyFizzBuzz(s):
+    result = []
+    vowels_upper = 'AEIOU'
+    vowels_lower = 'aeiou'
+    
+    for char in s:
+        if char.isalpha():
+            if char.isupper() and char not in vowels_upper:
+                result.append('Iron')
+            elif char.isupper() and char in vowels_upper:
+                result.append('Iron Yard')
+            elif char.islower() and char not in vowels_lower:
+                pass
+            elif char.islower() and char in vowels_lower:
+                result.append('Yard')
+        else:
+            result.append(char)
+    
+    return ''.join(result)
+
+# Input
+input_string = input()
+
+# Function Call
+output_string = tiyFizzBuzz(input_string)
+
+# Output
+print(output_string)
+```
+
+This code correctly implements the transformations required by the problem statement, handling both alphabetic and non-alphabetic characters appropriately.
+completed 14/19, Solved: False, number of success = 2/14, acc = 14.29
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+Given a non-negative number, return the next bigger polydivisible number, or an empty value like `null` or `Nothing`.
+
+A number is polydivisible if its first digit is cleanly divisible by `1`, its first two digits by `2`, its first three by `3`, and so on. There are finitely many polydivisible numbers.
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+
+**Polydivisibility Check**: The core algorithm involves checking whether a number is polydivisible by iterating through each prefix of the number and verifying if it is divisible by its length.
+
+**Next Number Search**: To find the next bigger polydivisible number, we start from the given number and incrementally check each subsequent number until we find a polydivisible one.
+
+### Tutorial:
+
+#### Polydivisibility Check
+To determine if a number is polydivisible, we can extract prefixes of the number and check their divisibility. For example, for the number `123456`:
+- The first digit `1` is divisible by `1`.
+- The first two digits `12` are divisible by `2`.
+- The first three digits `123` are divisible by `3`.
+- And so on...
+
+If all conditions hold true, the number is polydivisible.
+
+#### Next Number Search
+We need to iterate through numbers starting from the given number and check if each one is polydivisible. We stop when we find the first polydivisible number greater than the given number.
+
+### Example Problems:
+
+**Problem 1: Check if a Number is Polydivisible**
+**Description**: Given a number, determine if it is polydivisible.
+**Solution**: Extract prefixes and check divisibility.
+```python
+def is_polydivisible(n):
+    n_str = str(n)
+    for i in range(1, len(n_str) + 1):
+        if int(n_str[:i]) % i != 0:
+            return False
+    return True
+
+# Example usage
+n = int(input())
+print("Yes" if is_polydivisible(n) else "No")
+```
+
+**Problem 2: Find the Largest Polydivisible Number Less Than N**
+**Description**: Given a number, find the largest polydivisible number less than `N`.
+**Solution**: Iterate downwards from `N-1` and check for polydivisibility.
+```python
+def find_largest_polydivisible(n):
+    for num in range(n-1, 0, -1):
+        if is_polydivisible(num):
+            return num
+    return None
+
+# Example usage
+n = int(input())
+print(find_largest_polydivisible(n))
+```
+
+**Problem 3: Generate All Polydivisible Numbers Up to N**
+**Description**: Generate and print all polydivisible numbers up to `N`.
+**Solution**: Iterate through numbers and check for polydivisibility.
+```python
+def generate_polydivisible_numbers(n):
+    polydivisibles = []
+    for num in range(1, n+1):
+        if is_polydivisible(num):
+            polydivisibles.append(num)
+    return polydivisibles
+
+# Example usage
+n = int(input())
+polydivisibles = generate_polydivisible_numbers(n)
+print(polydivisibles)
+```
+
+### Python3 Code to Solve the Original Problem:
+
+**Explanation of the Solution**:
+The solution iterates through numbers starting from the given number and checks each one for polydivisibility using the helper function `is_polydivisible`. Once a polydivisible number is found, it is returned as the result.
+
+**Python3 Code**:
+```python
+def is_polydivisible(n):
+    n_str = str(n)
+    for i in range(1, len(n_str) + 1):
+        if int(n_str[:i]) % i != 0:
+            return False
+    return True
+
+def find_next_bigger_polydivisible(n):
+    while True:
+        n += 1
+        if is_polydivisible(n):
+            return n
+
+# Example usage
+n = int(input())
+result = find_next_bigger_polydivisible(n)
+if result is not None:
+    print(result)
+else:
+    print(None)
+```
+
+This code will read an integer from the standard input, find the next bigger polydivisible number, and print it. If no such number exists (which theoretically shouldn't happen), it prints `None`.
+completed 15/19, Solved: False, number of success = 2/15, acc = 13.33
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+# Task
+ Given a `sequence` of integers, check whether it is possible to obtain a strictly increasing sequence by erasing no more than one element from it.
+
+# Example
+
+ For `sequence = [1, 3, 2, 1]`, the output should be `false`;
+ 
+ For `sequence = [1, 3, 2]`, the output should be `true`.
+
+# Input/Output
+
+
+ - `[input]` integer array `sequence`
+
+    Constraints: `2 ¡Ü sequence.length ¡Ü 1000, -10000 ¡Ü sequence[i] ¡Ü 10000.`
+
+
+ - `[output]` a boolean value
+
+    `true` if it is possible, `false` otherwise.
+
+Sample Input Format:
+[1, 3, 2, 1]
+Sample Output Format:
+False
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+### Algorithms:
+The core concept for solving this problem involves checking if a sequence can be made strictly increasing by removing at most one element. This requires identifying where the sequence fails to be strictly increasing and then verifying if removing either the current or the previous element would fix the issue.
+
+### Tutorial:
+To determine if a sequence can be made strictly increasing by removing at most one element, we need to iterate through the sequence while keeping track of any violations of the strictly increasing condition. Specifically:
+
+1. **Initialization**: Start with two flags to keep track of whether any violation has been encountered (`violation_found`) and how many elements have been removed so far (`removal_count`).
+
+2. **Iteration**: Iterate through the sequence starting from the second element (index 1) to the end.
+
+3. **Comparison**:
+   - If the current element is less than or equal to the previous element (`sequence[i] <= sequence[i-1]`), a violation has been found.
+   - If no violation has been found before, set `violation_found` to `True`.
+   - If a violation has already been found, increment `removal_count`. If `removal_count` exceeds 1, return `False` because more than one removal is needed.
+
+4. **Correction Check**: After the loop, check if the last element violates the strictly increasing condition relative to the second-to-last element. If so, increment `removal_count`.
+
+5. **Final Decision**: If `removal_count` is at most 1, return `True`; otherwise, return `False`.
+
+### Example Problems:
+1. **Problem**: Given a sequence of integers, find the minimum number of elements to remove to make the sequence sorted in non-decreasing order.
+   - **Solution**: Use a greedy approach similar to the problem but count removals instead of fixing them.
+   
+2. **Problem**: Determine if a string can be transformed into a palindrome by removing at most one character.
+   - **Solution**: Use two pointers to compare characters from both ends of the string, skipping mismatched characters once.
+
+3. **Problem**: Find the longest subarray that can be made sorted by swapping at most two elements.
+   - **Solution**: Identify the positions of all misplaced elements and sort them, then check if the resulting subarray is valid.
+
+### Python3 Code to Solve the Original Problem:
+```python
+def almostIncreasingSequence(sequence):
+    # Initialize variables
+    n = len(sequence)
+    violation_found = False
+    removal_count = 0
+    
+    # Iterate through the sequence
+    for i in range(1, n):
+        if sequence[i] <= sequence[i-1]:
+            if not violation_found:
+                violation_found = True
+            else:
+                removal_count += 1
+                if removal_count > 1:
+                    return False
+    
+    # Check the last element with the second-to-last element
+    if removal_count == 0 and sequence[n-1] <= sequence[n-2]:
+        removal_count += 1
+    
+    # Return True if at most one removal was needed
+    return removal_count <= 1
+
+# Read input from standard input
+sequence = list(map(int, input().split()))
+
+# Call the function and print the result
+print(almostIncreasingSequence(sequence))
+```
+
+This code reads the sequence from standard input, calls the `almostIncreasingSequence` function, and prints the result to standard output. The function checks if it's possible to make the sequence strictly increasing by removing at most one element.
+completed 16/19, Solved: False, number of success = 2/16, acc = 12.5
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+This function should test if the `factor` is a factor of `base`.
+
+Return `true` if it is a factor or `false` if it is not.
+
+## About factors
+Factors are numbers you can multiply together to get another number.
+
+2 and 3 are factors of 6 because: `2 * 3 = 6`
+
+- You can find a factor by dividing numbers. If the remainder is 0 then the number is a factor.
+- You can use the mod operator (`%`) in most languages to check for a remainder
+
+For example 2 is not a factor of 7 because: `7 % 2 = 1`
+
+Note: `base` is a non-negative number, `factor` is a positive number.
+
+Sample Input Format:
+7
+2
+Sample Output Format:
+False
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+The core concept used to solve this problem is checking if one number divides another without leaving a remainder. This involves using the modulo operation (`%`). If the result of `base % factor` is `0`, then `factor` is a factor of `base`. Otherwise, it is not.
+
+## Tutorial:
+### Modulo Operation (`%`)
+The modulo operation returns the remainder of a division operation. It's often denoted as `%` in many programming languages. For example:
+```python
+result = 10 % 3  # result will be 1
+```
+In this case, `10` divided by `3` leaves a remainder of `1`.
+
+If a number is completely divisible by another, the modulo operation will return `0`. For instance:
+```python
+result = 9 % 3   # result will be 0
+```
+Here, `9` divided by `3` has no remainder.
+
+### Using Modulo to Check Factors
+To determine if a number (`factor`) is a factor of another number (`base`), you can use the modulo operation:
+```python
+if base % factor == 0:
+    # factor is a factor of base
+else:
+    # factor is not a factor of base
+```
+This condition checks if the remainder when `base` is divided by `factor` is `0`. If it is, `factor` is indeed a factor; otherwise, it is not.
+
+## Example Problems:
+
+### Problem 1: [Factor Finder]
+**Problem:** Write a function to determine if a number is a factor of another number.
+
+**Solution:** Use the modulo operation to check if the remainder is `0`.
+
+```python
+def is_factor(base, factor):
+    return base % factor == 0
+
+# Sample usage:
+print(is_factor(15, 5))  # True
+print(is_factor(14, 5))  # False
+```
+
+### Problem 2: [Sum of Factors]
+**Problem:** Calculate the sum of all factors of a given number excluding the number itself.
+
+**Solution:** Iterate through possible divisors up to half of the number and add them if they are factors.
+
+```python
+def sum_of_factors(n):
+    total = 0
+    for i in range(1, n // 2 + 1):
+        if n % i == 0:
+            total += i
+    return total
+
+# Sample usage:
+print(sum_of_factors(6))  # 6 (1 + 2 + 3)
+print(sum_of_factors(12))  # 16 (1 + 2 + 3 + 4 + 6)
+```
+
+### Problem 3: [Prime Number Checker]
+**Problem:** Determine if a number is prime.
+
+**Solution:** A number is prime if it has no divisors other than `1` and itself. Check divisibility up to the square root of the number.
+
+```python
+import math
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Sample usage:
+print(is_prime(11))  # True
+print(is_prime(4))   # False
+```
+
+## Python3 code to solve the original problem:
+
+### Solution Explanation:
+The solution simply uses the modulo operation to check if `base` is divisible by `factor` without any remainder. If the remainder is `0`, it means `factor` is a factor of `base`, so we return `True`. Otherwise, we return `False`.
+
+### Python3 Code:
+```python
+def is_factor(base, factor):
+    return base % factor == 0
+
+# Take input from user
+base = int(input())
+factor = int(input())
+
+# Call the function and print the result
+print(is_factor(base, factor))
+```
+completed 17/19, Solved: True, number of success = 3/17, acc = 17.65
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+Dee is lazy but she's kind and she likes to eat out at all the nice restaurants and gastropubs in town. To make paying quick and easy she uses a simple mental algorithm she's called The Fair %20 Rule. She's gotten so good she can do this in a few seconds and it always impresses her dates but she's perplexingly still single. Like you probably. 
+
+This is how she does it:
+
+ - She rounds the price `P` at the tens place e.g:
+   - 25 becomes 30
+   - 24 becomes 20
+   - 5 becomes 10
+   - 4 becomes 0
+ - She figures out the base tip `T` by dropping the singles place digit e.g:
+   - when `P = 24` she rounds to 20 drops 0 `T = 2`
+   - `P = 115` rounds to 120 drops 0 `T = 12`
+   - `P = 25` rounds to 30 drops 0 `T = 3`
+   - `P = 5` rounds to 10 drops 0 `T = 1`
+   - `P = 4` rounds to 0 `T = 0`
+ - She then applies a 3 point satisfaction rating `R` to `T` i.e:
+   - When she's satisfied: `R = 1` and she'll add 1 to `T`
+   - Unsatisfied: `R = 0` and she'll subtract 1 from `T`
+   - Appalled: `R = -1` she'll divide `T` by 2, **rounds down** and subtracts 1
+ 
+## Your Task
+
+Implement a method `calc_tip` that takes two integer arguments for price `p` 
+
+where `1 <= p <= 1000` and a rating `r` which is one of `-1, 0, 1`.
+
+The return value `T` should be a non negative integer.
+
+*Note: each step should be done in the order listed.*
+
+Dee always politely smiles and says "Thank you" on her way out. Dee is nice. Be like Dee.
+
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+### Rounding to Tens Place:
+The first concept involved in solving this problem is rounding a number to the nearest tens place. This involves checking the ones place digit and adjusting the tens place accordingly.
+
+### Base Tip Calculation:
+Once the number is rounded to the nearest tens place, the next step is to calculate the base tip by removing the ones place digit. This essentially means we're taking the tens place digit as the base tip.
+
+### Satisfaction Rating Adjustment:
+Finally, based on the provided satisfaction rating (`r`), we adjust the calculated base tip. This involves adding 1 if satisfied, subtracting 1 if unsatisfied, and dividing by 2 (rounding down) if appalled.
+
+## Tutorial:
+### Rounding to Tens Place:
+To round a number to the nearest tens place, we need to check the ones place digit. If it's 5 or greater, we increase the tens place by 1. Otherwise, we keep the tens place as it is.
+
+Example:
+- Round 24 to the nearest ten: Since 4 < 5, we keep the tens place as it is, resulting in 20.
+- Round 26 to the nearest ten: Since 6 ¡Ý 5, we increase the tens place by 1, resulting in 30.
+
+### Base Tip Calculation:
+The base tip is simply the tens place digit of the rounded number. We can achieve this by performing integer division by 10.
+
+Example:
+- Calculate base tip for 20: 20 ¡Â 10 = 2
+- Calculate base tip for 21: 21 ¡Â 10 = 2
+
+### Satisfaction Rating Adjustment:
+Based on the satisfaction rating, we modify the base tip:
+- If `r = 1`, add 1 to the base tip.
+- If `r = 0`, subtract 1 from the base tip.
+- If `r = -1`, divide the base tip by 2 (using integer division) and subtract 1.
+
+Example:
+- Adjust tip with r=1, base tip=2: 2 + 1 = 3
+- Adjust tip with r=-1, base tip=2: (2 // 2) - 1 = 0
+
+## Example Problems:
+### Problem 1: Nearest Multiple of Ten
+Given an integer `n`, find the nearest multiple of ten.
+
+**Solution**: Check the remainder when `n` is divided by 10 and adjust accordingly.
+
+```python
+def nearest_multiple_of_ten(n):
+    remainder = n % 10
+    if remainder >= 5:
+        return (n // 10 + 1) * 10
+    else:
+        return (n // 10) * 10
+```
+
+### Problem 2: Extract Last Digit
+Given an integer `n`, extract its last digit.
+
+**Solution**: Perform modulo operation by 10.
+
+```python
+def extract_last_digit(n):
+    return n % 10
+```
+
+### Problem 3: Adjust Based on Rating
+Given an integer `base` and an integer `rating`, adjust the base according to the rating rules.
+
+**Solution**: Implement the logic for adding/subtracting based on the rating.
+
+```python
+def adjust_based_on_rating(base, rating):
+    if rating == 1:
+        return base + 1
+    elif rating == 0:
+        return base - 1
+    else:
+        return (base // 2) - 1
+```
+
+## Python3 Code to Solve the Original Problem:
+### Solution Explanation:
+1. Parse the input values.
+2. Calculate the rounded price.
+3. Determine the base tip by removing the ones place digit.
+4. Adjust the base tip based on the given rating.
+5. Print the final result.
+
+```python
+def calc_tip(p, r):
+    # Step 1: Round the price to the nearest tens place
+    rounded_price = ((p + 4) // 10) * 10
+    
+    # Step 2: Calculate the base tip by dropping the ones place digit
+    base_tip = rounded_price // 10
+    
+    # Step 3: Apply the satisfaction rating adjustment
+    if r == 1:
+        tip = base_tip + 1
+    elif r == 0:
+        tip = base_tip - 1
+    else:
+        tip = (base_tip // 2) - 1
+    
+    # Ensure the tip is a non-negative integer
+    return max(tip, 0)
+
+# Input handling
+p, r = map(int, input().split())
+
+# Output the result
+print(calc_tip(p, r))
+```
+
+### Example Execution:
+If the input is `24 1`, the output will be `3`.
+For input `115 -1`, the output will be `5`.
+completed 18/19, Solved: False, number of success = 3/18, acc = 16.67
+Your goal is to write Python3 code to solve competitive programming problems. Given a problem , explain the core concepts in it and provide other relevant problems. Then solve the original problem.
+
+# Problem:
+# altERnaTIng cAsE <=> ALTerNAtiNG CaSe
+
+Define `String.prototype.toAlternatingCase` (or a similar function/method *such as* `to_alternating_case`/`toAlternatingCase`/`ToAlternatingCase` in your selected language; **see the initial solution for details**) such that each lowercase letter becomes uppercase and each uppercase letter becomes lowercase. For example:
+``` haskell
+toAlternatingCase "hello world" `shouldBe` "HELLO WORLD"
+toAlternatingCase "HELLO WORLD" `shouldBe` "hello world"
+toAlternatingCase "hello WORLD" `shouldBe` "HELLO world"
+toAlternatingCase "HeLLo WoRLD" `shouldBe` "hEllO wOrld"
+toAlternatingCase "12345"       `shouldBe` "12345"
+toAlternatingCase "1a2b3c4d5e"  `shouldBe` "1A2B3C4D5E"
+```
+```C++
+string source = "HeLLo WoRLD";
+string upperCase = to_alternating_case(source);
+cout << upperCase << endl; // outputs: hEllO wOrld
+```
+As usual, your function/method should be pure, i.e. it should **not** mutate the original string.
+
+Sample Input Format:
+hello world
+Sample Output Format:
+HELLO WORLD
+
+-------
+Important: You must follow the input output format. Input should be taken from standard input and output should be given to standard output.
+Note: If you are writing a function then after the function definition take input from using `input()` function, call the function with specified parameters and finally print the output of the function.
+
+# Instruction: (Your response must include the following points sequentially)
+
+## Algorithms:
+Identify the core concepts or algorithms used to solve the problem.
+
+## Tutorial:
+Write a useful tutorial about these algorithms.
+
+## Example Problems: 
+Provide three examples of relevant competitive programming problems that involve these algorithms. For each problem , describe the problem , explain the solution in detail , and then write the correct Python3 code.
+
+## Python3 code to solve the original problem: 
+Include the following points in your response: 
+- Explanation of the solution: 
+- Python3 code to solve the problem (inside ```  ``` block):
+## Algorithms:
+
+The core concept involved in this problem is iterating over the characters of a string and changing their case based on whether they are uppercase or lowercase. This involves checking each character's ASCII value and converting it accordingly.
+
+## Tutorial:
+
+In Python, strings are immutable, meaning once a string is created, it cannot be changed. Therefore, to solve this problem, we need to create a new string where each character's case is flipped compared to its original position in the input string. We can achieve this by iterating through each character of the string, checking if it's an uppercase or lowercase letter, and appending the corresponding case character to our result string.
+
+Here¡¯s how you can do it:
+
+1. Initialize an empty list to store the modified characters.
+2. Iterate over each character in the input string.
+3. Check if the current character is uppercase using the `isupper()` method.
+    - If it is, convert it to lowercase using the `lower()` method.
+    - If it is not, convert it to uppercase using the `upper()` method.
+4. Append the converted character to the list.
+5. Join all the characters in the list into a single string and return it.
+
+## Example Problems:
+
+### Problem 1: Convert Case of Characters in a String
+**Problem Description:** Given a string, write a function that converts all uppercase characters to lowercase and vice versa.
+
+**Solution:** This is essentially the same problem as the one we just solved. We iterate through the string, check the case of each character, and append the flipped case character to the result.
+
+**Python Code:**
+```python
+def swap_case(s):
+    result = []
+    for char in s:
+        if char.isupper():
+            result.append(char.lower())
+        else:
+            result.append(char.upper())
+    return ''.join(result)
+```
+
+### Problem 2: Toggle Case in a Sentence
+**Problem Description:** Given a sentence, toggle the case of each character. Uppercase characters become lowercase, and lowercase characters become uppercase.
+
+**Solution:** Similar to the previous problem, we iterate through the sentence, check the case of each character, and append the flipped case character to the result.
+
+**Python Code:**
+```python
+def toggle_case(sentence):
+    result = []
+    for char in sentence:
+        if char.isupper():
+            result.append(char.lower())
+        elif char.islower():
+            result.append(char.upper())
+        else:
+            result.append(char)  # Non-alphabetic characters remain unchanged
+    return ''.join(result)
+```
+
+### Problem 3: Swap Case for Words in a List
+**Problem Description:** Given a list of words, write a function that swaps the case of each character in every word.
+
+**Solution:** We can apply the same logic as before but now operate on each word in the list.
+
+**Python Code:**
+```python
+def swap_case_in_words(words_list):
+    result = []
+    for word in words_list:
+        result_word = []
+        for char in word:
+            if char.isupper():
+                result_word.append(char.lower())
+            else:
+                result_word.append(char.upper())
+        result.append(''.join(result_word))
+    return result
+```
+
+## Python3 code to solve the original problem:
+
+### Explanation of the Solution:
+We define a function `toAlternatingCase` that takes a string `s` as input. We initialize an empty list `result`. We then iterate over each character in the string `s`. For each character, we check if it is uppercase using `char.isupper()`. If it is, we convert it to lowercase using `char.lower()` and append it to the `result` list. If it is not, we convert it to uppercase using `char.upper()` and append it to the `result` list. Finally, we join all the characters in the `result` list into a single string and return it.
+
+### Python3 code to solve the problem:
+```python
+def toAlternatingCase(s):
+    result = []
+    for char in s:
+        if char.isupper():
+            result.append(char.lower())
+        else:
+            result.append(char.upper())
+    return ''.join(result)
+
+# Take input from the user
+input_string = input()
+# Call the function and print the output
+print(toAlternatingCase(input_string))
+```
+completed 19/19, Solved: True, number of success = 4/19, acc = 21.05
+#########################
+Running end QwenCoderTurbo-Analogical-APPS-Python3-0.0-1, Time: 2025-11-11 19:52:51.526751
+##########################
+

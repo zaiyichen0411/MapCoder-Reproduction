@@ -1,0 +1,3512 @@
+#########################
+Running start QwenCoder480b-MapCoder-APPS-Python3-0.0-24, Time: 2025-11-19 13:11:28.445340
+##########################
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6)
+    if sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(counts) == 3 and sorted(counts.values()) == [2, 2, 2]:
+        return 750
+    
+    # Calculate points
+    points = 0
+    remaining_counts = counts.copy()  # Track unused dice
+    
+    # Handle multiples first (highest multipliers first)
+    for num, count in list(counts.items()):
+        if count >= 3:
+            # Calculate base points for three of a kind
+            base_points = 1000 if num == 1 else num * 100
+            
+            if count == 3:
+                points += base_points
+                remaining_counts[num] -= 3
+            elif count == 4:
+                points += base_points * 2  # Four of a kind
+                remaining_counts[num] -= 4
+            elif count == 5:
+                points += base_points * 3  # Five of a kind
+                remaining_counts[num] -= 5
+            elif count == 6:
+                points += base_points * 4  # Six of a kind
+                remaining_counts[num] -= 6
+    
+    # Handle remaining 1s and 5s
+    points += remaining_counts.get(1, 0) * 100
+    points += remaining_counts.get(5, 0) * 50
+    
+    return points if points > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19557
+Total Completion Tokens: 5356
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    if not dice:
+        return "Zonk"
+    
+    counts = Counter(dice)
+    score = 0
+    
+    # Check for straight (1,2,3,4,5,6)
+    if len(dice) == 6 and all(counts[i] == 1 for i in range(1, 7)):
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    # Process combinations in priority order (higher scoring first)
+    
+    # Six of a kind
+    for num in range(1, 7):
+        if counts[num] >= 6:
+            base_score = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_score * 4
+            counts[num] -= 6
+    
+    # Five of a kind
+    for num in range(1, 7):
+        if counts[num] >= 5:
+            base_score = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_score * 3
+            counts[num] -= 5
+    
+    # Four of a kind
+    for num in range(1, 7):
+        if counts[num] >= 4:
+            base_score = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_score * 2
+            counts[num] -= 4
+    
+    # Three of a kind
+    for num in range(1, 7):
+        if counts[num] >= 3:
+            base_score = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}[num]
+            score += base_score
+            counts[num] -= 3
+    
+    # Single 1s and 5s
+    score += counts[1] * 100
+    score += counts[5] * 50
+    
+    return score if score > 0 else "Zonk"
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 19583
+Total Completion Tokens: 6496
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def get_score(dice):
+    from collections import Counter
+    
+    if not dice:
+        return "Zonk"
+    
+    counts = Counter(dice)
+    
+    # Check for straight
+    if sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(counts) == 3 and all(count == 2 for count in counts.values()):
+        return 750
+    
+    # Recursive function to find maximum score
+    def max_score_from_counts(remaining_counts):
+        if not remaining_counts:
+            return 0
+        
+        max_score = 0
+        
+        # Check for six of a kind
+        for num, count in remaining_counts.items():
+            if count >= 6:
+                new_counts = remaining_counts.copy()
+                new_counts[num] -= 6
+                if new_counts[num] == 0:
+                    del new_counts[num]
+                base = 1000 if num == 1 else num * 100
+                score = 4 * base + max_score_from_counts(new_counts)
+                max_score = max(max_score, score)
+                return max_score  # Greedy return since this is optimal
+        
+        # Check for five of a kind
+        for num, count in remaining_counts.items():
+            if count >= 5:
+                new_counts = remaining_counts.copy()
+                new_counts[num] -= 5
+                if new_counts[num] == 0:
+                    del new_counts[num]
+                base = 1000 if num == 1 else num * 100
+                score = 3 * base + max_score_from_counts(new_counts)
+                max_score = max(max_score, score)
+        
+        # Check for four of a kind
+        for num, count in remaining_counts.items():
+            if count >= 4:
+                new_counts = remaining_counts.copy()
+                new_counts[num] -= 4
+                if new_counts[num] == 0:
+                    del new_counts[num]
+                base = 1000 if num == 1 else num * 100
+                score = 2 * base + max_score_from_counts(new_counts)
+                max_score = max(max_score, score)
+        
+        # Check for three of a kind
+        for num, count in remaining_counts.items():
+            if count >= 3:
+                new_counts = remaining_counts.copy()
+                new_counts[num] -= 3
+                if new_counts[num] == 0:
+                    del new_counts[num]
+                base = 1000 if num == 1 else num * 100
+                score = base + max_score_from_counts(new_counts)
+                max_score = max(max_score, score)
+        
+        # Score individual 1s and 5s
+        score_from_singles = 0
+        new_counts = remaining_counts.copy()
+        
+        if 1 in new_counts:
+            score_from_singles += new_counts[1] * 100
+            del new_counts[1]
+        
+        if 5 in new_counts:
+            score_from_singles += new_counts[5] * 50
+            del new_counts[5]
+        
+        score_from_singles += max_score_from_counts(new_counts)
+        max_score = max(max_score, score_from_singles)
+        
+        return max_score
+    
+    # Calculate maximum score
+    max_points = max_score_from_counts(counts)
+    
+    # If no points can be scored, return "Zonk"
+    if max_points == 0:
+        return "Zonk"
+    else:
+        return max_points
+
+# Read input and process
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 20262
+Total Completion Tokens: 7337
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Points mapping for three of a kind
+    POINTS = {
+        1: 1000,
+        2: 200,
+        3: 300,
+        4: 400,
+        5: 500,
+        6: 600
+    }
+    
+    def max_score_from_counts(counts_dict):
+        if not counts_dict:
+            return 0
+            
+        max_score = 0
+        counts_list = dict(counts_dict)
+        
+        # Check for straight (1,2,3,4,5,6)
+        if all(counts_list.get(i, 0) >= 1 for i in range(1, 7)):
+            new_counts = counts_list.copy()
+            for i in range(1, 7):
+                new_counts[i] -= 1
+                if new_counts[i] == 0:
+                    del new_counts[i]
+            max_score = max(max_score, 1000 + max_score_from_counts(new_counts))
+        
+        # Check for three pairs
+        pair_count = sum(count // 2 for count in counts_list.values())
+        if pair_count >= 3:
+            # This means we have at least 3 pairs
+            # But we need exactly 3 pairs using all 6 dice
+            total_dice_used = sum((count // 2) * 2 for count in counts_list.values())
+            if total_dice_used == 6 and pair_count == 3:
+                max_score = max(max_score, 750)
+        
+        # Check for N of a kind (6, 5, 4, 3)
+        for num in list(counts_list.keys()):
+            if num not in counts_list:
+                continue
+            count = counts_list[num]
+            for n in range(min(6, count), 2, -1):  # 6 down to 3
+                base_points = POINTS[num]
+                multiplier = n - 2  # 3->1, 4->2, 5->3, 6->4
+                points = base_points * multiplier
+                new_counts = counts_list.copy()
+                new_counts[num] -= n
+                if new_counts[num] == 0:
+                    del new_counts[num]
+                max_score = max(max_score, points + max_score_from_counts(new_counts))
+        
+        # Individual 1s and 5s
+        score = 0
+        new_counts = counts_list.copy()
+        
+        # Score individual 1s
+        if 1 in new_counts:
+            score += new_counts[1] * 100
+            del new_counts[1]
+        
+        # Score individual 5s
+        if 5 in new_counts:
+            score += new_counts[5] * 50
+            del new_counts[5]
+        
+        if new_counts or score > 0:
+            if new_counts:
+                score += max_score_from_counts(new_counts)
+            max_score = max(max_score, score)
+        
+        return max_score
+    
+    # Special case: if we have exactly three pairs
+    if len(dice) == 6:
+        pair_counts = [count for count in counts.values()]
+        if sorted(pair_counts) == [2, 2, 2]:
+            return 750
+    
+    score = max_score_from_counts(counts)
+    return score if score > 0 else "Zonk"
+
+# Read input and call function
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 21753
+Total Completion Tokens: 8649
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+from collections import Counter
+
+def get_score(dice):
+    counts = Counter(dice)
+    
+    # Check for straight (1,2,3,4,5,6)
+    if len(dice) == 6 and sorted(dice) == [1, 2, 3, 4, 5, 6]:
+        return 1000
+    
+    # Check for three pairs
+    if len(dice) == 6 and sorted(counts.values()) == [2, 2, 2]:
+        return 750
+    
+    def calculate_score(counts_dict):
+        score = 0
+        remaining_counts = counts_dict.copy()
+        
+        # Handle six of a kind
+        for num, count in list(remaining_counts.items()):
+            if count >= 6:
+                base_score = 1000 if num == 1 else num * 100
+                score += base_score * 4
+                remaining_counts[num] -= 6
+                if remaining_counts[num] == 0:
+                    del remaining_counts[num]
+        
+        # Handle five of a kind
+        for num, count in list(remaining_counts.items()):
+            if count >= 5:
+                base_score = 1000 if num == 1 else num * 100
+                score += base_score * 3
+                remaining_counts[num] -= 5
+                if remaining_counts[num] == 0:
+                    del remaining_counts[num]
+        
+        # Handle four of a kind
+        for num, count in list(remaining_counts.items()):
+            if count >= 4:
+                base_score = 1000 if num == 1 else num * 100
+                score += base_score * 2
+                remaining_counts[num] -= 4
+                if remaining_counts[num] == 0:
+                    del remaining_counts[num]
+        
+        # Handle three of a kind
+        for num, count in list(remaining_counts.items()):
+            if count >= 3:
+                base_score = 1000 if num == 1 else num * 100
+                score += base_score
+                remaining_counts[num] -= 3
+                if remaining_counts[num] == 0:
+                    del remaining_counts[num]
+        
+        # Handle remaining 1s and 5s
+        if 1 in remaining_counts:
+            score += remaining_counts[1] * 100
+            del remaining_counts[1]
+        
+        if 5 in remaining_counts:
+            score += remaining_counts[5] * 50
+            del remaining_counts[5]
+        
+        return score
+    
+    result = calculate_score(counts)
+    return result if result > 0 else "Zonk"
+
+# Read input and process
+dice = list(map(int, input().strip()[1:-1].split(',')))
+result = get_score(dice)
+print(result)
+
+
+
+Total Prompt Tokens: 19530
+Total Completion Tokens: 6596
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3554
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '[1, 2, 3]', 'output': [100]}
+failed in test case: {'input': '[3,4,1,1,5]', 'output': [250]}
+failed in test case: {'input': '[2,3,2,3,3,2]', 'output': [500]}
+failed in test case: {'input': '[1,1,1,1,1,5]', 'output': [3050]}
+failed in test case: {'input': '[2,3,4,3,6,6]', 'output': ['Zonk']}
+failed in test case: {'input': '[2,2,6,6,2,2]', 'output': [400]}
+failed in test case: {'input': '[1,3,4,3,4,1]', 'output': [750]}
+failed in test case: {'input': '[3,3,3,3]', 'output': [600]}
+failed in test case: {'input': '[1,2,3,4,5]', 'output': [150]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def get_score(dice):
+    from collections import Counter
+    
+    # Count frequency of each die
+    counts = Counter(dice)
+    
+    # Make a copy to track remaining dice
+    remaining = counts.copy()
+    total_score = 0
+    
+    # Check for straight (1,2,3,4,5,6) - 1000 points
+    if len(dice) == 6 and set(dice) == {1, 2, 3, 4, 5, 6}:
+        return 1000
+    
+    # Check for three pairs - 750 points
+    if len(dice) == 6:
+        pairs = 0
+        can_form_three_pairs = True
+        temp_counts = counts.copy()
+        
+        for die, count in temp_counts.items():
+            if count == 2:
+                pairs += 1
+            elif count != 2:
+                can_form_three_pairs = False
+                break
+        
+        if can_form_three_pairs and pairs == 3:
+            return 750
+    
+    # Check for N of a kind (6, 5, 4 of a kind)
+    # Process from highest to lowest to maximize score
+    for n in [6, 5, 4, 3]:
+        for die_val in range(1, 7):
+            if remaining[die_val] >= n:
+                # Calculate base score for three of a kind
+                if die_val == 1:
+                    base_score = 1000
+                else:
+                    base_score = die_val * 100
+                
+                # Apply multiplier based on N
+                if n == 3:
+                    multiplier = 1
+                elif n == 4:
+                    multiplier = 2
+                elif n == 5:
+                    multiplier = 3
+                elif n == 6:
+                    multiplier = 4
+                
+                total_score += base_score * multiplier
+                remaining[die_val] -= n
+    
+    # Handle remaining three of a kind
+    for die_val in range(1, 7):
+        if remaining[die_val] >= 3:
+            if die_val == 1:
+                total_score += 1000
+            else:
+                total_score += die_val * 100
+            remaining[die_val] -= 3
+    
+    # Handle remaining 1s and 5s
+    total_score += remaining[1] * 100  # Each 1 is worth 100 points
+    total_score += remaining[5] * 50   # Each 5 is worth 50 points
+    
+    # If no score was made, return "Zonk"
+    if total_score == 0:
+        return "Zonk"
+    
+    return total_score
+
+# Read input and call function
+dice_input = eval(input())
+result = get_score(dice_input)
+print(result)
+
+
+
+Total Prompt Tokens: 20433
+Total Completion Tokens: 6715
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4724
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+XML ParseError: not well-formed (invalid token): line 10, column 37
+Response:
+<response>
+  <knowledge_base>
+    - String manipulation and processing
+    - Splitting strings while preserving whitespace
+    - Capitalization methods (first letter uppercase, rest lowercase)
+    - Conditional processing based on word length
+    - Handling leading/trailing spaces
+    - Preserving multiple consecutive spaces between words
+    - String traversal and reconstruction
+    - Edge cases: words with length <= 2 should remain unchanged
+    - Edge cases: words with length > 2 should be capitalized (first letter uppercase, rest lowercase)
+  </knowledge_base>
+  <exemplars><![CDATA[
+Exemplar 1:
+Input: "apple"
+Processing: Single word with length 5 (>2), so capitalize it
+Output: "Apple"
+
+Exemplar 2:
+Input: "apple of banana"
+Processing: 
+- "apple" (length 5) -> "Apple"
+- "of" (length 2) -> remains "of" 
+- "banana" (length 6) -> "Banana"
+Output: "Apple of Banana"
+
+Exemplar 3:
+Input: "   space WALK   "
+Processing:
+- Preserve leading spaces
+- "space" (length 5) -> "Space"
+- "WALK" (length 4) -> "Walk" 
+- Preserve trailing spaces
+Output: "   Space Walk   "
+]]></exemplars>
+</response>
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+XML ParseError: not well-formed (invalid token): line 7, column 23
+Response:
+<response>
+  <plan>
+    1. Read the input string from standard input
+    2. Split the string into words while preserving whitespace
+    3. For each word, check if its length is greater than 2
+    4. If word length > 2, capitalize it (first letter uppercase, rest lowercase)
+    5. If word length <= 2, leave it unchanged
+    6. Join all words back together with proper spacing
+    7. Print the result to standard output
+  </plan>
+  <test_cases><![CDATA[
+# Test case 1: Single word longer than 2 characters
+Input: apple
+Output: Apple
+
+# Test case 2: Multiple words with spaces
+Input: apple of banana
+Output: Apple of Banana
+
+# Test case 3: Word with trailing spaces
+Input: one   space
+Output: One   Space
+
+# Test case 4: Words with leading and trailing spaces
+Input:    space WALK   
+Output:    Space Walk   
+
+# Test case 5: Mixed short and long words
+Input: a big red apple
+Output: a Big Red Apple
+
+# Test case 6: All short words
+Input: an of by the
+Output: an of by the
+
+# Test case 7: All long words
+Input: elephant giraffe kangaroo
+Output: Elephant Giraffe Kangaroo
+
+# Test case 8: Empty string handling
+Input: ""
+Output: ""
+
+# Test case 9: Words with mixed case
+Input: hELLo WoRLd
+Output: Hello World
+
+# Test case 10: Multiple spaces between words
+Input: hello    world
+Output: Hello    World
+]]></test_cases>
+</response>
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'apple of banana', 'output': ['Apple of Banana']}
+failed in test case: {'input': 'apple', 'output': ['Apple']}
+failed in test case: {'input': 'one   space', 'output': ['One   Space']}
+failed in test case: {'input': '   space WALK   ', 'output': ['   Space Walk   ']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def drop_cap(s):
+    result = []
+    i = 0
+    while i < len(s):
+        if s[i] == ' ':
+            result.append(s[i])
+            i += 1
+        else:
+            # Find the end of the current word
+            start = i
+            while i < len(s) and s[i] != ' ':
+                i += 1
+            word = s[start:i]
+            if len(word) > 2:
+                result.append(word.capitalize())
+            else:
+                result.append(word)
+    return ''.join(result)
+
+s = input()
+print(drop_cap(s))
+
+
+
+Total Prompt Tokens: 4378
+Total Completion Tokens: 2320
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4561
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'adfa', 'output': [True]}
+failed in test case: {'input': 'bd', 'output': [True]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def solve(st):
+    def get_transformations(c):
+        if c == 'a':
+            return {'b'}
+        elif c == 'z':
+            return {'y'}
+        else:
+            return {chr(ord(c) - 1), chr(ord(c) + 1)}
+    
+    n = len(st)
+    for i in range((n + 1) // 2):
+        left_char = st[i]
+        right_char = st[n - 1 - i]
+        
+        left_transforms = get_transformations(left_char)
+        right_transforms = get_transformations(right_char)
+        
+        # Check if there's at least one common transformation
+        if not left_transforms & right_transforms:
+            return False
+    
+    return True
+
+st = input().strip()
+print(solve(st))
+
+
+
+Total Prompt Tokens: 7817
+Total Completion Tokens: 2858
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4468
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0', 'output': ['']}
+failed in test case: {'input': '56', 'output': ['5*10+6']}
+failed in test case: {'input': '60', 'output': ['6*10']}
+failed in test case: {'input': '999', 'output': ['9*100+9*10+9']}
+failed in test case: {'input': '10004', 'output': ['1*10000+4']}
+
+--- Ending run_single_pass ---
+Final Code: 
+n = int(input())
+
+if n == 0:
+    print("")
+else:
+    s = str(n)
+    length = len(s)
+    result = []
+    
+    for i, digit in enumerate(s):
+        if digit != '0':
+            power = length - i - 1
+            if power == 0:
+                result.append(digit)
+            elif power == 1:
+                result.append(f"{digit}*10")
+            else:
+                result.append(f"{digit}*1{'0' * power}")
+    
+    print("+".join(result))
+
+
+
+Total Prompt Tokens: 7287
+Total Completion Tokens: 2992
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3613
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'aacb\naabc', 'output': [True]}
+failed in test case: {'input': 'aa\nbc', 'output': [False]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def can_convert(string1, string2):
+    if len(string1) != len(string2):
+        return False
+    
+    # Handle empty strings
+    if len(string1) == 0:
+        return True
+    
+    # Mapping from string1 to string2
+    map1to2 = {}
+    # Mapping from string2 to string1
+    map2to1 = {}
+    
+    for i in range(len(string1)):
+        char1 = string1[i]
+        char2 = string2[i]
+        
+        # Check if char1 already has a mapping
+        if char1 in map1to2:
+            if map1to2[char1] != char2:
+                return False
+        else:
+            # Check if char2 is already mapped to a different char
+            if char2 in map2to1:
+                if map2to1[char2] != char1:
+                    return False
+            map1to2[char1] = char2
+            map2to1[char2] = char1
+    
+    return True
+
+# Read input
+string1 = input().strip()
+string2 = input().strip()
+
+# Check and print result
+result = can_convert(string1, string2)
+print(str(result))
+
+
+
+Total Prompt Tokens: 8968
+Total Completion Tokens: 4234
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4465
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '123456', 'output': [654321]}
+failed in test case: {'input': '105', 'output': [510]}
+failed in test case: {'input': '12', 'output': [21]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '123456', 'output': [654321]}
+failed in test case: {'input': '105', 'output': [510]}
+failed in test case: {'input': '12', 'output': [21]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '123456', 'output': [654321]}
+failed in test case: {'input': '105', 'output': [510]}
+failed in test case: {'input': '12', 'output': [21]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '123456', 'output': [654321]}
+failed in test case: {'input': '105', 'output': [510]}
+failed in test case: {'input': '12', 'output': [21]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def super_size(n):
+    # Convert to string, sort digits in descending order, join back and convert to int
+    return int(''.join(sorted(str(n), reverse=True)))
+
+# Read input and call function
+n = int(input())
+result = super_size(n)
+print(result)
+
+
+
+Total Prompt Tokens: 6435
+Total Completion Tokens: 1789
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3045
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0\n1\n0', 'output': ['left']}
+failed in test case: {'input': '0\n1\n1', 'output': ['right']}
+failed in test case: {'input': '0\n1\n2', 'output': ['right']}
+failed in test case: {'input': '0\n0\n0', 'output': ['right']}
+failed in test case: {'input': '0\n2\n1', 'output': ['right']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0\n1\n0', 'output': ['left']}
+failed in test case: {'input': '0\n1\n1', 'output': ['right']}
+failed in test case: {'input': '0\n1\n2', 'output': ['right']}
+failed in test case: {'input': '0\n0\n0', 'output': ['right']}
+failed in test case: {'input': '0\n2\n1', 'output': ['right']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0\n1\n0', 'output': ['left']}
+failed in test case: {'input': '0\n1\n1', 'output': ['right']}
+failed in test case: {'input': '0\n1\n2', 'output': ['right']}
+failed in test case: {'input': '0\n0\n0', 'output': ['right']}
+failed in test case: {'input': '0\n2\n1', 'output': ['right']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '0\n1\n0', 'output': ['left']}
+failed in test case: {'input': '0\n1\n1', 'output': ['right']}
+failed in test case: {'input': '0\n1\n2', 'output': ['right']}
+failed in test case: {'input': '0\n0\n0', 'output': ['right']}
+failed in test case: {'input': '0\n2\n1', 'output': ['right']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def elevator(left, right, call):
+    left_distance = abs(left - call)
+    right_distance = abs(right - call)
+    
+    if left_distance < right_distance:
+        return "left"
+    else:  # right_distance <= left_distance, choose right
+        return "right"
+
+# Read inputs
+left = int(input())
+right = int(input())
+call = int(input())
+
+# Call function and print result
+print(elevator(left, right, call))
+
+
+
+Total Prompt Tokens: 8310
+Total Completion Tokens: 3430
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4276
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4.2', 'output': [4]}
+failed in test case: {'input': '4.3', 'output': [4.5]}
+failed in test case: {'input': '4.6', 'output': [4.5]}
+failed in test case: {'input': '4.8', 'output': [5]}
+failed in test case: {'input': '4.75', 'output': [5]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4.2', 'output': [4]}
+failed in test case: {'input': '4.3', 'output': [4.5]}
+failed in test case: {'input': '4.6', 'output': [4.5]}
+failed in test case: {'input': '4.8', 'output': [5]}
+failed in test case: {'input': '4.75', 'output': [5]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4.2', 'output': [4]}
+failed in test case: {'input': '4.3', 'output': [4.5]}
+failed in test case: {'input': '4.6', 'output': [4.5]}
+failed in test case: {'input': '4.8', 'output': [5]}
+failed in test case: {'input': '4.75', 'output': [5]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4.2', 'output': [4]}
+failed in test case: {'input': '4.3', 'output': [4.5]}
+failed in test case: {'input': '4.6', 'output': [4.5]}
+failed in test case: {'input': '4.8', 'output': [5]}
+failed in test case: {'input': '4.75', 'output': [5]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import math
+
+def solution(number):
+    # Multiply by 2 to work with 0.5 steps as integers
+    doubled = number * 2
+    
+    # Round half up: add 0.5 and floor
+    rounded = math.floor(doubled + 0.5)
+    
+    # Divide by 2 to return to original scale
+    result = rounded / 2
+    
+    # Format output - if it's a whole number, return as integer
+    if result == int(result):
+        return int(result)
+    else:
+        return result
+
+# Read input from stdin
+number = float(input())
+
+# Calculate and print the result
+result = solution(number)
+print(result)
+
+
+
+Total Prompt Tokens: 7164
+Total Completion Tokens: 2708
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2882
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4', 'output': [34]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4', 'output': [34]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4', 'output': [34]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '4', 'output': [34]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def triangle_sum(n):
+    return n * (n * n + 1) // 2
+
+n = int(input())
+result = triangle_sum(n)
+print(result)
+
+
+
+Total Prompt Tokens: 6221
+Total Completion Tokens: 3253
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4440
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1234', 'output': [True]}
+failed in test case: {'input': '12345', 'output': [False]}
+failed in test case: {'input': 'a234', 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1234', 'output': [True]}
+failed in test case: {'input': '12345', 'output': [False]}
+failed in test case: {'input': 'a234', 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1234', 'output': [True]}
+failed in test case: {'input': '12345', 'output': [False]}
+failed in test case: {'input': 'a234', 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1234', 'output': [True]}
+failed in test case: {'input': '12345', 'output': [False]}
+failed in test case: {'input': 'a234', 'output': [False]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def validate_pin(pin):
+    # Check if length is exactly 4 or 6
+    if len(pin) == 4 or len(pin) == 6:
+        # Check if all characters are digits
+        if pin.isdigit():
+            return True
+    return False
+
+# Read input from standard input
+pin = input().strip()
+
+# Call the function and print the result
+result = validate_pin(pin)
+print(str(result))
+
+
+
+Total Prompt Tokens: 6145
+Total Completion Tokens: 1723
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2771
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '7', 'output': [5]}
+failed in test case: {'input': '10', 'output': [6]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '7', 'output': [5]}
+failed in test case: {'input': '10', 'output': [6]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '7', 'output': [5]}
+failed in test case: {'input': '10', 'output': [6]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '7', 'output': [5]}
+failed in test case: {'input': '10', 'output': [6]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def hofstadter_q(n):
+    if n <= 0:
+        return None
+    if n <= 2:
+        return 1
+    
+    # Initialize memoization array
+    memo = [0] * (n + 1)
+    memo[1] = 1
+    memo[2] = 1
+    
+    # Compute values iteratively from 3 to n
+    for i in range(3, n + 1):
+        memo[i] = memo[i - memo[i - 1]] + memo[i - memo[i - 2]]
+    
+    return memo[n]
+
+# Read input from stdin
+n = int(input().strip())
+
+# Compute and output the result
+result = hofstadter_q(n)
+print(result)
+
+
+
+Total Prompt Tokens: 8128
+Total Completion Tokens: 4254
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4335
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "abba\n['aabb', 'abcd', 'bbaa', 'dada']", 'output': [['aabb', 'bbaa']]}
+failed in test case: {'input': "racer\n['crazer', 'carer', 'racar', 'caers', 'racer']", 'output': [['carer', 'racer']]}
+failed in test case: {'input': "laser\n['lazing', 'lazy', 'lacer']", 'output': [[]]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "abba\n['aabb', 'abcd', 'bbaa', 'dada']", 'output': [['aabb', 'bbaa']]}
+failed in test case: {'input': "racer\n['crazer', 'carer', 'racar', 'caers', 'racer']", 'output': [['carer', 'racer']]}
+failed in test case: {'input': "laser\n['lazing', 'lazy', 'lacer']", 'output': [[]]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "abba\n['aabb', 'abcd', 'bbaa', 'dada']", 'output': [['aabb', 'bbaa']]}
+failed in test case: {'input': "racer\n['crazer', 'carer', 'racar', 'caers', 'racer']", 'output': [['carer', 'racer']]}
+failed in test case: {'input': "laser\n['lazing', 'lazy', 'lacer']", 'output': [[]]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "abba\n['aabb', 'abcd', 'bbaa', 'dada']", 'output': [['aabb', 'bbaa']]}
+failed in test case: {'input': "racer\n['crazer', 'carer', 'racar', 'caers', 'racer']", 'output': [['carer', 'racer']]}
+failed in test case: {'input': "laser\n['lazing', 'lazy', 'lacer']", 'output': [[]]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def anagrams(word, candidates):
+    # Create a frequency map for the input word
+    word_freq = {}
+    for char in word:
+        word_freq[char] = word_freq.get(char, 0) + 1
+    
+    result = []
+    
+    # Check each candidate
+    for candidate in candidates:
+        # Skip if lengths don't match
+        if len(candidate) != len(word):
+            continue
+            
+        # Create frequency map for candidate
+        candidate_freq = {}
+        for char in candidate:
+            candidate_freq[char] = candidate_freq.get(char, 0) + 1
+        
+        # Compare frequency maps
+        if candidate_freq == word_freq:
+            result.append(candidate)
+    
+    return result
+
+# Read input
+word = input().strip()
+candidates_str = input().strip()
+candidates = eval(candidates_str)
+
+# Find anagrams and print result
+result = anagrams(word, candidates)
+print(result)
+
+
+
+Total Prompt Tokens: 8970
+Total Completion Tokens: 3445
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3512
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '1000', 'output': [5]}
+failed in test case: {'input': '1000000', 'output': [5]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '1000', 'output': [5]}
+failed in test case: {'input': '1000000', 'output': [5]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '1000', 'output': [5]}
+failed in test case: {'input': '1000000', 'output': [5]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '1', 'output': [1]}
+failed in test case: {'input': '2', 'output': [1]}
+failed in test case: {'input': '3', 'output': [2]}
+failed in test case: {'input': '1000', 'output': [5]}
+failed in test case: {'input': '1000000', 'output': [5]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def last_fib_digit(n):
+    # Pisano period for modulo 10 is 60
+    pisano_period = 60
+    
+    # Reduce n using the Pisano period
+    n = n % pisano_period
+    if n == 0:
+        n = pisano_period
+    
+    # Handle base cases
+    if n == 1:
+        return 1
+    if n == 2:
+        return 1
+    
+    # Calculate Fibonacci number iteratively, keeping only last digit
+    a, b = 1, 1
+    for _ in range(3, n + 1):
+        a, b = b, (a + b) % 10
+    
+    return b
+
+# Read input and solve
+n = int(input())
+print(last_fib_digit(n))
+
+
+
+Total Prompt Tokens: 7681
+Total Completion Tokens: 2569
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3435
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def alphabet_war(fight):
+    # Define powers for left and right side letters
+    left_powers = {'w': 4, 'p': 3, 'b': 2, 's': 1}
+    right_powers = {'m': 4, 'q': 3, 'd': 2, 'z': 1}
+    
+    # Handle empty string case
+    if not fight:
+        return "Let's fight again!"
+    
+    # Convert string to list for easier manipulation
+    chars = list(fight)
+    length = len(chars)
+    
+    # Mark characters destroyed by bombs
+    destroyed = [False] * length
+    for i in range(length):
+        if chars[i] == '*':
+            # Destroy left adjacent character
+            if i > 0:
+                destroyed[i-1] = True
+            # Destroy right adjacent character
+            if i < length - 1:
+                destroyed[i+1] = True
+    
+    # Calculate total powers for both sides
+    left_power = 0
+    right_power = 0
+    
+    for i in range(length):
+        if not destroyed[i] and chars[i] != '*':
+            if chars[i] in left_powers:
+                left_power += left_powers[chars[i]]
+            elif chars[i] in right_powers:
+                right_power += right_powers[chars[i]]
+    
+    # Determine winner
+    if left_power > right_power:
+        return "Left side wins!"
+    elif right_power > left_power:
+        return "Right side wins!"
+    else:
+        return "Let's fight again!"
+
+# Read input and call function
+fight = input().strip()
+result = alphabet_war(fight)
+print(result)
+
+
+
+Total Prompt Tokens: 9731
+Total Completion Tokens: 5018
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3387
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Across the rivers\nchris', 'output': [True]}
+failed in test case: {'input': 'Next to a lake\nchris', 'output': [False]}
+failed in test case: {'input': 'Under a sea\nchris', 'output': [False]}
+failed in test case: {'input': 'A crew that boards the ship\nchris', 'output': [False]}
+failed in test case: {'input': 'A live son\nAllison', 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Across the rivers\nchris', 'output': [True]}
+failed in test case: {'input': 'Next to a lake\nchris', 'output': [False]}
+failed in test case: {'input': 'Under a sea\nchris', 'output': [False]}
+failed in test case: {'input': 'A crew that boards the ship\nchris', 'output': [False]}
+failed in test case: {'input': 'A live son\nAllison', 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Across the rivers\nchris', 'output': [True]}
+failed in test case: {'input': 'Next to a lake\nchris', 'output': [False]}
+failed in test case: {'input': 'Under a sea\nchris', 'output': [False]}
+failed in test case: {'input': 'A crew that boards the ship\nchris', 'output': [False]}
+failed in test case: {'input': 'A live son\nAllison', 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Across the rivers\nchris', 'output': [True]}
+failed in test case: {'input': 'Next to a lake\nchris', 'output': [False]}
+failed in test case: {'input': 'Under a sea\nchris', 'output': [False]}
+failed in test case: {'input': 'A crew that boards the ship\nchris', 'output': [False]}
+failed in test case: {'input': 'A live son\nAllison', 'output': [False]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def nameInStr(str_text, name):
+    str_text = str_text.lower()
+    name = name.lower()
+    
+    str_index = 0
+    name_index = 0
+    
+    while str_index < len(str_text) and name_index < len(name):
+        if str_text[str_index] == name[name_index]:
+            name_index += 1
+        str_index += 1
+    
+    return name_index == len(name)
+
+# Read input from stdin
+str_input = input()
+name_input = input()
+
+# Call the function and print the result
+result = nameInStr(str_input, name_input)
+print(str(result).capitalize())
+
+
+
+Total Prompt Tokens: 9846
+Total Completion Tokens: 3634
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4024
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2', 'output': ['Special!!']}
+failed in test case: {'input': '9', 'output': ['NOT!!']}
+failed in test case: {'input': '23', 'output': ['Special!!']}
+failed in test case: {'input': '39', 'output': ['NOT!!']}
+failed in test case: {'input': '59', 'output': ['NOT!!']}
+failed in test case: {'input': '513', 'output': ['Special!!']}
+failed in test case: {'input': '709', 'output': ['NOT!!']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2', 'output': ['Special!!']}
+failed in test case: {'input': '9', 'output': ['NOT!!']}
+failed in test case: {'input': '23', 'output': ['Special!!']}
+failed in test case: {'input': '39', 'output': ['NOT!!']}
+failed in test case: {'input': '59', 'output': ['NOT!!']}
+failed in test case: {'input': '513', 'output': ['Special!!']}
+failed in test case: {'input': '709', 'output': ['NOT!!']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2', 'output': ['Special!!']}
+failed in test case: {'input': '9', 'output': ['NOT!!']}
+failed in test case: {'input': '23', 'output': ['Special!!']}
+failed in test case: {'input': '39', 'output': ['NOT!!']}
+failed in test case: {'input': '59', 'output': ['NOT!!']}
+failed in test case: {'input': '513', 'output': ['Special!!']}
+failed in test case: {'input': '709', 'output': ['NOT!!']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '2', 'output': ['Special!!']}
+failed in test case: {'input': '9', 'output': ['NOT!!']}
+failed in test case: {'input': '23', 'output': ['Special!!']}
+failed in test case: {'input': '39', 'output': ['NOT!!']}
+failed in test case: {'input': '59', 'output': ['NOT!!']}
+failed in test case: {'input': '513', 'output': ['Special!!']}
+failed in test case: {'input': '709', 'output': ['NOT!!']}
+
+--- Ending run_single_pass ---
+Final Code: 
+def specialNumber(n):
+    for digit in str(n):
+        if digit > '5':
+            return "NOT!!"
+    return "Special!!"
+
+n = int(input().strip())
+print(specialNumber(n))
+
+
+
+Total Prompt Tokens: 10134
+Total Completion Tokens: 2356
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3478
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def battle(player1, player2):
+    # Create copies to avoid modifying original lists
+    p1_creatures = [list(creature) for creature in player1]
+    p2_creatures = [list(creature) for creature in player2]
+    
+    # Determine number of battles
+    num_battles = min(len(p1_creatures), len(p2_creatures))
+    
+    # Process battles
+    for i in range(num_battles):
+        p1_power, p1_toughness = p1_creatures[i]
+        p2_power, p2_toughness = p2_creatures[i]
+        
+        # Deal damage simultaneously
+        # Each creature deals damage equal to its power
+        p1_creatures[i][1] -= p2_power  # p1 takes damage from p2
+        p2_creatures[i][1] -= p1_power  # p2 takes damage from p1
+    
+    # Filter out dead creatures and use original stats for survivors
+    surviving_p1 = []
+    surviving_p2 = []
+    
+    # Check battled creatures
+    for i in range(num_battles):
+        # Use original stats for survivors
+        if p1_creatures[i][1] > 0:  # Changed >= to >
+            surviving_p1.append(list(player1[i]))
+        if p2_creatures[i][1] > 0:  # Changed >= to >
+            surviving_p2.append(list(player2[i]))
+    
+    # Add unblocked creatures (those beyond the battle count) with original stats
+    surviving_p1.extend([list(creature) for creature in player1[num_battles:]])
+    surviving_p2.extend([list(creature) for creature in player2[num_battles:]])
+    
+    return {"player1": surviving_p1, "player2": surviving_p2}
+
+# Read input and execute
+if __name__ == "__main__":
+    player1 = eval(input())
+    player2 = eval(input())
+    result = battle(player1, player2)
+    print(result)
+
+
+
+Total Prompt Tokens: 10516
+Total Completion Tokens: 9224
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3766
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import math
+
+def getAllPrimeFactors(n):
+    # Handle invalid inputs
+    if not isinstance(n, int) or n <= 0:
+        return []
+    if n == 1:
+        return [1]
+    
+    factors = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    return factors
+
+def getUniquePrimeFactorsWithCount(n):
+    # Handle invalid inputs
+    if not isinstance(n, int) or n <= 0:
+        return [[], []]
+    if n == 1:
+        return [[1], [1]]
+    
+    factors = getAllPrimeFactors(n)
+    if not factors:
+        return [[], []]
+        
+    unique_factors = []
+    counts = []
+    i = 0
+    while i < len(factors):
+        current = factors[i]
+        unique_factors.append(current)
+        count = 1
+        while i + count < len(factors) and factors[i + count] == current:
+            count += 1
+        counts.append(count)
+        i += count
+    return [unique_factors, counts]
+
+def getUniquePrimeFactorsWithProducts(n):
+    # Handle invalid inputs
+    if not isinstance(n, int) or n <= 0:
+        return []
+    if n == 1:
+        return [1]
+        
+    # Get unique factors and counts
+    unique_factors, counts = getUniquePrimeFactorsWithCount(n)
+    # Handle edge case where there are no factors
+    if not unique_factors:
+        return []
+        
+    products = []
+    for i in range(len(unique_factors)):
+        products.append(unique_factors[i] ** counts[i])
+    return products
+
+# Read input and execute
+n = int(input())
+result = getAllPrimeFactors(n)
+print(result)
+
+
+
+Total Prompt Tokens: 15056
+Total Completion Tokens: 4979
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3766
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '100', 'output': [[2, 2, 5, 5]]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+
+def getAllPrimeFactors(n):
+    if not isinstance(n, int) or n <= 0:
+        return []
+    if n == 1:
+        return [1]
+    
+    factors = []
+    divisor = 2
+    while n > 1:
+        while n % divisor == 0:
+            factors.append(divisor)
+            n //= divisor
+        divisor += 1
+        if divisor * divisor > n and n > 1:
+            factors.append(n)
+            break
+    return factors
+
+def getUniquePrimeFactorsWithCount(n):
+    if not isinstance(n, int) or n <= 0:
+        return [[], []]
+    if n == 1:
+        return [[1], [1]]
+        
+    factors = getAllPrimeFactors(n)
+    if not factors:
+        return [[], []]
+        
+    unique_primes = []
+    counts = []
+    i = 0
+    while i < len(factors):
+        prime = factors[i]
+        count = 0
+        j = i
+        while j < len(factors) and factors[j] == prime:
+            count += 1
+            j += 1
+        unique_primes.append(prime)
+        counts.append(count)
+        i = j
+    return [unique_primes, counts]
+
+def getUniquePrimeFactorsWithProducts(n):
+    if not isinstance(n, int) or n <= 0:
+        return []
+    if n == 1:
+        return [1]
+        
+    unique_factors, counts = getUniquePrimeFactorsWithCount(n)
+    if not unique_factors:
+        return []
+        
+    products = []
+    for i in range(len(unique_factors)):
+        products.append(unique_factors[i] ** counts[i])
+    return products
+
+try:
+    n = int(input())
+    result = getAllPrimeFactors(n)
+    print(result)
+except ValueError:
+    print([])
+
+
+
+Total Prompt Tokens: 14817
+Total Completion Tokens: 5600
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3292
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'ABC', 'output': [6]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'ABC', 'output': [6]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'ABC', 'output': [6]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'ABC', 'output': [6]}
+
+--- Ending run_single_pass ---
+Final Code: 
+s = input().strip()
+
+# Step 1: Convert each character to ASCII and concatenate to form total1
+total1 = ''.join(str(ord(char)) for char in s)
+
+# Step 2: Replace all occurrences of '7' with '1' to form total2
+total2 = total1.replace('7', '1')
+
+# Step 3: Calculate the sum of digits in total1 and total2
+sum1 = sum(int(digit) for digit in total1)
+sum2 = sum(int(digit) for digit in total2)
+
+# Step 4: Output the difference
+print(sum1 - sum2)
+
+
+
+Total Prompt Tokens: 6979
+Total Completion Tokens: 2710
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 2886
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '!!', 'output': ['']}
+failed in test case: {'input': '!??', 'output': ['!??']}
+failed in test case: {'input': '!?!!', 'output': ['?!!']}
+failed in test case: {'input': '!!???!????', 'output': ['!!???']}
+failed in test case: {'input': '!!???!?????', 'output': ['!?????']}
+failed in test case: {'input': '!????!!!?', 'output': ['????!!!']}
+failed in test case: {'input': '!?!!??!!!?', 'output': ['??!!!']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '!!', 'output': ['']}
+failed in test case: {'input': '!??', 'output': ['!??']}
+failed in test case: {'input': '!?!!', 'output': ['?!!']}
+failed in test case: {'input': '!!???!????', 'output': ['!!???']}
+failed in test case: {'input': '!!???!?????', 'output': ['!?????']}
+failed in test case: {'input': '!????!!!?', 'output': ['????!!!']}
+failed in test case: {'input': '!?!!??!!!?', 'output': ['??!!!']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '!!', 'output': ['']}
+failed in test case: {'input': '!??', 'output': ['!??']}
+failed in test case: {'input': '!?!!', 'output': ['?!!']}
+failed in test case: {'input': '!!???!????', 'output': ['!!???']}
+failed in test case: {'input': '!!???!?????', 'output': ['!?????']}
+failed in test case: {'input': '!????!!!?', 'output': ['????!!!']}
+failed in test case: {'input': '!?!!??!!!?', 'output': ['??!!!']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': '!!', 'output': ['']}
+failed in test case: {'input': '!??', 'output': ['!??']}
+failed in test case: {'input': '!?!!', 'output': ['?!!']}
+failed in test case: {'input': '!!???!????', 'output': ['!!???']}
+failed in test case: {'input': '!!???!?????', 'output': ['!?????']}
+failed in test case: {'input': '!????!!!?', 'output': ['????!!!']}
+failed in test case: {'input': '!?!!??!!!?', 'output': ['??!!!']}
+
+--- Ending run_single_pass ---
+Final Code: 
+s = input().strip()
+
+max_len = 0
+result = ""
+
+i = 0
+while i < len(s) - 1:
+    if s[i] in '!?':
+        # Found start of potential combination
+        # Check if we have '!' followed by '?' or '?' followed by '!'
+        
+        # Case 1: '!' followed by '?'
+        if s[i] == '!':
+            # Count consecutive '!'
+            excl_count = 0
+            j = i
+            while j < len(s) and s[j] == '!':
+                excl_count += 1
+                j += 1
+            
+            # Count consecutive '?' after '!'
+            ques_count = 0
+            while j < len(s) and s[j] == '?':
+                ques_count += 1
+                j += 1
+            
+            # Valid combination if both counts > 0
+            if excl_count > 0 and ques_count > 0:
+                combo_len = excl_count + ques_count
+                if combo_len > max_len:
+                    max_len = combo_len
+                    result = '!' * excl_count + '?' * ques_count
+                i = j - ques_count  # Move past the '?' part
+                continue
+        
+        # Case 2: '?' followed by '!'
+        if s[i] == '?':
+            # Count consecutive '?'
+            ques_count = 0
+            j = i
+            while j < len(s) and s[j] == '?':
+                ques_count += 1
+                j += 1
+            
+            # Count consecutive '!' after '?'
+            excl_count = 0
+            while j < len(s) and s[j] == '!':
+                excl_count += 1
+                j += 1
+            
+            # Valid combination if both counts > 0
+            if ques_count > 0 and excl_count > 0:
+                combo_len = ques_count + excl_count
+                if combo_len > max_len:
+                    max_len = combo_len
+                    result = '?' * ques_count + '!' * excl_count
+                i = j - excl_count  # Move past the '!' part
+                continue
+    
+    i += 1
+
+print(result)
+
+
+
+Total Prompt Tokens: 7586
+Total Completion Tokens: 3040
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4515
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Ending run_single_pass ---
+Final Code: 
+def find_greatest_difference(couples):
+    max_diff = -1
+    result = ""
+    
+    for couple in couples:
+        parts = couple.split('-')
+        num1 = int(parts[0])
+        num2 = int(parts[1])
+        diff = abs(num1 - num2)
+        
+        if diff > max_diff:
+            max_diff = diff
+            result = couple
+    
+    if max_diff == 0:
+        return False
+    
+    return result
+
+# Read input and process
+couples = eval(input())
+result = find_greatest_difference(couples)
+print(result)
+
+
+
+Total Prompt Tokens: 6929
+Total Completion Tokens: 2279
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4515
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': "['56-23','1-100']", 'output': ['1-100']}
+failed in test case: {'input': "['1-3', '5-7', '2-3']", 'output': ['1-3']}
+failed in test case: {'input': "['11-11', '344-344']", 'output': [False]}
+
+--- Ending run_single_pass ---
+Final Code: 
+import sys
+import ast
+
+def find_greatest_difference_couple(couples):
+    max_diff = -1
+    result_couple = ""
+    
+    for couple in couples:
+        # Remove any whitespace and split by '-'
+        num1, num2 = map(int, couple.strip().split('-'))
+        diff = abs(num1 - num2)
+        
+        if diff > max_diff:
+            max_diff = diff
+            result_couple = couple.strip()
+    
+    if max_diff == 0:
+        return False
+    else:
+        return result_couple
+
+# Read input from stdin
+input_str = sys.stdin.read().strip()
+# Parse the input string to extract the array
+couples = ast.literal_eval(input_str)
+
+# Handle empty array case
+if not couples or couples == ['']:
+    print(False)
+else:
+    result = find_greatest_difference_couple(couples)
+    print(result)
+
+
+
+Total Prompt Tokens: 7574
+Total Completion Tokens: 2151
+________________________
+
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 982, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\MapCoder.py", line 619, in run_single_pass
+    improvement_response, pr_tok_1, com_tok_1 = self.gpt_chat(prompt=improvement_prompt)
+                                                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\promptings\Base.py", line 38, in gpt_chat
+    return self.model.prompt(prompt, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\Qwen.py", line 33, in prompt
+    return super().prompt(processed_input, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\MapCoder\MapCoder\src\models\OpenAI.py", line 197, in prompt
+    response = self.openai.chat.completions.create(
+        messages=processed_input,
+        **model_params
+    )
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1156, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chenzaiyi\miniconda3\Lib\site-packages\openai\_base_client.py", line 1000, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+--- Starting run_single_pass ---
+Task ID: 3068
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- An unexpected error occurred in run_single_pass: Request timed out. ---
+--- Ending run_single_pass ---
+Final Code: 
+def move_forward(char, steps):
+    return chr((ord(char) - ord('a') + steps) % 26 + ord('a'))
+
+def move_backward(char, steps):
+    return chr((ord(char) - ord('a') - steps) % 26 + ord('a'))
+
+def is_vowel(char):
+    return char in 'aeiou'
+
+def transform_char(char):
+    # Exception rules
+    if char == 'c' or char == 'o':
+        new_char = move_backward(char, 1)
+    elif char == 'd':
+        new_char = move_backward(char, 3)
+    elif char == 'e':
+        new_char = move_backward(char, 4)
+    # Vowels (not exceptions)
+    elif is_vowel(char):
+        new_char = move_backward(char, 5)
+    # Consonants
+    else:
+        new_char = move_forward(char, 9)
+    
+    # Revert if transformed to exception characters
+    if new_char in 'code':
+        return char
+    else:
+        return new_char
+
+# Read input
+s = input().strip()
+
+# Transform each character
+result = ''.join(transform_char(char) for char in s)
+
+# Print result
+print(result)
+
+
+
+Total Prompt Tokens: 3870
+Total Completion Tokens: 1869
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4214
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+
+def transform_sentence(sentence):
+    # Split sentence into tokens (words and punctuation)
+    tokens = re.findall(r'\S+|\s+', sentence)
+    
+    result_tokens = []
+    
+    for i, token in enumerate(tokens):
+        # Skip whitespace tokens
+        if token.isspace() or token == '':
+            result_tokens.append(token)
+            continue
+            
+        # Extract word part and punctuation part
+        match = re.match(r"(\w+)(\W*)", token)
+        if match:
+            word_part = match.group(1)
+            punct_part = match.group(2)
+            
+            # Count 't' and 'T' in the word part
+            t_count = word_part.lower().count('t')
+            
+            # Apply transformations in order
+            if len(word_part) > 6 or t_count >= 2:
+                # Rule 1: reverse the word part
+                transformed = word_part[::-1] + punct_part
+            elif len(word_part) == 2 or (punct_part.startswith(',') and len(punct_part) == 1):
+                # Rule 2: uppercase the word part
+                # Word is exactly 2 characters OR word ends with just a comma
+                transformed = word_part.upper() + punct_part
+            elif len(word_part) == 1:
+                # Rule 3: convert to "0"
+                transformed = "0" + punct_part
+            else:
+                # No transformation
+                transformed = token
+                
+            result_tokens.append(transformed)
+        else:
+            # Token is only punctuation/whitespace
+            result_tokens.append(token)
+    
+    return ''.join(result_tokens)
+
+# Read input and process
+input_sentence = input().strip()
+output_sentence = transform_sentence(input_sentence)
+print(output_sentence)
+
+
+
+Total Prompt Tokens: 9750
+Total Completion Tokens: 4551
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4214
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+import sys
+
+def process_word(word, next_part=""):
+    # Separate the word from trailing punctuation
+    match = re.match(r"(.*?)([^a-zA-Z]*)$", word)
+    if match:
+        core_word = match.group(1)
+        punctuation = match.group(2)
+    else:
+        core_word = word
+        punctuation = ""
+    
+    # Count total characters (excluding punctuation for length check)
+    total_length = len(core_word)
+    
+    # Count T/t in the core word only
+    t_count = core_word.lower().count('t')
+
+    # Rule 1: Flip if >6 chars or 2+ T/t
+    if total_length > 6 or t_count >= 2:
+        return core_word[::-1] + punctuation
+    
+    # Rule 2: Uppercase if exactly 2 chars or before a comma
+    if total_length == 2 or ',' in next_part:
+        return core_word.upper() + punctuation
+    
+    # Rule 3: Replace with "0" if exactly 1 char
+    if total_length == 1:
+        return "0" + punctuation
+    
+    # No change
+    return core_word + punctuation
+
+def transform_sentence(sentence):
+    if not sentence:
+        return ""
+    
+    # Split by spaces and preserve spaces
+    parts = re.split(r'(\s+)', sentence)
+    
+    # Filter out empty strings and whitespace parts for word processing
+    non_space_parts = [part for part in parts if not re.match(r'^\s+$', part) and part != '']
+    
+    result = []
+    i = 0
+    part_index = 0
+    
+    while part_index < len(parts):
+        part = parts[part_index]
+        
+        # If it's whitespace, keep as is
+        if re.match(r'^\s+$', part):
+            result.append(part)
+            part_index += 1
+            continue
+            
+        # If it's a word (not just punctuation)
+        if re.search(r'[a-zA-Z]', part):
+            # Get the next non-whitespace part to check for comma
+            next_part = ""
+            next_index = part_index + 1
+            while next_index < len(parts):
+                if not re.match(r'^\s+$', parts[next_index]):
+                    next_part = parts[next_index]
+                    break
+                next_index += 1
+            
+            processed = process_word(part, next_part)
+            result.append(processed)
+        else:
+            # Just punctuation or other characters
+            result.append(part)
+            
+        part_index += 1
+    
+    return "".join(result)
+
+if __name__ == "__main__":
+    input_sentence = sys.stdin.read().strip()
+    output_sentence = transform_sentence(input_sentence)
+    print(output_sentence, end='')
+
+
+
+Total Prompt Tokens: 10451
+Total Completion Tokens: 5348
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4214
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+import sys
+
+def transform_sentence(sentence):
+    # Split into tokens (words with optional trailing punctuation, spaces, and standalone punctuation)
+    tokens = re.findall(r'\S+|\s+', sentence)
+    
+    # Identify words before commas
+    words_before_comma = set()
+    for i in range(len(tokens)):
+        if tokens[i] == ',' and i > 0:
+            # Find the previous non-space token
+            for j in range(i-1, -1, -1):
+                if not tokens[j].isspace() and tokens[j] != '':
+                    words_before_comma.add(j)
+                    break
+    
+    result = []
+    
+    for i, token in enumerate(tokens):
+        # If it's whitespace, keep as is
+        if re.match(r'\s+', token):
+            result.append(token)
+            continue
+        
+        # Separate word from trailing punctuation
+        match = re.match(r'^(\w+)(\W*)$', token)
+        if match:
+            word_part = match.group(1)
+            punct_part = match.group(2)
+            
+            # Apply transformations in order of precedence
+            transformed = False
+            
+            # Rule 1: Flip if longer than 6 chars OR has 2+ T/t
+            if len(word_part) > 6 or word_part.lower().count('t') >= 2:
+                result.append(word_part[::-1] + punct_part)
+                transformed = True
+            # Rule 2: Uppercase if exactly 2 chars OR before comma
+            elif len(word_part) == 2 or i in words_before_comma:
+                result.append(word_part.upper() + punct_part)
+                transformed = True
+            # Rule 3: Convert to "0" if exactly 1 char
+            elif len(word_part) == 1:
+                result.append("0" + punct_part)
+                transformed = True
+            
+            if not transformed:
+                result.append(token)
+        else:
+            # Token doesn't match word+punctuation pattern, keep as is
+            result.append(token)
+    
+    return "".join(result)
+
+# Read input and process
+input_sentence = input().strip()
+output_sentence = transform_sentence(input_sentence)
+print(output_sentence)
+
+
+
+Total Prompt Tokens: 9364
+Total Completion Tokens: 4723
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 4214
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'companions,', 'output': ['snoinapmoc,']}
+failed in test case: {'input': 'sand-colored', 'output': ['deroloc-dnas']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+import sys
+
+def transform_sentence(sentence):
+    # Split sentence into tokens (words with attached punctuation and spaces)
+    tokens = re.findall(r'\S+|\s+', sentence)
+    
+    result = []
+    
+    for i, token in enumerate(tokens):
+        # If it's whitespace, keep as is
+        if re.match(r'\s+', token):
+            result.append(token)
+            continue
+        
+        # Separate word from punctuation
+        # Find where the actual word ends (before punctuation starts)
+        word_end = len(token)
+        for j, char in enumerate(token):
+            if not char.isalnum() and char != "'" and char != "-":
+                word_end = j
+                break
+        
+        word_part = token[:word_end]
+        punct_part = token[word_end:]
+        
+        # Rule 1: Convert backwards if longer than 6 chars OR has 2+ T/t
+        if len(word_part) > 6 or word_part.lower().count('t') >= 2:
+            result.append(word_part[::-1] + punct_part)
+        # Rule 2: Convert uppercase if exactly 2 chars OR before a comma
+        elif len(word_part) == 2 or punct_part.startswith(','):
+            result.append(word_part.upper() + punct_part)
+        # Rule 3: Convert to "0" if exactly one char
+        elif len(word_part) == 1:
+            result.append("0" + punct_part)
+        else:
+            result.append(token)
+            
+    return ''.join(result)
+
+# Read input and process
+input_sentence = input().strip()
+output_sentence = transform_sentence(input_sentence)
+print(output_sentence)
+
+
+
+Total Prompt Tokens: 9480
+Total Completion Tokens: 3845
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3884
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Probably', 'output': ['Prolly']}
+failed in test case: {'input': 'Instagram', 'output': ['Insta']}
+
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Probably', 'output': ['Prolly']}
+failed in test case: {'input': 'Instagram', 'output': ['Insta']}
+
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Probably', 'output': ['Prolly']}
+failed in test case: {'input': 'Instagram', 'output': ['Insta']}
+
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed in test case: {'input': 'Probably', 'output': ['Prolly']}
+failed in test case: {'input': 'Instagram', 'output': ['Insta']}
+
+--- Ending run_single_pass ---
+Final Code: 
+import re
+import sys
+
+def gymSlang(phrase):
+    # Define replacement mappings
+    replacements = {
+        'probably': 'prolly',
+        'i am': "i'm",
+        'instagram': 'insta',
+        'do not': "don't",
+        'going to': 'gonna',
+        'combination': 'combo'
+    }
+    
+    def replace_word(match):
+        original = match.group(0)
+        word_lower = original.lower()
+        replacement = replacements[word_lower]
+        
+        # Handle capitalization
+        if original.isupper():
+            # ALL CAPS - don't replace
+            return original
+        elif original[0].isupper():
+            # First letter capitalized
+            return replacement.capitalize()
+        else:
+            # All lowercase
+            return replacement
+    
+    # Apply replacements in order
+    result = phrase
+    for word, replacement in replacements.items():
+        # Pattern matches word boundary, the word (any case), word boundary
+        pattern = r'\b' + re.escape(word) + r'\b'
+        result = re.sub(pattern, replace_word, result, flags=re.IGNORECASE)
+    
+    return result
+
+if __name__ == "__main__":
+    input_phrase = sys.stdin.read().strip()
+    output_phrase = gymSlang(input_phrase)
+    print(output_phrase)
+
+
+
+Total Prompt Tokens: 10811
+Total Completion Tokens: 4002
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3732
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def is_madhav_array(arr):
+    n = len(arr)
+    
+    # Edge cases
+    if n <= 1:
+        return False
+    
+    # Check if array length follows the pattern 1 + 2 + 3 + ... + k
+    # This sum is k(k+1)/2, so we need to find k such that k(k+1)/2 = n
+    k = 1
+    while k * (k + 1) // 2 < n:
+        k += 1
+    
+    # If k(k+1)/2 != n, then array doesn't have complete groups
+    if k * (k + 1) // 2 != n:
+        return False
+    
+    # Check if all groups sum to the first element
+    target_sum = arr[0]
+    index = 1
+    
+    for group_size in range(2, k + 1):
+        group_sum = 0
+        for _ in range(group_size):
+            group_sum += arr[index]
+            index += 1
+        
+        if group_sum != target_sum:
+            return False
+    
+    return True
+
+# Read input and process
+input_str = input().strip()
+
+# Simple parsing - remove brackets and split by comma
+if input_str == "[]" or input_str == "[ ]":
+    arr = []
+else:
+    # Remove brackets and split
+    content = input_str[1:-1]
+    if content.strip() == "":
+        arr = []
+    else:
+        # Handle potential spaces around commas
+        arr = [int(x.strip()) for x in content.split(",")]
+
+result = is_madhav_array(arr)
+print(str(result).lower())
+
+
+
+Total Prompt Tokens: 8569
+Total Completion Tokens: 4337
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3732
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def is_madhav_array(arr):
+    # Edge cases
+    if len(arr) <= 1:
+        return False
+    
+    # Check if length is a triangular number
+    n = 1
+    while n * (n + 1) // 2 < len(arr):
+        n += 1
+    
+    if n * (n + 1) // 2 != len(arr):
+        return False
+    
+    # Check if all groups sum to the first element
+    target = arr[0]
+    index = 1  # Start from the second element
+    
+    for group_size in range(2, n + 1):  # Groups of sizes 2, 3, ..., n
+        group_sum = 0
+        for _ in range(group_size):
+            if index >= len(arr):
+                return False
+            group_sum += arr[index]
+            index += 1
+        
+        if group_sum != target:
+            return False
+    
+    return True
+
+# Read input
+arr = eval(input())
+
+# Call function and print result
+print(str(is_madhav_array(arr)).lower())
+
+
+
+Total Prompt Tokens: 7645
+Total Completion Tokens: 5362
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3732
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def is_madhav_array(arr):
+    n = len(arr)
+    
+    # Edge cases
+    if n <= 1:
+        return False
+    
+    # Find the number of complete groups
+    # We need to find k such that n = k(k+1)/2
+    k = 1
+    while k * (k + 1) // 2 < n:
+        k += 1
+    
+    # Check if length matches exactly
+    if k * (k + 1) // 2 != n:
+        return False
+    
+    # Check if all group sums equal first element
+    target = arr[0]
+    index = 1
+    
+    for group_size in range(2, k + 1):
+        group_sum = sum(arr[index : index + group_size])
+        if group_sum != target:
+            return False
+        index += group_size
+    
+    return True
+
+# Read input and call function
+import sys
+input_line = input().strip()
+if input_line == '[]':
+    arr = []
+else:
+    # Remove brackets and split by comma
+    input_line = input_line.strip('[]')
+    if input_line:
+        # Handle potential spaces around numbers
+        arr = list(map(int, input_line.split(',')))
+    else:
+        arr = []
+print(str(is_madhav_array(arr)).lower())
+
+
+
+Total Prompt Tokens: 7734
+Total Completion Tokens: 3781
+________________________
+
+
+--- Starting run_single_pass ---
+Task ID: 3732
+--- Generating Knowledge Base and Exemplars ---
+--- Parsing Knowledge Base and Exemplars ---
+--- Planning Iteration 1 of 4 ---
+--- Generating Problem Planning ---
+--- Parsing Problem Planning ---
+--- Generating Planning Verification ---
+--- Plan Verification Correct ---
+--- Generating Final Code ---
+--- Code Improvement Iteration 1 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 2 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 3 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Code Improvement Iteration 4 of 4 ---
+--- Code Failed, Improving ---
+Feedback: failed: 'test'
+--- Ending run_single_pass ---
+Final Code: 
+def is_madhav_array(arr):
+    # Edge cases
+    if len(arr) <= 1:
+        return False
+    
+    # Check if length is a triangular number
+    n = 1
+    while n * (n + 1) // 2 < len(arr):
+        n += 1
+    if n * (n + 1) // 2 != len(arr):
+        return False
+    
+    # Expected sum is the first element
+    expected_sum = arr[0]
+    
+    # Check each group
+    index = 1
+    group_size = 2
+    while index < len(arr):
+        # Calculate sum of current group
+        group_sum = sum(arr[index:index + group_size])
+        
+        # Check if it matches expected sum
+        if group_sum != expected_sum:
+            return False
+        
+        # Move to next group
+        index += group_size
+        group_size += 1
+    
+    return True
+
+# Read input and process
+if __name__ == "__main__":
+    try:
+        input_str = input().strip()
+        if input_str == "[]":
+            arr = []
+        else:
+            # Remove brackets and split by comma
+            arr = [int(x.strip()) for x in input_str[1:-1].split(",") if x.strip()]
+    except:
+        arr = []
+    
+    result = is_madhav_array(arr)
+    print(result)
+
+
+
+Total Prompt Tokens: 7840
+Total Completion Tokens: 4962
+________________________
+
+
+#########################
+Running end QwenCoder480b-MapCoder-APPS-Python3-0.0-24, Time: 2025-11-19 15:06:47.032337
+##########################
+
